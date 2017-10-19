@@ -4,18 +4,18 @@ use Common\Controller\AdminBaseController;
 use Think;
 
 /**
- * 后台系统渠道管理
+ * 后台系统白名单管理
  */
-class ChannelController extends AdminBaseController{
+class WhiteListController extends AdminBaseController{
 	/**
-	 * 售票渠道列表
+	 * 白名单列表
 	 */
 	public function index($p = 1,$keywords = '' ,$start_date = '' ,$end_date = ''){
 		//访问日志
 		$ip = get_client_ip(); 
 		$log = D("Log");
-		$channel = D("Channel");
-		$log->addLog('Log','Channel',json_encode(array('Result::' => true,'Data::'=>'','IP::'=>$ip)),'');
+		$WhiteList = D("WhiteList");
+		$log->addLog('Log','WhiteList',json_encode(array('Result::' => true,'Data::'=>'','IP::'=>$ip)),'');
 		//查询
 		$condition=array();
 		$condition["isdel"] = 0;
@@ -26,14 +26,14 @@ class ChannelController extends AdminBaseController{
 			$condition["createdate[<>]"] =array($start_date,$end_date);
 		}
 		
-		$totalRows = $channel->where($condition)->order('createdate desc')->count();
+		$totalRows = $WhiteList->where($condition)->order('createdate desc')->count();
 		$totalPages = 1;
 		$listRows = C('PAGE_NUM');;
 		if($totalRows>$listRows)
 		{
 			$totalPages = $totalRows/$listRows;
 		}
-		$channels=$channel->where($condition)->order('createdate desc')->page($p,$listRows)->select();
+		$channels=$WhiteList->where($condition)->order('createdate desc')->page($p,$listRows)->select();
 		foreach ($channels as &$item){
 			//$item['createdateformat'] = gmdate("Y-m-d H:i:s",$item['createdate']);
 			$item['iseffectiveformat'] = $item['iseffective'] =="1"?"有效":"无效";
@@ -53,14 +53,14 @@ class ChannelController extends AdminBaseController{
 		$this->display();
 	}
 	/**
-	 * 售票渠道信息添加
+	 * 白名单信息添加
 	 */
 	public function add()
 	{
 		$data=I('post.');
 		unset($data['id']);
-		if(!empty($data['name']) && !empty($data['code']) && !empty($data['iseffective'])) {//字段校验
-			$result = D('Channel')->iaddData($data);
+		if(!empty($data['name']) && !empty($data['weixid']) && !empty($data['iseffective']) && !empty($data['phonenum'])&& !empty($data['moduleids'])) {//字段校验(必填)
+			$result = D('WhiteList')->iaddData($data);
 			if ($result) {
 				$msg = '添加成功';//,U('Admin/DicData/index')
 				$iresult = array(
@@ -81,7 +81,7 @@ class ChannelController extends AdminBaseController{
 		}
 	}
 	/**
-	 * 售票渠道信息修改（ajax）
+	 * 白名单信息修改（ajax）
 	 *
 	 */
 	public function editdata()
@@ -90,7 +90,7 @@ class ChannelController extends AdminBaseController{
 		$map=array(
 			'id'=>$data['id']
 		);
-		$result = D('Channel')->ieditData($map,$data);
+		$result = D('WhiteList')->ieditData($map,$data);
 		if ($result) {
 			$msg = '编辑成功';//,U('Admin/DicData/index')
 			$iresult = array(
@@ -107,7 +107,7 @@ class ChannelController extends AdminBaseController{
 		$this->ajaxReturn($iresult);//返回操作结果
 	}
 	/**
-	 * 售票渠道信息获取，一句数据id
+	 * 白名单道信息获取，一句数据id
 	 */
 	public function GetDetail($id = 1)
 	{
@@ -115,9 +115,9 @@ class ChannelController extends AdminBaseController{
 		$state = 1;
 		if(!empty($id))
 		{
-			$channel = D('Channel');
+			$WhiteList = D('WhiteList');
 			$condition["id"] = $id;
-			$data = $channel->where($condition)->select();
+			$data = $WhiteList->where($condition)->select();
 			if($data)
 			{
 				$state = 0;
@@ -139,7 +139,7 @@ class ChannelController extends AdminBaseController{
 		$this->ajaxReturn($result);//返回操作结果
 	}
 	/**
-	 * 删除(假删除)
+	 * 删除(假删除)白名单
 	 */
 	public function delete($id = 0){
 
@@ -148,7 +148,7 @@ class ChannelController extends AdminBaseController{
 			$map=array(
 				'id'=>$id
 			);
-			$result=D('Channel')->ideleteData($map);
+			$result=D('WhiteList')->ideleteData($map);
 			if($result){
 				$state = 0;
 				$msg ="成功！";

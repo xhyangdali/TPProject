@@ -4,18 +4,18 @@ use Common\Controller\AdminBaseController;
 use Think;
 
 /**
- * 后台系统渠道管理
+ * 后台系统客运站管理
  */
-class ChannelController extends AdminBaseController{
+class StationController extends AdminBaseController{
 	/**
-	 * 售票渠道列表
+	 * 客运站列表
 	 */
 	public function index($p = 1,$keywords = '' ,$start_date = '' ,$end_date = ''){
 		//访问日志
 		$ip = get_client_ip(); 
 		$log = D("Log");
-		$channel = D("Channel");
-		$log->addLog('Log','Channel',json_encode(array('Result::' => true,'Data::'=>'','IP::'=>$ip)),'');
+		$Station = D("Station");
+		$log->addLog('Log','Station',json_encode(array('Result::' => true,'Data::'=>'','IP::'=>$ip)),'');
 		//查询
 		$condition=array();
 		$condition["isdel"] = 0;
@@ -26,14 +26,14 @@ class ChannelController extends AdminBaseController{
 			$condition["createdate[<>]"] =array($start_date,$end_date);
 		}
 		
-		$totalRows = $channel->where($condition)->order('createdate desc')->count();
+		$totalRows = $Station->where($condition)->order('createdate desc')->count();
 		$totalPages = 1;
 		$listRows = C('PAGE_NUM');;
 		if($totalRows>$listRows)
 		{
 			$totalPages = $totalRows/$listRows;
 		}
-		$channels=$channel->where($condition)->order('createdate desc')->page($p,$listRows)->select();
+		$channels=$Station->where($condition)->order('createdate desc')->page($p,$listRows)->select();
 		foreach ($channels as &$item){
 			//$item['createdateformat'] = gmdate("Y-m-d H:i:s",$item['createdate']);
 			$item['iseffectiveformat'] = $item['iseffective'] =="1"?"有效":"无效";
@@ -53,14 +53,14 @@ class ChannelController extends AdminBaseController{
 		$this->display();
 	}
 	/**
-	 * 售票渠道信息添加
+	 * 客运站信息添加
 	 */
-	public function add()
+	function add()
 	{
 		$data=I('post.');
 		unset($data['id']);
 		if(!empty($data['name']) && !empty($data['code']) && !empty($data['iseffective'])) {//字段校验
-			$result = D('Channel')->iaddData($data);
+			$result = D('Station')->iaddData($data);
 			if ($result) {
 				$msg = '添加成功';//,U('Admin/DicData/index')
 				$iresult = array(
@@ -81,16 +81,16 @@ class ChannelController extends AdminBaseController{
 		}
 	}
 	/**
-	 * 售票渠道信息修改（ajax）
+	 * 客运站信息修改（ajax）
 	 *
 	 */
-	public function editdata()
+	function editdata()
 	{
 		$data=I('post.');
 		$map=array(
 			'id'=>$data['id']
 		);
-		$result = D('Channel')->ieditData($map,$data);
+		$result = D('Station')->ieditData($map,$data);
 		if ($result) {
 			$msg = '编辑成功';//,U('Admin/DicData/index')
 			$iresult = array(
@@ -107,17 +107,17 @@ class ChannelController extends AdminBaseController{
 		$this->ajaxReturn($iresult);//返回操作结果
 	}
 	/**
-	 * 售票渠道信息获取，一句数据id
+	 * 客运站道信息获取，一句数据id
 	 */
-	public function GetDetail($id = 1)
+	function GetDetail($id = 1)
 	{
 		$msg ="";
 		$state = 1;
 		if(!empty($id))
 		{
-			$channel = D('Channel');
+			$Station = D('Station');
 			$condition["id"] = $id;
-			$data = $channel->where($condition)->select();
+			$data = $Station->where($condition)->select();
 			if($data)
 			{
 				$state = 0;
@@ -139,7 +139,7 @@ class ChannelController extends AdminBaseController{
 		$this->ajaxReturn($result);//返回操作结果
 	}
 	/**
-	 * 删除(假删除)
+	 * 删除(假删除)客运站
 	 */
 	public function delete($id = 0){
 
@@ -148,7 +148,7 @@ class ChannelController extends AdminBaseController{
 			$map=array(
 				'id'=>$id
 			);
-			$result=D('Channel')->ideleteData($map);
+			$result=D('Station')->ideleteData($map);
 			if($result){
 				$state = 0;
 				$msg ="成功！";

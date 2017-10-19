@@ -1,13 +1,13 @@
 <extend name="Public:base"/>
-<block name="title">渠道管理</block>
+<block name="title">保险信息管理</block>
 <block name="content">
   <div class="page-header">
-    <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;渠道管理</h1>
+    <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;保险信息管理</h1>
   </div>
   <div class="col-xs-12">
     <div class="tabbable">
       <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
-        <li class="active"> <a href="#home" data-toggle="tab">渠道信息列表</a></li>
+        <li class="active"> <a href="#home" data-toggle="tab">保险信息信息列表</a></li>
       </ul>
       <div class="tab-content">
         <!-- 内容部分 -->
@@ -44,8 +44,8 @@
               <thead>
                 <tr>
                   <th style="width:30px"></th>
-                  <th style="width:50px">渠道名称</th>
-                  <th style="width:35px">渠道编码</th>
+                  <th style="width:50px">保险信息名称</th>
+                  <th style="width:35px">保险信息编码</th>
                   <th style="width:35px">描述</th>
                   <th style="width:100px">创建时间</th>
                     <th style="width:100px">是否有效</th>
@@ -56,8 +56,8 @@
                 <foreach name="data" item="v">
                   <tr>
                     <td></td>
-                    <td>{$v['name']}</td>
-                    <td>{$v['code']}</td>
+                    <td>{$v['groupnum']}</td>
+                    <td>{$v['num']}</td>
                     <td>{$v['description']}</td>
                     <td>{$v['createdate']}</td>
                       <td>{$v['iseffectiveformat']}</td>
@@ -98,8 +98,8 @@ $(function() {
 			  id: 'add_form',
 			  maxmin: true,
 			  scrollbar: false,
-			  title:"渠道信息添加",
-			  area:['800px','300px'],
+			  title:"保险信息信息添加",
+			  area:['800px','360px'],
 			  content:[ url,'no']//注意，如果str是object，那么需要字符拼接。
 			  ,btn: ['保存', '关闭'] //只是为了演示
 			  ,yes: function(index, layero){
@@ -118,7 +118,7 @@ $(function() {
 			  }
 			});
 		});
-    //查看渠道信息
+    //查看保险信息信息
     $(".adetail").click(function(){
         var url = "{:U('detail')}";
         var id = $(this).attr("name");
@@ -127,12 +127,12 @@ $(function() {
             type: 2,
             maxmin: true,
             scrollbar: false,
-            title:"查看渠道信息",
-            area:['800px','300px'],
+            title:"查看保险信息信息",
+            area:['800px','400px'],
             content: url//注意，如果str是object，那么需要字符拼接。
         });
     });
-    //编辑渠道信息
+    //编辑保险信息信息
     $(".aedit").click(function(){
         var url = "{:U('edit')}";
         var id = $(this).attr("name");
@@ -141,8 +141,8 @@ $(function() {
             type: 2,
             maxmin: true,
             scrollbar: false,
-            title:"编辑渠道信息",
-            area:['800px','300px'],
+            title:"编辑保险信息信息",
+            area:['800px','400px'],
             content: [url,'no']//注意，如果str是object，那么需要字符拼接。
             ,btn: ['保存', '关闭'] //只是为了演示
             ,yes: function(index, layero){
@@ -166,7 +166,7 @@ $(function() {
         var tips = $(this).attr("tips");
         var _Id = $(this).attr("name");
         layer.confirm('你确定删除数据‘'+tips+'’吗？', {icon: 3, title:'删除提示',area:["300px","200px"]}, function(index){
-            var url = "{:U('Admin/Channel/delete')}";
+            var url = "{:U('Admin/Insurance/delete')}";
             //提交数据
             var load = layer.load(2, {
                 shade: [0.1,'#fff'] //0.1透明度的白色背景
