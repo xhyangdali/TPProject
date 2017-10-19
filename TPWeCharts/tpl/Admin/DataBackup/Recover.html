@@ -1,0 +1,125 @@
+<extend name="Public:base"/>
+<block name="title">数据还原</block>
+<block name="content">
+  <div class="page-header">
+    <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;数据还原</h1>
+  </div>
+  <div id="showmsg" class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong></strong><p></p>
+  </div>
+  <div class="col-xs-12">
+    <div class="tabbable">
+      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active"> <a href="#home" data-toggle="tab">数据库列表</a></li>
+      </ul>
+      <div class="tab-content">
+        <!-- 内容部分 -->
+        <div style="border:0px;padding-bottom:5px;height:auto">
+        </div>
+        <div class="block">
+          <div id="page-stats" class="block-body collapse in">
+		  <form id="tb-form" method="post" >
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                 <th width="200">备份名称</th>
+				<th width="80">卷数</th>
+				<th width="80">压缩</th>
+				<th width="80">数据大小</th>
+				<th width="200">备份时间</th>
+				<th>状态</th>
+				<th width="120">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <foreach name="data" item="v">
+                  <tr>
+                        <td>{$v['time']}</td>
+                        <td>{$v['part']}</td>
+                        <td>{$v['compress']}</td>
+                        <td>{$v['size']|format_bytes}</td>
+                        <td>{$key}</td>
+                        <td>{$v['status']}</td>
+                        <td class="action">
+                            <a class="db-import" href="javascript:;" time = "{$v['time_obj']}">还原</a>&nbsp;
+                            <a class="ajax-get confirm" href="{:U('del?time='.$v['time_obj'])}">删除</a>
+                        </td>
+                   </tr>
+                </foreach>
+				<empty name="data">
+					<tr>
+						<td colspan="7">
+							<strong style="color:red;">没有查询到相关记录！</strong>
+						</td>
+					</tr>
+				</empty>
+              </tbody>
+            </table>
+			</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</block>
+<block name="js">
+ <script>
+ 	var i_url = "{:U('import')}";
+	var result ="";
+	var load_i;
+ 	$(function(){
+		$("#showmsg").attr("style","display:none;");
+		
+	});
+	 $(".db-import").click(function(){
+	 		var time = $(this).attr("time");
+			var loadi = layer.load(2);
+			load_i = loadi;
+            $.post(
+					i_url,
+					{time:time},
+					function(data){
+						if(data.state){
+							$("#showmsg").removeAttr("style");
+							$("#showmsg").find("strong").html("数据还原：");
+							$("#showmsg").find("p").html("正在还原数据（请不要关闭本页面！）......");
+							recover(data);
+							window.onbeforeunload = function(){ return "正在还原数据库，请不要关闭！" }
+						} else {
+							
+						}
+					},
+					"json"
+				);
+        });
+		//数据还原
+		function recover(tab){
+            $.get(i_url,tab, function(data){
+                if(data.state){
+					if(data.msg)
+					{
+						//layer.msg(data.msg);
+						$("#showmsg").find("p").html(data.msg);
+						layer.msg(data.msg, {
+						  icon: data.state,
+						  time: 3000 //2秒关闭（如果不配置，默认是3秒）
+						}, function(){
+						  //do something
+						});
+						layer.close(load_i);
+						$("#showmsg").attr("style","display:none;");
+					}
+					if(tab.part != data.part)
+					{
+                    	recover(data);
+					}
+                } else {
+                    $("#showmsg").find("p").html(data.msg);
+                }
+            }, "json");
+
+     }
+</script>
+</block>

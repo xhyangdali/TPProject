@@ -1,0 +1,22 @@
+{
+    "name": "",
+    "description": "the ",
+    "type": "framework",
+    "keywords": ["framework","","ORM"],
+    "homepage": "",
+    "license": "Apache2",
+    "authors": [
+        {
+            "name": "xhy",
+            "email": "2048846248@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "minimum-stability": "dev",
+    "repositories": [
+        {"type": "composer", "url": ""},
+        {"packagist": false}
+    ]
+}

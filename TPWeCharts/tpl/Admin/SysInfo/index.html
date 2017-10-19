@@ -1,0 +1,39 @@
+<extend name="Public:base"/>
+<block name="title">系统信息</block>
+<block name="content">
+<div class="page-header">
+	<h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;系统信息</h1></div>
+	<div class="col-xs-12">
+		<div class="tabbable">
+			<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+			<li class="active"> <a href="#home" data-toggle="tab">系统信息</a></li>
+		</ul>
+			<div class="tab-content">
+				<!-- 内容部分 -->
+
+				 <table class="table table-striped">
+				  <tbody>	
+				  	<tr><td>服务器语言</td><td>{$sys_info.lang} (语言)</td></tr>
+					<tr><td>服务器时间</td><td>{$sys_info.bj_time} (北京时间) || {$sys_info.gmt_time} (格林威治标准时间)</td></tr>
+					<tr><td>服务器IP地址</td><td>{$sys_info.server_ip}</td></tr>
+					<tr><td>服务器解译引擎</td><td>{$sys_info.software}</td></tr>
+					<tr><td>WEB服务端口</td><td>{$sys_info.port}</td></tr>
+					<tr><td>MYSQL版本</td><td>{$sys_info.mysql_version}</td></tr>
+					<tr><td>MYSQL数据库使用</td><td>{$sys_info.mysql_size}</td></tr>
+					<tr><td>服务器管理员</td><td>{$sys_info.admin}</td></tr>
+					<tr><td>服务端剩余空间</td><td>{$sys_info.diskfree}</td></tr>
+					<tr><td>系统当前用户名</td><td>{$sys_info.current_user}</td></tr>
+					<tr><td>系统时区</td><td>{$sys_info.timezone}</td></tr>
+					<tr><td>主机名称</td><td>{$sys_info.PC_Name}</td></tr>
+				  </tbody>
+     		</table>  
+			</div>
+		</div>
+	</div>
+</div>
+</block>
+<block name="js">
+<script>
+    
+</script>
+</block>

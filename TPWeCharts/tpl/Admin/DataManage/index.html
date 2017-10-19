@@ -1,0 +1,175 @@
+<extend name="Public:base"/>
+<block name="title">数据管理</block>
+<block name="content">
+  <div class="page-header">
+    <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;数据管理</h1>
+  </div>
+  <div class="col-xs-12">
+    <div class="tabbable">
+      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active"> <a href="#home" data-toggle="tab">用户表</a></li>
+		<li> <a href="javascript:;" onclick="add();">添加</a></li>
+      </ul>
+      <div class="tab-content">
+        <!-- 内容部分 -->
+        <div style="border:0px;padding-bottom:5px;height:auto">
+        </div>
+        <div class="block">
+          <div id="page-stats" class="block-body collapse in">
+		  <form id="tb-form" method="post" >
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th ><a flag="0" onclick="checkAll(this);" href="javascript:;" >选择</a></th>
+                  <th >表名称</th>
+				  <th >表说明</th>
+                  <th >数据量</th>
+                  <th >数据大小</th>
+                  <th >创建时间</th>
+                  <th >操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <foreach name="data" item="v" >
+                  <tr>
+                    <td>
+						<input  type="checkbox" checked="checked"  name="tables[]" value="{$table.name}" />
+					</td>
+                    <td>{$v['name']}</td>
+					<td>{$v['comment']}</td>
+                    <td>{$v['rows']}</td>
+                    <td>{$v['data_length']|format_bytes}</td>
+                    <td>{$v['create_time']}</td>
+                    <td>
+							<a  class="quicklook" href="javascript:;"  name="{$v['name']}">快速查看</a>&nbsp;
+                            <a class="dataedit" href="javascript:;" name="{$v['name']}">编辑</a>&nbsp;
+                            <a class="datadel" href="javascript:;" name="{$v['name']}">删除</a>&nbsp;
+					</td>
+                  </tr>
+                </foreach>
+				<empty name="data">
+					<tr>
+						<td colspan="7">
+							<strong style="color:red;">没有查询到相关记录！</strong>
+						</td>
+					</tr>
+				</empty>
+              </tbody>
+            </table>
+			</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</block>
+<block name="js">
+ <script>
+ 	$(function(){
+		//数据查看
+		$(".quicklook").click(function(){
+			var url = "{:U('QuickLook')}";
+			var tbname = $(this).attr("name");
+			tbname = tbname.replace("sys_","");
+			//layer.alert(url);
+			url +="?tablename="+tbname;
+			  layer.open({
+			  type: 2,
+			  maxmin: true,
+			  scrollbar: false,
+			  title:"表："+tbname+" => 数据查看",
+			  area:['800px','600px'],
+			  content: url//注意，如果str是object，那么需要字符拼接。
+			});
+		});
+		//编辑
+		$(".dataedit").click(function(){
+			var e_url = "{:U('DataEdit')}";
+			var tbname = $(this).attr("name");
+			tbname = tbname.replace("sys_","");
+			e_url +="?tablename="+tbname;
+			layer.open({
+			  type: 2,
+			  scrollbar: false,
+			  maxmin: true,
+			  title:"表："+tbname+" => 数据编辑处理",
+			  area:['800px','600px'],
+			  content:e_url//注意，如果str是object，那么需要字符拼接。
+			});
+		});
+		//删除
+		$(".datadel").click(function(){
+			var url = "{:U('DataDel')}";
+			var tbname = $(this).attr("name");
+			var index = layer.confirm('是否删除选中数据表:'+tbname+'（注意：删除后不可恢复）？', {
+				btn: ['删除', '取消'] //可以无限个按钮
+				}, function(index, layero){
+				  //按钮【按钮一】的回调
+				  layer.close(index);
+				  var loadi = layer.load(2);
+				  //Ajax
+				  $.post(url, {tablename:tbname}, function(data){
+				  		if(data)
+						{
+							layer.close(loadi);
+							layer.msg(data.msg, {
+							icon: data.state,
+							time: 3000 //2秒关闭（如果不配置，默认是3秒）
+							}, function(){
+							  //do something
+							});
+						}else
+						{
+							layer.close(loadi);
+							layer.msg("删除失败！", {
+							icon: 2,
+							time: 3000 //2秒关闭（如果不配置，默认是3秒）
+							}, function(){
+							  //do something
+							});
+						}
+				  });			   
+				}, function(index){
+				  //按钮【按钮二】的回调
+			});
+		});
+	});
+ 	// 全选-取消
+	function checkAll(obj)
+	{
+		var flag = $(obj).attr("flag");
+		//layer.alert(flag);
+		if(flag == "0")
+		{
+			$(obj).html("全选");
+			$("#tb-form").find("input[name='tables[]']").each(function(){
+				var o = $(this);
+				$(o).removeAttr("checked");
+			});
+			$(obj).attr("flag","1");
+		}else
+		{
+			$(obj).html("取消");
+			$("#tb-form").find("input[name='tables[]']").each(function(){
+				var o = $(this);
+				$(o).attr("checked","checked");
+				$(o).click();
+			});
+			$(obj).removeAttr("flag");
+			$(obj).attr("flag","0");
+		}
+		
+	}
+ 	//添加
+	function add()
+	{
+		layer.alert("正在建设中...");
+	}	
+	//编辑
+	function edit()
+	{
+		layer.alert("正在建设中...");
+	}
+</script>
+</block>

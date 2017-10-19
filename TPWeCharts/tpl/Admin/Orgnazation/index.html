@@ -1,0 +1,281 @@
+<extend name="Public:base"/>
+<block name="title">组织机构管理</block>
+<block name="content">
+  <div class="page-header">
+    <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;组织机构管理</h1>
+  </div>
+  <div class="col-xs-12">
+    <div class="tabbable">
+      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active"> <a href="#home" data-toggle="tab">组织机构列表</a></li>
+        <li> <a href="javascript:;" pid="0" onclick="add(this);">添加组织机构</a></li>
+      </ul>
+      <div class="tab-content">
+        <form class="" action="{:U('Admin/Orgnazation/order')}" method="post">
+          <table class="table table-striped table-bordered table-hover table-condensed">
+            <tr>
+              <th style="text-align:center;" width="5%">排序</th>
+              <th style="text-align:center;">组织机构名称</th>
+              <th style="text-align:center;">机构编码</th>
+			  <th style="text-align:center;">联系电话</th>
+			  <th style="text-align:center;">联系人</th>
+			  <th style="text-align:center;">描述</th>
+              <th style="text-align:center;">操作</th>
+            </tr>
+            <foreach name="data" item="v">
+              <tr>
+                <td align="center"><input class="input-medium" style="width:40px;height:25px;" type="text" name="{$v['Id']}" value="{$v['sortnum']}"></td>
+                <td align="center">{$v['_name']}</td>
+                <td align="center">{$v['org_no']}</td>
+				<td align="center">{$v['org_tel']}</td>
+				<td align="center">
+						{$v['org_man']}
+				</td>
+				<td>{$v['org_description']}</td>
+                <td>
+				<a href="javascript:;" pid="{$v['id']}" name="{$v['org_name']}" onclick="add_child(this)">添加子项</a> | 
+				<a href="javascript:;" pid="{$v['pid']}" id="{$v['id']}" isuse="{$v['isuse']}" dicdescription="{$v['dicdescription']}" 
+					sortnum="{$v['sortnum']}" org_name="{$v['org_name']}" org_no="{$v['org_no']}" org_tel="{$v['org_tel']}"
+					org_address="{$v['org_address']}" org_code="{$v['org_code']}" org_type="{$v['org_type']}"
+					org_description =  "{$v['org_description']}"
+					org_man="{$v['org_man']}" onclick="edit(this)">修改</a> | 
+				<a href="javascript:if(confirm('确定删除？'))location='{:U('Admin/Orgnazation/delete',array('id'=>$v['id']))}'">删除</a>
+				</td>
+              </tr>
+            </foreach>
+			<empty name="data">
+					<tr>
+						<td colspan="7">
+							<strong style="color:red;">没有查询到相关记录！</strong>
+						</td>
+					</tr>
+			</empty>
+            <tr>
+              <th> <input class="btn btn-success" type="submit" value="排序"></th>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+		  <!--- START 分页模板 --->
+            {$pagehtml}
+            <!--- END --->
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times;</button>
+          <h4 class="modal-title" id="myModalLabel"> </h4>
+        </div>
+        <div class="modal-body">
+          <form id="myform" class="form-inline" action="" method="post">
+            <input type="hidden" name="id" value="">
+			<input type="hidden" name="addurl" id="addurl" value="{:U('Admin/Orgnazation/add')}">
+			<input type="hidden" name="editurl" id="editurl" value="{:U('Admin/Orgnazation/edit')}">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+			<tr>
+                <th>上级机构：</th>
+                <td>
+					<select id="pid" name="pid">
+						<option value="0">顶级机构</option>
+					</select>
+                </td>
+              </tr>
+			  <tr>
+                <th>机构类别：</th>
+                <td>
+					<select id="org_type" name="org_type">
+						<option value="">==请选择==</option>
+					</select>
+                </td>
+              </tr>
+             <tr>
+                <th width="20%">机构名称：</th>
+                <td><input class="input-medium" type="text" name="org_name" id="org_name"></td>
+              </tr>
+              <tr>
+                <th>机构编码：</th>
+                <td><input class="input-medium" type="text" name="org_no">
+				系统内部编码</td>
+              </tr>
+              <tr>
+                <th>组织机构代码：</th>
+                <td><input class="input-medium" type="text" name="org_code">
+                  </td>
+              </tr>
+			  <tr>
+                <th>机构描述：</th>
+                <td><input class="input-medium" type="text" name="org_description">
+                  组织机构说明</td>
+              </tr>
+			  <tr>
+                <th>机构地址：</th>
+                <td><input class="input-medium" type="text" name="org_address">
+                  组织机构地址</td>
+              </tr>
+			  <tr>
+                <th>机构电话：</th>
+                <td><input class="input-medium" type="text" name="org_tel">
+                  机构电话</td>
+              </tr>
+			  <tr>
+                <th>机构负责人：</th>
+                <td><input class="input-medium" type="text" name="org_man">
+                  机构负责人</td>
+              </tr>
+			  <tr>
+                <th>排序键：</th>
+                <td><input class="input-medium" type="text" name="sortnum">
+                  输入数字</td>
+              </tr>
+			  <tr>
+                <th>是否有效：</th>
+                <td>
+					<select name="isuse">
+						<option value="">===请选择===</option>
+						<option value="1">有效</option>
+						<option value="0">无效</option>
+					</select>
+                </td>
+              </tr>
+              <tr>
+                <th></th>
+                <td><input class="btn btn-success" type="submit" value="保存"></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</block>
+<block name="js">
+  <script>
+  	function initOrg(pid,obj_)
+	{
+		$.post("{:U('Admin/Orgnazation/GetOrgJsonData')}", {pid:pid}, function(data) {
+				if (data) {
+					var obj = $("#pid");
+					$(obj).empty();
+					$(obj).append("<option value='0'>顶级机构</option>");
+					for(var i =0;i<data.length;i++)
+					{
+						$(obj).append("<option value='"+data[i]['id']+"'>"+data[i]['org_name']+"</option>");
+					}
+					if($(obj_))
+					{
+						pid=$(obj_).attr('pid');
+						$("select[name='pid']").val(pid);
+					}
+				}else{
+					layer.alert('请求机构信息失败！');
+				}
+		});
+		$.post("{:U('Admin/DicData/GetDicJsonData')}", {key:"OrgClass"}, function(data) {
+				if (data) {
+					var obj = $("#org_type");
+					$(obj).empty();
+					$(obj).append("<option value='0'>==请选择==</option>");
+					for(var i =0;i<data.length;i++)
+					{
+						$(obj).append("<option value='"+data[i]['dicvalue']+"'>"+data[i]['name']+"</option>");
+					}
+					if($(obj_))
+					{
+						var org_type=$(obj_).attr('org_type');
+						if(org_type)
+						{
+						$("select[name='org_type']").val(org_type);
+						}
+					}
+				}else{
+					layer.alert('请求机构类别失败！');
+				}
+		});
+	}
+    // 添加
+    function add(obj){
+		initOrg("0",obj);
+		$("#myModalLabel").html("添加组织机构");
+		var url = $("#addurl").val();
+		$("#myform").attr("action",url);
+		//$("select[name='pid']").removeAttr("disabled");
+		
+        $("input[name='id']").val('');
+		$("input[name='pid']").val('0');
+        $("input[name='org_no']").val('');
+		$("input[name='org_name']").val('');
+        $("input[name='org_code']").val('');
+        $("input[name='org_description']").val('');
+		$("select[name='isuse']").val('');
+		$("input[name='org_address']").val('');
+		$("input[name='sortnum']").val('');
+		$("input[name='org_tel']").val('');
+		$("input[name='org_man']").val('');
+        $('#form').modal('show');
+    }
+
+    // 添加子项
+    function add_child(obj){
+		$("#myModalLabel").html("添加组织机构");
+		var pid=$(obj).attr('pid');
+		initOrg(pid,obj);
+		var url = $("#addurl").val();
+		$("#myform").attr("action",url);
+         $("input[name='org_name']").val('');
+        $("input[name='id']").val('');
+		//$("select[name='pid']").val(pid);
+		//$("select[name='pid']").attr("disabled","disabled");
+        $("input[name='org_no']").val('');
+        $("input[name='org_code']").val('');
+        $("input[name='org_description']").val('');
+		$("select[name='isuse']").val('');
+		$("input[name='org_address']").val('');
+		$("input[name='sortnum']").val('');
+		$("input[name='org_tel']").val('');
+		$("input[name='org_man']").val('');
+        $('#form').modal('show');
+    }
+
+    // 修改
+    function edit(obj){
+		$("#myModalLabel").html("修改组织机构");
+		//$("select[name='pid']").removeAttr("disabled");
+		var url = $("#editurl").val();
+		$("#myform").attr("action",url);
+        var id=$(obj).attr('id');
+		initOrg("0",obj);
+		$("input[name='id']").val(id);
+		var pid=$(obj).attr('pid');
+        var org_no=$(obj).attr('org_no');
+		var org_name=$(obj).attr('org_name');
+        var org_code=$(obj).attr('org_code');
+        var org_description=$(obj).attr('org_description');
+		var isuse=$(obj).attr('isuse');
+		var sortnum=$(obj).attr('sortnum');
+		var org_address=$(obj).attr('org_address');
+		var org_tel=$(obj).attr('org_tel');
+		var org_man=$(obj).attr('org_man');
+		var org_type=$(obj).attr('org_type');
+        $("input[name='id']").val(id);
+		$("select[name='pid']").val(pid);
+        $("input[name='id']").val(id);
+		$("input[name='pid']").val(pid);
+		$("input[name='org_name']").val(org_name);
+        $("input[name='org_no']").val(org_no);
+        $("input[name='org_code']").val(org_code);
+        $("input[name='org_description']").val(org_description);
+		$("select[name='isuse']").val(isuse);
+		$("select[name='org_type']").val(org_type);
+		$("input[name='org_address']").val(org_address);
+		$("input[name='sortnum']").val(sortnum);
+		$("input[name='org_tel']").val(org_tel);
+		$("input[name='org_man']").val(org_man);
+        $('#form').modal('show');
+		
+    }
+    </script>
+</block>

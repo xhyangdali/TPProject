@@ -1,0 +1,35 @@
+<extend name="Public:base"/>
+<block name="title">二维码生成</block>
+<block name="content">
+<div class="page-header">
+	<h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;二维码生成</h1></div>
+	<div class="col-xs-12">
+		<div class="tabbable">
+			<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+			<li class="active"> <a href="#home" data-toggle="tab">二维码生成</a></li>
+		</ul>
+			<div class="tab-content">
+				<!-- 内容部分 start -->
+					<div class="box">
+					  <h4> <a  href="">phpqrcode生成二维码</a></h4><br/>
+					  <form target="_blank" action="{:U('Admin/Sample/c_qrcode')}" method="post">
+						输入连接：http://
+						<input type="text" name="url" value="http://..."><br/>
+						<input type="submit" id="qrcode" value="生成二维码">
+						</br>
+						
+					  </form>
+					  
+					<div class="clearfix">
+					</div>
+				 <!-- 内容部分 end -->
+			</div>
+		</div>
+	</div>
+</div>
+</block>
+<block name="js">
+<script>
+
+</script>
+</block>

@@ -1,0 +1,88 @@
+<extend name="Public:base"/>
+<block name="title">系统日志</block>
+<block name="content">
+  <div class="page-header">
+    <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;系统日志</h1>
+  </div>
+  <div class="col-xs-12">
+    <div class="tabbable">
+      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active"> <a href="#home" data-toggle="tab">系统日志列表</a></li>
+      </ul>
+      <div class="tab-content">
+        <!-- 内容部分 -->
+        <div style="border:0px;padding-bottom:5px;height:auto">
+          <form action="" method="GET" style="margin-bottom:0px">
+            <table >
+              <tr>
+                <td><label> 选择起始时间：</label></td>
+                <td><input type="text" id="start_date" name="start_date" value="{$_GET.start_date}" placeholder="起始时间" ></td>
+                <td><label> 选择结束时间：</label></td>
+                <td><input type="text" id="end_date" name="start_date" value="{$_GET.end_date}" placeholder="结束时间" ></td>
+                <td><label> 关键字：</label></td>
+                <td><input type="text" name="keywords" value="{$_GET.keywords}" placeholder="关键字" ></td>
+                <td><label> 查询：</label></td>
+                <td><button type="submit" class="btn btn-primary"><strong>查询</strong></button></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div class="block"> <a href="#page-stats" class="block-heading" data-toggle="collapse"><strong>操作记录</strong></a>
+          <div id="page-stats" class="block-body collapse in">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th style="width:30px">序号</th>
+                  <th style="width:50px">操作员</th>
+                  <th style="width:35px">行为</th>
+                  <th style="width:35px">类型</th>
+                  <th style="width:35px">对象</th>
+                  <th style="width:250px">操作结果</th>
+                  <th style="width:100px">操作时间</th>
+                </tr>
+              </thead>
+              <tbody>
+                <foreach name="data" item="v">
+                  <tr>
+                    <td>{$v['id']}</td>
+                    <td>{$v['user_name']}</td>
+                    <td>{$v['action']}</td>
+                    <td>{$v['class_name']}</td>
+                    <td>{$v['class_obj']}</td>
+                    <td style = "word-break: break-all; word-wrap:break-word;">{$v['result']}</td>
+                    <td>{$v['op_time']}</td>
+                  </tr>
+                </foreach>
+				<empty name="data">
+					<tr>
+						<td colspan="7">
+							<strong style="color:red;">没有查询到相关记录！</strong>
+						</td>
+					</tr>
+				</empty>
+              </tbody>
+            </table>
+            <!--- START 分页模板 --->
+            {$pagehtml}
+            <!--- END --->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</block>
+<block name="js">
+  <script>
+$(function() {
+	var date=$("#start_date" );
+	date.datepicker({dateFormat: "yy-mm-dd" });
+	date.datepicker("option", "firstDay", 1 );
+});
+$(function() {
+	var date=$("#end_date" );
+	date.datepicker({dateFormat:"yy-mm-dd"});
+	date.datepicker("option","firstDay", 1 );
+});
+</script>
+</block>

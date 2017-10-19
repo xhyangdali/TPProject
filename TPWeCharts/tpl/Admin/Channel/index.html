@@ -1,0 +1,204 @@
+<extend name="Public:base"/>
+<block name="title">渠道管理</block>
+<block name="content">
+  <div class="page-header">
+    <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;渠道管理</h1>
+  </div>
+  <div class="col-xs-12">
+    <div class="tabbable">
+      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active"> <a href="#home" data-toggle="tab">渠道信息列表</a></li>
+      </ul>
+      <div class="tab-content">
+        <!-- 内容部分 -->
+        <div style="border:0px;padding-bottom:5px;height:auto">
+          <form action="" method="GET" style="margin-bottom:0px">
+            <div class="block"> <a href="#page-tab" class="block-heading" data-toggle="collapse"><strong>收起工具栏</strong></a>
+              <div id="page-tab" class="block-body collapse in">
+            <table >
+              <tr>
+                <td><label></label></td>
+                <td colspan="7">
+                  <button id="btnadd" type="button" class="btn btn-primary" >添加</button>
+                  &nbsp;&nbsp; &nbsp;&nbsp;
+                </td>
+              </tr>
+              <tr>
+                <td><label> 选择起始时间：</label></td>
+                <td><input type="text" id="start_date" name="start_date" value="{$_GET.start_date}" placeholder="起始时间" ></td>
+                <td><label> 选择结束时间：</label></td>
+                <td><input type="text" id="end_date" name="start_date" value="{$_GET.end_date}" placeholder="结束时间" ></td>
+                <td><label> 关键字：</label></td>
+                <td><input type="text" name="keywords" value="{$_GET.keywords}" placeholder="关键字" ></td>
+                <td><label> 查询：</label></td>
+                <td><button type="submit" class="btn btn-primary"><strong>查询</strong></button></td>
+              </tr>
+            </table>
+              </div>
+              </div>
+          </form>
+        </div>
+        <div class="block"> <a href="#page-stats" class="block-heading" data-toggle="collapse"><strong>收起列表</strong></a>
+          <div id="page-stats" class="block-body collapse in">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th style="width:30px">序号</th>
+                  <th style="width:50px">渠道名称</th>
+                  <th style="width:35px">渠道编码</th>
+                  <th style="width:35px">描述</th>
+                  <th style="width:100px">创建时间</th>
+                    <th style="width:100px">是否有效</th>
+                    <th style="width:100px">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <foreach name="data" item="v">
+                  <tr>
+                    <td>{$v['id']}</td>
+                    <td>{$v['name']}</td>
+                    <td>{$v['code']}</td>
+                    <td>{$v['description']}</td>
+                    <td>{$v['createdate']}</td>
+                      <td>{$v['iseffectiveformat']}</td>
+                      <td>
+                          <a  class="adetail" href="javascript:;"  name="{$v['id']}">查看</a>&nbsp;
+                          <a class="aedit" href="javascript:;" name="{$v['id']}">编辑</a>&nbsp;
+                          <a class="adel" href="javascript:;" name="{$v['id']}" tips="{$v['name']}">删除</a>&nbsp;
+                      </td>
+                  </tr>
+                </foreach>
+				<empty name="data">
+					<tr>
+						<td colspan="7">
+							<strong style="color:red;">没有查询到相关记录！</strong>
+						</td>
+					</tr>
+				</empty>
+              </tbody>
+            </table>
+            <!--- START 分页模板 --->
+            {$pagehtml}
+            <!--- END --->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</block>
+<block name="js">
+  <script>
+$(function() {
+	//数据添加
+		$("#btnadd").click(function(){
+			var url = "{:U('add')}";
+			  layer.open({
+			  type: 2,
+			  id: 'add_form',
+			  maxmin: true,
+			  scrollbar: false,
+			  title:"渠道信息添加",
+			  area:['800px','300px'],
+			  content:[ url,'no']//注意，如果str是object，那么需要字符拼接。
+			  ,btn: ['保存', '关闭'] //只是为了演示
+			  ,yes: function(index, layero){
+				//保存
+				var body = layer.getChildFrame('body', index);
+                var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
+                iframeWin.submitdata();//调用子页面的方法，得到子页面返回的ids
+                //layer.close(index);//需要手动关闭窗口
+			  }
+			  ,btn2: function(){
+				layer.closeAll();
+			  }
+			  ,zIndex: layer.zIndex //重点1
+			  ,success: function(layero){
+				layer.setTop(layero); //重点2
+			  }
+			});
+		});
+    //查看渠道信息
+    $(".adetail").click(function(){
+        var url = "{:U('detail')}";
+        var id = $(this).attr("name");
+        url +="?id="+id;
+        layer.open({
+            type: 2,
+            maxmin: true,
+            scrollbar: false,
+            title:"查看渠道信息",
+            area:['800px','300px'],
+            content: url//注意，如果str是object，那么需要字符拼接。
+        });
+    });
+    //编辑渠道信息
+    $(".aedit").click(function(){
+        var url = "{:U('edit')}";
+        var id = $(this).attr("name");
+        url +="?id="+id;
+        layer.open({
+            type: 2,
+            maxmin: true,
+            scrollbar: false,
+            title:"编辑渠道信息",
+            area:['800px','300px'],
+            content: [url,'no']//注意，如果str是object，那么需要字符拼接。
+            ,btn: ['保存', '关闭'] //只是为了演示
+            ,yes: function(index, layero){
+                //保存
+                var body = layer.getChildFrame('body', index);
+                var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
+                iframeWin.submitdata();//调用子页面的方法，得到子页面返回的ids
+                //layer.close(index);//需要手动关闭窗口
+            }
+            ,btn2: function(){
+                layer.closeAll();
+            }
+            ,zIndex: layer.zIndex //重点1
+            ,success: function(layero){
+                layer.setTop(layero); //重点2
+            }
+        });
+    });
+    //
+    $(".adel").click(function(){
+        var tips = $(this).attr("tips");
+        var _Id = $(this).attr("name");
+        layer.confirm('你确定删除数据‘'+tips+'’吗？', {icon: 3, title:'删除提示',area:["300px","200px"]}, function(index){
+            var url = "{:U('Admin/Channel/delete')}";
+            //提交数据
+            var load = layer.load(2, {
+                shade: [0.1,'#fff'] //0.1透明度的白色背景
+            });
+            $.ajax({
+                url:url,
+                type:"POST",
+                data:{id:_Id},
+                dataType:"json",
+                error:function(data){
+                    layer.closeAll('loading');
+                    layer.msg(data.state);
+                },
+                success:function(data){
+                    if(data)
+                    {
+                        //回掉函数刷新列表页面
+                        freshen(data.state,data.msg);
+                        layer.closeAll('loading');
+                    }
+                }
+            });
+            layer.close(index);
+        });
+    });
+
+    //
+});
+//列表刷新（回掉函数）
+function freshen(state,msg){
+    layer.msg(msg, {icon: state});
+    window.location.reload();//刷新列表
+}
+</script>
+</block>

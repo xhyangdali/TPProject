@@ -1,0 +1,37 @@
+<extend name="Public:base"/>
+<block name="title">PDF生成</block>
+<block name="content">
+<div class="page-header">
+	<h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;PDF生成</h1></div>
+	<div class="col-xs-12">
+		<div class="tabbable">
+			<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+			<li class="active"> <a href="#home" data-toggle="tab">PDF</a></li>
+		</ul>
+			<div class="tab-content">
+				<!-- 内容部分 start -->
+					<div class="box">
+					  <h4> <a  href="">php 生成PDF</a></h4><br/>
+					  <form target="_blank" action="{:U('Admin/Sample/c_pdf')}" method="post">
+						输入内容：
+						<textarea name="content" cols="30" rows="10">
+							<h1 style="color:red">PDF测试内容</h1>
+							<p>1.</p>
+						</textarea>	<br/>
+						<input type="submit" id="pdf" value="生成PDF">
+						
+					  </form>
+					  
+					<div class="clearfix">
+					</div>
+				 <!-- 内容部分 end -->
+			</div>
+		</div>
+	</div>
+</div>
+</block>
+<block name="js">
+<script>
+
+</script>
+</block>

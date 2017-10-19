@@ -1,0 +1,279 @@
+<extend name="Public:base"/>
+<block name="title">数据备份</block>
+<block name="content">
+  <div class="page-header">
+    <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;数据备份</h1>
+  </div>
+  <div id="showmsg" class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong></strong><p></p>
+  </div>
+  <div class="col-xs-12">
+    <div class="tabbable">
+      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+        <li class="active"> <a href="#home" data-toggle="tab">数据库列表</a></li>
+		<li> <a id="backup"  href="javascript:;" >备份</a></li>
+		<li> <a id="optimize" href="javascript:;" >优化</a></li>
+		<li> <a id="repair" href="javascript:;" >修复</a></li>
+      </ul>
+      <div class="tab-content">
+        <!-- 内容部分 -->
+        <div style="border:0px;padding-bottom:5px;height:auto">
+        </div>
+        <div class="block">
+          <div id="page-stats" class="block-body collapse in">
+		  <form id="tb-form" method="post" >
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th ><a flag="0" onclick="checkAll(this);" href="javascript:;" >选择</a></th>
+                  <th >表名称</th>
+				  <th >表说明</th>
+                  <th >数据量</th>
+                  <th >数据大小</th>
+                  <th >创建时间</th>
+                  <th >备份状态</th>
+                  <th >操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <foreach name="data" item="v">
+                  <tr>
+                    <td>
+						<input checked="chedked" type="checkbox" name="tables[]" value="{$v['name']}" ">
+					</td>
+                    <td>{$v['name']}</td>
+					<td>{$v['comment']}</td>
+                    <td>{$v['rows']}</td>
+                    <td>{$v.data_length|format_bytes}</td>
+                    <td>{$v['create_time']}</td>
+                    <td name="{$v['name']}" style = "word-break: break-all; word-wrap:break-word;">未备份</td>
+                    <td>
+							<a class="ajax-get no-refresh" href="javascript:;" 
+							onclick='optimize("{:U('optimize')}","{$v['name']}");'>优化表</a>&nbsp;
+                            <a class="ajax-get no-refresh" href="javascript:;" 
+								onclick='repair("{:U('repair')}","{$v['name']}");'
+							>修复表</a></td>
+                  </tr>
+                </foreach>
+				<empty name="data">
+					<tr>
+						<td colspan="7">
+							<strong style="color:red;">没有查询到相关记录！</strong>
+						</td>
+					</tr>
+				</empty>
+              </tbody>
+            </table>
+			</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</block>
+<block name="js">
+ <script>
+ 	var e_url = "{:U('export')}";
+	var result ="";
+	var load_i;
+ 	$(function(){
+		$("#showmsg").attr("style","display:none;");
+		var $backup = $("#backup"), tables,$reback = $("#reback")
+            $optimize = $("#optimize"), $repair = $("#repair"),$form = $("#tb-form");
+		 //备份
+		 
+		 $backup.click(function(){
+				var index = layer.confirm('是否备份选中数据？', {
+				btn: ['备份', '取消'] //可以无限个按钮
+				}, function(index, layero){
+				  //按钮【按钮一】的回调
+				  layer.close(index);
+				  var loadi = layer.load(2);
+				  load_i = 	loadi;
+				  //
+				  $.post(
+					e_url,
+					$form.serialize(),
+					function(data){
+						if(data.state){
+							tables = data.tables;
+							$("#showmsg").removeAttr("style");
+							$("#showmsg").find("strong").html("数据备份：");
+							$("#showmsg").find("p").html(data.msg + "开始备份，请不要关闭本页面！");
+							backup(data.tab);
+							window.onbeforeunload = function(){ return "正在备份数据库，请不要关闭！" }
+						} else {
+							
+						}
+					},
+					"json"
+				);				   			   
+				}, function(index){
+				  //按钮【按钮二】的回调
+			});
+		 });
+		 //优化
+		 $optimize.click(function(){
+				var index = layer.confirm('是否优化选中数据？', {
+				btn: ['优化', '取消'] //可以无限个按钮
+				}, function(index, layero){
+				  //按钮【按钮一】的回调
+				  layer.close(index);
+				  var loadi = layer.load(2);
+				  //Ajax获取
+				  var url = "{:U('optimize')}";
+				  $.post(url, $form.serialize(), function(data){
+				  		if(data)
+						{
+							layer.close(loadi);
+							layer.msg(data.msg, {
+							icon: data.state,
+							time: 3000 //2秒关闭（如果不配置，默认是3秒）
+							}, function(){
+							  //do something
+							});
+						}
+				  });			   
+				}, function(index){
+				  //按钮【按钮二】的回调
+			});
+		 });
+		 //修复
+		 $repair.click(function(){
+				var index = layer.confirm('是否修复选中数据？', {
+				btn: ['修复', '取消'] //可以无限个按钮
+				}, function(index, layero){
+				  //按钮【按钮一】的回调
+				  layer.close(index);
+				  var loadi = layer.load(2);
+				  //Ajax获取
+				  var url = "{:U('repair')}";
+				  $.post(url, $form.serialize(), function(data){
+				  		if(data)
+						{
+							layer.close(loadi);
+							layer.msg(data.msg, {
+							  icon: data.state,
+							  time: 3000 //2秒关闭（如果不配置，默认是3秒）
+							}, function(){
+							  //do something
+							});
+						}
+				  });			   
+				}, function(index){
+				  //按钮【按钮二】的回调
+			});
+		 });
+	});
+	//数据备份
+	function backup(tab, status){
+            //status && layer.msg("开始备份...(0%)");
+            $.get(e_url, tab, function(data){
+                if(data.state){
+					if(data.msg)
+					{
+						//layer.msg(data.msg);
+						$("#showmsg").find("p").html(data.msg);
+						var tbname = data.tables[tab.id];
+						var obj = $("table tr td[name='"+tbname+"']");
+						if($(obj))
+						{
+							$(obj).html("已备份");
+						}
+					}
+                    if(!$.isPlainObject(data.tab)){
+						layer.msg("备份完成，点击重新备份");
+						layer.close(load_i);
+						$("#showmsg").attr("style","display:none;");
+                        window.onbeforeunload = function(){ return null }
+                        return;
+                    }
+                    backup(data.tab, tab.id != data.tab.id);
+                } else {
+                    
+                }
+            }, "json");
+
+     }
+	// 全选-取消
+	function checkAll(obj)
+	{
+		var flag = $(obj).attr("flag");
+		//layer.alert(flag);
+		if(flag == "0")
+		{
+			$(obj).html("全选");
+			$("#tb-form").find("input[name='tables[]']").each(function(){
+				var o = $(this);
+				$(o).removeAttr("checked");
+			});
+			$(obj).attr("flag","1");
+		}else
+		{
+			$(obj).html("取消");
+			$("#tb-form").find("input[name='tables[]']").each(function(){
+				var o = $(this);
+				$(o).attr("checked","checked");
+				$(o).click();
+			});
+			$(obj).removeAttr("flag");
+			$(obj).attr("flag","0");
+		}
+		
+	}
+	//优化
+	function optimize(url,tbname)
+	{
+		var index = layer.confirm('是否优化表：'+tbname+'？', {
+		  	btn: ['优化', '取消'] //可以无限个按钮
+			}, function(index, layero){
+			  //按钮【按钮一】的回调
+			  layer.close(index);
+			  var loadi = layer.load(2);
+			  //Ajax获取
+			$.post(url, {tables:tbname}, function(data){
+			  	if(data)
+				{
+					layer.close(loadi);
+					layer.msg(data.msg, {
+					  icon: data.state,
+					  time: 2000 //2秒关闭（如果不配置，默认是3秒）
+					}, function(){
+					  //do something
+					});
+				}
+			});			   
+			}, function(index){
+			  //按钮【按钮二】的回调
+		});
+	}
+	//修复
+	function repair(url,tbname)
+	{
+		var index = layer.confirm('是否修复表：'+tbname+'？', {
+		  	btn: ['修复', '取消'] //可以无限个按钮
+			}, function(index, layero){
+			  //按钮【按钮一】的回调
+			  layer.close(index);
+			  var loadi = layer.load(2);
+			  //Ajax获取
+			$.post(url, {tables:tbname}, function(data){
+			  	if(data)
+				{
+					layer.close(loadi);
+					layer.msg(data.msg, {
+					  icon: data.state,
+					  time: 2000 //2秒关闭（如果不配置，默认是3秒）
+					}, function(){
+					  //do something
+					});
+				}
+			});			   
+			}, function(index){
+			  //按钮【按钮二】的回调
+		});
+	}
+</script>
+</block>
