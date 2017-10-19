@@ -56,7 +56,7 @@
 例如：   `<ueditor name="content" />` 这样一个简单的标签就可以将editor编辑器引入并设置name名为content;
 提交post时后台即可通过content字段直接获取到内容；  
 `<jquery />`标签可引入jQuery  
-不知道怎么自定义标签？传送门：http://baijunyao.com/article/21   
+不知道怎么自定义标签？
 更多标签可以查看 /Application/Common/Tag/My.class.php 源代码
 
 ## 商业友好的开源协议
