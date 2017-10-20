@@ -48,16 +48,16 @@
 			</tr>
              <tr>
                 <th ><label for="flowdate">售票日期</label></th>
-                <td><input  class="form-control" placeholder="请选择日期" type="text" required   name="flowdate" id="flowdate" onchange="SetValGnum(this)"  onclick="fPopCalendar(event,this,this);" ></td>
+                <td><input  class="form-control" placeholder="请选择日期" type="text" required readonly="true"  name="flowdate" id="flowdate" onchange="SetValGnum(this)"  onclick="fPopCalendar(event,this,this);" date="true"></td>
               </tr>
 			<tr>
 				<th><label for="ticketnum">售票数目</label></th>
-				<td><input class="form-control" type="text"  name="ticketnum" id="ticketnum" required>
+				<td><input class="form-control" type="text"  name="ticketnum" id="ticketnum" required number="true" />
 				</td>
 			</tr>
 			<tr>
 				<th><label for="moneynum">售票金额</label></th>
-				<td><input class="form-control" type="text"  name="moneynum" id="moneynum" required>
+				<td><input class="form-control" type="text"  name="moneynum" id="moneynum" required number="true" min="0.01"/>
 				</td>
 			</tr>
 			<tr>
@@ -95,7 +95,8 @@
 			errorElement: "span",
 			messages: {
 				flowdate: {
-					required: " (必填字段)"
+					required: " (必填字段)",
+					date:"必须输入日期"
 				},
 				channelcode: {
 					required: " (必填字段)"
@@ -105,9 +106,12 @@
 				},
 				ticketnum: {
 					required: " (必填字段)"
+					,number: "输入数字",     //输入必须是数字
 				},
 				moneynum: {
-					required: " (必填字段)"
+					required: " (必填字段)",
+					number: "输入数字",     //输入必须是数字
+					min: "最小值为0.01，不能为0或者负数"//输入的数字最小值为0.01，不能为0或者负数
 				},
 				unit: {
 					required: " (必填字段)"

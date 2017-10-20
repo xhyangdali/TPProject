@@ -57,12 +57,12 @@
                 <foreach name="data" item="v">
                   <tr>
                     <td></td>
-                    <td>{$v['flowdate']}</td>
+                    <td>{$v['flowdate']|strtotime|date="Y年m月d日",###}</td>
                     <td>{$v['ticketnum']}</td>
                       <td>{$v['moneynum']}</td>
                       <td>{$v['channel']}</td>
                       <td>{$v['station']}</td>
-                    <td>{$v['createdate']}</td>
+                    <td>{$v['createdate']|strtotime|date="Y年m月d日 h:i:s",###}</td>
                       <td>
                           <a  class="adetail" href="javascript:;"  name="{$v['id']}">查看</a>&nbsp;
                           <a class="aedit" href="javascript:;" name="{$v['id']}">编辑</a>&nbsp;

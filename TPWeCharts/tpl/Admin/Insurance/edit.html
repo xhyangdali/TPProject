@@ -35,11 +35,11 @@
 
 				<tr>
 					<th width="20%"><label for="indate">日期</label></th>
-					<td><input  class="form-control" placeholder="请选择日期" type="text" required   name="indate" id="indate" onchange="SetValGnum(this)"  onclick="fPopCalendar(event,this,this);" ></td>
+					<td><input  class="form-control" placeholder="请选择日期" type="text" required disabled="disabled"  name="indate" id="indate" onchange="SetValGnum(this)"  onclick="fPopCalendar(event,this,this);" ></td>
 				</tr>
 				<tr>
 					<th><label for="num">保险数目</label></th>
-					<td><input class="form-control" type="text"  name="num" id="num" required>
+					<td><input class="form-control" type="text"  name="num" id="num" required  number="true" min="0"/>
 					</td>
 				</tr>
 				<tr>
@@ -112,7 +112,8 @@
 								$("#id").val(item.id);
 								$("#num").val(item.num);
 								$("#groupnum").val(item.groupnum);
-								$("#indate").val(item.indate);
+								var str = item.indate.replace(/00:00:00/g, "")
+								$("#indate").val(str);
 								$("#description").val(item.description);
 							}else
 							{

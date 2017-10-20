@@ -31,21 +31,21 @@ function checkColor(){var color_tmp=(arguments[0]+"").replace(/\s/g,"").toUpperC
 function $V(){return $$(arguments[0]).value;}  
 function fPopCalendar(evt,popCtrl,dateCtrl){  
     evt.cancelBubble=true;  
-    gdCtrl=dateCtrl;  
+    gdCtrl=dateCtrl;
+
     if(gdCtrl.value == ''){  
         fSetYearMon(giYear,giMonth);  
     }else{  
         var aDates = gdCtrl.value.split('-')  
         fSetYearMon(aDates[0],aDates[1]);  
   
-    }  
-      
+    }
     var point=fGetXY(popCtrl);  
     with($$("calendardiv").style){  
         left=point.x+"px";  
         top=(point.y+popCtrl.offsetHeight+1)+"px";  
         visibility='visible';  
-        //zindex='99999';  
+        zindex='99999';
         position='absolute';  
     }  
     $$("calendardiv").focus();  
@@ -59,7 +59,7 @@ function fSetDate(iYear,iMonth,iDay){
     if(iDayNew.length<2){  
         iDayNew="0"+iDayNew;  
     }  
-    gdCtrl.value=iYear+splitChar+iMonthNew+splitChar+iDayNew;  
+    gdCtrl.value=iYear+splitChar+iMonthNew+splitChar+iDayNew;
     fHideCalendar();  
 }  
 function fHideCalendar(){$$("calendardiv").style.visibility="hidden";for(var i=0;i<goSelectTag.length;i++){goSelectTag[i].style.visibility="visible";}goSelectTag.length=0;}  
@@ -205,7 +205,7 @@ function getDateDiv(){
     dateDiv+="</table><iframe style='position:absolute; left:0px;top:0px;width:174px;height:190px;z-index:-1;' frameborder='0'></iframe></div>";  
     return dateDiv;  
 }  
-with(document){onclick=fHideCalendar;write(getDateDiv());}  
+with(document){onclick=fHideCalendar;write(getDateDiv());}
   
   
 // 对Date的扩展，将 Date 转化为指定格式的String   

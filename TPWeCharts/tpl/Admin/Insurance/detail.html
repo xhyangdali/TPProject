@@ -86,7 +86,8 @@
 								$("#id").val(item.id);
 								$("#num").val(item.num);
 								$("#groupnum").val(item.groupnum);
-								$("#indate").val(item.indate);
+								var str = item.indate.replace(/00:00:00/g, "")
+								$("#indate").val(str);
 								$("#description").val(item.description);
 							}else
 							{

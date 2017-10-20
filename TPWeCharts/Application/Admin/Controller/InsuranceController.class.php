@@ -140,6 +140,42 @@ class InsuranceController extends AdminBaseController{
 		$this->ajaxReturn($result);//返回操作结果
 	}
 	/**
+	 * 依据分组编码查询保险信息（每日只于许录入一条记录）
+	 */
+	public function findInfoByNum($gnum ="")
+	{
+		$d = D("Insurance");
+		$msg ="";
+		$state = 0;
+		if(!empty($gnum)&&$gnum !="") {
+			$condition = array(
+				'groupnum' => $gnum,
+				'isdel' => 0
+			);
+			//
+			$data = $d->where($condition)->select();
+			if($data)
+			{
+				$state = 0;
+				$msg ="有数据！";
+			}else{
+				$state = 1;
+				$msg ="查询不到数据！";
+			}
+		}else
+		{
+			$state = -1;
+			$data = array();
+			$msg ="数据获取失败(参数不正确)！";
+		}
+		$result =array(
+			'state' => $state,
+			'msg' => $msg,
+			'data' => $data
+		);
+		$this->ajaxReturn($result);//返回操作结果
+	}
+	/**
 	 * 删除(假删除)保险信息
 	 */
 	public function delete($id = 0){

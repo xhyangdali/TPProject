@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>图表</title>
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />  
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
@@ -13,10 +13,14 @@
 	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 	<script src="http://www.bootcss.com/p/chart.js/docs/prettify.js"></script>
 	<script src="http://www.bootcss.com/p/chart.js/docs/Chart.js"></script>
-	
+	<style>
+		 ::-webkit-scrollbar {<!-- 去除滚动条 -->
+        width: 0px;
+    }
+	</style>
 	
 </head>
-<body>
+<body >
      <!-- tab选项卡 start -->
 	 
 	<div class="weui-tab">
@@ -28,7 +32,7 @@
 	      图表分析
 	    </a>
 	  </div>
-	  <div class="weui-tab__bd">
+	  <div class="weui-tab__bd" >
 	    <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
 	      <h3>统计概况</h3>
 		  <p>依托CNZZ强大的统计服务、领先的数据采集技术，深度挖掘互联网用户行为数据，

@@ -49,16 +49,16 @@
 				</tr>
 				<tr>
 					<th ><label for="flowdate">售票日期</label></th>
-					<td><input  class="form-control" placeholder="请选择日期" type="text" required   name="flowdate" id="flowdate" onchange="SetValGnum(this)"  onclick="fPopCalendar(event,this,this);" ></td>
+					<td><input  class="form-control" placeholder="请选择日期" type="text" required   name="flowdate" id="flowdate" onchange="SetValGnum(this)"  onclick="fPopCalendar(event,this,this);" date="true"></td>
 				</tr>
 				<tr>
 					<th><label for="ticketnum">售票数目</label></th>
-					<td><input class="form-control" type="text"  name="ticketnum" id="ticketnum" required>
+					<td><input class="form-control" type="text"  name="ticketnum" id="ticketnum" required number="true" />
 					</td>
 				</tr>
 				<tr>
 					<th><label for="moneynum">售票金额</label></th>
-					<td><input class="form-control" type="text"  name="moneynum" id="moneynum" required>
+					<td><input class="form-control" type="text"  name="moneynum" id="moneynum" required number="true" min="0.01"/>
 					</td>
 				</tr>
 				<tr>
@@ -117,7 +117,9 @@
 								$("#ticketnum").val(item.ticketnum);
 								$("#moneynum").val(item.moneynum);
 								$("#groupnum").val(item.groupnum);
-								$("#flowdate").val(item.flowdate);
+								var str = item.flowdate.replace(/00:00:00/g, "")
+								$("#flowdate").val(str);
+								//$("#flowdate").val(item.flowdate);
 								$("#unit").val(item.unit);
 								$("#description").val(item.description);
 							}else

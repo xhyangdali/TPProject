@@ -33,11 +33,11 @@
 			
              <tr>
                 <th width="20%"><label for="indate">日期</label></th>
-                <td><input  class="form-control" placeholder="请选择日期" type="text" required   name="indate" id="indate" onchange="SetValGnum(this)"  onclick="fPopCalendar(event,this,this);" ></td>
+                <td><input  class="form-control" placeholder="请选择日期" type="text" required readonly  name="indate" id="indate"   onclick="fPopCalendar(event,this,this);" ></td>
               </tr>
 			<tr>
 				<th><label for="num">保险数目</label></th>
-				<td><input class="form-control" type="text"  name="num" id="num" required>
+				<td><input class="form-control" type="text" onfocus="InitData(this);"  name="num" id="num" required  number="true" min="0"/>
 				</td>
 			</tr>
               <tr>
@@ -53,7 +53,9 @@
 <block name="js">
  <script>
  	var index = parent.layer.getFrameIndex(window.name);//获取子窗口
-
+	var url = "";
+	var aurl = "{:U('Admin/Insurance/adddata')}";
+	var eurl = "{:U('Admin/Insurance/editdata')}";
  	$(function(){
 		//数据校验
 		var validator = $("#form").validate({
@@ -82,13 +84,12 @@
 	//提交完成后执行
 	$.validator.setDefaults({
     	submitHandler: function() {
-			var url = "{:U('Admin/Insurance/adddata')}";
 			//提交数据
 			var load = layer.load(2, {
 				shade: [0.1,'#fff'] //0.1透明度的白色背景
 			});
 			var gnum = $("#indate").val();
-			gnum = gnum.replace(/-/g, "")
+			gnum = gnum.replace(/-/g, "");
 			$("#groupnum").val(gnum);
 			var postdata = $('#form').serialize();
 
@@ -112,6 +113,47 @@
 			});
    		}
 	});
+	//查询是否添加过该日信息
+	function InitData(obj)
+	{
+		var load = layer.load(2, {
+			shade: [0.1,'#fff'] //0.1透明度的白色背景
+		});
+		var gnum = $("#indate").val();
+		gnum = gnum.replace(/-/g, "");
+		var temp = "{:U('Admin/Insurance/findInfoByNum')}";
+		$.ajax({
+			url:temp,
+			type:"POST",
+			data:{gnum:gnum},
+			dataType:"json",
+			error:function(data){
+				layer.closeAll('loading');
+			},
+			success:function(data){
+				if(data)
+				{
+					//回掉函数刷新列表页面
+					if(data.state ==0)//已经添加过
+					{
+						var item = data.data[0];
+						$("#id").val(item.id);
+						$("#num").val(item.num);
+						$("#groupnum").val(item.groupnum);
+						$("#description").val(item.description);
+						layer.msg("该天的数据依据录入，若要修改数据请保存！");
+						url = eurl;
+					}else if(data.state == 1)//新增数据
+					{
+							url = aurl;
+					}else{
+						layer.msg(data.msg);
+					}
+				}
+				layer.closeAll('loading');
+			}
+		});
+	}
 	//保存按钮（来自父页面）
 	function submitdata()
 	{
