@@ -36,7 +36,7 @@ class WhiteListController extends AdminBaseController{
 		$channels=$WhiteList->where($condition)->order('createdate desc')->page($p,$listRows)->select();
 		foreach ($channels as &$item){
 			//$item['createdateformat'] = gmdate("Y-m-d H:i:s",$item['createdate']);
-			$item['iseffectiveformat'] = $item['iseffective'] =="1"?"有效":"无效";
+			$item['iseffectiveformat'] = $item['iseffective'] =="0"?"有效":"无效";
 		}
 		$page =new Think\Page();
 		$page->firstRow = 1;//
@@ -55,30 +55,25 @@ class WhiteListController extends AdminBaseController{
 	/**
 	 * 白名单信息添加
 	 */
-	public function add()
+	public function adddata()
 	{
 		$data=I('post.');
 		unset($data['id']);
-		if(!empty($data['name']) && !empty($data['weixid']) && !empty($data['iseffective']) && !empty($data['phonenum'])&& !empty($data['moduleids'])) {//字段校验(必填)
-			$result = D('WhiteList')->iaddData($data);
-			if ($result) {
-				$msg = '添加成功';//,U('Admin/DicData/index')
-				$iresult = array(
-					'state' => 0,
-					'msg' => $msg
-				);
-			}else{
-				$msg = '添加失败';
-				$iresult = array(
-					'state' => 1,
-					'msg' => $msg
-				);
-			}
-			$this->ajaxReturn($iresult);//返回操作结果
-		}else
-		{
-			$this->display();
+		$result = D('WhiteList')->iaddData($data);
+		if ($result) {
+			$msg = '添加成功';//,U('Admin/DicData/index')
+			$iresult = array(
+				'state' => 0,
+				'msg' => $msg
+			);
+		}else{
+			$msg = '添加失败';
+			$iresult = array(
+				'state' => 1,
+				'msg' => $msg
+			);
 		}
+		$this->ajaxReturn($iresult);//返回操作结果
 	}
 	/**
 	 * 白名单信息修改（ajax）

@@ -34,10 +34,6 @@ class InsuranceController extends AdminBaseController{
 			$totalPages = $totalRows/$listRows;
 		}
 		$channels=$Insurance->where($condition)->order('createdate desc')->page($p,$listRows)->select();
-		foreach ($channels as &$item){
-			//$item['createdateformat'] = gmdate("Y-m-d H:i:s",$item['createdate']);
-			$item['iseffectiveformat'] = $item['iseffective'] =="1"?"有效":"无效";
-		}
 		$page =new Think\Page();
 		$page->firstRow = 1;//
 		$page->listRows = $listRows;
@@ -55,11 +51,11 @@ class InsuranceController extends AdminBaseController{
 	/**
 	 * 保险信息信息添加
 	 */
-	function add()
+	function adddata()
 	{
 		$data=I('post.');
 		unset($data['id']);
-		if(!empty($data['indate']) && !empty($data['groupnum']) && !empty($data['iseffective'])&& !empty($data['num'])) {//字段校验
+		if(!empty($data['groupnum']) &&  !empty($data['num'])) {//字段校验
 			$result = D('Insurance')->iaddData($data);
 			if ($result) {
 				$msg = '添加成功';//,U('Admin/DicData/index')
@@ -74,11 +70,16 @@ class InsuranceController extends AdminBaseController{
 					'msg' => $msg
 				);
 			}
-			$this->ajaxReturn($iresult);//返回操作结果
+
 		}else
 		{
-			$this->display();
+			$msg = '添加失败（验证不通过！）';
+			$iresult = array(
+				'state' => -1,
+				'msg' => $msg
+			);
 		}
+		$this->ajaxReturn($iresult);//返回操作结果
 	}
 	/**
 	 * 保险信息信息修改（ajax）

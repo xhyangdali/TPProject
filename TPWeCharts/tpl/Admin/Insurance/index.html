@@ -44,11 +44,10 @@
               <thead>
                 <tr>
                   <th style="width:30px"></th>
-                  <th style="width:50px">保险信息名称</th>
-                  <th style="width:35px">保险信息编码</th>
+                  <th style="width:50px">保险分组编码</th>
+                  <th style="width:35px">保险数目</th>
                   <th style="width:35px">描述</th>
                   <th style="width:100px">创建时间</th>
-                    <th style="width:100px">是否有效</th>
                     <th style="width:100px">操作</th>
                 </tr>
               </thead>
@@ -60,11 +59,10 @@
                     <td>{$v['num']}</td>
                     <td>{$v['description']}</td>
                     <td>{$v['createdate']}</td>
-                      <td>{$v['iseffectiveformat']}</td>
                       <td>
                           <a  class="adetail" href="javascript:;"  name="{$v['id']}">查看</a>&nbsp;
                           <a class="aedit" href="javascript:;" name="{$v['id']}">编辑</a>&nbsp;
-                          <a class="adel" href="javascript:;" name="{$v['id']}" tips="{$v['name']}">删除</a>&nbsp;
+                          <a class="adel" href="javascript:;" name="{$v['id']}" tips="{$v['groupnum']}">删除</a>&nbsp;
                       </td>
                   </tr>
                 </foreach>
@@ -99,7 +97,7 @@ $(function() {
 			  maxmin: true,
 			  scrollbar: false,
 			  title:"保险信息信息添加",
-			  area:['800px','360px'],
+			  area:['800px','350px'],
 			  content:[ url,'no']//注意，如果str是object，那么需要字符拼接。
 			  ,btn: ['保存', '关闭'] //只是为了演示
 			  ,yes: function(index, layero){
@@ -128,7 +126,7 @@ $(function() {
             maxmin: true,
             scrollbar: false,
             title:"查看保险信息信息",
-            area:['800px','400px'],
+            area:['800px','350px'],
             content: url//注意，如果str是object，那么需要字符拼接。
         });
     });
@@ -142,7 +140,7 @@ $(function() {
             maxmin: true,
             scrollbar: false,
             title:"编辑保险信息信息",
-            area:['800px','400px'],
+            area:['800px','350px'],
             content: [url,'no']//注意，如果str是object，那么需要字符拼接。
             ,btn: ['保存', '关闭'] //只是为了演示
             ,yes: function(index, layero){

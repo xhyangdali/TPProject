@@ -45,18 +45,8 @@
                 <td><input class="form-control" type="text" name="description" id="description">
                   </td>
               </tr>
-			  <tr>
-                <th><label for="iseffective">是否有效</label></th>
-                <td>
-					<select  class="form-control" name="iseffective" id="iseffective" required>
-						<option value="">===请选择===</option>
-						<option value="1">有效</option>
-						<option value="0">无效</option>
-					</select>
-                </td>
-              </tr>
             </table>
-			
+			<div style="height: 70px;;" />
 	</form>
 	</div>
 </block>
@@ -92,15 +82,16 @@
 	//提交完成后执行
 	$.validator.setDefaults({
     	submitHandler: function() {
-			var url = "{:U('Admin/Insurance/add')}";
+			var url = "{:U('Admin/Insurance/adddata')}";
 			//提交数据
 			var load = layer.load(2, {
 				shade: [0.1,'#fff'] //0.1透明度的白色背景
 			});
-			var postdata = $('#form').serialize();
 			var gnum = $("#indate").val();
 			gnum = gnum.replace(/-/g, "")
 			$("#groupnum").val(gnum);
+			var postdata = $('#form').serialize();
+
 			$.ajax({
 				url:url,
 				type:"POST",
@@ -108,7 +99,6 @@
 				dataType:"json",
 				error:function(data){
 					layer.closeAll('loading');
-					layer.msg(data.msg);
 				},
 				success:function(data){
 					if(data)

@@ -28,16 +28,19 @@ class SalesFlowController extends AdminBaseController{
 		
 		$totalRows = $SalesFlow->where($condition)->order('createdate desc')->count();
 		$totalPages = 1;
-		$listRows = C('PAGE_NUM');;
+		$listRows = C('PAGE_NUM');
 		if($totalRows>$listRows)
 		{
 			$totalPages = $totalRows/$listRows;
 		}
-		$channels=$SalesFlow->where($condition)->order('createdate desc')->page($p,$listRows)->select();
-		foreach ($channels as &$item){
-			//$item['createdateformat'] = gmdate("Y-m-d H:i:s",$item['createdate']);
-			$item['iseffectiveformat'] = $item['iseffective'] =="1"?"有效":"无效";
-		}
+		//$channels=$SalesFlow->where($condition)->order('createdate desc')->page($p,$listRows)->select();
+		$condition_ = array();
+		$condition_["a.isdel"] = 0;
+		$channels=$SalesFlow->where($condition_)
+			->field('a.*,b.name as channel,c.name station ')
+			->alias('a')->join(' LEFT JOIN Channel b ON b.code= a.channelcode')
+			->join(' LEFT JOIN Station c ON c.code= a.stationcode')
+			->order('createdate desc')->page($p,$listRows)->select();
 		$page =new Think\Page();
 		$page->firstRow = 1;//
 		$page->listRows = $listRows;
@@ -55,11 +58,13 @@ class SalesFlowController extends AdminBaseController{
 	/**
 	 * 销售流水信息信息添加
 	 */
-	function add()
+	function adddata()
 	{
 		$data=I('post.');
 		unset($data['id']);
-		if(!empty($data['name']) && !empty($data['code']) && !empty($data['iseffective'])) {//字段校验
+		if(!empty($data['channelcode']) && !empty($data['stationcode'])
+			&& !empty($data['groupnum'])
+			&& !empty($data['ticketnum'])&& !empty($data['moneynum'])) {//字段校验
 			$result = D('SalesFlow')->iaddData($data);
 			if ($result) {
 				$msg = '添加成功';//,U('Admin/DicData/index')
@@ -74,11 +79,15 @@ class SalesFlowController extends AdminBaseController{
 					'msg' => $msg
 				);
 			}
-			$this->ajaxReturn($iresult);//返回操作结果
 		}else
 		{
-			$this->display();
+			$msg = '添加失败（验证不通过！）';
+			$iresult = array(
+				'state' => -1,
+				'msg' => $msg
+			);
 		}
+		$this->ajaxReturn($iresult);//返回操作结果
 	}
 	/**
 	 * 销售流水信息信息修改（ajax）
@@ -164,6 +173,50 @@ class SalesFlowController extends AdminBaseController{
 			'state' => $state,
 			'msg' => $msg
 		);
+		$this->ajaxReturn($result);//返回操作结果
+	}
+	/**
+	 * 一次性请求售票流水的初始化数据
+	 * xhy
+	 */
+	public function initItems()
+	{
+		//获得所需数据
+		$dic = D('DicData');
+		$channel = D('Channel');
+		$station = D('Station');
+		//units
+		$Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+		$units = $Model->query("
+ 					SELECT * FROM dic_data WHERE pid
+ 					IN( SELECT id FROM dic_data WHERE dickey ='MONEYUNIT' )
+ 		");
+		//渠道信息
+		$cargs = array(
+			'isdel' => 0,
+			'iseffective' => 0
+		);
+		$channels = $channel->where($cargs)->select();
+		//客运站
+		$sargs = array(
+			'isdel' => 0,
+			'iseffective' => 0
+		);
+		$stations = $station->where($sargs)->select();
+		if($units&&$channels&&$stations) {
+			$result = array(
+				'state' => 0,
+				'units' => $units,
+				'channels' => $channels,
+				'stations' => $stations
+			);
+		}else
+		{
+			$result = array(
+				'state' => -1,
+				'msg' => '请求数据失败！'
+			);
+		}
 		$this->ajaxReturn($result);//返回操作结果
 	}
 }

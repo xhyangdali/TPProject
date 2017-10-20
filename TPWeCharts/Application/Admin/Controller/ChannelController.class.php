@@ -36,7 +36,7 @@ class ChannelController extends AdminBaseController{
 		$channels=$channel->where($condition)->order('createdate desc')->page($p,$listRows)->select();
 		foreach ($channels as &$item){
 			//$item['createdateformat'] = gmdate("Y-m-d H:i:s",$item['createdate']);
-			$item['iseffectiveformat'] = $item['iseffective'] =="1"?"有效":"无效";
+			$item['iseffectiveformat'] = $item['iseffective'] =="0"?"有效":"无效";
 		}
 		$page =new Think\Page();
 		$page->firstRow = 1;//
@@ -55,30 +55,25 @@ class ChannelController extends AdminBaseController{
 	/**
 	 * 售票渠道信息添加
 	 */
-	public function add()
+	public function adddata()
 	{
 		$data=I('post.');
 		unset($data['id']);
-		if(!empty($data['name']) && !empty($data['code']) && !empty($data['iseffective'])) {//字段校验
-			$result = D('Channel')->iaddData($data);
-			if ($result) {
-				$msg = '添加成功';//,U('Admin/DicData/index')
-				$iresult = array(
-					'state' => 0,
-					'msg' => $msg
-				);
-			}else{
-				$msg = '添加失败';
-				$iresult = array(
-					'state' => 1,
-					'msg' => $msg
-				);
-			}
-			$this->ajaxReturn($iresult);//返回操作结果
-		}else
-		{
-			$this->display();
+		$result = D('Channel')->iaddData($data);
+		if ($result) {
+			$msg = '添加成功';//,U('Admin/DicData/index')
+			$iresult = array(
+				'state' => 0,
+				'msg' => $msg
+			);
+		}else{
+			$msg = '添加失败';
+			$iresult = array(
+				'state' => 1,
+				'msg' => $msg
+			);
 		}
+		$this->ajaxReturn($iresult);//返回操作结果
 	}
 	/**
 	 * 售票渠道信息修改（ajax）

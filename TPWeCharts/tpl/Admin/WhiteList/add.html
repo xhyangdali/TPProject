@@ -70,8 +70,8 @@
                 <td>
 					<select  class="form-control" name="iseffective" id="iseffective" required>
 						<option value="">===请选择===</option>
-						<option value="1">有效</option>
-						<option value="0">无效</option>
+						<option value="0">有效</option>
+						<option value="1">无效</option>
 					</select>
                 </td>
               </tr>
@@ -116,7 +116,7 @@
 	//提交完成后执行
 	$.validator.setDefaults({
     	submitHandler: function() {
-			var url = "{:U('Admin/WhiteList/add')}";
+			var url = "{:U('Admin/WhiteList/adddata')}";
 			//提交数据
 			var load = layer.load(2, {
 				shade: [0.1,'#fff'] //0.1透明度的白色背景
