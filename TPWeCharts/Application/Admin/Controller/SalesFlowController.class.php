@@ -148,6 +148,47 @@ class SalesFlowController extends AdminBaseController{
 		$this->ajaxReturn($result);//返回操作结果
 	}
 	/**
+	 * 依据分组编码查询销售流水信息（每日只于许录入一条记录）
+	 */
+	public function findInfoByNum()
+	{
+		//
+		$data=I('post.');
+		$d = D("SalesFlow");
+		$msg ="";
+		$state = 0;
+		if(!empty($data['groupnum'])&&!empty($data['channelcode'])&&!empty($data['stationcode'])) {
+			$condition = array(
+				'groupnum' => $data['groupnum'],
+				'channelcode' => $data['channelcode'],
+				'stationcode' => $data['stationcode'],
+				'isdel' => 0
+			);
+			//
+			$dat = $d->where($condition)->select();
+			$count = $d->where($condition)->count();
+			if($count == 1)
+			{
+				$state = 0;
+				$msg ="有数据！";
+			}else{
+				$state = 1;
+				$msg ="查询不到数据！";
+			}
+		}else
+		{
+			$state = -1;
+			$dat = array();
+			$msg ="数据获取失败(参数不正确)！";
+		}
+		$result =array(
+			'state' => $state,
+			'msg' => $msg,
+			'data' => $dat
+		);
+		$this->ajaxReturn($result);//返回操作结果
+	}
+	/**
 	 * 删除(假删除)销售流水信息
 	 */
 	public function delete($id = 0){

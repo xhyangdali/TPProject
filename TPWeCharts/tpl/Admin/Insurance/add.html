@@ -9,7 +9,8 @@
 <!--[if lt IE 9]><script src="__ADMIN_ACEADMIN__/js/html5shiv.js"></script><script src="__ADMIN_ACEADMIN__/js/respond.min.js"></script><![endif]-->
 <link rel="stylesheet" href="__PUBLIC_CSS__/base.css"/>
 <!--[if !IE]> -->
-	<script src="__PUBLIC__/statics/js/Calendar.js"></script>
+	<link rel="stylesheet" href="__PUBLIC__/statics/css/calendar-blue.css"/>
+	<script src="__PUBLIC__/statics/js/Calendar_main.js"></script>
 	<!--验证框架引用 必要-->
 <script src="__ADMIN_ACEADMIN__/js/jquery.js"></script>
 <script src="__ADMIN_ACEADMIN__/js/jquery.validate.min.js"></script>
@@ -33,11 +34,11 @@
 			
              <tr>
                 <th width="20%"><label for="indate">日期</label></th>
-                <td><input  class="form-control" placeholder="请选择日期" type="text" required readonly  name="indate" id="indate"   onclick="fPopCalendar(event,this,this);" ></td>
+                <td><input  class="form-control" placeholder="请选择日期" onchange="InitData(this);" type="text" required readonly  name="indate" id="indate" date="true"   /></td>
               </tr>
 			<tr>
 				<th><label for="num">保险数目</label></th>
-				<td><input class="form-control" type="text" onfocus="InitData(this);"  name="num" id="num" required  number="true" min="0"/>
+				<td><input class="form-control" type="text"   name="num" id="num" required  number="true" min="0"/>
 				</td>
 			</tr>
               <tr>
@@ -57,6 +58,12 @@
 	var aurl = "{:U('Admin/Insurance/adddata')}";
 	var eurl = "{:U('Admin/Insurance/editdata')}";
  	$(function(){
+		Calendar.setup({
+		inputField : "indate",
+		ifFormat : "%Y-%m-%d",
+		showsTime : false,
+		timeFormat : "24"
+		});
 		//数据校验
 		var validator = $("#form").validate({
 			errorPlacement: function(error, element) {
@@ -69,7 +76,8 @@
 			errorElement: "span",
 			messages: {
 				indate: {
-					required: " (必填字段)"
+					required: " (必填字段)",
+					date:"（输入日期格式）"
 				},
 				num: {
 					required: " (必填字段)",
@@ -141,11 +149,14 @@
 						$("#num").val(item.num);
 						$("#groupnum").val(item.groupnum);
 						$("#description").val(item.description);
-						layer.msg("该天的数据依据录入，若要修改数据请保存！");
+						layer.msg("该天的数据录入完成，若要修改点击保存！");
 						url = eurl;
 					}else if(data.state == 1)//新增数据
 					{
 							url = aurl;
+							$("#num").val('');
+							$("#groupnum").val('');
+							$("#description").val('');
 					}else{
 						layer.msg(data.msg);
 					}

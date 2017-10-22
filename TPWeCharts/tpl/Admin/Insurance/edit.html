@@ -9,7 +9,8 @@
 <!--[if lt IE 9]><script src="__ADMIN_ACEADMIN__/js/html5shiv.js"></script><script src="__ADMIN_ACEADMIN__/js/respond.min.js"></script><![endif]-->
 <link rel="stylesheet" href="__PUBLIC_CSS__/base.css"/>
 <!--[if !IE]> -->
-	<script src="__PUBLIC__/statics/js/Calendar.js"></script>
+	<link rel="stylesheet" href="__PUBLIC__/statics/css/calendar-blue.css"/>
+	<script src="__PUBLIC__/statics/js/Calendar_main.js"></script>
 	<!--验证框架引用 必要-->
 <script src="__ADMIN_ACEADMIN__/js/jquery.js"></script>
 <script src="__ADMIN_ACEADMIN__/js/jquery.validate.min.js"></script>
@@ -58,6 +59,12 @@
 	 var index = parent.layer.getFrameIndex(window.name);//获取子窗口
 	 var _Id = GetQueryString("id");
  	$(function(){
+		Calendar.setup({
+		inputField : "indate",
+		ifFormat : "%Y-%m-%d",
+		showsTime : false,
+		timeFormat : "24"
+		});
 		//数据校验
 		var validator = $("#form").validate({
 			errorPlacement: function(error, element) {

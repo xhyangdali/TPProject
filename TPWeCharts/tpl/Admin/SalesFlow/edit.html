@@ -35,7 +35,7 @@
 				<tr>
 					<th width="20%"><label for="channelcode">售票渠道</label></th>
 					<td>
-						<select  class="form-control" name="channelcode" id="channelcode" required>
+						<select  class="form-control" name="channelcode" id="channelcode" disabled="disabled"  required>
 							<option value="">===请选择===</option>
 						</select>
 					</td>
@@ -43,14 +43,14 @@
 				<tr>
 					<th><label for="stationcode">客运站</label></th>
 					<td>
-						<select  class="form-control" name="stationcode" id="stationcode" required>
+						<select  class="form-control" name="stationcode" id="stationcode" disabled="disabled"  required>
 							<option value="">===请选择===</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<th ><label for="flowdate">售票日期</label></th>
-					<td><input  class="form-control" placeholder="请选择日期" type="text" required readonly="true"  name="flowdate" id="flowdate" onchange="SetValGnum(this)"  onclick="fPopCalendar(event,this,this);" date="true"></td>
+					<td><input  class="form-control" placeholder="请选择日期" type="text" required disabled="disabled"   name="flowdate" id="flowdate"    date="true"></td>
 				</tr>
 				<tr>
 					<th><label for="ticketnum">售票数目</label></th>
@@ -85,7 +85,7 @@
 	 var index = parent.layer.getFrameIndex(window.name);//获取子窗口
 	 var _Id = GetQueryString("id");
  	$(function(){
-		init();
+		
 		//数据校验
 		var validator = $("#form").validate({
 			errorPlacement: function(error, element) {
@@ -137,15 +137,16 @@
 							if(data.state == 0)
 							{
 								var item = data.data[0];
+								init(item);
 								$("#id").val(item.id);
-								$("#channelcode").val(item.channelcode);
-								$("#stationcode").val(item.stationcode);
+								//$("#channelcode").val(item.channelcode);
+								//$("#stationcode").val(item.stationcode);
 								$("#ticketnum").val(item.ticketnum);
 								$("#moneynum").val(item.moneynum);
 								$("#groupnum").val(item.groupnum);
 								var str = item.flowdate.replace(/00:00:00/g, "")
 								$("#flowdate").val(str);
-								$("#unit").val(item.unit);
+								//$("#unit").val(item.unit);
 								$("#description").val(item.description);
 							}else
 							{
@@ -191,7 +192,7 @@
 		 }
 	 });
 	 //
-	 function init()
+	 function init(item)
 	 {
 		 var load = layer.load(2, {
 			 shade: [0.1,'#fff'] //0.1透明度的白色背景
@@ -226,6 +227,9 @@
 						 {
 							 selectinit(stations,"stationcode");
 						 }
+						 $("#channelcode").val(item.channelcode);
+						 $("#stationcode").val(item.stationcode);
+						 $("#unit").val(item.unit);
 					 }else{
 						 layer.msg(data.msg, {icon: -1});
 					 }

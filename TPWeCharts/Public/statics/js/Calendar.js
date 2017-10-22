@@ -60,6 +60,7 @@ function fSetDate(iYear,iMonth,iDay){
         iDayNew="0"+iDayNew;  
     }  
     gdCtrl.value=iYear+splitChar+iMonthNew+splitChar+iDayNew;
+	
     fHideCalendar();  
 }  
 function fHideCalendar(){$$("calendardiv").style.visibility="hidden";for(var i=0;i<goSelectTag.length;i++){goSelectTag[i].style.visibility="visible";}goSelectTag.length=0;}  
