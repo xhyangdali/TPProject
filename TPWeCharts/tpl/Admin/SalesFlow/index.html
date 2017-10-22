@@ -21,6 +21,7 @@
                 <td colspan="7">
                   <button id="btnadd" type="button" class="btn btn-primary" >添加</button>
                   &nbsp;&nbsp; &nbsp;&nbsp;
+				  <button id="btn_add" type="button" class="btn btn-primary" >ADD</button>
                 </td>
               </tr>
               <tr>
@@ -44,7 +45,7 @@
               <thead>
                 <tr>
                   <th style="width:30px"></th>
-                  <th style="width:35px">售票日期</th>
+                  <th style="width:35px">售票分组编码</th>
                     <th style="width:35px">售票数目</th>
                     <th style="width:35px">售票金额</th>
                     <th style="width:35px">渠道</th>
@@ -57,7 +58,7 @@
                 <foreach name="data" item="v">
                   <tr>
                     <td></td>
-                    <td>{$v['flowdate']|strtotime|date="Y年m月d日",###}</td>
+                    <td>{$v['groupnum']}</td>
                     <td>{$v['ticketnum']}</td>
                       <td>{$v['moneynum']}</td>
                       <td>{$v['channel']}</td>
@@ -103,6 +104,33 @@ $(function() {
 			  title:"销售流水信息添加",
 			  area:['800px','450px'],
 			  content:[ url,'no']//注意，如果str是object，那么需要字符拼接。
+			  ,btn: ['保存', '关闭'] //只是为了演示
+			  ,yes: function(index, layero){
+				//保存
+				var body = layer.getChildFrame('body', index);
+                var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
+                iframeWin.submitdata();//调用子页面的方法，得到子页面返回的ids
+                //layer.close(index);//需要手动关闭窗口
+			  }
+			  ,btn2: function(){
+				layer.closeAll();
+			  }
+			  ,zIndex: layer.zIndex //重点1
+			  ,success: function(layero){
+				layer.setTop(layero); //重点2
+			  }
+			});
+		});
+		$("#btn_add").click(function(){
+			var url = "{:U('iadd')}";
+			  layer.open({
+			  type: 2,
+			  id: 'add_form',
+			  maxmin: true,
+			  scrollbar: false,
+			  title:"销售流水信息添加",
+			  area:['800px','400px'],
+			  content:[ url,'yes']//注意，如果str是object，那么需要字符拼接。
 			  ,btn: ['保存', '关闭'] //只是为了演示
 			  ,yes: function(index, layero){
 				//保存

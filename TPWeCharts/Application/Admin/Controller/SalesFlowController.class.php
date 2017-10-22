@@ -56,6 +56,32 @@ class SalesFlowController extends AdminBaseController{
 		$this->display();
 	}
 	/**
+	 * 销售流水信息信息添加（视图）
+	 */
+	 public function iadd()
+	 {
+	 	$channel = D('Channel');
+		$station = D('Station');
+		//
+		$cargs = array(
+			'iseffective' => 0,
+			'isdel' => 0
+		);
+		$channels = $channel->where($cargs)->order('createdate desc')->select();
+		//
+		$sargs = array(
+			'iseffective' => 0,
+			'isdel' => 0
+		);
+		$stations = $station->where($sargs)->order('createdate desc')->select();
+		$assign=array(
+			'channels' => $channels,
+			'stations' => $stations
+			);
+		$this->assign($assign);
+	 	$this->display();
+	 }
+	/**
 	 * 销售流水信息信息添加
 	 */
 	function adddata()
