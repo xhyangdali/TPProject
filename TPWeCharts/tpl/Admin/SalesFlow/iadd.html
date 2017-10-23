@@ -58,21 +58,21 @@ div:active{
 			<tr>
 				<td ><label for="totalticketnum" >合计票数</label></td>
 				<td >
-					<input class="form-control" type="text"  name="totalticketnum" id="totalticketnum" required number="true" placeholder="合计票数" />
+					<input class="form-control" type="text" onkeyup="CheckCount(this);"  name="totalticketnum" id="totalticketnum" required number="true" placeholder="合计票数" />
 				</td>
 				<td ><label for="totalmoneynum" >合计金额</label></td>
 				<td >
-					<input class="form-control" type="text"  name="totalmoneynum" id="totalmoneynum" required number="true" min="0.01" placeholder="合计金额"/>
+					<input class="form-control" type="text" onkeyup="CheckCount(this);" name="totalmoneynum" id="totalmoneynum" required number="true" min="0.01" placeholder="合计金额"/>
 				</td>
 			<tr>
 			<foreach name="channels" item="v">
-			<tr>
+			<tr name="{$v['code']}">
 				<td ><label for="{$v['code']}_ticketnum" >{$v['name']}(票数)</label></td>
 				<td >
 					<if condition="$v['code'] eq '1010' ">
-						<input class="form-control" type="text"  name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" disabled required number="true" placeholder="{$v['name']}(票数)" />
+						<input class="form-control" type="text"   name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" disabled required number="true" placeholder="{$v['name']}(票数)" />
 						<else />
-						<input class="form-control" type="text"  name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" required number="true" placeholder="{$v['name']}(票数)" />
+						<input class="form-control" type="text" onkeyup="CheckCount(this);" name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" required number="true" placeholder="{$v['name']}(票数)" />
 					</if>
 				</td>
 				<td ><label for="{$v['code']}_moneynum" >{$v['name']}(金额)</label></td>
@@ -80,7 +80,7 @@ div:active{
 					<if condition="$v['code'] eq '1010' ">
 						<input class="form-control" type="text"  name="{$v['code']}_moneynum" id="{$v['code']}_moneynum" disabled required number="true" placeholder="{$v['name']}(金额)" />
 						<else />
-						<input class="form-control" type="text"  name="{$v['code']}_moneynum" id="{$v['code']}_moneynum" required number="true" placeholder="{$v['name']}(金额)" />
+						<input class="form-control" type="text" onkeyup="CheckCount(this);" name="{$v['code']}_moneynum" id="{$v['code']}_moneynum" required number="true" placeholder="{$v['name']}(金额)" />
 					</if>
 				</td>
 			</tr>
@@ -107,8 +107,11 @@ div:active{
  	var index = parent.layer.getFrameIndex(window.name);//获取子窗口
 	//parent.layer.iframeAuto(index);
 	var url ="";
-	var aurl = "{:U('Admin/SalesFlow/adddata')}";
+	var aurl = "{:U('Admin/SalesFlow/addlistdata')}";
 	var eurl = "{:U('Admin/SalesFlow/editdata')}";
+	var _WCODE = '1010';//窗口编码（渠道）
+	var _SAVE_NEXT = 0;//保存，保存继续
+	var submitmsg ="";
  	$(function(){
 		$("[data-toggle='tooltip']").tooltip();
 		//日期控件初始化
@@ -119,6 +122,12 @@ div:active{
 		timeFormat : "24"
 		});
 		init();
+		//失去焦点验证数据
+		$("#form").validate({
+			onfocusout: function(element){
+				$(element).valid();
+			}
+		});
 		//数据校验
 		var validator = $("#form").validate({
 			errorPlacement: function(error, element) {
@@ -168,19 +177,20 @@ div:active{
 	$.validator.setDefaults({
     	submitHandler: function() {
 			//var url = "{:U('Admin/SalesFlow/adddata')}";
+			if(submitmsg !="")
+			{
+				layer.alert(submitmsg, {icon: 2});
+				return false;
+			}
 			//提交数据
 			var load = layer.load(2, {
 				shade: [0.1,'#fff'] //0.1透明度的白色背景
 			});
-			var gnum = $("#flowdate").val();
-			gnum = gnum.replace(/-/g, "")
-			$("#groupnum").val(gnum);
-			var postdata = $('#form').serialize();
-
+			var postdata = dealData();
 			$.ajax({
 				url:url,
 				type:"POST",
-				data:postdata,
+				data:{list:postdata},
 				dataType:"json",
 				error:function(data){
 					layer.closeAll('loading');
@@ -189,24 +199,79 @@ div:active{
 					if(data)
 					{
 						//回掉函数刷新列表页面
-						window.parent.freshen(data.state,data.msg);
-						layer.closeAll('loading');
-						parent.layer.close(index);
+						if(_SAVE_NEXT == 0) {
+							window.parent.freshen(data.state, data.msg);
+							layer.closeAll('loading');
+							parent.layer.close(index);
+						}else {
+							layer.msg( data.msg, {icon: data.state});
+							layer.closeAll('loading');
+							$(':input','#form')
+									.not(':button,:submit,:reset,:hidden')
+									.val('')
+									.removeAttr('checked')
+									.removeAttr('selected');
+						}
 					}
 				}
 			});
    		}
 	});
+	//处理提交数据
+	//格式：JSON
+	function dealData()
+	{
+		var flowdate = $("#flowdate").val();
+		var gnum = flowdate.replace(/-/g, "");
+		var stationcode = $("#stationcode").val();
+		var unit = $("#unit").val();
+		var description = $("#description").val();
+		//json数据处理
+		var json = [];
+		var row = {};
+		//遍历form表单
+		$("table tr[name]").each(function(index){
+			var code = $(this).attr("name");
+			var tr = $(this);
+			row = {};
+			row.id ="";
+			row.flowdate = flowdate;
+			row.groupnum = gnum;
+			row.channelcode = code;
+			row.stationcode = stationcode;
+			var tnum = 0,mnum=0.0;
+			$(tr).find("input[name]").each(function () {
+				var n = $(this).attr("name");
+				if(n.indexOf("ticketnum") >= 0)
+				{
+					tnum = $(this).val();
+				}else if(n.indexOf("moneynum") >= 0)
+				{
+					mnum = $(this).val();
+				}
+			});
+			row.ticketnum = tnum;
+			row.moneynum = mnum;
+			row.unit = unit;
+			row.description = description;
+			json.push(row);
+		});
+		//
+		result = JSON.stringify(json);
+		//layer.alert(result);
+		return result;
+	}
 	//查询是否添加过该日信息（依据分组编码，渠道，站点）
 	function CheckData(obj)
 	{
+
 		var load = layer.load(2, {
 			shade: [0.1,'#fff'] //0.1透明度的白色背景
 		});
 		var gnum = $("#flowdate").val();
 		gnum = gnum.replace(/-/g, "");
 		var snum = $("#stationcode").val();
-		if(gnum.length <= 0 ||  snum.length <=0)
+		if(gnum.length <= 0 ||  snum.length <=0 )
 		{
 			$("#jd").removeAttr("style");
 			layer.closeAll('loading');
@@ -246,11 +311,69 @@ div:active{
 							$("#description").val('');
 					}else{
 						layer.msg(data.msg);
+						url = aurl;
 					}
 				}
 				layer.closeAll('loading');
 			}
 		});
+	}
+	//计算窗口数目
+	function CheckCount(obj)
+	{
+		var totalticketnum = $("#totalticketnum").val();
+		var totalmoneynum = $("#totalmoneynum").val();
+		var windowcount = 0,moneycount=0;
+
+		submitmsg ="";
+		$("table tr[name]").each(function(index){
+			var code = $(this).attr("name");
+			var tr = $(this);
+			//窗口售票编码
+			if(code != _WCODE) {
+				$(tr).find("input[name]").each(function () {
+					var n = $(this).attr("name");
+					if(n.indexOf("ticketnum") >= 0)
+					{
+						var num = $(this).val();
+						if(parseFloat(num).toString() != "NaN") {
+							windowcount = eval(parseInt(num) + windowcount);
+						}
+					}else if(n.indexOf("moneynum") >= 0)
+					{
+						var num = $(this).val();
+						if(parseFloat(num).toString() != "NaN") {
+							moneycount = eval(parseFloat(num) + moneycount);
+						}
+					}
+				});
+			}
+		});
+		//分项计算处理逻辑
+		var tnum = 0,mnum=0;
+		if(parseInt(totalticketnum).toString() != "NaN") {
+			tnum = eval(parseInt(totalticketnum) - windowcount);
+		}
+		if(parseFloat(totalmoneynum).toString() != "NaN") {
+			mnum = eval(parseFloat(totalmoneynum) - moneycount);
+		}
+
+		if(tnum <0)
+		{
+			tnum =0;
+			submitmsg +="合计票数必须要大于等于各分项票数之和!";
+			layer.alert(submitmsg, {icon: 2});
+		}
+		var _br = submitmsg==""?"":"<br/>";
+		if(mnum <0)
+		{
+			mnum =0;
+			submitmsg  +=_br+"合计金额必须要大于等于各分项金额之和!";
+			layer.alert(submitmsg, {icon: 2});
+		}
+		mnum = mnum.toFixed(2);
+		$("#"+_WCODE+"_ticketnum").val(tnum);
+		$("#"+_WCODE+"_moneynum").val(mnum);
 	}
 	//页面数据初始化
 	function init()
@@ -323,6 +446,13 @@ div:active{
 	function submitdata()
 	{
 		//layer.msg("正在建设中...");
+		$('#form').submit();
+	}
+	//保存按钮（来自父页面）
+	function submitdata_next()
+	{
+		//layer.msg("正在建设中...");
+		_SAVE_NEXT = 1;//保存继续
 		$('#form').submit();
 	}
 </script>

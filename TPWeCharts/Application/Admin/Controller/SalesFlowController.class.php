@@ -116,10 +116,55 @@ class SalesFlowController extends AdminBaseController{
 		$this->ajaxReturn($iresult);//返回操作结果
 	}
 	/**
+	 * 销售流水信息信息添加(多条数据一起)
+	 */
+	public function addlistdata()
+	{
+		$data = $_POST['list'];
+		$d_json = json_decode($data,TRUE);
+		if(!empty($d_json)) {//字段校验
+			$listCount =count($d_json);//数组长度
+			$addCount =0;//添加完成数目
+			$tb = D('SalesFlow');
+			$tb->startTrans();//开启事务
+			foreach($d_json as $item)
+			{
+				unset($item['id']);
+				$re = $tb->iaddData($item);
+				if($re){
+					$addCount ++;
+				}
+			}
+			if ($listCount == $addCount) {
+				$tb->commit();//事务提交
+				$msg = '添加成功';//,U('Admin/DicData/index')
+				$iresult = array(
+					'state' => 0,
+					'msg' => $msg
+				);
+			}else{
+				$tb->rollback();//回滚
+				$msg = '添加失败'.$addCount;
+				$iresult = array(
+					'state' => 1,
+					'msg' => $msg
+				);
+			}
+		}else
+		{
+			$msg = '添加失败（验证不通过！）-'.count($data);
+			$iresult = array(
+				'state' => -1,
+				'msg' => $msg
+			);
+		}
+		$this->ajaxReturn($iresult);//返回操作结果
+	}
+	/**
 	 * 销售流水信息信息修改（ajax）
 	 *
 	 */
-	function editdata()
+	public function editdata()
 	{
 		$data=I('post.');
 		$map=array(
@@ -144,7 +189,7 @@ class SalesFlowController extends AdminBaseController{
 	/**
 	 * 销售流水信息道信息获取，一句数据id
 	 */
-	function GetDetail($id = 1)
+	public function GetDetail($id = 1)
 	{
 		$msg ="";
 		$state = 1;
