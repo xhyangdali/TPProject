@@ -32,15 +32,12 @@ div:active{
         <!-- 内容部分 -->
 	<div class='tab-content' style="background-color:#FFFFFF;">
 	<form id="form" action="" method="post">
-		<input class="form-control" type="hidden" id="id" name="id">
-		<input class="form-control" type="hidden" id="groupnum" name="groupnum">
+		
 		<table class="table table-striped table-bordered table-hover table-condensed">
 			<tr id="jd" style="display: none;">
 				<td ><label >进度</label></td>
 				<td  colspan="3" style="font-size: x-small;">
-					<foreach name="stations" item="v">
-						&nbsp;&nbsp;<a href="#" data-toggle="tooltip" data-placement="bottom" title="(2017-10-18,2017-10-19,2017-10-12)未完成">{$v['name']}</a>
-					</foreach>
+					
 				</td>
 			<tr>
 			<tr>
@@ -67,7 +64,10 @@ div:active{
 			<tr>
 			<foreach name="channels" item="v">
 			<tr name="{$v['code']}">
-				<td ><label for="{$v['code']}_ticketnum" >{$v['name']}(票数)</label></td>
+				<td >
+				<label for="{$v['code']}_ticketnum" >{$v['name']}(票数)</label>
+				<input class="form-control" type="hidden" name="{$v['code']}_id" id="{$v['code']}_id" />
+				</td>
 				<td >
 					<if condition="$v['code'] eq '1010' ">
 						<input class="form-control" type="text"   name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" disabled required number="true" placeholder="{$v['name']}(票数)" />
@@ -187,6 +187,7 @@ div:active{
 				shade: [0.1,'#fff'] //0.1透明度的白色背景
 			});
 			var postdata = dealData();
+			//url = "";
 			$.ajax({
 				url:url,
 				type:"POST",
@@ -211,7 +212,9 @@ div:active{
 									.val('')
 									.removeAttr('checked')
 									.removeAttr('selected');
+							//window.parent.freshen(data.state, data.msg);
 						}
+						
 					}
 				}
 			});
@@ -234,11 +237,11 @@ div:active{
 			var code = $(this).attr("name");
 			var tr = $(this);
 			row = {};
-			row.id ="";
 			row.flowdate = flowdate;
 			row.groupnum = gnum;
 			row.channelcode = code;
 			row.stationcode = stationcode;
+			var _id =""
 			var tnum = 0,mnum=0.0;
 			$(tr).find("input[name]").each(function () {
 				var n = $(this).attr("name");
@@ -248,8 +251,12 @@ div:active{
 				}else if(n.indexOf("moneynum") >= 0)
 				{
 					mnum = $(this).val();
+				}else if(n.indexOf("_id") >= 0)
+				{
+					_id = $(this).val();
 				}
 			});
+			row.id = _id;
 			row.ticketnum = tnum;
 			row.moneynum = mnum;
 			row.unit = unit;
@@ -268,17 +275,54 @@ div:active{
 		var load = layer.load(2, {
 			shade: [0.1,'#fff'] //0.1透明度的白色背景
 		});
+		//进度查询
 		var gnum = $("#flowdate").val();
 		gnum = gnum.replace(/-/g, "");
+		var iurl = "{:U('Admin/SalesFlow/GetProcess')}";
+		$.ajax({
+			url:iurl,
+			type:"POST",
+			data:{groupnum:gnum},
+			dataType:"json",
+			error:function(data){
+				layer.closeAll('loading');
+			},
+			success:function(data){
+				if(data)
+				{
+					//回掉函数刷新列表页面
+					if(data.state ==0)//进度未完成
+					{
+						var item = data.data;
+						$("#jd").removeAttr("style");
+						var a ="";
+						for(var i=0;i < item.length;i++)
+						{
+							a +='&nbsp &nbsp<a href="#" data-toggle="tooltip" data-placement="bottom" title="'
+							+item[i]["name"]+'（未录入数据！）">'+item[i]["name"]+'</a>'
+							$("#jd").find('td:eq(1)').html(a);
+						}
+						
+						
+					}else if(data.state == 2)//进度完成
+					{
+							
+					}else{
+						layer.msg(data.msg);
+					}
+				}
+				layer.closeAll('loading');
+			}
+		});
+		
 		var snum = $("#stationcode").val();
 		if(gnum.length <= 0 ||  snum.length <=0 )
 		{
-			$("#jd").removeAttr("style");
 			layer.closeAll('loading');
 			return false;
 		}
-		//layer.msg("ok...");
-		var temp = "{:U('Admin/SalesFlow/findInfoByNum')}";
+		//如果添加过数据直接加载
+		var temp = "{:U('Admin/SalesFlow/findInfoByNum_')}";
 		$.ajax({
 			url:temp,
 			type:"POST",
@@ -293,22 +337,49 @@ div:active{
 					//回掉函数刷新列表页面
 					if(data.state ==0)//已经添加过
 					{
-						var item = data.data[0];
-						$("#id").val(item.id);
-						$("#ticketnum").val(item.ticketnum);
-						$("#moneynum").val(item.moneynum);
-						$("#unit").val(item.unit);
-						$("#description").val(item.description);
+						var item = data.data;
+						for(var i=0;i < item.length;i++)
+						{
+							var icode = item[i]['channelcode'];
+							$("table tr[name='"+icode+"']").each(function(){
+								var _tr = $(this);
+								$(_tr).find("input[name='"+icode+"_id']").val(item[i]['id']);
+								$(_tr).find("input[name='"+icode+"_ticketnum']").val(item[i]['ticketnum']);
+								$(_tr).find("input[name='"+icode+"_moneynum']").val(item[i]['moneynum']);
+							});
+						}
+						//总数计算，总金额计算
+						var windowcount=0,moneycount=0;
+						$("table tr[name]").each(function(index){
+							var code = $(this).attr("name");
+							var tr = $(this);
+							//窗口售票编码
+							$(tr).find("input[name]").each(function () {
+									var n = $(this).attr("name");
+									if(n.indexOf("ticketnum") >= 0)
+									{
+										var num = $(this).val();
+										if(parseInt(num).toString() != "NaN") {
+											windowcount = eval(parseInt(num) + windowcount);
+										}
+									}else if(n.indexOf("moneynum") >= 0)
+									{
+										var num = $(this).val();
+										if(parseFloat(num).toString() != "NaN") {
+											moneycount = eval(parseFloat(num) + moneycount);
+										}
+									}
+							});
+						});
+						$("#totalticketnum").val(windowcount);
+						$("#totalmoneynum").val(moneycount);
+						//
 						layer.msg("该天的数据录入完成，若要修改点击保存！");
-						url = eurl;
+						url = aurl;
 					}else if(data.state == 1)//新增数据
 					{
 							//layer.msg(data.msg);
 							url = aurl;
-							$("#ticketnum").val('');
-							$("#moneynum").val('');
-							$("#unit").val('');
-							$("#description").val('');
 					}else{
 						layer.msg(data.msg);
 						url = aurl;
@@ -336,7 +407,7 @@ div:active{
 					if(n.indexOf("ticketnum") >= 0)
 					{
 						var num = $(this).val();
-						if(parseFloat(num).toString() != "NaN") {
+						if(parseInt(num).toString() != "NaN") {
 							windowcount = eval(parseInt(num) + windowcount);
 						}
 					}else if(n.indexOf("moneynum") >= 0)

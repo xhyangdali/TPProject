@@ -1,22 +1,22 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50505
-Source Host           : localhost:3306
+Source Server         : localhost
+Source Server Version : 50617
+Source Host           : 127.0.0.1:3306
 Source Database       : wechartsdb
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-10-23 18:00:55
+Date: 2017-10-23 23:32:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `admin_nav`
+-- Table structure for admin_nav
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_nav`;
 CREATE TABLE `admin_nav` (
@@ -68,7 +68,7 @@ INSERT INTO `admin_nav` VALUES ('77', '0', '数据统计', 'Admin/ShowNav/Statis
 INSERT INTO `admin_nav` VALUES ('78', '77', '图表统计', 'Admin/Statistics/index', 'tags', '1', '0');
 
 -- ----------------------------
--- Table structure for `auth_group`
+-- Table structure for auth_group
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_group`;
 CREATE TABLE `auth_group` (
@@ -82,7 +82,7 @@ CREATE TABLE `auth_group` (
 -- ----------------------------
 -- Records of auth_group
 -- ----------------------------
-INSERT INTO `auth_group` VALUES ('1', '超级管理员', '1', '6,96,200,20,1,2,3,4,5,64,263,128,129,130,133,134,135,136,185,137,138,139,140,141,142,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,169,104,105,106,107,108,118,126,152,127,143,144,145,146,159,184,190,195,216,224,225,226,227,228,229,257,217,230,231,232,233,234,235,258,218,236,237,238,239,240,241,259,164,165,174,171,173,175,176,177,178,179,166,167,208,210,211,168,201,202,203,205,206,207,219,220,242,243,244,245,246,247,254,256,261,262,264,221,248,249,250,251,252,253,255,260,222,223');
+INSERT INTO `auth_group` VALUES ('1', '超级管理员', '1', '6,96,200,20,1,2,3,4,5,64,263,128,129,130,133,134,135,136,185,137,138,139,140,141,142,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,169,104,105,106,107,108,118,126,152,127,143,144,145,146,159,184,190,195,216,224,225,226,227,228,229,257,217,230,231,232,233,234,235,258,218,236,237,238,239,240,241,259,164,165,174,171,173,175,176,177,178,179,166,167,208,210,211,168,201,202,203,205,206,207,219,220,242,243,244,245,246,247,254,256,261,262,264,265,221,248,249,250,251,252,253,255,260,266,222,223');
 INSERT INTO `auth_group` VALUES ('2', '产品管理员', '1', '6,96,1,2,3,4,56,57,60,61,63,71,72,65,67,74,75,66,68,69,70,73,77,78,82,83,88,89,90,99,91,92,97,98,104,105,106,107,108,118,109,110,111,112,117,113,114');
 INSERT INTO `auth_group` VALUES ('4', '文章编辑', '1', '6,96,185,142,169,104,105,106,107,108,118,146,184');
 INSERT INTO `auth_group` VALUES ('6', '采购', '1', '104,105,106,107,108,118,109,110,111,112,117,148,154');
@@ -94,7 +94,7 @@ INSERT INTO `auth_group` VALUES ('11', '店铺管理员', '1', '6,96,200,185,142
 INSERT INTO `auth_group` VALUES ('12', '零售员工', '1', '');
 
 -- ----------------------------
--- Table structure for `auth_group_access`
+-- Table structure for auth_group_access
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_group_access`;
 CREATE TABLE `auth_group_access` (
@@ -115,7 +115,7 @@ INSERT INTO `auth_group_access` VALUES ('90', '1');
 INSERT INTO `auth_group_access` VALUES ('91', '11');
 
 -- ----------------------------
--- Table structure for `auth_rule`
+-- Table structure for auth_rule
 -- ----------------------------
 DROP TABLE IF EXISTS `auth_rule`;
 CREATE TABLE `auth_rule` (
@@ -129,7 +129,7 @@ CREATE TABLE `auth_rule` (
   `ispublic` int(11) NOT NULL DEFAULT '0' COMMENT '是否全局权限，如Ajax请求 0不是 1是',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=265 DEFAULT CHARSET=utf8 COMMENT='权限规则表';
+) ENGINE=MyISAM AUTO_INCREMENT=267 DEFAULT CHARSET=utf8 COMMENT='权限规则表';
 
 -- ----------------------------
 -- Records of auth_rule
@@ -282,9 +282,11 @@ INSERT INTO `auth_rule` VALUES ('261', '220', 'Admin/SalesFlow/findInfoByNum', '
 INSERT INTO `auth_rule` VALUES ('262', '220', 'Admin/SalesFlow/iadd', 'I-添加（视图）', '1', '1', '', '0');
 INSERT INTO `auth_rule` VALUES ('263', '1', 'Admin/Nav/ForBidden', '菜单（启用，禁止）', '1', '1', '', '0');
 INSERT INTO `auth_rule` VALUES ('264', '220', 'Admin/SalesFlow/addlistdata', '添加多条数据（业务）', '1', '1', '', '0');
+INSERT INTO `auth_rule` VALUES ('265', '220', 'Admin/SalesFlow/GetProcess', '进度信息查询', '1', '1', '', '1');
+INSERT INTO `auth_rule` VALUES ('266', '219', 'Admin/SalesFlow/findInfoByNum_', '查询信息（综合添加）', '1', '1', '', '1');
 
 -- ----------------------------
--- Table structure for `channel`
+-- Table structure for channel
 -- ----------------------------
 DROP TABLE IF EXISTS `channel`;
 CREATE TABLE `channel` (
@@ -320,7 +322,7 @@ INSERT INTO `channel` VALUES ('11', '1', '1', '1', '0', '88', '2017-10-20 13:09:
 INSERT INTO `channel` VALUES ('12', '1', '1', '1', '0', '88', '2017-10-20 13:09:43', null, null, '88', '2017-10-20 13:10:32', '1');
 
 -- ----------------------------
--- Table structure for `custom_user`
+-- Table structure for custom_user
 -- ----------------------------
 DROP TABLE IF EXISTS `custom_user`;
 CREATE TABLE `custom_user` (
@@ -346,7 +348,7 @@ INSERT INTO `custom_user` VALUES ('3', '0101', '哥哥', '男', '12532652014', '
 INSERT INTO `custom_user` VALUES ('5', '0102', '丽卡也', '女', '12032651254', '昆明', '200', '200', '10', '1');
 
 -- ----------------------------
--- Table structure for `department`
+-- Table structure for department
 -- ----------------------------
 DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
@@ -371,7 +373,7 @@ INSERT INTO `department` VALUES ('4', '0', '2', '技术部', '的人得分', '�
 INSERT INTO `department` VALUES ('5', '0', '1', '默认部门', '职责......', '李', '13625124157', '0', '1');
 
 -- ----------------------------
--- Table structure for `dic_data`
+-- Table structure for dic_data
 -- ----------------------------
 DROP TABLE IF EXISTS `dic_data`;
 CREATE TABLE `dic_data` (
@@ -415,7 +417,7 @@ INSERT INTO `dic_data` VALUES ('32', '30', '万元', 'WANYUAN', '1011', '单位�
 INSERT INTO `dic_data` VALUES ('33', '30', '百万', 'BAIWAN', '1012', '单位（百万）', '3', '1');
 
 -- ----------------------------
--- Table structure for `employee`
+-- Table structure for employee
 -- ----------------------------
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
@@ -443,7 +445,7 @@ INSERT INTO `employee` VALUES ('1', '2', '4', '3', '小鱼', '男', '13625154257
 INSERT INTO `employee` VALUES ('2', '1', '5', '0', '管理员', '男', '13621542154', '123@111.cc', '无', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '本科', '2', '1');
 
 -- ----------------------------
--- Table structure for `insurance`
+-- Table structure for insurance
 -- ----------------------------
 DROP TABLE IF EXISTS `insurance`;
 CREATE TABLE `insurance` (
@@ -483,7 +485,7 @@ INSERT INTO `insurance` VALUES ('15', '20171021', '2423423', '2017-10-21 00:00:0
 INSERT INTO `insurance` VALUES ('16', '20171022', '234234', '2017-10-22 00:00:00', '234', '88', '2017-10-22 15:51:16', null, null, null, null, '0');
 
 -- ----------------------------
--- Table structure for `log`
+-- Table structure for log
 -- ----------------------------
 DROP TABLE IF EXISTS `log`;
 CREATE TABLE `log` (
@@ -499,7 +501,7 @@ CREATE TABLE `log` (
   PRIMARY KEY (`id`),
   KEY `op_time` (`op_time`),
   KEY `class_name` (`class_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='操作日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='操作日志表';
 
 -- ----------------------------
 -- Records of log
@@ -510,9 +512,70 @@ INSERT INTO `log` VALUES ('3', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\"
 INSERT INTO `log` VALUES ('4', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"3\",\"Data::\":{\"flowdate\":\"2017-10-23\",\"groupnum\":\"20171023\",\"channelcode\":\"2010\",\"stationcode\":\"1010\",\"ticketnum\":\"7\",\"moneynum\":\"78\",\"unit\":\"1010\",\"description\":\"\\u6d4b\\u8bd5\\uff01\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-23 17:59:28\"},\"IP::\":\"0.0.0.0\"}', '', '1508752768', '');
 INSERT INTO `log` VALUES ('5', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"4\",\"Data::\":{\"flowdate\":\"2017-10-23\",\"groupnum\":\"20171023\",\"channelcode\":\"1010\",\"stationcode\":\"1010\",\"ticketnum\":\"1216\",\"moneynum\":\"678586.00\",\"unit\":\"1010\",\"description\":\"\\u6d4b\\u8bd5\\uff01\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-23 17:59:28\"},\"IP::\":\"0.0.0.0\"}', '', '1508752768', '');
 INSERT INTO `log` VALUES ('6', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508752773', '');
+INSERT INTO `log` VALUES ('7', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508761817', '');
+INSERT INTO `log` VALUES ('8', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508763895', '');
+INSERT INTO `log` VALUES ('9', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764357', '');
+INSERT INTO `log` VALUES ('10', 'admin', 'ACSESS', 'AuthRule', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764385', '');
+INSERT INTO `log` VALUES ('11', 'admin', 'ACSESS', 'AuthRule', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764389', '');
+INSERT INTO `log` VALUES ('12', 'admin', 'ADD', 'AuthRule', '88', '{\"Result::\":\"265\",\"Data::\":{\"pid\":\"220\",\"title\":\"\\u8fdb\\u5ea6\\u4fe1\\u606f\\u67e5\\u8be2\",\"name\":\"Admin\\/SalesFlow\\/GetProcess\",\"ispublic\":\"1\"},\"IP::\":\"0.0.0.0\"}', '', '1508764420', '');
+INSERT INTO `log` VALUES ('13', 'admin', 'ACSESS', 'AuthRule', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764421', '');
+INSERT INTO `log` VALUES ('14', 'admin', 'ACSESS', 'AuthGroup', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764424', '');
+INSERT INTO `log` VALUES ('15', 'admin', 'MODIFY', 'AuthGroup', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"1\",\"rule_ids\":null,\"rules\":\"6,96,200,20,1,2,3,4,5,64,263,128,129,130,133,134,135,136,185,137,138,139,140,141,142,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,169,104,105,106,107,108,118,126,152,127,143,144,145,146,159,184,190,195,216,224,225,226,227,228,229,257,217,230,231,232,233,234,235,258,218,236,237,238,239,240,241,259,164,165,174,171,173,175,176,177,178,179,166,167,208,210,211,168,201,202,203,205,206,207,219,220,242,243,244,245,246,247,254,256,261,262,264,265,221,248,249,250,251,252,253,255,260,222,223\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"1\",\"title\":\"\\u8d85\\u7ea7\\u7ba1\\u7406\\u5458\",\"status\":\"1\",\"rules\":\"6,96,200,20,1,2,3,4,5,64,263,128,129,130,133,134,135,136,185,137,138,139,140,141,142,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,169,104,105,106,107,108,118,126,152,127,143,144,145,146,159,184,190,195,216,224,225,226,227,228,229,257,217,230,231,232,233,234,235,258,218,236,237,238,239,240,241,259,164,165,174,171,173,175,176,177,178,179,166,167,208,210,211,168,201,202,203,205,206,207,219,220,242,243,244,245,246,247,254,256,261,262,264,221,248,249,250,251,252,253,255,260,222,223\"}]', '1508764440', '');
+INSERT INTO `log` VALUES ('16', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764446', '');
+INSERT INTO `log` VALUES ('17', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764450', '');
+INSERT INTO `log` VALUES ('18', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764534', '');
+INSERT INTO `log` VALUES ('19', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764591', '');
+INSERT INTO `log` VALUES ('20', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764637', '');
+INSERT INTO `log` VALUES ('21', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508764679', '');
+INSERT INTO `log` VALUES ('22', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508765766', '');
+INSERT INTO `log` VALUES ('23', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508766098', '');
+INSERT INTO `log` VALUES ('24', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508766861', '');
+INSERT INTO `log` VALUES ('25', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508767196', '');
+INSERT INTO `log` VALUES ('26', 'admin', 'ACSESS', 'AuthRule', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508768456', '');
+INSERT INTO `log` VALUES ('27', 'admin', 'ACSESS', 'AuthRule', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508768460', '');
+INSERT INTO `log` VALUES ('28', 'admin', 'ADD', 'AuthRule', '88', '{\"Result::\":\"266\",\"Data::\":{\"pid\":\"219\",\"title\":\"\\u67e5\\u8be2\\u4fe1\\u606f\\uff08\\u7efc\\u5408\\u6dfb\\u52a0\\uff09\",\"name\":\"Admin\\/SalesFlow\\/findInfoByNum_\",\"ispublic\":\"1\"},\"IP::\":\"0.0.0.0\"}', '', '1508768619', '');
+INSERT INTO `log` VALUES ('29', 'admin', 'ACSESS', 'AuthRule', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508768621', '');
+INSERT INTO `log` VALUES ('30', 'admin', 'ACSESS', 'AuthGroup', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508768627', '');
+INSERT INTO `log` VALUES ('31', 'admin', 'MODIFY', 'AuthGroup', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"1\",\"rule_ids\":null,\"rules\":\"6,96,200,20,1,2,3,4,5,64,263,128,129,130,133,134,135,136,185,137,138,139,140,141,142,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,169,104,105,106,107,108,118,126,152,127,143,144,145,146,159,184,190,195,216,224,225,226,227,228,229,257,217,230,231,232,233,234,235,258,218,236,237,238,239,240,241,259,164,165,174,171,173,175,176,177,178,179,166,167,208,210,211,168,201,202,203,205,206,207,219,220,242,243,244,245,246,247,254,256,261,262,264,265,221,248,249,250,251,252,253,255,260,266,222,223\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"1\",\"title\":\"\\u8d85\\u7ea7\\u7ba1\\u7406\\u5458\",\"status\":\"1\",\"rules\":\"6,96,200,20,1,2,3,4,5,64,263,128,129,130,133,134,135,136,185,137,138,139,140,141,142,21,7,8,9,10,11,12,13,14,15,16,123,124,125,19,169,104,105,106,107,108,118,126,152,127,143,144,145,146,159,184,190,195,216,224,225,226,227,228,229,257,217,230,231,232,233,234,235,258,218,236,237,238,239,240,241,259,164,165,174,171,173,175,176,177,178,179,166,167,208,210,211,168,201,202,203,205,206,207,219,220,242,243,244,245,246,247,254,256,261,262,264,265,221,248,249,250,251,252,253,255,260,222,223\"}]', '1508768634', '');
+INSERT INTO `log` VALUES ('32', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508768641', '');
+INSERT INTO `log` VALUES ('33', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508769232', '');
+INSERT INTO `log` VALUES ('34', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508769258', '');
+INSERT INTO `log` VALUES ('35', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508770094', '');
+INSERT INTO `log` VALUES ('36', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508770784', '');
+INSERT INTO `log` VALUES ('37', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508771169', '');
+INSERT INTO `log` VALUES ('38', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772044', '');
+INSERT INTO `log` VALUES ('39', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772046', '');
+INSERT INTO `log` VALUES ('40', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"5\",\"Data::\":{\"flowdate\":\"2017-10-23\",\"groupnum\":\"20171023\",\"channelcode\":\"2030\",\"stationcode\":\"1010\",\"_id\":\"1\",\"ticketnum\":\"5\",\"moneynum\":\"7\",\"unit\":\"1010\",\"description\":\"\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:21:12\"},\"IP::\":\"0.0.0.0\"}', '', '1508772072', '');
+INSERT INTO `log` VALUES ('41', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"6\",\"Data::\":{\"flowdate\":\"2017-10-23\",\"groupnum\":\"20171023\",\"channelcode\":\"2020\",\"stationcode\":\"1010\",\"_id\":\"2\",\"ticketnum\":\"6\",\"moneynum\":\"8\",\"unit\":\"1010\",\"description\":\"\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:21:12\"},\"IP::\":\"0.0.0.0\"}', '', '1508772072', '');
+INSERT INTO `log` VALUES ('42', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"7\",\"Data::\":{\"flowdate\":\"2017-10-23\",\"groupnum\":\"20171023\",\"channelcode\":\"2010\",\"stationcode\":\"1010\",\"_id\":\"3\",\"ticketnum\":\"7\",\"moneynum\":\"78\",\"unit\":\"1010\",\"description\":\"\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:21:12\"},\"IP::\":\"0.0.0.0\"}', '', '1508772072', '');
+INSERT INTO `log` VALUES ('43', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"8\",\"Data::\":{\"flowdate\":\"2017-10-23\",\"groupnum\":\"20171023\",\"channelcode\":\"1010\",\"stationcode\":\"1010\",\"_id\":\"4\",\"ticketnum\":\"82\",\"moneynum\":\"678586.00\",\"unit\":\"1010\",\"description\":\"\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:21:12\"},\"IP::\":\"0.0.0.0\"}', '', '1508772072', '');
+INSERT INTO `log` VALUES ('44', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772072', '');
+INSERT INTO `log` VALUES ('45', 'admin', 'DELETE', 'SalesFlow', '88', '{\"Result::\":1,\"Data::\":{\"0\":{\"id\":\"8\",\"channelcode\":\"1010\",\"stationcode\":\"1010\",\"groupnum\":\"20171023\",\"ticketnum\":\"82\",\"moneynum\":\"678586\",\"unit\":\"1010\",\"flowdate\":\"2017-10-23 00:00:00\",\"description\":\"\",\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:21:12\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"},\"isdel\":1,\"deluserid\":\"88\",\"deldate\":\"2017-10-23 23:21:50\"},\"IP::\":\"0.0.0.0\"}', '', '1508772110', '');
+INSERT INTO `log` VALUES ('46', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772111', '');
+INSERT INTO `log` VALUES ('47', 'admin', 'DELETE', 'SalesFlow', '88', '{\"Result::\":1,\"Data::\":{\"0\":{\"id\":\"7\",\"channelcode\":\"2010\",\"stationcode\":\"1010\",\"groupnum\":\"20171023\",\"ticketnum\":\"7\",\"moneynum\":\"78\",\"unit\":\"1010\",\"flowdate\":\"2017-10-23 00:00:00\",\"description\":\"\",\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:21:12\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"},\"isdel\":1,\"deluserid\":\"88\",\"deldate\":\"2017-10-23 23:22:02\"},\"IP::\":\"0.0.0.0\"}', '', '1508772122', '');
+INSERT INTO `log` VALUES ('48', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772122', '');
+INSERT INTO `log` VALUES ('49', 'admin', 'DELETE', 'SalesFlow', '88', '{\"Result::\":1,\"Data::\":{\"0\":{\"id\":\"6\",\"channelcode\":\"2020\",\"stationcode\":\"1010\",\"groupnum\":\"20171023\",\"ticketnum\":\"6\",\"moneynum\":\"8\",\"unit\":\"1010\",\"flowdate\":\"2017-10-23 00:00:00\",\"description\":\"\",\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:21:12\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"},\"isdel\":1,\"deluserid\":\"88\",\"deldate\":\"2017-10-23 23:22:06\"},\"IP::\":\"0.0.0.0\"}', '', '1508772126', '');
+INSERT INTO `log` VALUES ('50', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772127', '');
+INSERT INTO `log` VALUES ('51', 'admin', 'DELETE', 'SalesFlow', '88', '{\"Result::\":1,\"Data::\":{\"0\":{\"id\":\"5\",\"channelcode\":\"2030\",\"stationcode\":\"1010\",\"groupnum\":\"20171023\",\"ticketnum\":\"5\",\"moneynum\":\"7\",\"unit\":\"1010\",\"flowdate\":\"2017-10-23 00:00:00\",\"description\":\"\",\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:21:12\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"},\"isdel\":1,\"deluserid\":\"88\",\"deldate\":\"2017-10-23 23:22:10\"},\"IP::\":\"0.0.0.0\"}', '', '1508772130', '');
+INSERT INTO `log` VALUES ('52', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772130', '');
+INSERT INTO `log` VALUES ('53', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772305', '');
+INSERT INTO `log` VALUES ('54', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772389', '');
+INSERT INTO `log` VALUES ('55', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772391', '');
+INSERT INTO `log` VALUES ('56', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772441', '');
+INSERT INTO `log` VALUES ('57', 'admin', 'MODIFY', 'SalesFlow', '88', '{\"Result::\":1,\"Data::\":{\"flowdate\":\"2017-10-23\",\"groupnum\":\"20171023\",\"channelcode\":\"2030\",\"stationcode\":\"1010\",\"id\":\"1\",\"ticketnum\":\"6\",\"moneynum\":\"7\",\"unit\":\"1010\",\"description\":\"\\u6d4b\\u8bd5111\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-23 23:27:53\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"1\",\"channelcode\":\"2030\",\"stationcode\":\"1010\",\"groupnum\":\"20171023\",\"ticketnum\":\"5\",\"moneynum\":\"7\",\"unit\":\"1010\",\"flowdate\":\"2017-10-23 00:00:00\",\"description\":\"\\u6d4b\\u8bd5\\uff01\",\"createuserid\":\"88\",\"createdate\":\"2017-10-23 17:59:28\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1508772473', '');
+INSERT INTO `log` VALUES ('58', 'admin', 'MODIFY', 'SalesFlow', '88', '{\"Result::\":1,\"Data::\":{\"flowdate\":\"2017-10-23\",\"groupnum\":\"20171023\",\"channelcode\":\"2020\",\"stationcode\":\"1010\",\"id\":\"2\",\"ticketnum\":\"6\",\"moneynum\":\"8\",\"unit\":\"1010\",\"description\":\"\\u6d4b\\u8bd5111\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-23 23:27:53\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"2\",\"channelcode\":\"2020\",\"stationcode\":\"1010\",\"groupnum\":\"20171023\",\"ticketnum\":\"6\",\"moneynum\":\"8\",\"unit\":\"1010\",\"flowdate\":\"2017-10-23 00:00:00\",\"description\":\"\\u6d4b\\u8bd5\\uff01\",\"createuserid\":\"88\",\"createdate\":\"2017-10-23 17:59:28\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1508772473', '');
+INSERT INTO `log` VALUES ('59', 'admin', 'MODIFY', 'SalesFlow', '88', '{\"Result::\":1,\"Data::\":{\"flowdate\":\"2017-10-23\",\"groupnum\":\"20171023\",\"channelcode\":\"2010\",\"stationcode\":\"1010\",\"id\":\"3\",\"ticketnum\":\"6\",\"moneynum\":\"78\",\"unit\":\"1010\",\"description\":\"\\u6d4b\\u8bd5111\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-23 23:27:53\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"3\",\"channelcode\":\"2010\",\"stationcode\":\"1010\",\"groupnum\":\"20171023\",\"ticketnum\":\"7\",\"moneynum\":\"78\",\"unit\":\"1010\",\"flowdate\":\"2017-10-23 00:00:00\",\"description\":\"\\u6d4b\\u8bd5\\uff01\",\"createuserid\":\"88\",\"createdate\":\"2017-10-23 17:59:28\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1508772473', '');
+INSERT INTO `log` VALUES ('60', 'admin', 'MODIFY', 'SalesFlow', '88', '{\"Result::\":1,\"Data::\":{\"flowdate\":\"2017-10-23\",\"groupnum\":\"20171023\",\"channelcode\":\"1010\",\"stationcode\":\"1010\",\"id\":\"4\",\"ticketnum\":\"123481\",\"moneynum\":\"678586.00\",\"unit\":\"1010\",\"description\":\"\\u6d4b\\u8bd5111\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-23 23:27:53\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"4\",\"channelcode\":\"1010\",\"stationcode\":\"1010\",\"groupnum\":\"20171023\",\"ticketnum\":\"1216\",\"moneynum\":\"678586\",\"unit\":\"1010\",\"flowdate\":\"2017-10-23 00:00:00\",\"description\":\"\\u6d4b\\u8bd5\\uff01\",\"createuserid\":\"88\",\"createdate\":\"2017-10-23 17:59:28\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1508772473', '');
+INSERT INTO `log` VALUES ('61', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772473', '');
+INSERT INTO `log` VALUES ('62', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"9\",\"Data::\":{\"flowdate\":\"2017-10-01\",\"groupnum\":\"20171001\",\"channelcode\":\"2030\",\"stationcode\":\"1010\",\"ticketnum\":\"6\",\"moneynum\":\"1\",\"unit\":\"1010\",\"description\":\".\\u3002\\u3002\\u3002\\u3002\\u3002\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:30:59\"},\"IP::\":\"0.0.0.0\"}', '', '1508772659', '');
+INSERT INTO `log` VALUES ('63', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"10\",\"Data::\":{\"flowdate\":\"2017-10-01\",\"groupnum\":\"20171001\",\"channelcode\":\"2020\",\"stationcode\":\"1010\",\"ticketnum\":\"7\",\"moneynum\":\"2\",\"unit\":\"1010\",\"description\":\".\\u3002\\u3002\\u3002\\u3002\\u3002\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:30:59\"},\"IP::\":\"0.0.0.0\"}', '', '1508772659', '');
+INSERT INTO `log` VALUES ('64', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"11\",\"Data::\":{\"flowdate\":\"2017-10-01\",\"groupnum\":\"20171001\",\"channelcode\":\"2010\",\"stationcode\":\"1010\",\"ticketnum\":\"8\",\"moneynum\":\"3\",\"unit\":\"1010\",\"description\":\".\\u3002\\u3002\\u3002\\u3002\\u3002\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:30:59\"},\"IP::\":\"0.0.0.0\"}', '', '1508772659', '');
+INSERT INTO `log` VALUES ('65', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"12\",\"Data::\":{\"flowdate\":\"2017-10-01\",\"groupnum\":\"20171001\",\"channelcode\":\"1010\",\"stationcode\":\"1010\",\"ticketnum\":\"23435\",\"moneynum\":\"56783.00\",\"unit\":\"1010\",\"description\":\".\\u3002\\u3002\\u3002\\u3002\\u3002\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-23 23:30:59\"},\"IP::\":\"0.0.0.0\"}', '', '1508772659', '');
+INSERT INTO `log` VALUES ('66', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772659', '');
+INSERT INTO `log` VALUES ('67', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508772750', '');
 
 -- ----------------------------
--- Table structure for `oauth_user`
+-- Table structure for oauth_user
 -- ----------------------------
 DROP TABLE IF EXISTS `oauth_user`;
 CREATE TABLE `oauth_user` (
@@ -535,7 +598,7 @@ INSERT INTO `oauth_user` VALUES ('671', '88', '2', '白俊遥', '', '', 'k2232R1
 INSERT INTO `oauth_user` VALUES ('682', '88', '1', 'admin', 'http://bjyadmin.com/Upload/avatar/user1.jpg', '', 'U8IQ2WNHEO2GWUI5DBKrdSQmKe0yMO+J4U8bCkk5sypUTfI76qou2KKL6uzeqp+0KfzWsqxlwp+yjyGI3e3g6w==', '1469453417', '1469453417');
 
 -- ----------------------------
--- Table structure for `orgnazation`
+-- Table structure for orgnazation
 -- ----------------------------
 DROP TABLE IF EXISTS `orgnazation`;
 CREATE TABLE `orgnazation` (
@@ -571,7 +634,7 @@ INSERT INTO `orgnazation` VALUES ('12', '0', '昆明WWW集团', '04', '565425463
 INSERT INTO `orgnazation` VALUES ('13', '0', '你看啊集团', '05', '436464654654', '0101', '啦开机动画', '快递员', '16543487897485', '啊上的肥肉', '5', '1');
 
 -- ----------------------------
--- Table structure for `position`
+-- Table structure for position
 -- ----------------------------
 DROP TABLE IF EXISTS `position`;
 CREATE TABLE `position` (
@@ -595,7 +658,7 @@ INSERT INTO `position` VALUES ('3', '2', '4', '初级程序员A', '代码/项目
 INSERT INTO `position` VALUES ('4', '2', '4', '初级程序员B', 'B', '0602', '2', '1');
 
 -- ----------------------------
--- Table structure for `province_city_area`
+-- Table structure for province_city_area
 -- ----------------------------
 DROP TABLE IF EXISTS `province_city_area`;
 CREATE TABLE `province_city_area` (
@@ -4064,7 +4127,7 @@ INSERT INTO `province_city_area` VALUES ('3509', '0', '香港', null, null);
 INSERT INTO `province_city_area` VALUES ('3510', '0', '澳门', null, null);
 
 -- ----------------------------
--- Table structure for `sales_flow`
+-- Table structure for sales_flow
 -- ----------------------------
 DROP TABLE IF EXISTS `sales_flow`;
 CREATE TABLE `sales_flow` (
@@ -4085,18 +4148,26 @@ CREATE TABLE `sales_flow` (
   `deldate` datetime DEFAULT NULL COMMENT '数据删除时间',
   `isdel` int(11) DEFAULT '0' COMMENT '数据是否删除（0是 1否）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='销售流水信息';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='销售流水信息';
 
 -- ----------------------------
 -- Records of sales_flow
 -- ----------------------------
-INSERT INTO `sales_flow` VALUES ('1', '2030', '1010', '20171023', '5', '7', '1010', '2017-10-23 00:00:00', '测试！', '88', '2017-10-23 17:59:28', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('2', '2020', '1010', '20171023', '6', '8', '1010', '2017-10-23 00:00:00', '测试！', '88', '2017-10-23 17:59:28', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('3', '2010', '1010', '20171023', '7', '78', '1010', '2017-10-23 00:00:00', '测试！', '88', '2017-10-23 17:59:28', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('4', '1010', '1010', '20171023', '1216', '678586', '1010', '2017-10-23 00:00:00', '测试！', '88', '2017-10-23 17:59:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('1', '2030', '1010', '20171023', '6', '7', '1010', '2017-10-23 00:00:00', '测试111', '88', '2017-10-23 17:59:28', '88', '2017-10-23 23:27:53', null, null, '0');
+INSERT INTO `sales_flow` VALUES ('2', '2020', '1010', '20171023', '6', '8', '1010', '2017-10-23 00:00:00', '测试111', '88', '2017-10-23 17:59:28', '88', '2017-10-23 23:27:53', null, null, '0');
+INSERT INTO `sales_flow` VALUES ('3', '2010', '1010', '20171023', '6', '78', '1010', '2017-10-23 00:00:00', '测试111', '88', '2017-10-23 17:59:28', '88', '2017-10-23 23:27:53', null, null, '0');
+INSERT INTO `sales_flow` VALUES ('4', '1010', '1010', '20171023', '123481', '678586', '1010', '2017-10-23 00:00:00', '测试111', '88', '2017-10-23 17:59:28', '88', '2017-10-23 23:27:53', null, null, '0');
+INSERT INTO `sales_flow` VALUES ('5', '2030', '1010', '20171023', '5', '7', '1010', '2017-10-23 00:00:00', '', '88', '2017-10-23 23:21:12', null, null, '88', '2017-10-23 23:22:10', '1');
+INSERT INTO `sales_flow` VALUES ('6', '2020', '1010', '20171023', '6', '8', '1010', '2017-10-23 00:00:00', '', '88', '2017-10-23 23:21:12', null, null, '88', '2017-10-23 23:22:06', '1');
+INSERT INTO `sales_flow` VALUES ('7', '2010', '1010', '20171023', '7', '78', '1010', '2017-10-23 00:00:00', '', '88', '2017-10-23 23:21:12', null, null, '88', '2017-10-23 23:22:02', '1');
+INSERT INTO `sales_flow` VALUES ('8', '1010', '1010', '20171023', '82', '678586', '1010', '2017-10-23 00:00:00', '', '88', '2017-10-23 23:21:12', null, null, '88', '2017-10-23 23:21:50', '1');
+INSERT INTO `sales_flow` VALUES ('9', '2030', '1010', '20171001', '6', '1', '1010', '2017-10-01 00:00:00', '.。。。。。', '88', '2017-10-23 23:30:59', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('10', '2020', '1010', '20171001', '7', '2', '1010', '2017-10-01 00:00:00', '.。。。。。', '88', '2017-10-23 23:30:59', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('11', '2010', '1010', '20171001', '8', '3', '1010', '2017-10-01 00:00:00', '.。。。。。', '88', '2017-10-23 23:30:59', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('12', '1010', '1010', '20171001', '23435', '56783', '1010', '2017-10-01 00:00:00', '.。。。。。', '88', '2017-10-23 23:30:59', null, null, null, null, '0');
 
 -- ----------------------------
--- Table structure for `sals_flow`
+-- Table structure for sals_flow
 -- ----------------------------
 DROP TABLE IF EXISTS `sals_flow`;
 CREATE TABLE `sals_flow` (
@@ -4125,7 +4196,7 @@ CREATE TABLE `sals_flow` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `station`
+-- Table structure for station
 -- ----------------------------
 DROP TABLE IF EXISTS `station`;
 CREATE TABLE `station` (
@@ -4158,7 +4229,7 @@ INSERT INTO `station` VALUES ('6', '1', '111', '1', '1', '1', '0', '88', '2017-1
 INSERT INTO `station` VALUES ('7', '1030', '兴盛客运站', '0', '兴盛客运站', '兴盛客运站', '0', '88', '2017-10-20 13:17:08', '88', '2017-10-20 14:20:00', null, null, '0');
 
 -- ----------------------------
--- Table structure for `users`
+-- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -4191,7 +4262,7 @@ INSERT INTO `users` VALUES ('90', 'user', 'e10adc3949ba59abbe56e057f20f883e', ''
 INSERT INTO `users` VALUES ('91', 'shop', 'e10adc3949ba59abbe56e057f20f883e', '', '111@222.ccc', null, '店铺管理员', '12121222222', '1', '5', '0', '0', '1', '1504775393', '', '0');
 
 -- ----------------------------
--- Table structure for `weixin_user`
+-- Table structure for weixin_user
 -- ----------------------------
 DROP TABLE IF EXISTS `weixin_user`;
 CREATE TABLE `weixin_user` (
@@ -4218,7 +4289,7 @@ CREATE TABLE `weixin_user` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `white_list`
+-- Table structure for white_list
 -- ----------------------------
 DROP TABLE IF EXISTS `white_list`;
 CREATE TABLE `white_list` (

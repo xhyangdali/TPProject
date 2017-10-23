@@ -61,7 +61,6 @@ class SalesFlowController extends AdminBaseController{
 	 public function iadd()
 	 {
 	 	$channel = D('Channel');
-		$station = D('Station');
 		//
 		$cargs = array(
 			'iseffective' => 0,
@@ -69,14 +68,8 @@ class SalesFlowController extends AdminBaseController{
 		);
 		$channels = $channel->where($cargs)->order('createdate desc')->select();
 		//
-		$sargs = array(
-			'iseffective' => 0,
-			'isdel' => 0
-		);
-		$stations = $station->where($sargs)->order('createdate desc')->select();
 		$assign=array(
-			'channels' => $channels,
-			'stations' => $stations
+			'channels' => $channels
 			);
 		$this->assign($assign);
 	 	$this->display();
@@ -129,22 +122,32 @@ class SalesFlowController extends AdminBaseController{
 			$tb->startTrans();//开启事务
 			foreach($d_json as $item)
 			{
-				unset($item['id']);
-				$re = $tb->iaddData($item);
+				if($item['id'] == '')
+				{//add
+					unset($item['id']);
+					$re = $tb->iaddData($item);
+				}
+				else
+				{//update
+					$map=array(
+						'id'=>$item['id']
+					);
+					$re = $tb->ieditData($map,$item);
+				}
 				if($re){
 					$addCount ++;
 				}
 			}
 			if ($listCount == $addCount) {
 				$tb->commit();//事务提交
-				$msg = '添加成功';//,U('Admin/DicData/index')
+				$msg = '保存成功';//,U('Admin/DicData/index')
 				$iresult = array(
 					'state' => 0,
 					'msg' => $msg
 				);
 			}else{
 				$tb->rollback();//回滚
-				$msg = '添加失败'.$addCount;
+				$msg = '保存失败'.$addCount;
 				$iresult = array(
 					'state' => 1,
 					'msg' => $msg
@@ -260,6 +263,46 @@ class SalesFlowController extends AdminBaseController{
 		$this->ajaxReturn($result);//返回操作结果
 	}
 	/**
+	 * 依据分组编码查询销售流水信息（每日只于许录入一批记录）
+	 */
+	public function findInfoByNum_()
+	{
+		//
+		$data=I('post.');
+		$d = D("SalesFlow");
+		$msg ="";
+		$state = 0;
+		if(!empty($data['groupnum'])&&!empty($data['stationcode'])) {
+			$condition = array(
+				'groupnum' => $data['groupnum'],
+				'stationcode' => $data['stationcode'],
+				'isdel' => 0
+			);
+			//
+			$dat = $d->where($condition)->select();
+			$count = $d->where($condition)->count();
+			if($count > 1)
+			{
+				$state = 0;
+				$msg ="有数据！";
+			}else{
+				$state = 1;
+				$msg ="查询不到数据！";
+			}
+		}else
+		{
+			$state = -1;
+			$dat = array();
+			$msg ="数据获取失败(参数不正确)！";
+		}
+		$result =array(
+			'state' => $state,
+			'msg' => $msg,
+			'data' => $dat
+		);
+		$this->ajaxReturn($result);//返回操作结果
+	}
+	/**
 	 * 删除(假删除)销售流水信息
 	 */
 	public function delete($id = 0){
@@ -327,6 +370,49 @@ class SalesFlowController extends AdminBaseController{
 			$result = array(
 				'state' => -1,
 				'msg' => '请求数据失败！'
+			);
+		}
+		$this->ajaxReturn($result);//返回操作结果
+	}
+	/**
+	 * 依据参数获得进度相关数据
+	 * xhy
+	 */
+	public function GetProcess()
+	{
+		//获得所需数据
+		$data=I('post.');
+		if(!empty($data['groupnum']))
+		{
+			$gnum = $data['groupnum'];
+			$sql = "SELECT s.* FROM station AS s WHERE s.`code` NOT IN(
+					SELECT DISTINCT sf.stationcode AS 'code' FROM sales_flow AS sf WHERE sf.groupnum=$gnum 
+					)
+					AND s.iseffective=0 AND s.isdel=0 
+			;";
+			$Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+			$stations = $Model->query($sql);
+			if($stations)
+			{
+				$result = array(
+				'state' => 0,
+				'msg' => '有未完成进度！',
+				'data' => $stations
+				);
+			}else
+			{
+				$result = array(
+				'state' => 2,
+				'msg' => '添加完成！',
+				'data' => $stations
+				);
+			}
+		}else
+		{
+			$result = array(
+				'state' => -1,
+				'msg' => '请求数据失败(参数不正确)！'.$data['groupnum'],
+				'data' => array()
 			);
 		}
 		$this->ajaxReturn($result);//返回操作结果
