@@ -17,6 +17,7 @@
 <script src="__ADMIN_ACEADMIN__/js/messages_zh.js"></script>
 	<!--验证框架引用 必要-->
 <script src="__ADMIN__/layer/layer.js"></script>
+	<script src="__ADMIN_ACEADMIN__/js/bootstrap.min.js"></script>
 <style type="text/css">
 .error{
 	color:red;
@@ -30,80 +31,74 @@ div:active{
 <!--[if !IE]> -->
         <!-- 内容部分 -->
 	<div class='tab-content' style="background-color:#FFFFFF;">
-	
-	<table class="table table-striped table-bordered table-hover table-condensed">
-		 <tr>
-                <th ><label >总进度</label></th>
-                <td width="90%">
-				<div class="progress">
-				<foreach name="channels" item="v">
-				 <div class="progress-bar"   style="width: 25%; background:linear-gradient(to right, #da81a1 35%,#7aa4c8 68%);" ><label >0%-{$v['name']}...</label>
-				 </div>
-				</foreach>
-				</div>
-				</td>
-			<tr>
-			<tr>
-                <th ><label >{$channels[0]['name']}</label></th>
-                <td width="90%">
-				<foreach name="stations" item="v">
-					<input type="checkbox" value="1" id="{$v['code']}" name="" />  
-				  	<label for="{$v['code']}">{$v['name']}</label>
-				  </foreach>  
-				</td>
-			<tr>
-			
-	</table>
-	
 	<form id="form" action="" method="post">
 		<input class="form-control" type="hidden" id="id" name="id">
 		<input class="form-control" type="hidden" id="groupnum" name="groupnum">
 		<table class="table table-striped table-bordered table-hover table-condensed">
-			 <tr>
-                <th ><label for="flowdate">售票日期</label></th>
-                <td><input  class="form-control" placeholder="请选择日期" type="text" onchange="CheckData(this);" required readonly="true"  name="flowdate" id="flowdate"   date="true"></td>
-              </tr>
-			<tr>
-				<th width="20%"><label for="channelcode">售票渠道</label></th>
-				<td>
-					<select  class="form-control" name="channelcode" id="channelcode" onchange="CheckData(this);" required>
-						<option value="">===请选择===</option>
-					</select>
+			<tr id="jd" style="display: none;">
+				<td ><label >进度</label></td>
+				<td  colspan="3" style="font-size: x-small;">
+					<foreach name="stations" item="v">
+						&nbsp;&nbsp;<a href="#" data-toggle="tooltip" data-placement="bottom" title="(2017-10-18,2017-10-19,2017-10-12)未完成">{$v['name']}</a>
+					</foreach>
 				</td>
+			<tr>
+			<tr>
+				<td ><label for="flowdate">售票日期</label></td>
+				<td colspan="3"><input  class="form-control" placeholder="请选择日期" type="text" onchange="CheckData(this);" required readonly="true"  name="flowdate" id="flowdate"   date="true"></td>
 			</tr>
 			<tr>
 				<th><label for="stationcode">客运站</label></th>
-				<td>
+				<td colspan="3">
 					<select  class="form-control" name="stationcode" id="stationcode" onchange="CheckData(this);" required>
 						<option value="">===请选择===</option>
 					</select>
 				</td>
 			</tr>
-            
 			<tr>
-				<th><label for="ticketnum">售票数目</label></th>
-				<td><input class="form-control" type="text"  name="ticketnum" id="ticketnum" required number="true" />
+				<td ><label for="totalticketnum" >合计票数</label></td>
+				<td >
+					<input class="form-control" type="text"  name="totalticketnum" id="totalticketnum" required number="true" placeholder="合计票数" />
+				</td>
+				<td ><label for="totalmoneynum" >合计金额</label></td>
+				<td >
+					<input class="form-control" type="text"  name="totalmoneynum" id="totalmoneynum" required number="true" min="0.01" placeholder="合计金额"/>
+				</td>
+			<tr>
+			<foreach name="channels" item="v">
+			<tr>
+				<td ><label for="{$v['code']}_ticketnum" >{$v['name']}(票数)</label></td>
+				<td >
+					<if condition="$v['code'] eq '1010' ">
+						<input class="form-control" type="text"  name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" disabled required number="true" placeholder="{$v['name']}(票数)" />
+						<else />
+						<input class="form-control" type="text"  name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" required number="true" placeholder="{$v['name']}(票数)" />
+					</if>
+				</td>
+				<td ><label for="{$v['code']}_moneynum" >{$v['name']}(金额)</label></td>
+				<td >
+					<if condition="$v['code'] eq '1010' ">
+						<input class="form-control" type="text"  name="{$v['code']}_moneynum" id="{$v['code']}_moneynum" disabled required number="true" placeholder="{$v['name']}(金额)" />
+						<else />
+						<input class="form-control" type="text"  name="{$v['code']}_moneynum" id="{$v['code']}_moneynum" required number="true" placeholder="{$v['name']}(金额)" />
+					</if>
 				</td>
 			</tr>
-			<tr>
-				<th><label for="moneynum">售票金额</label></th>
-				<td><input class="form-control" type="text"  name="moneynum" id="moneynum" required number="true" min="0.01"/>
-				</td>
-			</tr>
+			</foreach>
 			<tr>
 				<th><label for="unit">金额单位</label></th>
-				<td>
+				<td colspan="3">
 					<select  class="form-control" name="unit" id="unit" required>
 						<option value="">===请选择===</option>
 					</select>
 				</td>
 			</tr>
-              <tr>
-                <th><label for="description">描述</label></th>
-                <td><input class="form-control" type="text" name="description" id="description">
-                  </td>
-              </tr>
-            </table>
+			<tr>
+				<th><label for="description">描述</label></th>
+				<td colspan="3"><input class="form-control" type="text" name="description" id="description">
+				</td>
+			</tr>
+		</table>
 	</form>
 	</div>
 </block>
@@ -115,6 +110,7 @@ div:active{
 	var aurl = "{:U('Admin/SalesFlow/adddata')}";
 	var eurl = "{:U('Admin/SalesFlow/editdata')}";
  	$(function(){
+		$("[data-toggle='tooltip']").tooltip();
 		//日期控件初始化
 		Calendar.setup({
 		inputField : "flowdate",
@@ -149,6 +145,15 @@ div:active{
 					,number: "输入数字",     //输入必须是数字
 				},
 				moneynum: {
+					required: " (必填字段)",
+					number: "输入数字",     //输入必须是数字
+					min: "最小值为0.01，不能为0或者负数"//输入的数字最小值为0.01，不能为0或者负数
+				},
+				totalticketnum: {
+					required: " (必填字段)"
+					,number: "输入数字",     //输入必须是数字
+				},
+				totalmoneynum: {
 					required: " (必填字段)",
 					number: "输入数字",     //输入必须是数字
 					min: "最小值为0.01，不能为0或者负数"//输入的数字最小值为0.01，不能为0或者负数
@@ -200,10 +205,10 @@ div:active{
 		});
 		var gnum = $("#flowdate").val();
 		gnum = gnum.replace(/-/g, "");
-		var cnum = $("#channelcode").val();
 		var snum = $("#stationcode").val();
-		if(gnum.length <= 0 || cnum.length <=0 || snum.length <=0)
+		if(gnum.length <= 0 ||  snum.length <=0)
 		{
+			$("#jd").removeAttr("style");
 			layer.closeAll('loading');
 			return false;
 		}
@@ -212,7 +217,7 @@ div:active{
 		$.ajax({
 			url:temp,
 			type:"POST",
-			data:{groupnum:gnum,channelcode:cnum,stationcode:snum},
+			data:{groupnum:gnum,stationcode:snum},
 			dataType:"json",
 			error:function(data){
 				layer.closeAll('loading');
@@ -283,6 +288,7 @@ div:active{
 						{
 							selectinit(stations,"stationcode");
 						}
+						$("#unit").val('1010');
 					}else{
 						layer.msg(data.msg, {icon: -1});
 					}

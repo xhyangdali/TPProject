@@ -42,6 +42,7 @@ class AuthRuleModel extends BaseModel{
 			{
 				$condition = array();
 				$condition["pid"] = "0";
+				//$condition["iseffictive"] = 0;
 				if(empty($order)){
 					$idata=$this->where($condition)->page($p,$listRows)->select();
 				}else{
@@ -49,6 +50,7 @@ class AuthRuleModel extends BaseModel{
 				}
 				//查询符合条件的模块
 				$cond = array();
+
 				$str = "";
 				$i =0;
 				foreach($idata as &$item)
@@ -65,8 +67,8 @@ class AuthRuleModel extends BaseModel{
 					$i++;
 				}
 				$cond['id'] = array('in',$str);
-				//$cond['_logic'] = 'OR';
-				//$cond['pid'] = array('in',$str);
+				//$cond['_logic'] = 'AND';
+				//$cond['iseffictive'] = 0;
 				// 判断是否需要排序
 				if(empty($order)){
 					$data=$this->where($cond)->select();

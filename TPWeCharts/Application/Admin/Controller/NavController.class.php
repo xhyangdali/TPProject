@@ -84,7 +84,36 @@ class NavController extends AdminBaseController{
 			$this->error('请先删除子菜单');
 		}
 	}
-
+	/**
+	 * 启用，禁止 菜单
+	 */
+	public function ForBidden($id =0,$iseffictive =0)
+	{
+		if(!empty($id) && $id !=0)
+		{
+			$admin=D('AdminNav');
+			$map=array(
+				'id'=>$id
+			);
+			$sql = " UPDATE Admin_Nav SET iseffictive=$iseffictive WHERE id=$id  ";
+			$result = $admin->execute($sql);
+			if($result){
+				$state = 0;
+				$msg ="成功！";
+			}else{
+				$state = -1;
+				$msg ="失败！";
+			}
+		}else{
+			$state = -1;
+			$msg ="失败(参数不正确)！";
+		}
+		$result =array(
+			'state' => $state,
+			'msg' => $msg
+		);
+		$this->ajaxReturn($result);//返回操作结果
+	}
 	/**
 	 * 菜单排序
 	 */

@@ -129,22 +129,30 @@ $(function() {
 			  maxmin: true,
 			  scrollbar: false,
 			  title:"销售流水信息添加",
-			  area:['800px','400px'],
+			  area:['800px','500px'],
 			  content:[ url,'yes']//注意，如果str是object，那么需要字符拼接。
-			  ,btn: ['保存', '关闭'] //只是为了演示
+			  ,btn: ['保存','保存并继续', '关闭'] //只是为了演示
 			  ,yes: function(index, layero){
 				//保存
 				var body = layer.getChildFrame('body', index);
                 var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
                 iframeWin.submitdata();//调用子页面的方法，得到子页面返回的ids
                 //layer.close(index);//需要手动关闭窗口
-			  }
-			  ,btn2: function(){
+			  },btn2: function(index, layero){
+                      //保存并继续
+                      var body = layer.getChildFrame('body', index);
+                      var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
+                      iframeWin.submitdata();//调用子页面的方法，得到子页面返回的ids
+                      return false;
+              }
+			  ,btn3: function(index, layero){
 				layer.closeAll();
-			  }
+			  },cancel: function(index){
+                      return false;
+                  }
 			  ,zIndex: layer.zIndex //重点1
 			  ,success: function(layero){
-				layer.setTop(layero); //重点2
+				//layer.setTop(layero); //重点2
 			  }
 			});
 		});
