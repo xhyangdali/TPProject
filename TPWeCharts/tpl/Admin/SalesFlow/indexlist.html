@@ -44,11 +44,8 @@
                 <tr>
                   <th style="width:30px"></th>
                   <th style="width:35px">售票分组编码</th>
-                    <th style="width:35px">售票数目</th>
-                    <th style="width:35px">售票金额</th>
-                    <th style="width:35px">渠道</th>
                     <th style="width:35px">客运站</th>
-                  <th style="width:100px">创建时间</th>
+                  <th style="width:100px">录入日期</th>
                     <th style="width:100px">操作</th>
                 </tr>
               </thead>
@@ -57,15 +54,12 @@
                   <tr>
                     <td></td>
                     <td>{$v['groupnum']}</td>
-                    <td>{$v['ticketnum']}</td>
-                      <td>{$v['moneynum']}</td>
-                      <td>{$v['channel']}</td>
                       <td>{$v['station']}</td>
-                    <td>{$v['createdate']|strtotime|date="Y年m月d日 h:i:s",###}</td>
+                    <td>{$v['flowdate']|strtotime|date="Y年m月d日",###}</td>
                       <td>
-                          <a  class="adetail" href="javascript:;"  name="{$v['id']}">查看</a>&nbsp;
-                          <a class="aedit" href="javascript:;" name="{$v['id']}">编辑</a>&nbsp;
-                          <a class="adel" href="javascript:;" name="{$v['id']}" tips="{$v['flowdate']}">删除</a>&nbsp;
+                          <a  class="adetail" href="javascript:;"  flowdate="{$v['flowdate']}" stationcode="{$v['stationcode']}" >查看</a>&nbsp;
+                          <a class="aedit" href="javascript:;" flowdate="{$v['flowdate']}" stationcode="{$v['stationcode']}" >编辑</a>&nbsp;
+                          <a class="adel" href="javascript:;" station="{$v['station']}" flowdate="{$v['flowdate']}" stationcode="{$v['stationcode']}">删除</a>&nbsp;
                       </td>
                   </tr>
                 </foreach>
@@ -93,58 +87,69 @@
 $(function() {
 	//数据添加
 		$("#btnadd").click(function(){
-			var url = "{:U('add')}";
+			var url = "{:U('iadd')}";
 			  layer.open({
 			  type: 2,
 			  id: 'add_form',
 			  maxmin: true,
 			  scrollbar: false,
 			  title:"销售流水信息添加",
-			  area:['800px','450px'],
-			  content:[ url,'no']//注意，如果str是object，那么需要字符拼接。
-			  ,btn: ['保存', '关闭'] //只是为了演示
+			  area:['800px','500px'],
+			  content:[ url,'yes']//注意，如果str是object，那么需要字符拼接。
+			  ,btn: ['保存','保存并继续', '关闭'] //只是为了演示
 			  ,yes: function(index, layero){
 				//保存
 				var body = layer.getChildFrame('body', index);
                 var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
                 iframeWin.submitdata();//调用子页面的方法，得到子页面返回的ids
                 //layer.close(index);//需要手动关闭窗口
-			  }
-			  ,btn2: function(){
+			  },btn2: function(index, layero){
+                      //保存并继续
+                      var body = layer.getChildFrame('body', index);
+                      var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
+                      iframeWin.submitdata_next();//调用子页面的方法，得到子页面返回的ids
+              }
+			  ,btn3: function(index, layero){
 				layer.closeAll();
-			  }
+			  },cancel: function(index){
+                      return false;
+                  }
 			  ,zIndex: layer.zIndex //重点1
 			  ,success: function(layero){
-				layer.setTop(layero); //重点2
+				//layer.setTop(layero); //重点2
 			  }
 			});
 		});
     //查看销售流水信息
     $(".adetail").click(function(){
-        var url = "{:U('detail')}";
-        var id = $(this).attr("name");
-        url +="?id="+id;
+        var url = "{:U('idetail')}";
+        var _date = $(this).attr("flowdate");
+        var _code = $(this).attr("stationcode");
+        url +="?flowdate="+_date;
+        url +="&stationcode="+_code;
         layer.open({
             type: 2,
             maxmin: true,
             scrollbar: false,
             title:"查看销售流水信息",
-            area:['800px','450px'],
-            content: url//注意，如果str是object，那么需要字符拼接。
+            area:['800px','500px'],
+            content: [url,'yes']//注意，如果str是object，那么需要字符拼接。
         });
     });
     //编辑销售流水信息
     $(".aedit").click(function(){
-        var url = "{:U('edit')}";
-        var id = $(this).attr("name");
-        url +="?id="+id;
+        var url = "{:U('iedit')}";
+        var _date = $(this).attr("flowdate");
+        var _code = $(this).attr("stationcode");
+        url +="?flowdate="+_date;
+        url +="&stationcode="+_code;
         layer.open({
             type: 2,
             maxmin: true,
             scrollbar: false,
             title:"编辑销售流水信息",
-            area:['800px','450px'],
-            content: [url,'no']//注意，如果str是object，那么需要字符拼接。
+            area:['800px','500px'],
+            content: [url,'yes']//注意，如果str是object，那么需要字符拼接。
             ,btn: ['保存', '关闭'] //只是为了演示
             ,yes: function(index, layero){
                 //保存
@@ -164,10 +169,13 @@ $(function() {
     });
     //
     $(".adel").click(function(){
-        var tips = $(this).attr("tips");
-        var _Id = $(this).attr("name");
-        layer.confirm('你确定删除本条数据吗？', {icon: 3, title:'删除提示',area:["300px","200px"]}, function(index){
-            var url = "{:U('Admin/SalesFlow/delete')}";
+        var _date = $(this).attr("flowdate");
+        _date = _date.replace(/00:00:00/g, "");
+        var gnum = _date.replace(/-/g, "");
+        var _code = $(this).attr("stationcode");
+        var _name =  $(this).attr("station");
+        layer.confirm('你确定删除“'+_name+'  '+_date+'”的记录吗？', {icon: 3, title:'删除提示',area:["400px","200px"]}, function(index){
+            var url = "{:U('Admin/SalesFlow/idelete')}";
             //提交数据
             var load = layer.load(2, {
                 shade: [0.1,'#fff'] //0.1透明度的白色背景
@@ -175,7 +183,7 @@ $(function() {
             $.ajax({
                 url:url,
                 type:"POST",
-                data:{id:_Id},
+                data:{groupnum:gnum,stationcode:_code},
                 dataType:"json",
                 error:function(data){
                     layer.closeAll('loading');

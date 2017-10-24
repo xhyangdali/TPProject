@@ -55,6 +55,78 @@ class SalesFlowController extends AdminBaseController{
 		$this->assign($assign);
 		$this->display();
 	}
+    /**
+     * 销售流水信息列表(整合业务)
+     */
+    public function indexlist($p = 1,$keywords = '' ,$start_date = '' ,$end_date = ''){
+        //访问日志
+        $ip = get_client_ip();
+        $log = D("Log");
+        $SalesFlow = D("SalesFlow");
+        $log->addLog('Log','SalesFlow',json_encode(array('Result::' => true,'Data::'=>'','IP::'=>$ip)),'');
+        //查询
+        $wherestr ="  ";//搜索条件
+        if($keywords != ''){
+            $wherestr .= " AND s.name LIKE '%$keywords%' ";
+        }
+        if($start_date !='' ){
+            $wherestr .= " AND sf.flowdate>=$start_date  ";
+        }
+        if( $end_date !=''){
+            $wherestr .= " AND  sf.flowdate<=$end_date ";
+        }
+
+        $sql = "
+        SELECT
+		count(
+            DISTINCT sf.groupnum /* 分组编码 */
+            ,s.`name` /* 客运站名称 */
+            ,sf.stationcode /* 客运站编码 */
+            ,sf.flowdate /* 录入日期 */
+            ) AS icount
+        FROM
+            sales_flow AS sf
+        LEFT JOIN
+            station AS s ON sf.stationcode=s.`code`
+        WHERE
+            sf.isdel=0 AND s.isdel=0 AND s.iseffective=0
+        ";//查询记录数目
+        $sql .=$wherestr;
+        $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
+        $counts = $Model->query($sql);
+        $totalRows = $counts['icount'];
+        $totalPages = 1;
+        $listRows = C('PAGE_NUM');
+        if($totalRows>$listRows)
+        {
+            $totalPages = $totalRows/$listRows;
+        }
+        //$channels=$SalesFlow->where($condition)->order('createdate desc')->page($p,$listRows)->select();
+        $condition_ = array();
+        $condition_["a.isdel"] = 0;
+        $condition_["c.isdel"] = 0;
+        $condition_["c.iseffective"] = 0;
+        $channels=$SalesFlow->where($condition_)
+            ->distinct(true)
+            ->field('a.groupnum,a.stationcode,c.name station,a.flowdate ')
+            ->alias('a')
+            ->join(' LEFT JOIN Station c ON c.code= a.stationcode')
+            ->order('a.groupnum desc')->page($p,$listRows)->select();
+        $page =new Think\Page();
+        $page->firstRow = 1;//
+        $page->listRows = $listRows;
+        $page->totalRows = $totalRows;
+        $page->totalPages = $totalPages;
+        $page->rollPage = 5;
+        $pagehtml = $page->show();
+        $assign=array(
+            'data' => $channels,
+            'pagehtml' => $pagehtml,
+            'count' => $totalRows
+        );
+        $this->assign($assign);
+        $this->display();
+    }
 	/**
 	 * 销售流水信息信息添加（视图）
 	 */
@@ -74,6 +146,44 @@ class SalesFlowController extends AdminBaseController{
 		$this->assign($assign);
 	 	$this->display();
 	 }
+    /**
+     * 销售流水信息信息编辑（视图）
+     */
+    public function iedit()
+    {
+        $channel = D('Channel');
+        //
+        $cargs = array(
+            'iseffective' => 0,
+            'isdel' => 0
+        );
+        $channels = $channel->where($cargs)->order('createdate desc')->select();
+        //
+        $assign=array(
+            'channels' => $channels
+        );
+        $this->assign($assign);
+        $this->display();
+    }
+    /**
+     * 销售流水信息信息详细（视图）
+     */
+    public function idetail()
+    {
+        $channel = D('Channel');
+        //
+        $cargs = array(
+            'iseffective' => 0,
+            'isdel' => 0
+        );
+        $channels = $channel->where($cargs)->order('createdate desc')->select();
+        //
+        $assign=array(
+            'channels' => $channels
+        );
+        $this->assign($assign);
+        $this->display();
+    }
 	/**
 	 * 销售流水信息信息添加
 	 */
@@ -330,6 +440,52 @@ class SalesFlowController extends AdminBaseController{
 		);
 		$this->ajaxReturn($result);//返回操作结果
 	}
+    /**
+     * 删除(假删除)销售流水信息
+     */
+    public function idelete($id = 0){
+        $data=I('post.');
+        if(!empty($data['groupnum']) && !empty($data['stationcode']))
+        {
+            $dt = D('SalesFlow');
+            $dt->startTrans();//开启事务
+            $map=array(
+                'groupnum'=>$data['groupnum'],
+                'stationcode'=>$data['stationcode']
+            );
+            $list = $dt->where($map)->select();
+            $delcout = 0;
+            $icout = count($list);
+            foreach($list as $item)
+            {
+                $imap=array(
+                    'id'=>$item['id']
+                );
+                $re = $dt->ideleteData($imap);
+                if($re)
+                {
+                    $delcout++;
+                }
+            }
+            if($delcout == $icout){
+                $state = 0;
+                $msg ="成功！";
+                $dt->commit();
+            }else{
+                $state = -1;
+                $msg ="失败！";
+                $dt->rollback();
+            }
+        }else{
+            $state = -1;
+            $msg ="失败(参数不正确)！";
+        }
+        $result =array(
+            'state' => $state,
+            'msg' => $msg
+        );
+        $this->ajaxReturn($result);//返回操作结果
+    }
 	/**
 	 * 一次性请求售票流水的初始化数据
 	 * xhy

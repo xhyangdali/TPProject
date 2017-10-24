@@ -18,7 +18,8 @@
 	<!--验证框架引用 必要-->
 <script src="__ADMIN__/layer/layer.js"></script>
 	<script src="__ADMIN_ACEADMIN__/js/bootstrap.min.js"></script>
-<style type="text/css">
+	<script src="__PUBLIC_JS__/iFramework.js"></script>
+	<style type="text/css">
 .error{
 	color:red;
 }
@@ -32,7 +33,7 @@ div:active{
         <!-- 内容部分 -->
 	<div class='tab-content' style="background-color:#FFFFFF;">
 	<form id="form" action="" method="post">
-		
+		<fieldset disabled>
 		<table class="table table-striped table-bordered table-hover table-condensed">
 			<tr id="jd" style="display: none;">
 				<td ><label >进度</label></td>
@@ -42,12 +43,12 @@ div:active{
 			<tr>
 			<tr>
 				<td ><label for="flowdate">售票日期</label></td>
-				<td colspan="3"><input  class="form-control" placeholder="请选择日期" type="text" onchange="CheckData(this);" required readonly="true"  name="flowdate" id="flowdate"   date="true"></td>
+				<td colspan="3"><input  class="form-control" placeholder="请选择日期" disabled="disabled"  type="text" onchange="CheckData(this);" required readonly="true"  name="flowdate" id="flowdate"   date="true"></td>
 			</tr>
 			<tr>
 				<th><label for="stationcode">客运站</label></th>
 				<td colspan="3">
-					<select  class="form-control" name="stationcode" id="stationcode" onchange="CheckData(this);" required>
+					<select  class="form-control" name="stationcode" id="stationcode" disabled="disabled" onchange="CheckData(this);" required>
 						<option value="">===请选择===</option>
 					</select>
 				</td>
@@ -99,13 +100,13 @@ div:active{
 				</td>
 			</tr>
 		</table>
+			</fieldset>
 	</form>
 	</div>
 </block>
 <block name="js">
  <script>
  	var index = parent.layer.getFrameIndex(window.name);//获取子窗口
-	//parent.layer.iframeAuto(index);
 	var url ="";
 	var aurl = "{:U('Admin/SalesFlow/addlistdata')}";
 	var _WCODE = '1010';//窗口编码（渠道）
@@ -113,165 +114,21 @@ div:active{
     var _UNIT_CODE = '1010';//默认单位编码
     var _NOW_DATE_STR ;//当前选中日期
 	var submitmsg ="";
-
+	var _scode ="";
+	//加载数据
+	var _fdate = GetQueryString("flowdate");
+	_scode = GetQueryString("stationcode");
  	$(function(){
 		$("[data-toggle='tooltip']").tooltip();
-		//日期控件初始化
-		Calendar.setup({
-		inputField : "flowdate",
-		ifFormat : "%Y-%m-%d",
-		showsTime : false,
-		timeFormat : "24"
-		});
 		init();
-		//失去焦点验证数据
-		$("#form").validate({
-			onfocusout: function(element){
-				$(element).valid();
-			}
-		});
-		//数据校验
-		var validator = $("#form").validate({
-			errorPlacement: function(error, element) {
-				// Append error within linked label
-				$( element )
-						.closest( "form" )
-						.find( "label[for='" + element.attr( "id" ) + "']" )
-						.append( error );
-			},
-			errorElement: "span",
-			messages: {
-				flowdate: {
-					required: " (必填字段)",
-					date:"必须输入日期"
-				},
-				channelcode: {
-					required: " (必填字段)"
-				},
-				stationcode: {
-					required: " (必填字段)"
-				},
-				ticketnum: {
-					required: " (必填字段)"
-					,number: "输入数字",     //输入必须是数字
-				},
-				moneynum: {
-					required: " (必填字段)",
-					number: "输入数字",     //输入必须是数字
-					min: "最小值为0.01，不能为0或者负数"//输入的数字最小值为0.01，不能为0或者负数
-				},
-				totalticketnum: {
-					required: " (必填字段)"
-					,number: "输入数字",     //输入必须是数字
-				},
-				totalmoneynum: {
-					required: " (必填字段)",
-					number: "输入数字",     //输入必须是数字
-					min: "最小值为0.01，不能为0或者负数"//输入的数字最小值为0.01，不能为0或者负数
-				},
-				unit: {
-					required: " (必填字段)"
-				}
-			}
-		});
+		if(_fdate && _scode)
+		{
+			_fdate = _fdate.replace(/00:00:00/g, "");
+			$("#flowdate").val(_fdate);
+		}
+
 	});
-	//提交完成后执行
-	$.validator.setDefaults({
-    	submitHandler: function() {
-			//var url = "{:U('Admin/SalesFlow/adddata')}";
-			if(submitmsg !="")
-			{
-				layer.alert(submitmsg, {icon: 2});
-				return false;
-			}
-			//提交数据
-			var load = layer.load(2, {
-				shade: [0.1,'#fff'] //0.1透明度的白色背景
-			});
-			var postdata = dealData();
-			//url = "";
-			$.ajax({
-				url:url,
-				type:"POST",
-				data:{list:postdata},
-				dataType:"json",
-				error:function(data){
-					layer.closeAll('loading');
-				},
-				success:function(data){
-					if(data)
-					{
-						//回掉函数刷新列表页面
-						if(_SAVE_NEXT == 0) {
-							window.parent.freshen(data.state, data.msg);
-							layer.closeAll('loading');
-							parent.layer.close(index);
-						}else {
-							layer.msg( data.msg, {icon: data.state});
-							layer.closeAll('loading');
-							$(':input','#form')
-									.not(':button,:submit,:reset,:hidden')
-									.val('')
-									.removeAttr('checked')
-									.removeAttr('selected');
-							//window.parent.freshen(data.state, data.msg);
-                            $("#flowdate").val(_NOW_DATE_STR);
-                            $("#flowdate").trigger("change");
-						}
-						
-					}
-				}
-			});
-   		}
-	});
-	//处理提交数据
-	//格式：JSON
-	function dealData()
-	{
-		var flowdate = $("#flowdate").val();
-		var gnum = flowdate.replace(/-/g, "");
-		var stationcode = $("#stationcode").val();
-		var unit = $("#unit").val();
-		var description = $("#description").val();
-		//json数据处理
-		var json = [];
-		var row = {};
-		//遍历form表单
-		$("table tr[name]").each(function(index){
-			var code = $(this).attr("name");
-			var tr = $(this);
-			row = {};
-			row.flowdate = flowdate;
-			row.groupnum = gnum;
-			row.channelcode = code;
-			row.stationcode = stationcode;
-			var _id =""
-			var tnum = 0,mnum=0.0;
-			$(tr).find("input[name]").each(function () {
-				var n = $(this).attr("name");
-				if(n.indexOf("ticketnum") >= 0)
-				{
-					tnum = $(this).val();
-				}else if(n.indexOf("moneynum") >= 0)
-				{
-					mnum = $(this).val();
-				}else if(n.indexOf("_id") >= 0)
-				{
-					_id = $(this).val();
-				}
-			});
-			row.id = _id;
-			row.ticketnum = tnum;
-			row.moneynum = mnum;
-			row.unit = unit;
-			row.description = description;
-			json.push(row);
-		});
-		//
-		result = JSON.stringify(json);
-		//layer.alert(result);
-		return result;
-	}
+
 	//查询是否添加过该日信息（依据分组编码，渠道，站点）
 	function CheckData(obj)
 	{
@@ -407,28 +264,8 @@ div:active{
 						$("#totalticketnum").val(windowcount);
 						$("#totalmoneynum").val(moneycount);
 						//
-						layer.msg("该天的数据录入完成，若要修改点击保存！");
+						//layer.msg("该天的数据录入完成，若要修改点击保存！");
 						url = aurl;
-					}else if(data.state == 1)//新增数据
-					{
-							//初始化输入框内容（部分按钮重置）
-                            $("#totalticketnum").val('');
-                            $("#totalmoneynum").val('');
-                            $("#description").val('');
-                            $("#unit").val(_UNIT_CODE);
-                            $("table tr td input[name*='_ticketnum']").each(function(){
-                                var _obj = $(this);
-                                $(_obj).val("");
-                            });
-                            $("table tr td input[name*='_moneynum']").each(function(){
-                                var _obj = $(this);
-                                $(_obj).val("");
-                            });
-                            $("table tr td input[name*='_id']").each(function(){
-                                var _obj = $(this);
-                                $(_obj).val("");
-                            });
-							url = aurl;
 					}else{
 						layer.msg(data.msg);
 						url = aurl;
@@ -438,63 +275,7 @@ div:active{
 			}
 		});
 	}
-	//计算窗口数目
-	function CheckCount(obj)
-	{
-		var totalticketnum = $("#totalticketnum").val();
-		var totalmoneynum = $("#totalmoneynum").val();
-		var windowcount = 0,moneycount=0;
 
-		submitmsg ="";
-		$("table tr[name]").each(function(index){
-			var code = $(this).attr("name");
-			var tr = $(this);
-			//窗口售票编码
-			if(code != _WCODE) {
-				$(tr).find("input[name]").each(function () {
-					var n = $(this).attr("name");
-					if(n.indexOf("ticketnum") >= 0)
-					{
-						var num = $(this).val();
-						if(parseInt(num).toString() != "NaN") {
-							windowcount = eval(parseInt(num) + windowcount);
-						}
-					}else if(n.indexOf("moneynum") >= 0)
-					{
-						var num = $(this).val();
-						if(parseFloat(num).toString() != "NaN") {
-							moneycount = eval(parseFloat(num) + moneycount);
-						}
-					}
-				});
-			}
-		});
-		//分项计算处理逻辑
-		var tnum = 0,mnum=0;
-		if(parseInt(totalticketnum).toString() != "NaN") {
-			tnum = eval(parseInt(totalticketnum) - windowcount);
-		}
-		if(parseFloat(totalmoneynum).toString() != "NaN") {
-			mnum = eval(parseFloat(totalmoneynum) - moneycount);
-		}
-
-		if(tnum <0)
-		{
-			tnum =0;
-			submitmsg +="合计票数必须要大于等于各分项票数之和!";
-			layer.alert(submitmsg, {icon: 2});
-		}
-		var _br = submitmsg==""?"":"<br/>";
-		if(mnum <0)
-		{
-			mnum =0;
-			submitmsg  +=_br+"合计金额必须要大于等于各分项金额之和!";
-			layer.alert(submitmsg, {icon: 2});
-		}
-		mnum = mnum.toFixed(2);
-		$("#"+_WCODE+"_ticketnum").val(tnum);
-		$("#"+_WCODE+"_moneynum").val(mnum);
-	}
 	//页面数据初始化
 	function init()
 	{
@@ -517,21 +298,18 @@ div:active{
 					//初始化下拉框数据
 					if(data.state == 0)	{
 						var units = data.units;
-						var channels = data.channels;
 						var stations = data.stations;
 						if(units.length>0)
 						{
 							selectinit(units,"unit");
-						}
-						if(channels.length>0)
-						{
-							selectinit(channels,"channelcode");
 						}
 						if(stations.length>0)
 						{
 							selectinit(stations,"stationcode");
 						}
 						$("#unit").val(_UNIT_CODE);
+						$("#stationcode").val(_scode);
+						$("#stationcode").trigger("change");
 					}else{
 						layer.msg(data.msg, {icon: -1});
 					}
@@ -540,7 +318,7 @@ div:active{
 			}
 		});
 	}
-	//init
+	//init下拉选项初始化...
 	function selectinit(data,id)
 	{
 		var obj = $("#"+id);
@@ -556,24 +334,6 @@ div:active{
 				$(obj).append("<option value='" + data[i]['dicvalue'] + "'>" + data[i]['name'] + "</option>");
 			}
 		}
-	}
-	//
-	function showMSG(obj)
-	{
-		layer.msg('ko.....');
-	}
-	//保存按钮（来自父页面）
-	function submitdata()
-	{
-		//layer.msg("正在建设中...");
-		$('#form').submit();
-	}
-	//保存按钮（来自父页面）
-	function submitdata_next()
-	{
-		//layer.msg("正在建设中...");
-		_SAVE_NEXT = 1;//保存继续
-		$('#form').submit();
 	}
 </script>
 </block>
