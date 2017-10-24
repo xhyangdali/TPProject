@@ -24,18 +24,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SalesFlowController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="iadd.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.678572">
+              <caret line="110" column="24" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SalesFlowController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="9.826772">
-              <caret line="476" column="32" selection-start-line="476" selection-start-column="32" selection-end-line="476" selection-end-column="32" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="123" column="35" selection-start-line="123" selection-start-column="35" selection-end-line="123" selection-end-column="35" />
               <folding>
                 <element signature="e#34#76#0#PHP" expanded="true" />
-                <marker date="1508818725320" expanded="true" signature="2390:2766" placeholder="SELECT count... sales_flow" />
-                <marker date="1508818725320" expanded="true" signature="11516:11610" placeholder="SELECT * FRO... dic_data" />
-                <marker date="1508818725320" expanded="true" signature="11559:11608" placeholder="SELECT id FR... dic_data" />
-                <marker date="1508818725320" expanded="true" signature="12319:12509" placeholder="SELECT s.* F... station" />
-                <marker date="1508818725320" expanded="true" signature="12376:12457" placeholder="SELECT DISTI... sales_flow" />
+                <marker date="1508825883839" expanded="true" signature="2390:2766" placeholder="SELECT count... sales_flow" />
+                <marker date="1508825883839" expanded="true" signature="11481:11575" placeholder="SELECT * FRO... dic_data" />
+                <marker date="1508825883839" expanded="true" signature="11524:11573" placeholder="SELECT id FR... dic_data" />
+                <marker date="1508825883839" expanded="true" signature="12284:12489" placeholder="SELECT s.* F... station" />
+                <marker date="1508825883839" expanded="true" signature="12341:12422" placeholder="SELECT DISTI... sales_flow" />
+                <marker date="1508825883839" expanded="true" signature="12341:12443" placeholder="SELECT DISTI... sales_flow" />
               </folding>
             </state>
           </provider>
@@ -51,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="iedit.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="iedit.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.714286">
-              <caret line="219" column="12" selection-start-line="219" selection-start-column="12" selection-end-line="219" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.35883015">
+              <caret line="112" column="26" selection-start-line="112" selection-start-column="26" selection-end-line="112" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -110,12 +121,12 @@
         <option value="$PROJECT_DIR$/Application/Admin/Controller/NavController.class.php" />
         <option value="$PROJECT_DIR$/tpl/Admin/Nav/index.html" />
         <option value="$PROJECT_DIR$/Application/Common/Model/AuthRuleModel.class.php" />
-        <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/index.html" />
-        <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/idetail.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/indexlist.html" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php" />
+        <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html" />
+        <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html" />
       </list>
     </option>
   </component>
@@ -720,14 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9831271">
-          <caret line="379" column="27" selection-start-line="379" selection-start-column="27" selection-end-line="379" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.107143">
@@ -798,14 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.714286">
-          <caret line="219" column="12" selection-start-line="219" selection-start-column="12" selection-end-line="219" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/indexlist.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-21.25">
@@ -816,16 +811,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.826772">
-          <caret line="476" column="32" selection-start-line="476" selection-start-column="32" selection-end-line="476" selection-end-column="32" />
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="123" column="35" selection-start-line="123" selection-start-column="35" selection-end-line="123" selection-end-column="35" />
           <folding>
             <element signature="e#34#76#0#PHP" expanded="true" />
-            <marker date="1508818725320" expanded="true" signature="2390:2766" placeholder="SELECT count... sales_flow" />
-            <marker date="1508818725320" expanded="true" signature="11516:11610" placeholder="SELECT * FRO... dic_data" />
-            <marker date="1508818725320" expanded="true" signature="11559:11608" placeholder="SELECT id FR... dic_data" />
-            <marker date="1508818725320" expanded="true" signature="12319:12509" placeholder="SELECT s.* F... station" />
-            <marker date="1508818725320" expanded="true" signature="12376:12457" placeholder="SELECT DISTI... sales_flow" />
+            <marker date="1508825883839" expanded="true" signature="2390:2766" placeholder="SELECT count... sales_flow" />
+            <marker date="1508825883839" expanded="true" signature="11481:11575" placeholder="SELECT * FRO... dic_data" />
+            <marker date="1508825883839" expanded="true" signature="11524:11573" placeholder="SELECT id FR... dic_data" />
+            <marker date="1508825883839" expanded="true" signature="12284:12489" placeholder="SELECT s.* F... station" />
+            <marker date="1508825883839" expanded="true" signature="12341:12422" placeholder="SELECT DISTI... sales_flow" />
+            <marker date="1508825883839" expanded="true" signature="12341:12443" placeholder="SELECT DISTI... sales_flow" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.678572">
+          <caret line="110" column="24" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35883015">
+          <caret line="112" column="26" selection-start-line="112" selection-start-column="26" selection-end-line="112" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>

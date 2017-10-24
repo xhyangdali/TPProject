@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DEMO周报</title>
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />  
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="./js/jquery.min.js"></script>
+	<script src="./charts/echarts.min.js"></script>
+	<style>
+		 ::-webkit-scrollbar {<!-- 去除滚动条 -->
+        width: 0px;
+    }
+	</style>
+	
+</head>
+<body >
+     <!-- tab选项卡 start -->
+	<div class="weui-tab">
+	  <div class="weui-navbar" >
+	    <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+	      文字分析
+	    </a>
+	    <a class="weui-navbar__item" href="#tab2">
+	      图表分析
+	    </a>
+	  </div>
+	  <div class="weui-tab__bd" >
+		<!-- weui-tab__bd-item start -->
+	    <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+			<!-- page__bd start -->
+			<div class="page__bd">
+			  <h3>统计概况</h3>
+			  <p class="Ctext">售票金额：687,553元(比上周减少：869,290元，减幅：55.84%)。</p>
+			  <p class="Ctext">电子客票： 12280张(比上周减少6096张，减幅：33.17%)。</p>
+			  <p class="Ctext">客票保险： 1575张(比上周减少587张，减幅: 27.15%)。</p>
+		  </div>
+		  <!-- page__bd end -->
+		  <!-- page__bd start -->
+		  <div class="page__bd">
+			<div class="weui-cells__title">所属客运站窗口售票金额（同比表格）</div>
+			<div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>2017/10/15—10/21</p>
+                </div>
+                <div class="weui-cell__ft">单位：万元</div>
+            </div>
+            <div class="weui-cell weui-cell_swiped">
+				<div class="page__bd">
+				  <div class="weui-grids">
+					  <a href="#" class="weui-grid js_grid">
+						<div class="weui-grid__icon">
+						  <img src="images/icon8.png" alt="">
+						</div>
+						<p class="weui-grid__label">
+						 站名
+						</p>
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						<div class="weui-grid__icon">
+						  <img src="images/icon9.png" alt="">
+						</div>
+						<p class="weui-grid__label">
+						 本周
+						</p>
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						<div class="weui-grid__icon">
+						  <img src="images/icon10.png" alt="">
+						</div>
+						<p class="weui-grid__label">
+						 同比（增幅）
+						</p>
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						东客站
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						69.23
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						-9.80|-11.90
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						快速站
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						78.98
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						+9.00|+7.00
+					</a>
+					<a href="#" class="weui-grid js_grid">
+						兴盛站
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						78.98
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						+9.00|+7.00
+					</a>
+					<a href="#" class="weui-grid js_grid">
+						北客站
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						78.98
+					  </a>
+					  <a href="#" class="weui-grid js_grid">
+						+9.00|+7.00
+					</a>
+					</div>
+				</div>
+            </div>
+			</div>
+		</div>
+		<!-- page__bd end -->
+		<!-- page__bd start -->
+		  <div class="page__bd">
+			<div class="weui-cells__title">电子客票销售情况</div>
+			<div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>2017/10/15—10/21</p>
+                </div>
+                <div class="weui-cell__ft">共计：94,354元</div>
+            </div>
+            <div class="weui-cell weui-cell_swiped">
+				<div class="page__bd">
+				   <p class="Ctext" >东部客运站：微信销售：47张，共计：4,662元；自助设备销售：352张，共计：9,076元；其它网销渠道销售: 67张，共计：8,082元。</p>
+				   <p class="Ctext" >快速客运站：微信销售: 89张,共计：5,241元；自助设备销售：162张，共计：8,671元；其它网销渠道销售：72张，共计：7,029元。</p>
+				   <p class="Ctext" >兴盛客运站：微信销售:41张，共计:3,813元；自助设备销售: 628张,共计: 19,771元；其它网销渠道销售：80张，共计：9,460元。</p>  
+				   <p class="Ctext" >客运北站：微信销售：28张，共计：1,831元；自助设备销售：1张, 共计：56元；其它网销渠道销售：79张，共计：5,164元。</p>
+				   <p class="Ctext" >县分公司：微信销售：57张，共计：4,951元；自助设备销售：13张,共计：1,289元；其它网销渠道销售：47张，共计：5,258元。</p>
+				   <ul class="weui-media-box__info">
+				  <li class="weui-media-box__info__meta">车票1763张</li>
+				  <li class="weui-media-box__info__meta">保险255张</li>
+				  <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">金额：94,354元。</li>
+				</ul>
+				</div>
+            </div>
+			</div>
+		</div>
+		<!-- page__bd end -->
+	    </div>
+		<!-- weui-tab__bd-item end -->
+		<!-- weui-tab__bd-item start -->
+	    <div id="tab2" class="weui-tab__bd-item">
+		
+		<div class="weui-panel weui-panel_access">
+	      <div class="weui-panel__hd"><h3>关区客运站窗口售票金额同比</h3></div>
+		  <div class="weui-panel__bd">
+			<canvas id="myChart1" width="400px" height="300px;"></canvas>
+		  </div>
+		</div>
+		
+		<div class="weui-panel weui-panel_access">
+	      <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额同比</h3></div>
+		  <div class="weui-panel__bd">
+			<canvas id="myChart2" width="400px" height="300px;"></canvas>
+		  </div>
+		</div>
+		
+		<div class="weui-panel weui-panel_access">
+	      <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额同比</h3></div>
+		  <div class="weui-panel__bd">
+			<canvas id="myChart3" width="400px" height="300px;"></canvas>
+		  </div>
+		</div>
+		
+		<div class="weui-panel weui-panel_access">
+	      <div class="weui-panel__hd"><h3>电子客票销售金额统计</h3></div>
+		  <div class="weui-panel__bd">
+			<canvas id="myChart4" width="400px" height="300px;"></canvas>
+		  </div>
+		</div>
+		
+	    </div>
+		<!-- weui-tab__bd-item end -->
+	  </div>
+	</div>
+	<!-- tab选项卡 end -->
+	<!-- footer copyright start -->
+	<div class="weui-footer">
+            <p class="weui-footer__links">
+                <a href="javascript:void(0);" class="weui-footer__link">底部链接</a>
+                <a href="javascript:void(0);" class="weui-footer__link">底部链接</a>
+            </p>
+            <p class="weui-footer__text">Copyright &copy; 2008-2016 DL</p>
+    </div>
+	<!-- footer copyright end -->
+	<!-- 底部菜单栏 start -->
+	<div class="page" >
+    <div class="page__bd" style="height: 100%;">
+        <div class="weui-tab" >
+            <div class="weui-tab__panel">
+
+            </div>
+            <div class="weui-tabbar" style="position:fixed;bottom:0px;">
+                <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="./images/icon7.png" alt="" class="weui-tabbar__icon">
+                        <!-- <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span> -->
+                    </span>
+                    <p class="weui-tabbar__label">统计</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item">
+                    <img src="./images/icon4.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">数据</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="./images/icon14.png" alt="" class="weui-tabbar__icon">
+                        <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
+                    </span>
+                    <p class="weui-tabbar__label">发现</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item">
+                    <img src="./images/icon30.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">我</p>
+                </a>
+            </div>
+        </div>
+		</div>
+	</div>
+<!-- 底部菜单栏 end  -->
+<script type="text/javascript">
+    $(function(){
+        $('.weui-tabbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+        });
+		//weui-navbar
+		//
+		fun0();
+    });
+	//
+	function fun0(){
+	//
+	var myChart_ = echarts.init(document.getElementById('myChart1'));
+	// 指定图表的配置项和数据
+        var option = {
+			title: {
+                text: '单位：万元'
+            },
+            tooltip : {
+					trigger: 'axis',
+					axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				legend: {
+					data:['本周','上周']
+				},
+				xAxis : [
+					{
+						type : 'category',
+						data : ['东科站','快速站','兴盛站','北站','县分公司']
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name:'本周',
+						type:'bar',
+						label: {
+							normal: {
+								show: true,
+								position: 'inside'
+							}
+						},
+						data:[320, 332, 301, 334, 390]
+					},
+					{
+						name:'上周',
+						type:'bar',
+						stack: '上周',
+						label: {
+							normal: {
+								show: true,
+								position: 'inside'
+							}
+						},
+						data:[120, 132, 101, 134, 90]
+					}
+				]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart_.setOption(option);
+		//
+		var myChart_2 = echarts.init(document.getElementById('myChart2'));
+		// 指定图表的配置项和数据
+        var option2 = {
+            title: {
+                text: '单位：万元'
+            },
+            tooltip : {
+					trigger: 'axis',
+					axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				legend: {
+					data:['本周','上周']
+				},
+				xAxis : [
+					{
+						type : 'value'
+					}
+				],
+				yAxis : [
+					
+					{
+						type : 'category',
+						data : ['东科站','快速站','兴盛站','北站','县分公司']
+					}
+				],
+				series : [
+					{
+						name:'本周',
+						type:'bar',
+						label: {
+							normal: {
+								show: true,
+								position: 'inside'
+							}
+						},
+						data:[320, 332, 301, 334, 390]
+					},
+					{
+						name:'上周',
+						type:'bar',
+						stack: '上周',
+						label: {
+							normal: {
+								show: true,
+								position: 'inside'
+							}
+						},
+						data:[120, 132, 101, 134, 90]
+					}
+				]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart_2.setOption(option2);
+		//
+		var myChart_3 = echarts.init(document.getElementById('myChart3'));
+		// 指定图表的配置项和数据
+        var option3 = {
+				title: {
+					text: '售票金额同比'
+				},
+				tooltip: {
+					trigger: 'axis'
+				},
+				legend: {
+					data:['上周','本周']
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				toolbox: {
+					feature: {
+						saveAsImage: {}
+					}
+				},
+				xAxis: {
+					type: 'category',
+					boundaryGap: false,
+					data: ['祥云','巍山','南涧','云龙','永平','洱源','剑川']
+				},
+				yAxis: {
+					type: 'value'
+				},
+				series: [
+					{
+						name:'上周',
+						type:'line',
+						stack: '总量',
+						data:[120, 132, 101, 134, 90, 230, 210]
+					},
+					{
+						name:'本周',
+						type:'line',
+						stack: '总量',
+						data:[220, 182, 191, 234, 290, 330, 310]
+					}
+				]
+			};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart_3.setOption(option3);
+		//
+		var myChart_4 = echarts.init(document.getElementById('myChart4'));
+		// 指定图表的配置项和数据
+        var option4 = {
+				tooltip : {
+					trigger: 'axis',
+					axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				legend: {
+					data:['微信售票金额','自助机售票金额','其他网销渠道售票金额']
+				},
+				xAxis : [
+					{
+						type : 'category',
+						data : ['东科站','快速站','兴盛站','北站','县分公司']
+					}
+				],
+				yAxis : [
+					{
+						type : 'value'
+					}
+				],
+				series : [
+					{
+						name:'微信售票金额',
+						type:'bar',
+						label: {
+							normal: {
+								show: true,
+								position: 'inside'
+							}
+						},
+						data:[320, 332, 301, 334, 390]
+					},
+					{
+						name:'自助机售票金额',
+						type:'bar',
+						stack: '自助机售票金额',
+						label: {
+							normal: {
+								show: true,
+								position: 'inside'
+							}
+						},
+						data:[120, 132, 101, 134, 90]
+					},
+					{
+						name:'其他网销渠道售票金额',
+						type:'bar',
+						label: {
+							normal: {
+								show: true,
+								position: 'inside'
+							}
+						},
+						stack: '其他网销渠道售票金额',
+						data:[220, 182, 191, 234, 290]
+					}
+				]
+			};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart_4.setOption(option4);
+	}
+</script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+</body>
+</html>

@@ -121,8 +121,7 @@ class SalesFlowController extends AdminBaseController{
         $pagehtml = $page->show();
         $assign=array(
             'data' => $channels,
-            'pagehtml' => $pagehtml,
-            'count' => $totalRows
+            'pagehtml' => $pagehtml
         );
         $this->assign($assign);
         $this->display();
@@ -542,10 +541,10 @@ class SalesFlowController extends AdminBaseController{
 		{
 			$gnum = $data['groupnum'];
 			$sql = "SELECT s.* FROM station AS s WHERE s.`code` NOT IN(
-					SELECT DISTINCT sf.stationcode AS 'code' FROM sales_flow AS sf WHERE sf.groupnum=$gnum 
+					SELECT DISTINCT sf.stationcode AS 'code' FROM sales_flow AS sf WHERE sf.groupnum=$gnum  AND sf.isdel=0
 					)
-					AND s.iseffective=0 AND s.isdel=0 
-			;";
+					AND s.iseffective=0 AND s.isdel=0
+			";
 			$Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
 			$stations = $Model->query($sql);
 			if($stations)
