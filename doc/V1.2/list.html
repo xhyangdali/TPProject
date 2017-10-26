@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>列表</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	
+</head>
+<body>
+     <!-- tab选项卡 start -->
+	 
+	<div class="weui-tab">
+	  <div class="weui-navbar">
+	    <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+	      文字分析
+	    </a>
+	    <a class="weui-navbar__item" href="#tab2">
+	      图表分析
+	    </a>
+	  </div>
+	  <div class="weui-tab__bd">
+	    <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+			<!-- panel -->
+			<div class="weui-panel weui-panel_access">
+			  <div class="weui-panel__hd"><h3>统计概况</h3></div>
+			  <div class="weui-panel__bd">
+			  <p>依托CNZZ强大的统计服务、领先的数据采集技术，深度挖掘互联网用户行为数据，
+			  秉承科学、严谨、客观的态度，专注于各行业数据深度研究，为各行业提供优质的数据产品和调研服务，
+			  全方位、系统化的解决客户在多种状况下遇到的问题。</p>
+			  </div>
+			</div>
+			
+			<!-- panel start -->
+			<div class="weui-panel weui-panel_access">
+			  <div class="weui-panel__hd"><h3>列表</h3></div>
+			  <div class="weui-panel__bd">
+					 <div class="page__hd">
+        <h1 class="page__title">List</h1>
+        <p class="page__desc">列表</p>
+    </div>
+    <div class="page__bd">
+        <div class="weui-cells__title">带说明的列表项</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <p>标题文字</p>
+                </div>
+                <div class="weui-cell__ft">说明文字</div>
+            </div>
+            <div class="weui-cell weui-cell_swiped">
+                <div class="weui-cell__bd" style="transform: translateX(-68px)">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <p>标题文字</p>
+                        </div>
+                        <div class="weui-cell__ft">说明文字</div>
+                    </div>
+                </div>
+                <div class="weui-cell__ft">
+                    <a class="weui-swiped-btn weui-swiped-btn_warn" href="javascript:">删除</a>
+                </div>
+            </div>
+			</div>
+			  </div>
+			</div>
+			<!-- panel end -->
+	    </div>
+	    <div id="tab2" class="weui-tab__bd-item">
+	      <h1>图表</h1>
+	    </div>
+	  </div>
+	</div>
+	<!-- tab选项卡 end -->
+	<!-- footer copyright start -->
+	<div class="weui-footer">
+            <p class="weui-footer__links">
+                <a href="javascript:void(0);" class="weui-footer__link">底部链接</a>
+                <a href="javascript:void(0);" class="weui-footer__link">底部链接</a>
+            </p>
+            <p class="weui-footer__text">Copyright &copy; 2008-2016 DL</p>
+    </div>
+	<!-- footer copyright end -->
+	<!-- 底部菜单栏 start -->
+	<div class="page" >
+    <div class="page__bd" style="height: 100%;">
+        <div class="weui-tab" >
+            <div class="weui-tab__panel">
+
+            </div>
+            <div class="weui-tabbar" style="position:fixed;bottom:0px;">
+                <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="./images/icon7.png" alt="" class="weui-tabbar__icon">
+                        <!-- <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span> -->
+                    </span>
+                    <p class="weui-tabbar__label">统计</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item">
+                    <img src="./images/icon4.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">数据</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="./images/icon14.png" alt="" class="weui-tabbar__icon">
+                        <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
+                    </span>
+                    <p class="weui-tabbar__label">发现</p>
+                </a>
+                <a href="javascript:;" class="weui-tabbar__item">
+                    <img src="./images/icon30.png" alt="" class="weui-tabbar__icon">
+                    <p class="weui-tabbar__label">我</p>
+                </a>
+            </div>
+        </div>
+		</div>
+	</div>
+<!-- 底部菜单栏 end  -->
+<script type="text/javascript">
+    $(function(){
+        $('.weui-tabbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+        });
+    });
+</script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-weui.min.js"></script>
+</body>
+</html>

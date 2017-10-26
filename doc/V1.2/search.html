@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索页面</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<link rel="stylesheet" href="css/weui.css">
+	<link rel="stylesheet" href="css/jquery-weui.css">
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+	html,body{ background:#f4f4f4; }
+	.weui-cells{ font-size: 15px; }
+	.head{
+	text-align: center;
+	height: 45px;
+	line-height: 45px;
+	box-shadow: 0 1px 1px 1px #e4e4e4;
+	background:#fff;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	width: 100%;
+}
+.head .return{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 45px;
+	height: 45px;
+}
+.head .return:after{
+	content: " ";
+    display: inline-block;
+    height: 13px;
+    width: 13px;
+    border-width: 2px 2px 0 0;
+    border-color: #C8C8CD;
+    border-style: solid;
+    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: absolute;
+    transform:rotate(225deg);
+    left: 16px;
+    top: 14px;
+}
+.head .operation{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 60px;
+	height: 45px;
+	color:#00d26d;
+}
+
+.personal .tx{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+.personal .weui-input{
+	color: #999;
+}
+	</style>
+</head>
+<body>
+
+   <div class="head"><a href="#" class="return"></a>搜索信息<a href="demo1.html" class="operation">搜索</a></div>
+	<!-- personal start -->
+   <div class="personal" style="padding-top: 50px;">
+		
+			<!-- weui-cells start -->
+			<div class="weui-cells m0">
+			  <div class="weui-cell weui-cell_access">
+			    <div class="weui-cell__bd">
+			      <p>
+					搜索提示：
+				  </p>
+				  <p class="Ctext">
+					1.默认情况下，未开启数据对比开关，查询某时段或某天的统计数据。
+				  </p>
+				  <p class="Ctext">
+					2.开启数据对比后，某时段会与商议时段对比数据（如：本周与上周）。
+				  </p>
+			    </div>
+			    <div class=""></div>
+			    <div class="weui-cell__ft">
+			    </div>
+			  </div>
+			</div>
+			<!-- weui-cells end -->
+			<div class="weui-cells__title">数据对比开关</div>
+			<div class="weui-cells weui-cells_form">
+			  <div class="weui-cell weui-cell_switch">
+				<div class="weui-cell__bd">开启相邻数据对比</div>
+				<div class="weui-cell__ft">
+				  <input class="weui-switch" type="checkbox">
+				</div>
+			  </div>
+			  <div class="weui-cell weui-cell_switch">
+				<div class="weui-cell__bd">开启与上年数据对比</div>
+				<div class="weui-cell__ft">
+				  <input class="weui-switch" type="checkbox">
+				</div>
+			  </div>
+			  <div class="weui-cell weui-cell_switch">
+				<div class="weui-cell__bd">开启指定数据对比</div>
+				<div class="weui-cell__ft">
+				  <input class="weui-switch" type="checkbox">
+				</div>
+			  </div>
+			</div>
+			<!-- weui-cells start -->
+			<div class="weui-cells mt5">
+				<div class="weui-cell">
+					<div class="weui-cell__hd"><label for="" class="weui-label">起始日期</label></div>
+					<div class="weui-cell__bd">
+					  <input type="text" class="weui-input" id='date2' placeholder="请选择日期" />
+					</div>
+				</div>
+			</div>
+			<!-- weui-cells end -->
+			<!-- weui-cells start -->
+			<div class="weui-cells mt5">
+				<div class="weui-cell">
+					<div class="weui-cell__hd"><label for="" class="weui-label">截至日期</label></div>
+					<div class="weui-cell__bd">
+					  <input type="text" class="weui-input"  id='date3' placeholder="请选择日期" />
+					</div>
+				</div>
+			</div>
+			<!-- weui-cells end -->
+			<div class="weui-cells__title">两个时段数据对比</div>
+			<!-- weui-cells start -->
+			<div class="weui-cells mt5">
+				<div class="weui-cell">
+					<div class="weui-cell__hd"><label for="" class="weui-label">起始日期</label></div>
+					<div class="weui-cell__bd">
+					  <input type="text" class="weui-input" id='date2' placeholder="请选择日期" />
+					</div>
+				</div>
+			</div>
+			<!-- weui-cells end -->
+			<!-- weui-cells start -->
+			<div class="weui-cells mt5">
+				<div class="weui-cell">
+					<div class="weui-cell__hd"><label for="" class="weui-label">截至日期</label></div>
+					<div class="weui-cell__bd">
+					  <input type="text" class="weui-input"  id='date3' placeholder="请选择日期" />
+					</div>
+				</div>
+			</div>
+			<!-- weui-cells end -->
+    </div>
+    <!-- personal end -->
+	<!-- footer copyright start -->
+	<div class="weui-footer">
+            <p class="weui-footer__links">
+                <a href="javascript:void(0);" class="weui-footer__link">反馈</a>
+                <a id="goToTop" href="javascript:void(0);" class="weui-footer__link">回顶部</a>
+            </p>
+            <p class="weui-footer__text">Copyright &copy; 2008-2016 大理交通运输集团</p>
+    </div>
+	<!-- footer copyright end -->
+		<!-- 底部菜单栏 start -->
+	<div class="page" >
+    <div class="page__bd" style="height: 100%;">
+        <div class="weui-tab" >
+            <div class="weui-tab__panel">
+
+            </div>
+            <div class="weui-tabbar" style="position:fixed;bottom:0px;">
+                <a href="demo0.html" class="weui-tabbar__item ">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="./images/icon7.png" alt="" class="weui-tabbar__icon">
+                        <!-- <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span> -->
+                    </span>
+                    <p class="weui-tabbar__label">数据</p>
+                </a>
+                <a id="_search" href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="./images/icon14.png" alt="" class="weui-tabbar__icon">
+                        <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
+                    </span>
+                    <p  class="weui-tabbar__label">查询</p>
+                </a>
+            </div>
+        </div>
+		</div>
+	</div>
+<!-- 底部菜单栏 end  -->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-weui.min.js"></script>
+<script src="js/city-picker.min.js"></script>
+
+	<script>
+	$('#goToTop').click(function(){
+            $('html , body').animate({scrollTop: 0},'slow');
+         });
+	//获得昨日日期
+	var myDate = new Date();
+	myDate.setTime(myDate.getTime()-24*60*60*1000);
+	//
+	   $("#date2").calendar({
+        value: [myDate],
+        dateFormat: 'yyyy年mm月dd日',  // 自定义格式的时候，不能通过 input 的value属性赋值 '2016年12月12日' 来定义初始值，这样会导致无法解析初始值而报错。只能通过js中设置 value 的形式来赋值，并且需要按标准形式赋值（yyyy-mm-dd 或者时间戳)
+        onChange: function (p, values, displayValues) {
+          console.log(values, displayValues);
+        }
+      });
+	  //
+	  $("#date3").calendar({
+        value: [myDate],
+        dateFormat: 'yyyy年mm月dd日',  // 自定义格式的时候，不能通过 input 的value属性赋值 '2016年12月12日' 来定义初始值，这样会导致无法解析初始值而报错。只能通过js中设置 value 的形式来赋值，并且需要按标准形式赋值（yyyy-mm-dd 或者时间戳)
+        onChange: function (p, values, displayValues) {
+          console.log(values, displayValues);
+        }
+      });
+	</script>
+</body>
+</html>

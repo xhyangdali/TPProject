@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta http-equiv="Content-type" name="viewport"
+   content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta content="telephone=no" name="format-detection">
+<title>百望云票</title>
+<link rel="stylesheet" href="./css/weui.css">
+<link rel="stylesheet" href="./css/example.css">
+<script src="./js/jquery.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+   <!-- 内容 -->
+   <div id="container" class="container">
+      <div class="page input js_show">
+         <div class="page__hd">
+
+         </div>
+         <div class="page__bd">
+
+
+            <div class="weui-cell__ft">
+               <a href="javascript:;" class="showIOSDialog2">
+               <img src="./images/icon22.png" style="width: 25px;height: 25px;"/>
+               </a>
+            </div>
+         </div>
+            
+            
+      </div>
+      <!--弹出层begin-->
+         <div id="dialogs">
+            <div class="js_dialog" id="iosDialog2" style="opacity: 1; display: none;">
+               <div class="weui-mask">
+               </div>
+               <div class="weui-dialog">
+                  <div class="weui-dialog__bd">
+                     <img src="./images/icon22.png">
+                  </div>
+                  <div class="weui-dialog__ft">
+                     <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+                     <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确认</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      <!--弹出层end-->
+
+      </div>
+   </div>
+</body>
+<script type="text/javascript" class="dialog js_show">
+    $(function(){
+        var $iosDialog1 = $('#iosDialog2');
+
+        $('#dialogs').on('click', '.weui-dialog__btn', function(){
+            $(this).parents('.js_dialog').fadeOut(200);
+        });
+
+        $('.showIOSDialog2').on('click', function(){
+            $iosDialog1.fadeIn(200);
+        });
+        
+      $('.weui-cell__bd').on('click', function(){
+            window.location.href="ttDetail.html";
+        });
+    });
+
+</script>
+</html>

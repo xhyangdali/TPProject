@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>DEMO日报</title>
+	<title>DEMO日报（V1.2）</title>
 	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />  
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
-	<link rel="stylesheet" href="css/weui.css">
-	<link rel="stylesheet" href="css/jquery-weui.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="./css/weui.css">
+	<link rel="stylesheet" href="./css/jquery-weui.css">
+	<link rel="stylesheet" href="./css/style.css">
+	
 	<script src="./js/jquery.min.js"></script>
 	<script src="./charts/echarts.min.js"></script>
 	<style>
-		 ::-webkit-scrollbar {<!-- 去除滚动条 -->
+	::-webkit-scrollbar {<!-- 去除滚动条 -->
         width: 0px;
     }
 	</style>
@@ -23,16 +24,49 @@
      <!-- tab选项卡 start -->
 	<div class="weui-tab">
 	  <div class="weui-navbar" >
-	    <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
-	      文字分析
-	    </a>
-	    <a class="weui-navbar__item" href="#tab2">
+	    <a class="weui-navbar__item weui-bar__item--on" href="#tab2">
 	      图表分析
+	    </a>
+	    <a class="weui-navbar__item" href="#tab1">
+	      文字分析
 	    </a>
 	  </div>
 	  <div class="weui-tab__bd" >
 		<!-- weui-tab__bd-item start -->
-	    <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+	    <div id="tab2" class="weui-tab__bd-item weui-tab__bd-item--active">
+		
+		<div class="weui-panel weui-panel_access">
+	      <div class="weui-panel__hd"><h3>关区客运站窗口售票金额</h3></div>
+		  <div class="weui-panel__bd">
+			<canvas id="myChart1" width="400px" height="300px;"></canvas>
+		  </div>
+		</div>
+		
+		<div class="weui-panel weui-panel_access">
+	      <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额</h3></div>
+		  <div class="weui-panel__bd">
+			<canvas id="myChart2" width="400px" height="300px;"></canvas>
+		  </div>
+		</div>
+		
+		<div class="weui-panel weui-panel_access">
+	      <div class="weui-panel__hd"><h3>电子客票销售张数统计</h3></div>
+		  <div class="weui-panel__bd">
+			<canvas id="myChart3" width="400px" height="300px;"></canvas>
+		  </div>
+		</div>
+		
+		<div class="weui-panel weui-panel_access">
+	      <div class="weui-panel__hd"><h3>电子客票销售金额统计</h3></div>
+		  <div class="weui-panel__bd">
+			<canvas id="myChart4" width="400px" height="300px;"></canvas>
+		  </div>
+		</div>
+		
+	    </div>
+		<!-- weui-tab__bd-item end -->
+		<!-- weui-tab__bd-item start -->
+	    <div id="tab1" class="weui-tab__bd-item ">
 			<!-- page__bd start -->
 			<div class="page__bd">
 			  <h3>统计概况</h3>
@@ -96,49 +130,17 @@
 		<!-- page__bd end -->
 	    </div>
 		<!-- weui-tab__bd-item end -->
-		<!-- weui-tab__bd-item start -->
-	    <div id="tab2" class="weui-tab__bd-item">
 		
-		<div class="weui-panel weui-panel_access">
-	      <div class="weui-panel__hd"><h3>关区客运站窗口售票金额</h3></div>
-		  <div class="weui-panel__bd">
-			<canvas id="myChart1" width="400px" height="300px;"></canvas>
-		  </div>
-		</div>
-		
-		<div class="weui-panel weui-panel_access">
-	      <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额</h3></div>
-		  <div class="weui-panel__bd">
-			<canvas id="myChart2" width="400px" height="300px;"></canvas>
-		  </div>
-		</div>
-		
-		<div class="weui-panel weui-panel_access">
-	      <div class="weui-panel__hd"><h3>电子客票销售张数统计</h3></div>
-		  <div class="weui-panel__bd">
-			<canvas id="myChart3" width="400px" height="300px;"></canvas>
-		  </div>
-		</div>
-		
-		<div class="weui-panel weui-panel_access">
-	      <div class="weui-panel__hd"><h3>电子客票销售金额统计</h3></div>
-		  <div class="weui-panel__bd">
-			<canvas id="myChart4" width="400px" height="300px;"></canvas>
-		  </div>
-		</div>
-		
-	    </div>
-		<!-- weui-tab__bd-item end -->
 	  </div>
 	</div>
 	<!-- tab选项卡 end -->
 	<!-- footer copyright start -->
 	<div class="weui-footer">
             <p class="weui-footer__links">
-                <a href="javascript:void(0);" class="weui-footer__link">底部链接</a>
-                <a href="javascript:void(0);" class="weui-footer__link">底部链接</a>
+                <a href="javascript:void(0);" class="weui-footer__link">反馈</a>
+                <a id="goToTop" href="javascript:void(0);" class="weui-footer__link">回顶部</a>
             </p>
-            <p class="weui-footer__text">Copyright &copy; 2008-2016 DL</p>
+            <p class="weui-footer__text">Copyright &copy; 2008-2016 大理交通运输集团</p>
     </div>
 	<!-- footer copyright end -->
 	<!-- 底部菜单栏 start -->
@@ -154,27 +156,20 @@
                         <img src="./images/icon7.png" alt="" class="weui-tabbar__icon">
                         <!-- <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span> -->
                     </span>
-                    <p class="weui-tabbar__label">统计</p>
-                </a>
-                <a href="javascript:;" class="weui-tabbar__item">
-                    <img src="./images/icon4.png" alt="" class="weui-tabbar__icon">
                     <p class="weui-tabbar__label">数据</p>
                 </a>
-                <a href="javascript:;" class="weui-tabbar__item">
+                <a id="_search" href="search.html" class="weui-tabbar__item">
                     <span style="display: inline-block;position: relative;">
                         <img src="./images/icon14.png" alt="" class="weui-tabbar__icon">
                         <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
                     </span>
-                    <p class="weui-tabbar__label">发现</p>
-                </a>
-                <a href="javascript:;" class="weui-tabbar__item">
-                    <img src="./images/icon30.png" alt="" class="weui-tabbar__icon">
-                    <p class="weui-tabbar__label">我</p>
+                    <p  class="weui-tabbar__label">查询</p>
                 </a>
             </div>
         </div>
 		</div>
 	</div>
+<div id="goToTop"><a href="javascript:;">点我回到页面顶部</a></div>
 <!-- 底部菜单栏 end  -->
 <script type="text/javascript">
     $(function(){
@@ -182,8 +177,10 @@
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
 		//weui-navbar
-		//
 		fun0();
+		$('#goToTop').click(function(){
+            $('html , body').animate({scrollTop: 0},'slow');
+         });
     });
 	//
 	function fun0(){
