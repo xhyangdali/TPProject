@@ -17,6 +17,7 @@ return array(
         '__ADMIN_ACEADMIN__' => OSS_URL.__ROOT__.'/Public/statics/aceadmin',
         '__PUBLIC_CSS__'     => __ROOT__.trim(TMPL_PATH,'.').'Public/css',
         '__PUBLIC_JS__'      => __ROOT__.trim(TMPL_PATH,'.').'Public/js',
+		'__PUBLIC_IMAGES__P'      => __ROOT__.trim(TMPL_PATH,'.').'Public/images',
         '__PUBLIC_IMAGES__'  => OSS_URL.trim(TMPL_PATH,'.').'Public/images',
         '__USER_CSS__'       => __ROOT__.trim(TMPL_PATH,'.').'User/Public/css',
         '__USER_JS__'        => __ROOT__.trim(TMPL_PATH,'.').'User/Public/js',
@@ -29,7 +30,7 @@ return array(
 		'__ADMIN__' => OSS_URL.__ROOT__.'/Public/statics'//静态资源文件
     ),
 //***********************************URL设置**************************************
-    'MODULE_ALLOW_LIST'      => array('Home','Admin','Api','User','App','Shop','BuySth','SaleSth','Storage','Loarn','Product'), //允许访问列表
+    'MODULE_ALLOW_LIST'      => array('Home','Admin','Api','Statistics','App'), //允许访问列表
     'URL_HTML_SUFFIX'        => '',  // URL伪静态后缀设置
     'URL_MODEL'              => 1,  //启用rewrite
 //***********************************SESSION设置**********************************
@@ -90,10 +91,11 @@ return array(
 		'Department' => '部门管理',
 		'Orgnazation' => '组织机构管理',
 		'ProvinceCityArea' => '地区信息管理',
-		'CustomUser' => '会员管理',
-		'ShopCenter' => '店铺中心',
-		'ShopGoods' => '店铺商品管理',
-		'ShopBasicinfo' => '店铺管理',
+		'Channel' => '渠道管理',
+		'Station' => '客运站管理',
+		'WhiteList' => '白名单',
+		'SalesFlow' => '销售流水管理',
+		'Insurance' => '保险管理',
     ),
 //***********************************页面设置**************************************
     'TMPL_EXCEPTION_FILE'    => APP_DEBUG ? THINK_PATH.'Tpl/think_exception.tpl' : './Template/default/Home/Public/404.html',
@@ -151,9 +153,9 @@ return array(
         'input_charset'      => 'utf-8', // 编码 (固定值不用改)
         'transport'          => 'http', // 协议  (固定值不用改)
         'cacert'             => VENDOR_PATH.'Alipay/cacert.pem',  // cacert.pem存放的位置 (固定值不用改)
-        'notify_url'         => 'http://baijunyao.com/Api/Alipay/alipay_notify', // 异步接收支付状态通知的链接
-        'return_url'         => 'http://baijunyao.com/Api/Alipay/alipay_return', // 页面跳转 同步通知 页面路径 支付宝处理完请求后,当前页面自 动跳转到商户网站里指定页面的 http 路径。 (扫码支付专用)
-        'show_url'           => 'http://baijunyao.com/User/Order/index', // 商品展示网址,收银台页面上,商品展示的超链接。 (扫码支付专用)
+        'notify_url'         => 'http://', // 异步接收支付状态通知的链接
+        'return_url'         => 'http://', // 页面跳转 同步通知 页面路径 支付宝处理完请求后,当前页面自 动跳转到商户网站里指定页面的 http 路径。 (扫码支付专用)
+        'show_url'           => 'http://', // 商品展示网址,收银台页面上,商品展示的超链接。 (扫码支付专用)
         'private_key_path'   => '', //移动端生成的私有key文件存放于服务器的 绝对路径 如果为MD5加密方式；此项可为空 (移动支付专用)
         'public_key_path'    => '', //移动端生成的公共key文件存放于服务器的 绝对路径 如果为MD5加密方式；此项可为空 (移动支付专用)
         ),
@@ -162,6 +164,6 @@ return array(
         'MCHID'              => '', // 微信支付MCHID 商户收款账号
         'KEY'                => '', // 微信支付KEY
         'APPSECRET'          => '',  //公众帐号secert
-        'NOTIFY_URL'         => 'http://baijunyao.com/Api/WeixPay/notify/order_number/', // 接收支付状态的连接
+        'NOTIFY_URL'         => 'http://', // 接收支付状态的连接
         ),
 );

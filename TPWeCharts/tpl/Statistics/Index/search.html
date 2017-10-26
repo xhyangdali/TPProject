@@ -1,0 +1,179 @@
+<extend name="Public:base"/>
+<block name="title">搜索查询</block>
+<block name="css">
+<style>
+    html,body{ background:#f4f4f4; }
+    .weui-cells{ font-size: 15px; }
+    .head{
+        text-align: center;
+        height: 45px;
+        line-height: 45px;
+        box-shadow: 0 1px 1px 1px #e4e4e4;
+        background:#fff;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 100;
+        width: 100%;
+    }
+    .head .return{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 45px;
+        height: 45px;
+    }
+    .head .return:after{
+        content: " ";
+        display: inline-block;
+        height: 13px;
+        width: 13px;
+        border-width: 2px 2px 0 0;
+        border-color: #C8C8CD;
+        border-style: solid;
+        -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+        transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+        position: absolute;
+        transform:rotate(225deg);
+        left: 16px;
+        top: 14px;
+    }
+    .head .operation{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 60px;
+        height: 45px;
+        color:#00d26d;
+    }
+
+    .personal .tx{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+    .personal .weui-input{
+        color: #999;
+    }
+</style>
+</block>
+<block name="content">
+    <div class="head"><a href="" class="return"></a>搜索信息<a href="" class="operation">搜索</a></div>
+    <!-- personal start -->
+    <div class="personal" style="padding-top: 50px;">
+
+        <!-- weui-cells start -->
+        <div class="weui-cells m0">
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <p>
+                        搜索提示：
+                    </p>
+                    <p class="Ctext">
+                        1.默认情况下，未开启数据对比开关，查询某时段或某天的统计数据。
+                    </p>
+                    <p class="Ctext">
+                        2.开启数据对比后，某时段会与商议时段对比数据（如：本周与上周）。
+                    </p>
+                </div>
+                <div class=""></div>
+                <div class="weui-cell__ft">
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells end -->
+        <div class="weui-cells__title">数据对比开关</div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell weui-cell_switch">
+                <div class="weui-cell__bd">开启相邻数据对比</div>
+                <div class="weui-cell__ft">
+                    <input class="weui-switch" type="checkbox">
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_switch">
+                <div class="weui-cell__bd">开启与上年数据对比</div>
+                <div class="weui-cell__ft">
+                    <input class="weui-switch" type="checkbox">
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_switch">
+                <div class="weui-cell__bd">开启指定数据对比</div>
+                <div class="weui-cell__ft">
+                    <input class="weui-switch" type="checkbox">
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells start -->
+        <div class="weui-cells mt5">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label for="" class="weui-label">起始日期</label></div>
+                <div class="weui-cell__bd">
+                    <input type="text" class="weui-input" id='date2' placeholder="请选择日期" />
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells end -->
+        <!-- weui-cells start -->
+        <div class="weui-cells mt5">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label for="" class="weui-label">截至日期</label></div>
+                <div class="weui-cell__bd">
+                    <input type="text" class="weui-input"  id='date3' placeholder="请选择日期" />
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells end -->
+        <div class="weui-cells__title">两个时段数据对比</div>
+        <!-- weui-cells start -->
+        <div class="weui-cells mt5">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label for="" class="weui-label">起始日期</label></div>
+                <div class="weui-cell__bd">
+                    <input type="text" class="weui-input" id='date2' placeholder="请选择日期" />
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells end -->
+        <!-- weui-cells start -->
+        <div class="weui-cells mt5">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label for="" class="weui-label">截至日期</label></div>
+                <div class="weui-cell__bd">
+                    <input type="text" class="weui-input"  id='date3' placeholder="请选择日期" />
+                </div>
+            </div>
+        </div>
+        <!-- weui-cells end -->
+    </div>
+    <!-- personal end -->
+</block>
+
+<block name="js">
+    <script src="js/city-picker.min.js"></script>
+    <script>
+        var url = "{:U('Index')}";//统计数据
+        var curl = "{:U('Contrast')}";//同比数据
+        $('#goToTop').click(function(){
+            $('html , body').animate({scrollTop: 0},'slow');
+        });
+        //获得昨日日期
+        var myDate = new Date();
+        myDate.setTime(myDate.getTime()-24*60*60*1000);
+        //
+        $("#date2").calendar({
+            value: [myDate],
+            dateFormat: 'yyyy年mm月dd日',
+            onChange: function (p, values, displayValues) {
+                console.log(values, displayValues);
+            }
+        });
+        //
+        $("#date3").calendar({
+            value: [myDate],
+            dateFormat: 'yyyy年mm月dd日',
+            onChange: function (p, values, displayValues) {
+                console.log(values, displayValues);
+            }
+        });
+    </script>
+</block>

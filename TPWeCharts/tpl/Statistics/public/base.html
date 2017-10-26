@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>
+<block name="title"></block>
+</title>
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />  
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<link rel="stylesheet" href="__PUBLIC_CSS__/weui.css">
+<link rel="stylesheet" href="__PUBLIC_CSS__/jquery-weui.css">
+<link rel="stylesheet" href="__PUBLIC_CSS__/style.css">
+<script src="__PUBLIC_JS__/jquery.min.js"></script>
+<script src="__PUBLIC_JS__/charts/echarts.min.js"></script>
+<block name="css"></block>
+</head>
+<body>
+<block name="content"></block>
+<!-- footer copyright start -->
+	<div class="weui-footer">
+            <p class="weui-footer__links">
+                <a href="javascript:void(0);" class="weui-footer__link">反馈</a>
+                <a id="goToTop" href="javascript:void(0);" class="weui-footer__link">回顶部</a>
+            </p>
+            <p class="weui-footer__text">Copyright &copy; 2008-2016 大理交通运输集团</p>
+    </div>
+	<!-- footer copyright end -->
+	<!-- 底部菜单栏 start -->
+	<div class="page" >
+    <div class="page__bd" style="height: 100%;">
+        <div class="weui-tab" >
+            <div class="weui-tab__panel">
+            </div>
+            <div class="weui-tabbar" style="position:fixed;bottom:0px;">
+                <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="__PUBLIC_IMAGES__P/icon7.png" alt="数据" class="weui-tabbar__icon">
+                    </span>
+                    <p class="weui-tabbar__label">数据</p>
+                </a>
+                <a id="_search" href="{:U('Search')}" class="weui-tabbar__item">
+                    <span style="display: inline-block;position: relative;">
+                        <img src="__PUBLIC_IMAGES__P/icon14.png" alt="查询" class="weui-tabbar__icon">
+                        <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
+                    </span>
+                    <p  class="weui-tabbar__label">查询</p>
+                </a>
+            </div>
+        </div>
+		</div>
+	</div>
+<!-- 底部菜单栏 end -->
+<script src="__PUBLIC_JS__/jquery.min.js"></script>
+<script src="__PUBLIC_JS__/jquery-weui.min.js"></script>
+<block name="js"> </block>
+</body>
+</html>
