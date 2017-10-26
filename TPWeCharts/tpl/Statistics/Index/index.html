@@ -98,11 +98,7 @@
                                 <p class="Ctext" >兴盛客运站：微信销售:41张，共计:3,813元；自助设备销售: 628张,共计: 19,771元；其它网销渠道销售：80张，共计：9,460元。</p>
                                 <p class="Ctext" >客运北站：微信销售：28张，共计：1,831元；自助设备销售：1张, 共计：56元；其它网销渠道销售：79张，共计：5,164元。</p>
                                 <p class="Ctext" >县分公司：微信销售：57张，共计：4,951元；自助设备销售：13张,共计：1,289元；其它网销渠道销售：47张，共计：5,258元。</p>
-                                <ul class="weui-media-box__info">
-                                    <li class="weui-media-box__info__meta">车票1763张</li>
-                                    <li class="weui-media-box__info__meta">保险255张</li>
-                                    <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">金额：94,354元。</li>
-                                </ul>
+								<p class="Ctext" >总计：车票1763张 保险255张 金额：94,354元</p>
                             </div>
                         </div>
                     </div>
@@ -118,6 +114,18 @@
 <block name="js">
 <script type="text/javascript">
     $(function(){
+		//
+		var surl = "{:U('Search')}";
+		var iurl ="{:U('Index')}";
+		var curl ="{:U('Contrast')}";
+		$("#_data").click(function(){
+			//搜索事件
+			window.location.href = iurl;	
+		});
+		$("#_search").click(function(){
+			//搜索事件
+			window.location.href = surl;	
+		});
         $('.weui-tabbar__item').on('click', function () {
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
@@ -201,10 +209,10 @@
             },
             color: ['rgb(25, 183, 207)'],
             xAxis: {
-
+				data: ["祥云","宾川","弥渡","南涧","巍山","永平"]
             },
             yAxis: {
-                data: ["祥云","宾川","弥渡","南涧","巍山","永平"]
+                
             },
             series: [{
                 name: '单位：万元',
@@ -212,7 +220,7 @@
                 label: {
                     normal: {
                         show: true,
-                        position: 'inside'
+                        position: 'top'
                     }
                 },
                 data: [5, 1.5, 7.8, 10.5,5.5,7.9]
@@ -261,7 +269,7 @@
                     label: {
                         normal: {
                             show: true,
-                            position: 'inside'
+                            position: 'top'
                         }
                     },
                     data:[320, 332, 301, 334, 390]
@@ -273,7 +281,7 @@
                     label: {
                         normal: {
                             show: true,
-                            position: 'inside'
+                            position: 'top'
                         }
                     },
                     data:[120, 132, 101, 134, 90]
@@ -284,7 +292,7 @@
                     label: {
                         normal: {
                             show: true,
-                            position: 'inside'
+                            position: 'top'
                         }
                     },
                     stack: '其他网销渠道售票张数',
@@ -334,7 +342,7 @@
                     label: {
                         normal: {
                             show: true,
-                            position: 'inside'
+                            position: 'top'
                         }
                     },
                     data:[320, 332, 301, 334, 390]
@@ -346,7 +354,7 @@
                     label: {
                         normal: {
                             show: true,
-                            position: 'inside'
+                            position: 'top'
                         }
                     },
                     data:[120, 132, 101, 134, 90]
@@ -357,7 +365,7 @@
                     label: {
                         normal: {
                             show: true,
-                            position: 'inside'
+                            position: 'top'
                         }
                     },
                     stack: '其他网销渠道售票金额',
