@@ -27,7 +27,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="65.82143">
+            <state vertical-scroll-proportion="29.178572">
               <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
               <folding />
             </state>
@@ -37,8 +37,8 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tpl/Statistics/public/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.5">
-              <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="52" />
+            <state vertical-scroll-proportion="-29.035715">
+              <caret line="55" column="26" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -47,10 +47,13 @@
       <file leaf-file-name="search.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42744657">
-              <caret line="80" column="20" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
+            <state vertical-scroll-proportion="4.744657">
+              <caret line="222" column="23" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#block#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#5;n#div#1;n#block#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#6;n#div#1;n#block#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#7;n#div#1;n#block#2;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -727,14 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="65.82143">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Admin/Index/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.064116985">
@@ -753,18 +748,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Statistics/public/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.5">
-          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="52" />
+        <state vertical-scroll-proportion="-29.035715">
+          <caret line="55" column="26" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="29.178572">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42744657">
-          <caret line="80" column="20" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
+        <state vertical-scroll-proportion="4.744657">
+          <caret line="222" column="23" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
           <folding>
             <element signature="n#style#0;n#div#1;n#block#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#div#1;n#block#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#6;n#div#1;n#block#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#7;n#div#1;n#block#2;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

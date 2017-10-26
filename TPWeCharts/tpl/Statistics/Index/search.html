@@ -87,19 +87,19 @@
             <div class="weui-cell weui-cell_switch">
                 <div class="weui-cell__bd">开启相邻数据对比</div>
                 <div class="weui-cell__ft">
-                    <input class="weui-switch" type="checkbox">
+                    <input id="chk_near" class="weui-switch" type="checkbox">
                 </div>
             </div>
             <div class="weui-cell weui-cell_switch">
                 <div class="weui-cell__bd">开启与上年数据对比</div>
                 <div class="weui-cell__ft">
-                    <input class="weui-switch" type="checkbox">
+                    <input id="chk_lastyear" class="weui-switch" type="checkbox">
                 </div>
             </div>
             <div class="weui-cell weui-cell_switch">
                 <div class="weui-cell__bd">开启指定数据对比</div>
                 <div class="weui-cell__ft">
-                    <input class="weui-switch" type="checkbox">
+                    <input id="chk_diy" class="weui-switch" type="checkbox">
                 </div>
             </div>
         </div>
@@ -108,7 +108,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label for="" class="weui-label">起始日期</label></div>
                 <div class="weui-cell__bd">
-                    <input type="text" class="weui-input" id='date2' placeholder="请选择日期" />
+                    <input type="text" class="weui-input" id='date_start' placeholder="请选择日期" />
                 </div>
             </div>
         </div>
@@ -118,28 +118,28 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label for="" class="weui-label">截至日期</label></div>
                 <div class="weui-cell__bd">
-                    <input type="text" class="weui-input"  id='date3' placeholder="请选择日期" />
+                    <input type="text" class="weui-input"  id='date_end' placeholder="请选择日期" />
                 </div>
             </div>
         </div>
         <!-- weui-cells end -->
-        <div class="weui-cells__title">两个时段数据对比</div>
+        <div id="h_title" class="weui-cells__title" style="display: none;">两个时段数据对比</div>
         <!-- weui-cells start -->
-        <div class="weui-cells mt5">
+        <div id="h_chk_start"  style="display: none;" class="weui-cells mt5">
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label for="" class="weui-label">起始日期</label></div>
                 <div class="weui-cell__bd">
-                    <input type="text" class="weui-input" id='date2' placeholder="请选择日期" />
+                    <input type="text" class="weui-input" id='date_start_next' placeholder="请选择日期" />
                 </div>
             </div>
         </div>
         <!-- weui-cells end -->
         <!-- weui-cells start -->
-        <div class="weui-cells mt5">
+        <div id="h_chk_end"  style="display: none;" class="weui-cells mt5">
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label for="" class="weui-label">截至日期</label></div>
                 <div class="weui-cell__bd">
-                    <input type="text" class="weui-input"  id='date3' placeholder="请选择日期" />
+                    <input type="text" class="weui-input"  id='date_end_next' placeholder="请选择日期" />
                 </div>
             </div>
         </div>
@@ -149,31 +149,118 @@
 </block>
 
 <block name="js">
-    <script src="js/city-picker.min.js"></script>
+    <script src="__PUBLIC_JS__/city-picker.min.js"></script>
     <script>
-        var url = "{:U('Index')}";//统计数据
+        var url = "";
+        var iurl = "{:U('Index')}";//统计数据
         var curl = "{:U('Contrast')}";//同比数据
-        $('#goToTop').click(function(){
-            $('html , body').animate({scrollTop: 0},'slow');
+        $(function(){
+            init_();
         });
-        //获得昨日日期
-        var myDate = new Date();
-        myDate.setTime(myDate.getTime()-24*60*60*1000);
+
+        //初始化数据
+        function init_()
+        {
+            $('#goToTop').click(function(){
+                $('html , body').animate({scrollTop: 0},'slow');
+            });
+            $(".return").click(function(){
+                history.go(-1);
+            });
+            //获得昨日日期
+            var myDate = new Date();
+            myDate.setTime(myDate.getTime()-24*60*60*1000);
+            //
+            $("#date_start").calendar({
+                value: [myDate],
+                dateFormat: 'yyyy年mm月dd日',
+                onChange: function (p, values, displayValues) {
+                    console.log(values, displayValues);
+                }
+            });
+            //
+            $("#date_end").calendar({
+                value: [myDate],
+                dateFormat: 'yyyy年mm月dd日',
+                onChange: function (p, values, displayValues) {
+                    console.log(values, displayValues);
+                }
+            });
+            //
+            $("#date_start_next").calendar({
+                value: [myDate],
+                dateFormat: 'yyyy年mm月dd日',
+                onChange: function (p, values, displayValues) {
+                    console.log(values, displayValues);
+                }
+            });
+            //
+            $("#date_end_next").calendar({
+                value: [myDate],
+                dateFormat: 'yyyy年mm月dd日',
+                onChange: function (p, values, displayValues) {
+                    console.log(values, displayValues);
+                }
+            });
+            $("#chk_near").change(function(){
+                var f = $(this).attr("checked");
+                if($(this).is(':checked')) {
+                    //自定义时段对比
+                    Show_i(0);
+                    url = curl;
+                    checkFun(this);
+                }else {
+
+                }
+            });
+            $("#chk_lastyear").change(function(){
+                var f = $(this).attr("checked");
+                if($(this).is(':checked')) {
+                    //自定义时段对比
+                    Show_i(0);
+                    url = curl;
+                    checkFun(this);
+                }else {
+                }
+            });
+            $("#chk_diy").change(function(){
+                var f = $(this).attr("checked");
+                if($(this).is(':checked')) {
+                    //自定义时段对比
+                    Show_i(1);
+                    url = curl;
+                    checkFun(this);
+                }else {
+                    Show_i(0);
+                }
+            });
+        }
         //
-        $("#date2").calendar({
-            value: [myDate],
-            dateFormat: 'yyyy年mm月dd日',
-            onChange: function (p, values, displayValues) {
-                console.log(values, displayValues);
+        function checkFun(obj){
+            var _now_id = $(obj).attr("id");
+            $("input[class='weui-switch']").each(function(){
+                var _id = $(this).attr("id");
+                if(_id != _now_id)
+                {
+                    $(this).removeAttr("checked");
+                }
+            });
+        }
+        //显示与隐藏
+        function Show_i(flag)
+        {
+            ShowOrHide($("#h_title"),flag);
+            ShowOrHide($("#h_chk_start"),flag);
+            ShowOrHide($("#h_chk_end"),flag);
+        }
+        //控件显示与隐藏
+        function ShowOrHide(obj,flag)
+        {
+            $(obj).removeAttr("style");
+            if(flag !=1)//显示
+            {
+                $(obj).attr("style","display:none");
             }
-        });
-        //
-        $("#date3").calendar({
-            value: [myDate],
-            dateFormat: 'yyyy年mm月dd日',
-            onChange: function (p, values, displayValues) {
-                console.log(values, displayValues);
-            }
-        });
+        }
     </script>
 </block>
