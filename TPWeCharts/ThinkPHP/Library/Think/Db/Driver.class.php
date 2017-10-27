@@ -136,7 +136,39 @@ abstract class Driver
     {
         $this->PDOStatement = null;
     }
-
+    /**
+     * 执行查询 返回数据集
+     * access public
+     * @param string $str  sql指令
+     * return mixed
+     */
+    public function query_($str) {
+        if(0===stripos($str, 'call')){ // 存储过程查询支持
+            if(isset($this->linkID[1]))mysql_close($this->linkID[1]);//关闭原来存储过程连接
+           // $this->connected    =   false;//启用新连接
+            if(isset($this->linkID[1]))unset($this->linkID[1]);//存储过程一次只能使用一个连接
+            if ( !$this->connected ) $this->_linkID = $this->connect($this->config,1);//新建一个新的存储过程连接，不影响原sql语句的连接
+            //$this->connected    =   false;//如果下次使用sql语句时使用原来的连接
+        }else{
+            $this->initConnect(false);//使用sql语句连接
+        }
+        if ( !$this->_linkID ) return false;
+        $this->queryStr = $str;
+        //释放前次的查询结果
+        if ( $this->queryID ) {    $this->free();    }
+        N('db_query',1);
+        // 记录开始执行时间
+        G('queryStartTime');
+        $this->queryID = mysql_query($str, $this->_linkID);
+        $this->debug();
+        if ( false === $this->queryID ) {
+            $this->error();
+            return false;
+        } else {
+            $this->numRows = mysql_num_rows($this->queryID);
+            return $this->getAll();
+        }
+    }
     /**
      * 执行查询 返回数据集
      * @access public

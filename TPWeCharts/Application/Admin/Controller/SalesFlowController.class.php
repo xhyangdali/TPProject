@@ -14,6 +14,7 @@ class SalesFlowController extends AdminBaseController{
 		//访问日志
 		$ip = get_client_ip(); 
 		$log = D("Log");
+		//$Model = new M("");
 		$SalesFlow = D("SalesFlow");
 		$log->addLog('Log','SalesFlow',json_encode(array('Result::' => true,'Data::'=>'','IP::'=>$ip)),'');
 		//查询

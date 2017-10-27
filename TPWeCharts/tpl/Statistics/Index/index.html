@@ -5,7 +5,7 @@
     <div class="weui-tab">
         <div class="weui-navbar" >
             <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
-                图表分析
+                图表分析{$ckie}
             </a>
             <a class="weui-navbar__item" href="#tab2">
                 文字分析
@@ -16,28 +16,28 @@
             <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>关区客运站窗口售票金额</h3></div>
+                    <div class="weui-panel__hd"><h3>关区客运站窗口售票金额</h3><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart1" width="400px" height="300px;"></canvas>
                     </div>
                 </div>
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额</h3></div>
+                    <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额</h3><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart2" width="400px" height="300px;"></canvas>
                     </div>
                 </div>
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>电子客票销售张数统计</h3></div>
+                    <div class="weui-panel__hd"><h3>电子客票销售张数统计</h3><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart3" width="400px" height="300px;"></canvas>
                     </div>
                 </div>
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>电子客票销售金额统计</h3></div>
+                    <div class="weui-panel__hd"><h3>电子客票销售金额统计</h3><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart4" width="400px" height="300px;"></canvas>
                     </div>
@@ -57,11 +57,11 @@
                 <!-- page__bd end -->
                 <!-- page__bd start -->
                 <div class="page__bd">
-                    <div class="weui-cells__title">所属客运站窗口售票金额</div>
+                    <div class="weui-cells__title"><label name="lbdate"></label></div>
                     <div class="weui-cells">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
-                                <p>2017年10月21日</p>
+                                <p>窗口售票金额</p>
                             </div>
                             <div class="weui-cell__ft">共计：79.13万元</div>
                         </div>
@@ -83,11 +83,11 @@
                 <!-- page__bd end -->
                 <!-- page__bd start -->
                 <div class="page__bd">
-                    <div class="weui-cells__title">电子客票销售情况</div>
+                    <div class="weui-cells__title"><label name="lbdate"></label></div>
                     <div class="weui-cells">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
-                                <p>2017年10月21日</p>
+                                <p>电子客票销售情况</p>
                             </div>
                             <div class="weui-cell__ft">共计：94,354元</div>
                         </div>
@@ -113,11 +113,100 @@
 </block>
 <block name="js">
 <script type="text/javascript">
+    var gqstations = [];//关区客运站
+    var gqmoneys = [];//关区客运站客票统计
+    var xfstations = [];//县分客运站
+    var xfmoneys = [];//县分客运站客票统计
+    var estation = [];//电子票统计客运站
+    var echannel = [];//电子票统计渠道
+    var ex_data_ticket = [];//电子数据
+    //
+    var surl = "{:U('Search')}";
+    var iurl ="{:U('Index')}";
+    var curl ="{:U('Contrast')}";
+    //GetResult
+    //查询参数获得
+    var _Search_start = $.cookie('_Search_start');
+    var _Search_end = $.cookie('_Search_end');
+    var _Search_start_next = $.cookie('_Search_start_next');
+    var _Search_end_next = $.cookie('_Search_end_next');
+    var _Search_flag = $.cookie('_Search_flag');
+
     $(function(){
 		//
-		var surl = "{:U('Search')}";
-		var iurl ="{:U('Index')}";
-		var curl ="{:U('Contrast')}";
+
+        if(!_Search_flag)
+        {
+            _Search_flag=0;
+        }
+        if(!_Search_start)
+        {
+            var myDate = new Date();
+            myDate.setTime(myDate.getTime()-30*24*60*60*1000);
+            myDate = Date_Format(myDate,"yyyy-MM-dd");
+            _Search_start = myDate;
+            //
+            var myDate1 = new Date();
+            myDate1 = Date_Format(myDate1,"yyyy-MM-dd");
+            _Search_end = myDate1;
+        }
+        var lbtxt = _Search_start+"至"+_Search_end;
+        $("label[name='lbdate']").each(function(){
+            $(this).html(lbtxt);
+        });
+        $.ajax({
+            url:"{:U('GetResult')}",
+            type:"POST",
+            data:{_Search_start:_Search_start,_Search_end:_Search_end,_Search_start_next:_Search_start_next,_Search_end_next:_Search_end_next,_Search_flag:_Search_flag},
+            dataType:"json",
+            error:function(data){
+            },
+            success:function(data){
+                if(data)
+                {
+                    if(data.state == 0)
+                    {
+                        gqstations = data.GQstation;
+                        gqmoneys = data.GQMmun;
+                        xfstations = data.XFstation;
+                        xfmoneys = data.XFMmun;
+                        estation = data.Estation;
+                        echannel = data.Echannel;
+                        //var ex_data_ticket = data.ex_data_ticket;
+                        var ex_tcket = data.ex_data_ticket;
+                        for(var i=0;i < echannel.length ;i++)
+                        {
+                            var temp = {};
+                            temp.name = echannel[i];
+                            temp.type = "bar";
+                            temp.label =  {
+                                normal: {
+                                    show: true,
+                                    position: 'top'
+                                }
+                            };
+                            var _dd = [];
+                            for(var j=0;j < ex_tcket.length ;j++)
+                            {
+                                if(echannel[i] == ex_tcket[j].name )
+                                {
+                                    _dd = ex_tcket[j].data;
+                                    console.log(_dd);
+                                }
+                            }
+                            temp.data = [15,16,18,19];
+                            ex_data_ticket.push(temp);
+                        }
+                        //console.log(ex_data_ticket);
+                        //
+                        fun0();
+                    }else {
+                        $.alert("请您输入合适的查询条件进行检索！", "警告");
+                    }
+                }
+            }
+        });
+
 		$("#_data").click(function(){
 			//搜索事件
 			window.location.href = iurl;	
@@ -130,10 +219,11 @@
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
         //weui-navbar
-        fun0();
+
         $('#goToTop').click(function(){
             $('html , body').animate({scrollTop: 0},'slow');
         });
+        htmlFontSize();
     });
     //
     function fun0(){
@@ -153,6 +243,9 @@
             title: {
                 text: '窗口售票金额'
             },
+            grid: {
+                y2: 60
+            },
             tooltip: {},
             color: ['rgb(25, 183, 207)'],
             legend: {
@@ -169,7 +262,11 @@
 
             },
             xAxis: {
-                data: ["东客站","快速站","兴盛站","北站"]
+                data: gqstations,
+                axisLabel:{
+                    interval:0,//横轴信息全部显示
+                    rotate:30,//-30度角倾斜显示
+                }
             },
             yAxis: {},
             series: [{
@@ -181,7 +278,8 @@
                         position: 'top'
                     }
                 },
-                data: [5, 1.5, 7.8, 10.5]
+                data: gqmoneys,
+
             }]
         };
         // 使用刚指定的配置项和数据显示图表。
@@ -203,13 +301,21 @@
             title: {
                 text: '窗口售票金额'
             },
+            grid: {
+                y2: 50
+            },
             tooltip: {},
             legend: {
                 data:['单位：万元']
             },
             color: ['rgb(25, 183, 207)'],
             xAxis: {
-				data: ["祥云","宾川","弥渡","南涧","巍山","永平"]
+				data: xfstations
+                ,
+                axisLabel:{
+                    interval:0,//横轴信息全部显示
+                    rotate:60,//60度角倾斜显示
+                }
             },
             yAxis: {
                 
@@ -223,7 +329,7 @@
                         position: 'top'
                     }
                 },
-                data: [5, 1.5, 7.8, 10.5,5.5,7.9]
+                data: xfmoneys
             }]
         };
         // 使用刚指定的配置项和数据显示图表。
@@ -249,12 +355,16 @@
                 }
             },
             legend: {
-                data:['微信售票张数','自助机售票张数','其他网销渠道售票张数']
+                data:echannel
             },
             xAxis : [
                 {
                     type : 'category',
-                    data : ['东科站','快速站','兴盛站','北站','县分公司']
+                    data : estation,
+                    axisLabel:{
+                        interval:0,//横轴信息全部显示
+                        rotate:30,//60度角倾斜显示
+                    }
                 }
             ],
             yAxis : [
@@ -262,43 +372,7 @@
                     type : 'value'
                 }
             ],
-            series : [
-                {
-                    name:'微信售票张数',
-                    type:'bar',
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'top'
-                        }
-                    },
-                    data:[320, 332, 301, 334, 390]
-                },
-                {
-                    name:'自助机售票张数',
-                    type:'bar',
-                    stack: '自助机售票张数',
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'top'
-                        }
-                    },
-                    data:[120, 132, 101, 134, 90]
-                },
-                {
-                    name:'其他网销渠道售票张数',
-                    type:'bar',
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'top'
-                        }
-                    },
-                    stack: '其他网销渠道售票张数',
-                    data:[220, 182, 191, 234, 290]
-                }
-            ]
+            series : ex_data_ticket
         };
         // 使用刚指定的配置项和数据显示图表。
         myChart_3.setOption(option3);

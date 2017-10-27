@@ -262,7 +262,7 @@
 			var end_next = $("#date_end_next").val();
 			switch(_flag)
 			{
-				case 0:
+                case 0:
 					if(start_ ==""){
 						$.alert("请您输入查询条件进行检索！", "警告");
 						return false;
@@ -272,6 +272,7 @@
 						$.alert("开始时间不应该大于截止时间！", "警告");
 						return false;
 					}
+
 				break;
 				case 1://顺推时段
 					if(start_ =="" || end_ =="")
@@ -311,6 +312,20 @@
 					}
 				break;
 			}
+            //查询cookie设置
+            var cookietime = new Date();
+            var d = new Date()
+            cookietime.setTime(d.getTime() + (60 * 60 * 1000));//coockie保存一小时
+            $.cookie('_Search_start', null);
+            $.cookie("_Search_start",start_ ,{expires:cookietime});
+            $.cookie('_Search_end', null);
+            $.cookie("_Search_end",end_ ,{expires:cookietime});
+            $.cookie('_Search_start_next', null);
+            $.cookie("_Search_start_next",start_next ,{expires:cookietime});
+            $.cookie('_Search_end_next', null);
+            $.cookie("_Search_end_next",end_next ,{expires:cookietime});
+            $.cookie('_Search_flag', null);
+            $.cookie("_Search_flag",_flag ,{expires:cookietime});
 			window.location.href = url;	
 		}
         //
