@@ -27,8 +27,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.431946">
-              <caret line="200" column="26" selection-start-line="200" selection-start-column="26" selection-end-line="200" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.6580427">
+              <caret line="194" column="38" selection-start-line="194" selection-start-column="38" selection-end-line="194" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -67,8 +67,8 @@
       <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.8392856">
-              <caret line="112" column="71" selection-start-line="112" selection-start-column="71" selection-end-line="112" selection-end-column="71" />
+            <state vertical-scroll-proportion="-9.267858">
+              <caret line="125" column="55" selection-start-line="125" selection-start-column="55" selection-end-line="125" selection-end-column="55" />
               <folding>
                 <element signature="e#39#86#0#PHP" expanded="true" />
               </folding>
@@ -915,8 +915,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8392856">
-          <caret line="112" column="71" selection-start-line="112" selection-start-column="71" selection-end-line="112" selection-end-column="71" />
+        <state vertical-scroll-proportion="-9.267858">
+          <caret line="125" column="55" selection-start-line="125" selection-start-column="55" selection-end-line="125" selection-end-column="55" />
           <folding>
             <element signature="e#39#86#0#PHP" expanded="true" />
           </folding>
@@ -925,8 +925,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.431946">
-          <caret line="200" column="26" selection-start-line="200" selection-start-column="26" selection-end-line="200" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.6580427">
+          <caret line="194" column="38" selection-start-line="194" selection-start-column="38" selection-end-line="194" selection-end-column="38" />
           <folding />
         </state>
       </provider>

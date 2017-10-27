@@ -110,9 +110,9 @@ class IndexController extends StatisticsBaseController{
 				foreach($Echannel as $item)
 				{
 					//
-					array_push($ex_data_ticket,array("name" => $item));
+					$_i_data = array();
+					array_push($_i_data,"name", $item);
 					$_data = array();
-
 					foreach($Estation as $_item)
 					{
 						foreach($array_ET as $v_)
@@ -123,7 +123,8 @@ class IndexController extends StatisticsBaseController{
 							}
 						}
 					}
-					array_push($ex_data_ticket,"data",$_data);
+					array_push($_i_data,"data",$_data);
+					array_push($ex_data_ticket,$_i_data);
 				}
 				//$ex_data_ticket = json_encode($ex_data_ticket);
 				//

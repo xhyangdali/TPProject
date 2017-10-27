@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-10-26 17:41:57
+Date: 2017-10-27 17:54:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -510,7 +510,7 @@ CREATE TABLE `log` (
   PRIMARY KEY (`id`),
   KEY `op_time` (`op_time`),
   KEY `class_name` (`class_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=544 DEFAULT CHARSET=utf8 COMMENT='操作日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=545 DEFAULT CHARSET=utf8 COMMENT='操作日志表';
 
 -- ----------------------------
 -- Records of log
@@ -1058,6 +1058,7 @@ INSERT INTO `log` VALUES ('540', 'admin', 'LOGOUT', 'Users', '88', '{\"IP\":\"0.
 INSERT INTO `log` VALUES ('541', 'admin', 'LOGIN', 'Users', '88', '{\"IP\":\"0.0.0.0\"}', '{\"id\":\"88\",\"username\":\"admin\",\"password\":\"e10adc3949ba59abbe56e057f20f883e\",\"avatar\":\"\\/Upload\\/avatar\\/user1.jpg\",\"email\":\"yxh.network@gmail.com\",\"email_code\":\"\",\"nickname\":\"\\u7ba1\\u7406\\u5458\",\"phone\":\"15025134157\",\"org_id\":\"1\",\"dept_id\":\"0\",\"p_id\":\"0\",\"e_id\":\"0\",\"status\":\"1\",\"register_time\":\"1449199996\",\"last_login_ip\":\"\",\"last_login_time\":\"0\"}', '1508999761', '');
 INSERT INTO `log` VALUES ('542', 'admin', 'ACSESS', 'AdminIndex', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508999763', '');
 INSERT INTO `log` VALUES ('543', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508999767', '');
+INSERT INTO `log` VALUES ('544', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509062749', '');
 
 -- ----------------------------
 -- Table structure for `oauth_user`
@@ -4836,7 +4837,7 @@ BEGIN
 		SELECT
 			sf.stationcode,/* 车站编码 */
 			sf.channelcode,/* 渠道编码 */
-			s.`name` AS stationName,/* 车站名称 */
+			s.`name` AS StationName,/* 车站名称 */
 			c.`name` AS ChannelName,/* 渠道名称 */
 			COUNT(sf.moneynum) AS M_COUNT,/* 统计记录数目 */
 			SUM(sf.moneynum) AS M_NUM,/* 金额 */

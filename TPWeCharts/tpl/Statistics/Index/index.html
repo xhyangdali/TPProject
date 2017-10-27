@@ -188,13 +188,14 @@
                             var _dd = [];
                             for(var j=0;j < ex_tcket.length ;j++)
                             {
-                                if(echannel[i] == ex_tcket[j].name )
+                                //console.log(ex_tcket[j][1]);
+                                if(echannel[i] == ex_tcket[j][1] )
                                 {
-                                    _dd = ex_tcket[j].data;
-                                    console.log(_dd);
+                                    _dd = ex_tcket[j][3];
+                                    //console.log(ex_tcket[j][3]);
                                 }
                             }
-                            temp.data = [15,16,18,19];
+                            temp.data = _dd;
                             ex_data_ticket.push(temp);
                         }
                         //console.log(ex_data_ticket);
