@@ -7,7 +7,7 @@
             <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
                 图表分析
             </a>
-            <a class="weui-navbar__item" href="#tab2">
+            <a id="words_select" class="weui-navbar__item" href="#tab2">
                 文字分析
             </a>
         </div>
@@ -48,7 +48,7 @@
             <!-- weui-tab__bd-item start -->
             <div id="tab2" class="weui-tab__bd-item ">
                 <!-- page__bd start -->
-                <div class="page__bd">
+                <div id="div_wtotal" class="page__bd">
                     <h3>统计概况</h3>
                     <p class="Ctext">窗口售票金额共计：共计销售车票1763张，销售金额：79.13万元</p>
                     <p class="Ctext">电子客票：共计销售车票1763张，销售金额：94,354元。</p>
@@ -63,7 +63,7 @@
                             <div class="weui-cell__bd">
                                 <p>窗口售票金额</p>
                             </div>
-                            <div id="div_total" class="weui-cell__ft">共计：79.13万元</div>
+                            <div id="div_cktotal" class="weui-cell__ft">共计：79.13万元</div>
                         </div>
                         <div class="weui-cell weui-cell_swiped">
                             <div id="words_ck" class="page__bd">
@@ -89,7 +89,7 @@
                             <div class="weui-cell__bd">
                                 <p>电子客票销售情况</p>
                             </div>
-                            <div class="weui-cell__ft">共计：94,354元</div>
+                            <div id="div_ettotal" class="weui-cell__ft">共计：94,354元</div>
                         </div>
                         <div class="weui-cell weui-cell_swiped">
                             <div id="words_et" class="page__bd">
@@ -132,16 +132,13 @@
     var _Search_start_next = $.cookie('_Search_start_next');
     var _Search_end_next = $.cookie('_Search_end_next');
     var _Search_flag = $.cookie('_Search_flag');
-
-    $(function(){
-		//
-
-        if(!_Search_flag)
-        {
+	//查询参数初始化
+	if(!_Search_flag)
+       {
             _Search_flag=0;
-        }
-        if(!_Search_start)
-        {
+       }
+    if(!_Search_start)
+       {
             var myDate = new Date();
             myDate.setTime(myDate.getTime()-30*24*60*60*1000);
             myDate = Date_Format(myDate,"yyyy-MM-dd");
@@ -150,15 +147,45 @@
             var myDate1 = new Date();
             myDate1 = Date_Format(myDate1,"yyyy-MM-dd");
             _Search_end = myDate1;
-        }
+      }
+    $(function(){
+		//图表统计数据处理
+		Charts_data_deal();
+		$("#_data").click(function(){
+			//数据按钮
+			window.location.href = iurl;	
+		});
+		$("#_search").click(function(){
+			//搜索按钮
+			window.location.href = surl;	
+		});
+        $('.weui-tabbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+        });
+        //weui-navbar
+
+        $('#goToTop').click(function(){
+            $('html , body').animate({scrollTop: 0},'slow');
+        });
+        htmlFontSize();
+		Words_data_deal();
+		
+    });
+	//图表部分数据处理Ajax
+	function Charts_data_deal()
+	{
+		
         var lbtxt = _Search_start+"至"+_Search_end;
         $("label[name='lbdate']").each(function(){
             $(this).html(lbtxt);
         });
+		var action_ = "{:U('GetResult')}";
         $.ajax({
-            url:"{:U('GetResult')}",
+            url:action_,
             type:"POST",
-            data:{_Search_start:_Search_start,_Search_end:_Search_end,_Search_start_next:_Search_start_next,_Search_end_next:_Search_end_next,_Search_flag:_Search_flag},
+            data:{_Search_start:_Search_start,_Search_end:_Search_end
+			,_Search_start_next:_Search_start_next,_Search_end_next:_Search_end_next
+			,_Search_flag:_Search_flag},
             dataType:"json",
             error:function(data){
             },
@@ -222,57 +249,92 @@
                             ex_data_ticket.push(temp);
 							ex_data_money.push(temp0);
                         }
-						//文字
-                        //文字部分
-						var ck_html ="";
-						for(var i=0;i < CK_WArray.length ;i++)
-						{
-							ck_html +='<p class="Ctext">'+CK_WArray[i]["stationname"]+'：'+CK_WArray[i]["money"]+'万元</p>';
-						}
-						$("#words_ck").html(ck_html);
-						$("#div_total").html("总计："+data.CK_WTotal+" 万元");
-                        //各客运站电子票统计
-						var _th ="";
-						for(var i=0;i < estation.length ;i++)
-						{
-							_th  += '<p class="Ctext" >'+ estation[i]+":  ";
-							for(var j=0;j < echannel.length ;j++)
-							{
-								var d = 
-								_th +=echannel[j]+':';
-							}
-							_th += '</p>'
-						}
-						e_total_html = _th;
-						$("#words_et").html(e_total_html);
-                        fun0();
+						//
+                        fun_charts();
                     }else {
                         $.alert("请您输入合适的查询条件进行检索！", "警告");
                     }
                 }
             }
         });
-
-		$("#_data").click(function(){
-			//搜索事件
-			window.location.href = iurl;	
+	}
+	//文字部分数据处理方法Ajax
+	function Words_data_deal()
+	{
+		//文字信息统计处理
+		var action_ = "{:U('GetResultWords')}";
+		$("#words_select").click(function(){
+			$.ajax({
+				url:action_,
+				type:"POST",
+				data:{_Search_start:_Search_start,_Search_end:_Search_end
+				,_Search_start_next:_Search_start_next,_Search_end_next:_Search_end_next
+				,_Search_flag:_Search_flag},
+				dataType:"json",
+				error:function(data){
+				},
+				success:function(data){
+					if(data)
+					{
+						if(data.state == 0)
+						{
+							var ck_data_w = data.CK_WArray;
+							var et_data_w = data.words_data;
+							var total_ = data.total_data[0];
+							if(total_){
+									
+									//综合统计
+									var _html ='';
+									_html += '<h3>综合预览</h3>';
+									_html += '<p class="Ctext">窗口票销售情况：'+total_.total_ck_t+' 张，共计：'+total_.total_ck_m+' 万元;</p>';
+									_html += '<p class="Ctext">电子票销售情况：'+total_.etotal_t+' 张，共计：'+total_.etotal_m+' 元;</p>';
+									_html += '<p class="Ctext">保险票销售情况：：'+total_.total_i+' 张 ;</p>';
+									$("#div_wtotal").html(_html);
+									//									
+									$("#div_cktotal").html("总计："+total_.total_ck_m+" 万元");
+									$("#div_ettotal").html("总计："+total_.etotal_m+" 元");
+								}
+							if(ck_data_w)
+							{
+								//窗口售票统计-文字
+								var ck_html ="";
+								for(var i=0;i < ck_data_w.length ;i++)
+								{
+									ck_html +='<p class="Ctext">'+ck_data_w[i]["stationname"]+'：'+ck_data_w[i]["money"]+'万元</p>';
+								}
+								$("#words_ck").html(ck_html);
+							}
+							if(et_data_w)
+							{
+								var _html ='';
+								for(var i=0;i < et_data_w.length ;i++)
+								{
+									_html += '<p class="Ctext">'+et_data_w[i][1]+'：'
+									+et_data_w[i][2]+et_data_w[i][3]
+									+et_data_w[i][4]+et_data_w[i][5]+' 元'
+									+'；'+et_data_w[i][6]+et_data_w[i][7]
+									+et_data_w[i][8]+et_data_w[i][9]+' 元'
+									+'；'+et_data_w[i][10]+et_data_w[i][11]
+									+et_data_w[i][12]+et_data_w[i][13]+' 元'
+									+'</p>';
+								}
+								if(total_){
+									_html += '<p class="Ctext">总计：车票 '+total_.etotal_t+' 张，保险'
+									+total_.total_i+' 张 ，共计：'+total_.etotal_m+' 元;</p>';
+								}
+								$("#words_et").html(_html);
+							}
+							
+						}else {
+							$.alert("请您输入合适的查询条件进行检索！", "警告");
+						}
+					}
+				}
+			});
 		});
-		$("#_search").click(function(){
-			//搜索事件
-			window.location.href = surl;	
-		});
-        $('.weui-tabbar__item').on('click', function () {
-            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
-        });
-        //weui-navbar
-
-        $('#goToTop').click(function(){
-            $('html , body').animate({scrollTop: 0},'slow');
-        });
-        htmlFontSize();
-    });
-    //
-    function fun0(){
+	}
+    //图标渲染处理逻辑
+    function fun_charts(){
         //
         var worldMapContainer = document.getElementById('myChart1');
 

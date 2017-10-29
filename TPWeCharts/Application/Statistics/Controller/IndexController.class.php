@@ -32,7 +32,7 @@ class IndexController extends StatisticsBaseController{
 	}
 
 	/**
-	 * 查询统计（搜索查询）
+	 * 查询统计（搜索查询）图表信息
 	 * 执行存储过程
 	 * 返回结果集合
 	 * 参数存于cookie中
@@ -64,19 +64,12 @@ class IndexController extends StatisticsBaseController{
 				$array_GQCK = $Model->query($sql);
 				$GQstation = array();//关区客运站
 				$GQMmun= array();//关区客运站金额
-				$CK_WArray = array();//各客运站售票金额统计
-				$ET_WArray = array();//各客运站售票金额统
-				$CK_WTotal = 0.0;
+
 				foreach($array_GQCK as $item)
 				{
 					array_push($GQstation,$item['stationname']);
 					$m_ = $item['m_num']/10000;
 					$m_ = number_format($m_,2,".","");
-					$CK_WTotal +=$m_;
-					array_push($CK_WArray,array(
-						'stationname' => $item["stationname"],
-						'money' => $m_
-					));
 					array_push($GQMmun,$m_);
 				}
 				//县分公司窗口售票数据查询
@@ -94,11 +87,6 @@ class IndexController extends StatisticsBaseController{
 					array_push($XFstation,$item['stationname']);
 					$m_ = $item['m_num']/10000;
 					$m_ = number_format($m_,2,".","");
-					$CK_WTotal +=$m_;
-					array_push($CK_WArray,array(
-						'stationname' => $item["stationname"],
-						'money' => $m_
-					));
 					array_push($XFMmun,$m_);
 				}
 				//电子客票数据处理
@@ -149,33 +137,7 @@ class IndexController extends StatisticsBaseController{
 					array_push($ex_data_ticket,$_i_data);
 					array_push($ex_data_money,$_i_tdata);
 				}
-				//$ex_data_ticket = json_encode($ex_data_ticket);
-				//文字统计处理
-				$words_data = array();//依据车站统计
-				foreach($Estation as $item)
-				{
-					//
-					$_i_data = array();
-					array_push($_i_data,"stationname", $item);
-					$_data = array();
-					foreach($Echannel as $_item)
-					{
-						$tt = 0;
-						$mm = 0.0;
-						foreach($array_ET as $v_)
-						{
-							if($v_['channelname'] == $_item )
-							{
-								$tt += number_format($v_["t_num"]);
-								$mm += number_format($v_["m_num"]);
-							}
-						}
-						array_push($_i_data,$_item.'T',$tt);
-						array_push($_i_data,$_item.'M',number_format($mm,2,'.',''));
-					}
-					array_push($words_data,$_i_data);
-				}
-				
+				//$ex_data_ticket = json_encode($ex_data_ticket);			
 				//
 				break;
 		}
@@ -187,12 +149,9 @@ class IndexController extends StatisticsBaseController{
 			'XFMmun' =>$XFMmun,//县分客运站金额
 			'Echannel' =>$Echannel,//电子票渠道
 			'Estation' =>$Estation,//电子票对比客运站
-			'CK_WArray' =>$CK_WArray,//各客运站数据统计
-			'words_data' =>$words_data,//各客运站数据统电子
 			'ex_data_ticket' => $ex_data_ticket,//客票数目
 			'ex_data_money' => $ex_data_money,//客票金额
-			'array_ET' =>$array_ET,
-			'CK_WTotal' => $CK_WTotal,
+			'array_ET' =>$array_ET
 		);
 		$this->ajaxReturn($iresult);//返回操作结果
 	}
@@ -230,11 +189,13 @@ class IndexController extends StatisticsBaseController{
 				$CK_WArray = array();//各客运站售票金额统计
 				$ET_WArray = array();//各客运站售票金额统
 				$CK_WTotal = 0.0;
+				$CK_WTicket = 0;
 				foreach($array_GQCK as $item)
 				{
 					$m_ = $item['m_num']/10000;
 					$m_ = number_format($m_,2,".","");
 					$CK_WTotal +=$m_;
+					$CK_WTicket += $item['t_num'];
 					array_push($CK_WArray,array(
 						'stationname' => $item["stationname"],
 						'money' => $m_
@@ -252,6 +213,7 @@ class IndexController extends StatisticsBaseController{
 					$m_ = $item['m_num']/10000;
 					$m_ = number_format($m_,2,".","");
 					$CK_WTotal +=$m_;
+					$CK_WTicket += $item['t_num'];
 					array_push($CK_WArray,array(
 						'stationname' => $item["stationname"],
 						'money' => $m_
@@ -276,9 +238,16 @@ class IndexController extends StatisticsBaseController{
 				$Echannel = array_unique($Echannel);
 				$Estation = array_flip($Estation);
 				$Estation = array_keys($Estation);
-				
+				//保险票
+				$sql_3 = "  CALL  TJ_BX('{$_Search_start}','{$_Search_end}') ";
+				$Model_3 = M(""); // 实例化一个model对象 没有对应任何数据表
+				$array_BX = $Model_3->query($sql_3);
 				//文字统计处理
 				$words_data = array();//依据车站统计
+				$total_data = array();//全部统计数据
+				$total_t = 0;//车票
+				$total_m = 0;//金额
+				$total_i = $array_BX['i_num'] == null?0:$array_BX['i_num'];//保险
 				foreach($Estation as $item)
 				{
 					//
@@ -291,18 +260,30 @@ class IndexController extends StatisticsBaseController{
 						$mm = 0.0;
 						foreach($array_ET as $v_)
 						{
-							if($v_['channelname'] == $_item )
+							if($v_['channelname'] == $_item && $v_['stationname'] == $item )
 							{
 								$tt += number_format($v_["t_num"]);
 								$mm += number_format($v_["m_num"]);
 							}
 						}
-						array_push($_i_data,$_item.'T',$tt);
-						array_push($_i_data,$_item.'M',number_format($mm,2,'.',''));
+						$total_t += number_format($tt);
+						$total_m += number_format($mm);
+						array_push($_i_data,$_item.'：',$tt);
+						array_push($_i_data,' 张，共计： ',number_format($mm,2,'.',''));
 					}
 					array_push($words_data,$_i_data);
 				}
 				
+				//总计数据：
+				$total_data = array();
+				$total_m = number_format($total_m,2,".",""); 
+				array_push($total_data,array(
+					'etotal_t' => $total_t,//电子票数
+					'etotal_m' => $total_m,//电子票金额
+					'total_i' => $total_i,//保险
+					'total_ck_m' => $CK_WTotal,// 窗口总计数据 金额
+					'total_ck_t' => $CK_WTicket //窗口票数
+				));
 				//
 				break;
 		}
@@ -310,7 +291,7 @@ class IndexController extends StatisticsBaseController{
 			'state' => $state,
 			'CK_WArray' =>$CK_WArray,//各客运站数据统计
 			'words_data' =>$words_data,//各客运站数据统电子
-			'CK_WTotal' => $CK_WTotal,
+			'total_data' => $total_data //总计数据
 		);
 		$this->ajaxReturn($iresult);//返回操作结果
 	}
