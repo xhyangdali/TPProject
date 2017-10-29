@@ -69,7 +69,7 @@ function Date_Format(now,mask)
 }
 /**
  *
- *
+ *字体自动
  */
 function htmlFontSize(){
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -82,4 +82,29 @@ function htmlFontSize(){
     if (fz !== realfz) {
         document.getElementsByTagName("html")[0].style.cssText = 'font-size: ' + fz * (fz / realfz) +"px";
     }
+}
+/**
+ *
+ *计算天数差的函数，通用
+ */
+ function  DateDiff(sDate1,  sDate2){    //sDate1和sDate2是2006-12-18格式  
+      var dateSpan,
+            tempDate,
+            iDays;
+        sDate1 = Date.parse(sDate1);
+        sDate2 = Date.parse(sDate2);
+        dateSpan = sDate2 - sDate1;
+        dateSpan = Math.abs(dateSpan);
+        iDays = Math.floor(dateSpan / (24 * 3600 * 1000));
+        return iDays 
+   }  
+   /**
+ *
+ *时间减去一年
+ */
+ function Date_Next(today)
+ {
+	var d2=new Date(today); 
+	d2.setFullYear(d2.getFullYear()-1); 
+	return d2;
 }

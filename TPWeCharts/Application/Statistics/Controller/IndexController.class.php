@@ -11,9 +11,7 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计页面
 	 */
 	public function Index(){
-		$assign=array(
-			'msg' => 'OK'
-		);
+
 		$this->assign($assign);
         $this->display();
 	}
@@ -48,7 +46,7 @@ class IndexController extends StatisticsBaseController{
 		$state = 0;
 		switch($_Search_flag)
 		{
-			case 0://统计查询
+			case 0://统计查询--无对比
 				if(!empty($_Search_start))
 				{
 					if(empty($_Search_end))
@@ -139,20 +137,125 @@ class IndexController extends StatisticsBaseController{
 				}
 				//$ex_data_ticket = json_encode($ex_data_ticket);			
 				//
+				$iresult = array(
+					'state' => $state,
+					'GQstation' =>$GQstation,//关区客运站
+					'GQMmun' =>$GQMmun,//关区客运站金额
+					'XFstation' =>$XFstation,//县分客运站
+					'XFMmun' =>$XFMmun,//县分客运站金额
+					'Echannel' =>$Echannel,//电子票渠道
+					'Estation' =>$Estation,//电子票对比客运站
+					'ex_data_ticket' => $ex_data_ticket,//客票数目
+					'ex_data_money' => $ex_data_money,//客票金额
+					'array_ET' =>$array_ET
+				);
 				break;
+				default:
+					//关区窗口售票数据查询
+					$stationfix ="10%";//关区客运站标志过滤符号
+					$channelfix ="10%";//渠道标志过滤符号 窗口
+					$sql = "  CALL TB_CHARTS('{$stationfix}','{$channelfix}','{$_Search_start}','{$_Search_end}'
+					,'{$_Search_start_next}','{$_Search_end_next}') ";
+					$Model = M(""); // 实例化一个model对象 没有对应任何数据表
+					$array_GQCK = $Model->query($sql);
+					//关区窗口售票情况对比处理
+					$GQStations = array();
+					$GQ_Now_MData = array();
+					$GQ_Next_MData = array();
+					$GQ_Data = array();
+					foreach($array_GQCK as $item)
+					{
+						$m_ = $item['m_num']/10000;
+						$m_ = number_format($m_,2,".","");
+						if($item['flag'] == "Now")
+						{
+							array_push($GQStations,$item['stationname']);
+							array_push($GQ_Now_MData,$m_);
+						}else{
+							array_push($GQ_Next_MData,$m_);
+						}
+					}
+					array_push($GQ_Data,array(
+						'station' => $GQStations,
+						'now' => $GQ_Now_MData,
+						'next' => $GQ_Next_MData
+					));
+					//县份公司统计
+					//县份公司窗口售票数据查询
+					$stationfix_1 ="20%";//县份公司客运站标志过滤符号
+					$channelfix_1 ="10%";//渠道标志过滤符号 窗口
+					$sql_1 = "  CALL TB_CHARTS('{$stationfix_1}','{$channelfix_1}','{$_Search_start}','{$_Search_end}'
+					,'{$_Search_start_next}','{$_Search_end_next}') ";
+					$Model_1 = M(""); // 实例化一个model对象 没有对应任何数据表
+					$array_XFCK = $Model_1->query($sql_1);
+					//关区窗口售票情况对比处理
+					$XFStations = array();
+					$XF_Now_MData = array();
+					$XF_Next_MData = array();
+					$XF_Data = array();
+					foreach($array_XFCK as $item)
+					{
+						$m_ = $item['m_num']/10000;
+						$m_ = number_format($m_,2,".","");
+						if($item['flag'] == "Now")
+						{
+							array_push($XFStations,$item['stationname']);
+							array_push($XF_Now_MData,$m_);
+						}else{
+							array_push($XF_Next_MData,$m_);
+						}
+					}
+					array_push($XF_Data,array(
+						'station' => $XFStations,
+						'now' => $XF_Now_MData,
+						'next' => $XF_Next_MData
+					));
+					//
+					//电子票统计查询询
+					$stationfix_2 ="10%";//关区客运站标志过滤符号
+					$stationfix_20 ="20%";//县份公司客运站标志过滤符号
+					$channelfix_2 ="20%";//渠道标志过滤符号 电子票
+					$sql_2 = "  CALL TB_ETICKET_CHARTS('{$stationfix_2}','{$stationfix_20}'
+					,'{$channelfix_2}','{$_Search_start}','{$_Search_end}'
+					,'{$_Search_start_next}','{$_Search_end_next}') ";
+					$Model_2 = M(""); // 实例化一个model对象 没有对应任何数据表
+					$array_ETTB = $Model_2->query($sql_2);
+					$ETStations = array();
+					$ET_Now_MData = array();
+					$ET_Next_MData = array();
+					$ET_Now_TData = array();
+					$ET_Next_TData = array();
+					$ET_Data = array();
+					foreach($array_ETTB as $item)
+					{
+						$m_ = $item['m_num'];
+						$m_ = number_format($m_,2,".","");
+						if($item['flag'] == "Now")
+						{
+							array_push($ETStations,$item['stationname']);
+							array_push($ET_Now_MData,$m_);
+							array_push($ET_Now_TData,$item["t_num"]);
+						}else{
+							array_push($ET_Next_MData,$m_);
+							array_push($ET_Next_TData,$item["t_num"]);
+						}
+					}
+					array_push($ET_Data,array(
+						'station' => $ETStations,
+						'now_m' => $ET_Now_MData,
+						'next_m' => $ET_Next_MData,
+						'now_t' => $ET_Now_TData,
+						'next_t' => $ET_Next_TData
+					));
+					//
+					$iresult = array(
+						'state' => $state,
+						'gq_data' => $GQ_Data, //关区数据
+						'xf_data' => $XF_Data, //县份数据
+						'et_data' => $ET_Data //电子票数据
+				);
 		}
-		$iresult = array(
-			'state' => $state,
-			'GQstation' =>$GQstation,//关区客运站
-			'GQMmun' =>$GQMmun,//关区客运站金额
-			'XFstation' =>$XFstation,//县分客运站
-			'XFMmun' =>$XFMmun,//县分客运站金额
-			'Echannel' =>$Echannel,//电子票渠道
-			'Estation' =>$Estation,//电子票对比客运站
-			'ex_data_ticket' => $ex_data_ticket,//客票数目
-			'ex_data_money' => $ex_data_money,//客票金额
-			'array_ET' =>$array_ET
-		);
+		
 		$this->ajaxReturn($iresult);//返回操作结果
 	}
 	/**
@@ -247,7 +350,7 @@ class IndexController extends StatisticsBaseController{
 				$total_data = array();//全部统计数据
 				$total_t = 0;//车票
 				$total_m = 0;//金额
-				$total_i = $array_BX['i_num'] == null?0:$array_BX['i_num'];//保险
+				$total_i = $array_BX[0]['i_num'] == null?0:$array_BX[0]['i_num'];//保险
 				foreach($Estation as $item)
 				{
 					//
@@ -285,14 +388,82 @@ class IndexController extends StatisticsBaseController{
 					'total_ck_t' => $CK_WTicket //窗口票数
 				));
 				//
+				$iresult = array(
+					'state' => $state,
+					'CK_WArray' =>$CK_WArray,//各客运站数据统计
+					'words_data' =>$words_data,//各客运站数据统电子
+					'total_data' => $total_data //总计数据
+				);
 				break;
+				default:
+					$stationfix ="%";//关区客运站标志过滤符号
+					$channelfix ="10%";//渠道标志过滤符号 窗口
+					$sql = "  CALL TB_CHARTS('{$stationfix}','{$channelfix}','{$_Search_start}','{$_Search_end}'
+					,'{$_Search_start_next}','{$_Search_end_next}') ";
+					$Model = M(""); // 实例化一个model对象 没有对应任何数据表
+					$array_GQCK = $Model->query($sql);
+					$TBWArray = array();
+					$TBWArray_next = array();
+					//关区窗口售票情况对比处理
+					foreach($array_GQCK as $item)
+					{
+						$m_ = $item['m_num']/10000;
+						$m_ = number_format($m_,2,".","");
+						if($item['flag'] == "Now")
+						{
+							array_push($TBWArray,array(
+								'stationname' => $item["stationname"],
+								'num' => $m_,
+								'code' => $item["stationcode"]
+							));
+						}else
+						{
+							array_push($TBWArray_next,array(
+								'stationname' => $item["stationname"],
+								'num' => $m_,
+								'code' => $item["stationcode"]
+							));
+						}
+					}
+					//表格数据
+					$TB_Data = array();
+					foreach($TBWArray as $item)
+					{
+						foreach($TBWArray_next as $item_next)
+						{
+							if($item["code"] == $item_next["code"] )
+							{
+								if($item["num"] > $item_next["num"])
+								{
+									$tbnum = $item["num"]- $item_next["num"];
+									$tb_ = '+';
+								}else
+								{
+									$tbnum = $item_next["num"]- $item["num"];
+									$tb_ = '-';
+								}
+								$tb_zf = 100*($tbnum/$item["num"]);
+								$tb_zf = number_format($tb_zf,2,'.','');
+								$tbnum = number_format($tbnum,2,'.','');
+								$tb_text = $tb_."".$tbnum."|".$tb_zf."%";
+								array_push($TB_Data,array(
+									"stationname" => $item["stationname"],//名称
+									"m_num" => $item["num"],//金额
+									"n_num" => $item_next["num"],//金额
+									"tb_text" => $tb_text
+								));
+							}
+						}
+					}
+					//第二时段统计
+					//
+					$iresult = array(
+						'state' => $state,
+						'TB_Data' =>$TB_Data,//
+						'TBWArray_next' =>$array_GQCK
+					);
 		}
-		$iresult = array(
-			'state' => $state,
-			'CK_WArray' =>$CK_WArray,//各客运站数据统计
-			'words_data' =>$words_data,//各客运站数据统电子
-			'total_data' => $total_data //总计数据
-		);
+		
 		$this->ajaxReturn($iresult);//返回操作结果
 	}
 }

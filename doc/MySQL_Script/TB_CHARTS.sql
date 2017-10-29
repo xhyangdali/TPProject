@@ -13,7 +13,7 @@ DROP PROCEDURE IF EXISTS TB_CHARTS;
 CREATE PROCEDURE TB_CHARTS(IN station_fix VARCHAR(20),IN channel_fix VARCHAR(20),IN start_date DATETIME,IN end_date DATETIME,IN start_date_next DATETIME,IN end_date_next DATETIME)
 BEGIN
 		SELECT
-			'Now',
+			'Now' as flag,
 			sf.stationcode,/* 车站编码 */
 			s.`name` AS stationName,/* 车站名称 */
 			COUNT(sf.moneynum) AS M_COUNT,/* 统计记录数目 */
@@ -42,7 +42,7 @@ BEGIN
 				sf.stationcode
 			UNION ALL
 			SELECT
-				'Next',
+				'Next' as flag,
 				sf.stationcode,/* 车站编码 */
 				s.`name` AS stationName,/* 车站名称 */
 				COUNT(sf.moneynum) AS M_COUNT,/* 统计记录数目 */

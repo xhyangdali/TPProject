@@ -7,7 +7,7 @@
             <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
                 图表分析
             </a>
-            <a class="weui-navbar__item " href="#tab2">
+            <a id="words_select" class="weui-navbar__item " href="#tab2">
                 文字分析
             </a>
 
@@ -17,28 +17,29 @@
             <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>关区客运站窗口售票金额同比</h3></div>
+                    <div class="weui-panel__hd"><h3>关区客运站窗口售票金额同比</h3><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart1" width="400px" height="300px;"></canvas>
                     </div>
                 </div>
 
+
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额同比</h3></div>
+                    <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额同比</h3><label name="lbdate"></label></div>
+                    <div class="weui-panel__bd">
+                        <canvas id="myChart3" width="400px" height="300px;"></canvas>
+                    </div>
+                </div>
+
+				 <div class="weui-panel weui-panel_access">
+                    <div class="weui-panel__hd"><h3>电子客票销售张数同比</h3><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart2" width="400px" height="300px;"></canvas>
                     </div>
                 </div>
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额同比</h3></div>
-                    <div class="weui-panel__bd">
-                        <canvas id="myChart3" width="400px" height="300px;"></canvas>
-                    </div>
-                </div>
-
-                <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>电子客票销售金额统计</h3></div>
+                    <div class="weui-panel__hd"><h3>电子客票销售金额同比</h3><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart4" ></canvas>
                     </div>
@@ -58,17 +59,17 @@
                 <!-- page__bd end -->
                 <!-- page__bd start -->
                 <div class="page__bd">
-                    <div class="weui-cells__title">所属客运站窗口售票金额（同比表格）</div>
+                    <div class="weui-cells__title"><label name="lbdate"></label></div>
                     <div class="weui-cells">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
-                                <p>2017/10/15—10/21</p>
+                                <p>所属客运站窗口售票金额（同比表格）</p>
                             </div>
                             <div class="weui-cell__ft">单位：万元</div>
                         </div>
                     </div>
                 </div>
-                <div class="weui-grids">
+                <div id="div_tb" class="weui-grids">
                     <a href="#" class="weui-grid js_grid">
                         <div class="weui-grid__icon">
                             <img src="__PUBLIC_IMAGES__P/icon8.png" alt="">
@@ -82,7 +83,7 @@
                             <img src="__PUBLIC_IMAGES__P/icon9.png" alt="">
                         </div>
                         <p class="weui-grid__label">
-                            本周
+                            本时段
                         </p>
                     </a>
                     <a href="#" class="weui-grid js_grid">
@@ -133,11 +134,11 @@
                 <!-- page__bd end -->
                 <!-- page__bd start -->
                 <div class="page__bd">
-                    <div class="weui-cells__title">电子客票销售情况</div>
+                    <div class="weui-cells__title"><label name="lbdate"></label></div>
                     <div class="weui-cells">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
-                                <p>2017/10/15—10/21</p>
+                                <p>电子客票销售情况</p>
                             </div>
                             <div class="weui-cell__ft">共计：94,354元</div>
                         </div>
@@ -163,10 +164,60 @@
 </block>
 <block name="js">
     <script type="text/javascript">
+		var gqckstation =[];
+		var gq_now_ck = [];
+		var gq_next_ck = [];
+		//县分公司数据变量
+		var xfckstation =[];
+		var xf_now_ck = [];
+		var xf_next_ck = [];
+		//
+		var ettbstation =[];
+		var ettb_now_m = [];
+		var ettb_next_m = [];
+		var ettb_now_t = [];
+		var ettb_next_t = [];
+		//查询参数获得
+		var _Search_start = $.cookie('_Search_start');
+		var _Search_end = $.cookie('_Search_end');
+		var _Search_start_next = $.cookie('_Search_start_next');
+		var _Search_end_next = $.cookie('_Search_end_next');
+		var _Search_flag = $.cookie('_Search_flag');
+		//查询参数初始化
+		if(!_Search_flag)
+		   {
+				_Search_flag=1;//相邻时段对比
+		   }
+		if(!_Search_start || !_Search_end)
+		   {
+				var myDate = new Date();
+				myDate.setTime(myDate.getTime()-30*24*60*60*1000);
+				
+				//
+				var myDate1 = new Date();
+				var myDate2 = new Date();
+				myDate2.setTime(myDate-1*24*60*60*1000);
+				myDate = Date_Format(myDate,"yyyy-MM-dd");
+				_Search_start = myDate;
+				var myDate3 = new Date();
+				myDate1 = Date_Format(myDate1,"yyyy-MM-dd");
+				_Search_end = myDate1;
+				var n = DateDiff(_Search_start,_Search_end);
+				myDate3.setTime(myDate2-n*24*60*60*1000);
+				
+				//相邻时间计算
+				myDate2 = Date_Format(myDate2,"yyyy-MM-dd");
+				myDate3 = Date_Format(myDate3,"yyyy-MM-dd");
+				_Search_start_next = myDate3;
+				_Search_end_next = myDate2;
+				//alert(_Search_start_next);
+		  }
+		  //
         $(function(){
 			var surl = "{:U('Search')}";
 			var iurl ="{:U('Index')}";
 			var curl ="{:U('Contrast')}";
+			Charts_data_deal();
 			$("#_search").click(function(){
 				//搜索事件
 				window.location.href = surl;	
@@ -178,10 +229,135 @@
             $('.weui-tabbar__item').on('click', function () {
                 $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
             });
-            fun0();
+            Words_data_deal();
         });
-        //
-        function fun0(){
+		//图表部分数据处理Ajax
+		function Charts_data_deal(){
+			var lbtxt = ' (本时段)'+_Search_start+"/"+_Search_end;
+			lbtxt += '：(上时段)'+_Search_start_next+"/"+_Search_end_next;
+			
+			
+			$("label[name='lbdate']").each(function(){
+				$(this).html(lbtxt);
+			});
+			var action_ = "{:U('GetResult')}";
+			//请求统计数据
+			$.ajax({
+				url:action_,
+				type:"POST",
+				data:{_Search_start:_Search_start,_Search_end:_Search_end
+				,_Search_start_next:_Search_start_next,_Search_end_next:_Search_end_next
+				,_Search_flag:_Search_flag},
+				dataType:"json",
+				error:function(data){
+				},
+				success:function(data){
+					if(data)
+					{
+						if(data.state ==0)
+						{
+							var gq_data = data.gq_data[0];
+							var xf_data = data.xf_data[0];
+							var et_data = data.et_data[0];
+							if(gq_data)
+							{
+								//关区窗口数据
+								gqckstation = gq_data.station;
+								gq_now_ck = gq_data.now;
+								gq_next_ck = gq_data.next;
+							}
+							//
+							if(xf_data)
+							{
+								//县份窗口数据
+								xfckstation = xf_data.station;
+								xf_now_ck = xf_data.now;
+								xf_next_ck = xf_data.next;
+							}
+							//
+							if(et_data)
+							{
+								ettbstation = et_data.station;
+								ettb_now_m = et_data.now_m;
+								ettb_next_m = et_data.next_m;
+								ettb_now_t = et_data.now_t;
+								ettb_next_t = et_data.next_t;
+							}
+							//渲染
+							fun_charts();
+						}
+					}
+				}
+			});
+		}
+		//文字部分数据处理方法Ajax
+		function Words_data_deal(){
+			//文字信息统计处理
+		var action_ = "{:U('GetResultWords')}";
+		$("#words_select").click(function(){
+			$.ajax({
+				url:action_,
+				type:"POST",
+				data:{_Search_start:_Search_start,_Search_end:_Search_end
+				,_Search_start_next:_Search_start_next,_Search_end_next:_Search_end_next
+				,_Search_flag:_Search_flag},
+				dataType:"json",
+				error:function(data){
+				},
+				success:function(data){
+					if(data)
+					{
+						if(data.state == 0)
+						{
+							var tb_data_ck = data.TB_Data;
+							//var et_data_w = data.TBWArray_next;
+							if(tb_data_ck)
+							{
+								var _html ='';
+								_html +='\
+										<a href="#" class="weui-grid js_grid">\
+																<div class="weui-grid__icon">\
+																	<img src="__PUBLIC_IMAGES__P/icon8.png" alt="">\
+																</div>\
+																<p class="weui-grid__label">\
+																	站名\
+																</p>\
+															</a>\
+															<a href="#" class="weui-grid js_grid">\
+																<div class="weui-grid__icon">\
+																	<img src="__PUBLIC_IMAGES__P/icon9.png" alt="">\
+																</div>\
+																<p class="weui-grid__label">\
+																	本时段\
+																</p>\
+															</a>\
+															<a href="#" class="weui-grid js_grid">\
+																<div class="weui-grid__icon">\
+																	<img src="__PUBLIC_IMAGES__P/icon10.png" alt="">\
+																</div>\
+																<p class="weui-grid__label">\
+																	同比（增幅）\
+																</p>\
+															</a>\
+										';
+								for(var i=0;tb_data_ck.length;i++)
+								{
+									//<a href="#" class="weui-grid js_grid"></a>
+									_html += ' ';
+								}
+								$("#div_tb").html(_html);
+							}
+							
+						}else {
+							$.alert("请您输入合适的查询条件进行检索！", "警告");
+						}
+					}
+				}
+			});
+		});
+		}
+        //图表渲染逻辑
+        function fun_charts(){
             //
             var worldMapContainer = document.getElementById('myChart1');
 
@@ -205,12 +381,16 @@
                     }
                 },
                 legend: {
-                    data:['本周','上周']
+                    data:['本时段','上时段']
                 },
                 xAxis : [
                     {
                         type : 'category',
-                        data : ['东科站','快速站','兴盛站','北站','县分公司']
+                        data : gqckstation,
+						axisLabel:{
+							interval:0,//横轴信息全部显示
+							rotate:30,//-30度角倾斜显示
+						}
                     }
                 ],
                 yAxis : [
@@ -220,7 +400,7 @@
                 ],
                 series : [
                     {
-                        name:'本周',
+                        name:'本时段',
                         type:'bar',
                         label: {
                             normal: {
@@ -228,19 +408,19 @@
                                 position: 'top'
                             }
                         },
-                        data:[320, 332, 301, 334, 390]
+                        data:gq_now_ck
                     },
                     {
-                        name:'上周',
+                        name:'上时段',
                         type:'bar',
-                        stack: '上周',
+                        stack: '上时段',
                         label: {
                             normal: {
                                 show: true,
                                 position: 'top'
                             }
                         },
-                        data:[120, 132, 101, 134, 90]
+                        data:gq_next_ck
                     }
                 ]
             };
@@ -260,7 +440,7 @@
             // 指定图表的配置项和数据
             var option2 = {
                 title: {
-                    text: '单位：万元'
+                    text: '单位：张'
                 },
                 tooltip : {
                     trigger: 'axis',
@@ -269,13 +449,17 @@
                     }
                 },
                 legend: {
-                    data:['本周','上周']
+                    data:['本时段','上时段']
                 },
                 xAxis : [
 
                     {
                         type : 'category',
-                        data : ['东科站','快速站','兴盛站','北站','县分公司']
+                        data : ettbstation,
+						axisLabel:{
+							interval:0,//横轴信息全部显示
+							rotate:30,//-30度角倾斜显示
+						}
                     }
                 ],
                 yAxis : [
@@ -286,7 +470,7 @@
                 ],
                 series : [
                     {
-                        name:'本周',
+                        name:'本时段',
                         type:'bar',
                         label: {
                             normal: {
@@ -294,19 +478,19 @@
                                 position: 'top'
                             }
                         },
-                        data:[320, 332, 301, 334, 390]
+                        data:ettb_now_t
                     },
                     {
-                        name:'上周',
+                        name:'上时段',
                         type:'bar',
-                        stack: '上周',
+                        stack: '上时段',
                         label: {
                             normal: {
                                 show: true,
                                 position: 'top'
                             }
                         },
-                        data:[120, 132, 101, 134, 90]
+                        data:ettb_next_t
                     }
                 ]
             };
@@ -333,7 +517,7 @@
                     trigger: 'axis'
                 },
                 legend: {
-                    data:['上周','本周']
+                    data:['本时段','上时段']
                 },
                 grid: {
                     left: '3%',
@@ -349,23 +533,27 @@
                 xAxis: {
                     type: 'category',
                     boundaryGap: false,
-                    data: ['祥云','巍山','南涧','云龙','永平','洱源','剑川']
+                    data: xfckstation,
+					axisLabel:{
+							interval:0,//横轴信息全部显示
+							rotate:30,//-30度角倾斜显示
+						}
                 },
                 yAxis: {
                     type: 'value'
                 },
                 series: [
                     {
-                        name:'上周',
+                        name:'本时段',
                         type:'line',
                         stack: '总量',
-                        data:[120, 132, 101, 134, 90, 230, 210]
+                        data:xf_now_ck
                     },
                     {
-                        name:'本周',
+                        name:'上时段',
                         type:'line',
                         stack: '总量',
-                        data:[220, 182, 191, 234, 290, 330, 310]
+                        data:gq_next_ck
                     }
                 ]
             };
@@ -384,6 +572,9 @@
             var myChart_4 = echarts.init(worldMapContainer4);
             // 指定图表的配置项和数据
             var option4 = {
+                 title: {
+                    text: '单位：元'
+                },
                 tooltip : {
                     trigger: 'axis',
                     axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -391,22 +582,28 @@
                     }
                 },
                 legend: {
-                    data:['微信售票金额','自助机售票金额','其他网销渠道售票金额']
+                    data:['本时段','上时段']
                 },
                 xAxis : [
+
                     {
                         type : 'category',
-                        data : ['东科站','快速站','兴盛站','北站','县分公司']
+                        data : ettbstation,
+						axisLabel:{
+							interval:0,//横轴信息全部显示
+							rotate:30,//-30度角倾斜显示
+						}
                     }
                 ],
                 yAxis : [
+
                     {
                         type : 'value'
                     }
                 ],
                 series : [
                     {
-                        name:'微信售票金额',
+                        name:'本时段',
                         type:'bar',
                         label: {
                             normal: {
@@ -414,31 +611,19 @@
                                 position: 'top'
                             }
                         },
-                        data:[320, 332, 301, 334, 390]
+                        data:ettb_now_m
                     },
                     {
-                        name:'自助机售票金额',
+                        name:'上时段',
                         type:'bar',
-                        stack: '自助机售票金额',
+                        stack: '上时段',
                         label: {
                             normal: {
                                 show: true,
                                 position: 'top'
                             }
                         },
-                        data:[120, 132, 101, 134, 90]
-                    },
-                    {
-                        name:'其他网销渠道售票金额',
-                        type:'bar',
-                        label: {
-                            normal: {
-                                show: true,
-                                position: 'top'
-                            }
-                        },
-                        stack: '其他网销渠道售票金额',
-                        data:[220, 182, 191, 234, 290]
+                        data:ettb_next_m
                     }
                 ]
             };
@@ -457,5 +642,6 @@
                 myChart_4.resize();
             };
         }
+		//
     </script>
 </block>

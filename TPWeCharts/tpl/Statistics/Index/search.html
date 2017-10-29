@@ -216,7 +216,7 @@
             $("#chk_near").change(function(){
                 var f = $(this).attr("checked");
                 if($(this).is(':checked')) {
-                    //自定义时段对比
+                    //相邻时段对比
                     Show_i(0);
                     url = curl;
                     checkFun(this);
@@ -228,7 +228,7 @@
             $("#chk_lastyear").change(function(){
                 var f = $(this).attr("checked");
                 if($(this).is(':checked')) {
-                    //自定义时段对比
+                    //与上一年时段对比
                     Show_i(0);
                     url = curl;
                     checkFun(this);
@@ -285,6 +285,26 @@
 						$.alert("开始时间不应该大于截止时间！", "警告");
 						return false;
 					}
+						var istart_ = start_;
+						istart_ = istart_.replace(/-/g,"/");
+						var iend_ = end_;
+						iend_ = iend_.replace(/-/g,"/");
+						var myDate = new Date(istart_);
+						//
+						var myDate1 = new Date(iend_);
+						var myDate2 = new Date();
+						myDate2.setTime(myDate-1*24*60*60*1000);
+						var myDate3 = new Date();
+						myDate1 = Date_Format(myDate1,"yyyy-MM-dd");
+						_Search_end = myDate1;
+						var n = DateDiff(istart_,iend_);
+						myDate3.setTime(myDate2-n*24*60*60*1000);
+						
+						//相邻时间计算
+						myDate2 = Date_Format(myDate2,"yyyy-MM-dd");
+						myDate3 = Date_Format(myDate3,"yyyy-MM-dd");
+						start_next = myDate3;
+						end_next = myDate2;
 				break;
 				case 2://上一年同时期
 					if(start_ =="" || end_ =="")
@@ -296,7 +316,9 @@
 					{
 						$.alert("开始时间不应该大于截止时间！", "警告");
 						return false;
-					}
+					}//
+					start_next =Date_Format(Date_Next(start_),"yyyy-MM-dd"); 
+					end_next = Date_Format(Date_Next(end_),"yyyy-MM-dd");	
 				break;
 				case 3:
 					

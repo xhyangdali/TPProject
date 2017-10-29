@@ -100,9 +100,9 @@ BEGIN
 				ON sf.stationcode=s.`code`
 			LEFT JOIN channel AS c ON sf.channelcode=c.`code`
 			WHERE
-					sf.flowdate>=start_date
+					sf.flowdate>=start_date_next
 				AND
-					sf.flowdate<=end_date
+					sf.flowdate<=end_date_next
 				AND
 					sf.stationcode LIKE station_fix_a
 				AND
@@ -136,9 +136,9 @@ BEGIN
 					ON sf.stationcode=s.`code`
 				LEFT JOIN channel AS c ON sf.channelcode=c.`code`
 				WHERE
-						sf.flowdate>=start_date
+						sf.flowdate>=start_date_next
 					AND
-						sf.flowdate<=end_date
+						sf.flowdate<=end_date_next
 					AND
 						sf.stationcode LIKE station_fix_b
 					AND
