@@ -404,11 +404,15 @@ class IndexController extends StatisticsBaseController{
 					$array_GQCK = $Model->query($sql);
 					$TBWArray = array();
 					$TBWArray_next = array();
+					$CK_WTotal = 0.0;
+					$CK_WTicket = 0;
 					//关区窗口售票情况对比处理
 					foreach($array_GQCK as $item)
 					{
 						$m_ = $item['m_num']/10000;
 						$m_ = number_format($m_,2,".","");
+						$CK_WTotal +=$m_;
+						$CK_WTicket +=$item["t_num"];
 						if($item['flag'] == "Now")
 						{
 							array_push($TBWArray,array(
@@ -445,7 +449,7 @@ class IndexController extends StatisticsBaseController{
 								$tb_zf = 100*($tbnum/$item["num"]);
 								$tb_zf = number_format($tb_zf,2,'.','');
 								$tbnum = number_format($tbnum,2,'.','');
-								$tb_text = $tb_."".$tbnum."|".$tb_zf."%";
+								$tb_text = $tb_."".$tbnum."|".$tb_."".$tb_zf."%";
 								array_push($TB_Data,array(
 									"stationname" => $item["stationname"],//名称
 									"m_num" => $item["num"],//金额
@@ -457,10 +461,143 @@ class IndexController extends StatisticsBaseController{
 					}
 					//第二时段统计
 					//
+					//电子客票数据处理
+					$stationfix_2_a ="10%";//关区 客运站标志过滤符号
+					$stationfix_2_b ="20%";//县分 客运站标志过滤符号
+					$channelfix_2 ="20%";//渠道标志过滤符号 电子票
+					$sql_2 = "  CALL  GQXF_ETICKET_CHARTS('{$stationfix_2_a}','{$stationfix_2_b}','{$channelfix_2}','{$_Search_start}','{$_Search_end}') ";
+					$Model_2 = M(""); // 实例化一个model对象 没有对应任何数据表
+					$array_ET = $Model_2->query($sql_2);
+					//
+					$stationfix_3_a ="10%";//关区 客运站标志过滤符号
+					$stationfix_3_b ="20%";//县分 客运站标志过滤符号
+					$channelfix_3 ="20%";//渠道标志过滤符号 电子票
+					$sql_3 = "  CALL  GQXF_ETICKET_CHARTS('{$stationfix_3_a}','{$stationfix_3_b}','{$channelfix_3}','{$_Search_start_next}','{$_Search_end_next}') ";
+					$Model_3 = M(""); // 实例化一个model对象 没有对应任何数据表
+					$array_ET_ = $Model_3->query($sql_3);
+					//
+					$Estation = array();//统计的客运站
+					$Echannel = array();//统计的渠道
+					foreach($array_ET as $item)
+					{
+						array_push($Estation,$item['stationname']);
+						array_push($Echannel,$item['channelname']);
+						
+					}
+					//
+					$Estation_ = array();//统计的客运站
+					$Echannel_ = array();//统计的渠道
+					foreach($array_ET_ as $item)
+					{
+						array_push($Estation_,$item['stationname']);
+						array_push($Echannel_,$item['channelname']);
+						
+					}
+					//
+					$Echannel = array_unique($Echannel);
+					$Estation = array_flip($Estation);
+					$Estation = array_keys($Estation);
+					//
+					$Echannel_ = array_unique($Echannel_);
+					$Estation_ = array_flip($Estation_);
+					$Estation_ = array_keys($Estation_);
+					//保险票
+					$sql_3 = "  CALL  TJ_BX('{$_Search_start}','{$_Search_end}') ";
+					$sql_4 = "  CALL  TJ_BX('{$_Search_start_next}','{$_Search_end_next}') ";
+					$Model_3 = M(""); // 实例化一个model对象 没有对应任何数据表
+					$array_BX = $Model_3->query($sql_3);
+					$array_BX_ = $Model_3->query($sql_4);
+					//文字统计处理
+					$words_data = array();//依据车站统计
+					$words_data_ = array();//依据
+					$total_data = array();//全部统计数据
+					$total_t = 0;//车票
+					$total_m = 0;//金额
+					//
+					$total_data_ = array();//全部统计数据
+					$total_t_ = 0;//车票
+					$total_m_ = 0;//金额
+					$total_i = $array_BX[0]['i_num'] == null?0:$array_BX[0]['i_num'];//保险
+					$total_i_ = $array_BX_[0]['i_num'] == null?0:$array_BX_[0]['i_num'];//保险
+					foreach($Estation as $item)
+					{
+						//
+						$_i_data = array();
+						array_push($_i_data,"stationname", $item);
+						$_data = array();
+						foreach($Echannel as $_item)
+						{
+							$tt = 0;
+							$mm = 0.0;
+							foreach($array_ET as $v_)
+							{
+								if($v_['channelname'] == $_item && $v_['stationname'] == $item )
+								{
+									$tt += number_format($v_["t_num"]);
+									$mm += number_format($v_["m_num"]);
+								}
+							}
+							$total_t += number_format($tt);
+							$total_m += number_format($mm);
+							array_push($_i_data,$_item.'：',$tt);
+							array_push($_i_data,' 张，共计： ',number_format($mm,2,'.',''));
+						}
+						array_push($words_data,$_i_data);
+					}
+					//
+					foreach($Estation_ as $item)
+					{
+						//
+						$_i_data = array();
+						array_push($_i_data,"stationname", $item);
+						$_data = array();
+						foreach($Echannel_ as $_item)
+						{
+							$tt = 0;
+							$mm = 0.0;
+							foreach($array_ET_ as $v_)
+							{
+								if($v_['channelname'] == $_item && $v_['stationname'] == $item )
+								{
+									$tt += number_format($v_["t_num"]);
+									$mm += number_format($v_["m_num"]);
+								}
+							}
+							$total_t_ += number_format($tt);
+							$total_m_ += number_format($mm);
+							array_push($_i_data,$_item.'：',$tt);
+							array_push($_i_data,' 张，共计： ',number_format($mm,2,'.',''));
+						}
+						array_push($words_data_,$_i_data);
+					}
+					//总计数据：
+					$total_data = array();
+					$total_data_ = array();
+					$total_m = number_format($total_m,2,".",""); 
+					$total_m_ = number_format($total_m_,2,".",""); 
+					array_push($total_data,array(
+						'etotal_t' => $total_t,//电子票数
+						'etotal_m' => $total_m,//电子票金额
+						'total_i' => $total_i,//保险
+						'total_ck_m' => $CK_WTotal,// 窗口总计数据 金额
+						'total_ck_t' => $CK_WTicket //窗口票数
+					));
+					//
+					array_push($total_data_,array(
+						'etotal_t' => $total_t_,//电子票数
+						'etotal_m' => $total_m_,//电子票金额
+						'total_i' => $total_i_,//保险
+						'total_ck_m' => $CK_WTotal_,// 窗口总计数据 金额
+						'total_ck_t' => $CK_WTicket_ //窗口票数
+					));
+					//
 					$iresult = array(
 						'state' => $state,
 						'TB_Data' =>$TB_Data,//
-						'TBWArray_next' =>$array_GQCK
+						'words_data' =>$words_data,
+						'words_data_' =>$words_data_,
+						'total_data' =>$total_data,
+						'total_data_' =>$total_data_
 					);
 		}
 		
