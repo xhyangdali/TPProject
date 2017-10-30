@@ -11,8 +11,6 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计页面
 	 */
 	public function Index(){
-
-		$this->assign($assign);
         $this->display();
 	}
 
@@ -228,7 +226,7 @@ class IndexController extends StatisticsBaseController{
 					$ET_Data = array();
 					foreach($array_ETTB as $item)
 					{
-						$m_ = $item['m_num'];
+						$m_ = $item['m_num']/10000;
 						$m_ = number_format($m_,2,".","");
 						if($item['flag'] == "Now")
 						{
@@ -335,7 +333,6 @@ class IndexController extends StatisticsBaseController{
 				{
 					array_push($Estation,$item['stationname']);
 					array_push($Echannel,$item['channelname']);
-					
 				}
 				
 				$Echannel = array_unique($Echannel);
@@ -365,12 +362,12 @@ class IndexController extends StatisticsBaseController{
 						{
 							if($v_['channelname'] == $_item && $v_['stationname'] == $item )
 							{
-								$tt += number_format($v_["t_num"]);
-								$mm += number_format($v_["m_num"]);
+								$tt += $v_["t_num"];
+								$mm += $v_["m_num"];
 							}
 						}
-						$total_t += number_format($tt);
-						$total_m += number_format($mm);
+						$total_t += $tt;
+						$total_m += $mm;
 						array_push($_i_data,$_item.'：',$tt);
 						array_push($_i_data,' 张，共计： ',number_format($mm,2,'.',''));
 					}
@@ -406,6 +403,8 @@ class IndexController extends StatisticsBaseController{
 					$TBWArray_next = array();
 					$CK_WTotal = 0.0;
 					$CK_WTicket = 0;
+					$CK_WTotal_ = 0.0;
+					$CK_WTicket_ = 0;
 					//关区窗口售票情况对比处理
 					foreach($array_GQCK as $item)
 					{
@@ -482,7 +481,6 @@ class IndexController extends StatisticsBaseController{
 					{
 						array_push($Estation,$item['stationname']);
 						array_push($Echannel,$item['channelname']);
-						
 					}
 					//
 					$Estation_ = array();//统计的客运站
@@ -491,7 +489,6 @@ class IndexController extends StatisticsBaseController{
 					{
 						array_push($Estation_,$item['stationname']);
 						array_push($Echannel_,$item['channelname']);
-						
 					}
 					//
 					$Echannel = array_unique($Echannel);
@@ -533,12 +530,12 @@ class IndexController extends StatisticsBaseController{
 							{
 								if($v_['channelname'] == $_item && $v_['stationname'] == $item )
 								{
-									$tt += number_format($v_["t_num"]);
-									$mm += number_format($v_["m_num"]);
+									$tt += $v_["t_num"];
+									$mm += $v_["m_num"];
 								}
 							}
-							$total_t += number_format($tt);
-							$total_m += number_format($mm);
+							$total_t += $tt;
+							$total_m += $mm;
 							array_push($_i_data,$_item.'：',$tt);
 							array_push($_i_data,' 张，共计： ',number_format($mm,2,'.',''));
 						}
@@ -559,12 +556,12 @@ class IndexController extends StatisticsBaseController{
 							{
 								if($v_['channelname'] == $_item && $v_['stationname'] == $item )
 								{
-									$tt += number_format($v_["t_num"]);
-									$mm += number_format($v_["m_num"]);
+									$tt += $v_["t_num"];
+									$mm += $v_["m_num"];
 								}
 							}
-							$total_t_ += number_format($tt);
-							$total_m_ += number_format($mm);
+							$total_t_ += $tt;
+							$total_m_ += $mm;
 							array_push($_i_data,$_item.'：',$tt);
 							array_push($_i_data,' 张，共计： ',number_format($mm,2,'.',''));
 						}

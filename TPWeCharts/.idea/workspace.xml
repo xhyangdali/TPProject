@@ -24,53 +24,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/index.html">
+      <file leaf-file-name="iadd.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6580427">
-              <caret line="194" column="38" selection-start-line="194" selection-start-column="38" selection-end-line="194" selection-end-column="38" />
+            <state vertical-scroll-proportion="-12.214286">
+              <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="iFramework.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tpl/Public/js/iFramework.js">
+      <file leaf-file-name="iedit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="73" column="9" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="23" />
+            <state vertical-scroll-proportion="-17.642857">
+              <caret line="80" column="56" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tpl/Statistics/public/base.html">
+      <file leaf-file-name="SalesFlowController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.464285">
-              <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/search.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.035714">
-              <caret line="181" column="12" selection-start-line="181" selection-start-column="12" selection-end-line="182" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.267858">
-              <caret line="125" column="55" selection-start-line="125" selection-start-column="55" selection-end-line="125" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.36895388">
+              <caret line="546" column="69" selection-start-line="546" selection-start-column="69" selection-end-line="546" selection-end-column="69" />
               <folding>
-                <element signature="e#39#86#0#PHP" expanded="true" />
+                <element signature="e#34#76#0#PHP" expanded="true" />
+                <marker date="1509335525839" expanded="true" signature="2414:2790" placeholder="SELECT count... sales_flow" />
+                <marker date="1509335525839" expanded="true" signature="11476:11570" placeholder="SELECT * FRO... dic_data" />
+                <marker date="1509335525839" expanded="true" signature="11519:11568" placeholder="SELECT id FR... dic_data" />
+                <marker date="1509335525839" expanded="true" signature="12294:12499" placeholder="SELECT s.* F... station" />
+                <marker date="1509335525839" expanded="true" signature="12294:12515" placeholder="SELECT s.* F... station" />
+                <marker date="1509335525839" expanded="true" signature="12351:12453" placeholder="SELECT DISTI... sales_flow" />
               </folding>
             </state>
           </provider>
@@ -84,27 +70,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Application/Common/Model/ChannelModel.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/WhiteListModel.class.php" />
         <option value="$PROJECT_DIR$/tpl/Admin/WhiteList/detail.html" />
-        <option value="$PROJECT_DIR$/tpl/Admin/Station/detail.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/WhiteList/edit.html" />
-        <option value="$PROJECT_DIR$/tpl/Admin/Station/edit.html" />
-        <option value="$PROJECT_DIR$/tpl/Admin/Channel/edit.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/WhiteList/add.html" />
-        <option value="$PROJECT_DIR$/tpl/Admin/Station/add.html" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/ChannelController.class.php" />
-        <option value="$PROJECT_DIR$/tpl/Admin/Channel/add.html" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/WhiteListController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/StationController.class.php" />
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/add.html" />
         <option value="$PROJECT_DIR$/Public/statics/js/Calendar.js" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/InsuranceController.class.php" />
         <option value="$PROJECT_DIR$/tpl/Admin/Insurance/add.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/WhiteList/index.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/Station/index.html" />
-        <option value="$PROJECT_DIR$/tpl/Admin/Channel/index.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/Insurance/index.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/Insurance/edit.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/Insurance/detail.html" />
@@ -116,8 +93,6 @@
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/index.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/idetail.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/indexlist.html" />
-        <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html" />
-        <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html" />
         <option value="$PROJECT_DIR$/Application/Common/Controller/MobileBaseController.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Controller/Home1BaseController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home1/Controller/IndexController.class.php" />
@@ -125,16 +100,27 @@
         <option value="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Conf/config.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Conf/convention.php" />
-        <option value="$PROJECT_DIR$/tpl/Statistics/Index/contrast.html" />
         <option value="$PROJECT_DIR$/tpl/Public/js/jQuery.cookie.js" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Think/Db/Driver.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/StatisticsModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php" />
         <option value="$PROJECT_DIR$/tpl/Statistics/Index/search.html" />
         <option value="$PROJECT_DIR$/tpl/Statistics/public/base.html" />
-        <option value="$PROJECT_DIR$/tpl/Public/js/iFramework.js" />
         <option value="$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/tpl/Statistics/Index/contrast.html" />
         <option value="$PROJECT_DIR$/tpl/Statistics/Index/index.html" />
+        <option value="$PROJECT_DIR$/tpl/Public/js/iFramework.js" />
+        <option value="$PROJECT_DIR$/tpl/Admin/Channel/add.html" />
+        <option value="$PROJECT_DIR$/tpl/Admin/Channel/edit.html" />
+        <option value="$PROJECT_DIR$/tpl/Admin/Channel/detail.html" />
+        <option value="$PROJECT_DIR$/tpl/Admin/Channel/index.html" />
+        <option value="$PROJECT_DIR$/Application/Admin/Controller/ChannelController.class.php" />
+        <option value="$PROJECT_DIR$/tpl/Admin/Station/add.html" />
+        <option value="$PROJECT_DIR$/tpl/Admin/Station/edit.html" />
+        <option value="$PROJECT_DIR$/tpl/Admin/Station/detail.html" />
+        <option value="$PROJECT_DIR$/Application/Admin/Controller/StationController.class.php" />
+        <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html" />
+        <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html" />
+        <option value="$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php" />
       </list>
     </option>
   </component>
@@ -186,7 +172,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -237,29 +222,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
+              <option name="myItemId" value="Statistics" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="Index" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -345,68 +312,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Statistics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Statistics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Statistics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Conf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -429,8 +334,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TPWeCharts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TPWeCharts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -524,76 +452,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/SysLogController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="57" selection-start-line="42" selection-start-column="57" selection-end-line="42" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.107143">
-          <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Public/js/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.285715">
-          <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/ProvinceCityArea/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23509562">
-          <caret line="154" column="4" selection-start-line="154" selection-start-column="4" selection-end-line="154" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3633296">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/idetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.245064">
-          <caret line="336" column="5" selection-start-line="336" selection-start-column="5" selection-end-line="336" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/indexlist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.642857">
-          <caret line="195" column="24" selection-start-line="195" selection-start-column="24" selection-end-line="195" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ChannelController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3464566">
-          <caret line="64" column="29" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="291.25">
-          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -650,13 +508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/contrast.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48706412">
-          <caret line="113" column="58" selection-start-line="113" selection-start-column="58" selection-end-line="113" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Admin/Index/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.064116985">
@@ -682,15 +533,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22791712">
           <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2992126">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -698,7 +540,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -706,7 +547,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.357142">
           <caret line="225" column="29" selection-start-line="225" selection-start-column="20" selection-end-line="225" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -714,12 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.4668167">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1436778429990" expanded="true" signature="3966:3997" placeholder="DROP TABLE I... " />
-            <marker date="1436778429990" expanded="true" signature="4213:4253" placeholder="SELECT COUNT... " />
-            <marker date="1436778429990" expanded="true" signature="4681:4726" placeholder="SELECT * FRO... ${{$table}}" />
-            <marker date="1436778429990" expanded="true" signature="4848:4958" placeholder="INSERT INTO `${{$table}}`... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -727,7 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.056243">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -735,7 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.642295">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -743,11 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.535714">
           <caret line="147" column="13" selection-start-line="147" selection-start-column="13" selection-end-line="147" selection-end-column="13" />
-          <folding>
-            <marker date="1509072012415" expanded="true" signature="31137:31226" placeholder="INSERT INTO ${$this-&gt;parseTable($options['table'])}... " />
-            <marker date="1509072012415" expanded="true" signature="32010:32087" placeholder="INSERT INTO ${$this-&gt;parseTable($table)}... " />
-            <marker date="1509072012415" expanded="true" signature="33711:33723" placeholder="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -755,7 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19235095">
           <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -779,7 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -787,7 +612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12823397">
           <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -795,7 +619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -803,7 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.64116985">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -811,25 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.2182227">
           <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="26" />
-          <folding>
-            <element signature="e#34#76#0#PHP" expanded="true" />
-            <marker date="1508305417449" expanded="true" signature="3093:3105" placeholder="DROP TABLE $... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35307783">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-          <folding>
-            <element signature="e#34#76#0#PHP" expanded="true" />
-            <marker date="1509074368130" expanded="true" signature="2414:2790" placeholder="SELECT count... sales_flow" />
-            <marker date="1509074368130" expanded="true" signature="11505:11599" placeholder="SELECT * FRO... dic_data" />
-            <marker date="1509074368130" expanded="true" signature="11548:11597" placeholder="SELECT id FR... dic_data" />
-            <marker date="1509074368130" expanded="true" signature="12308:12513" placeholder="SELECT s.* F... station" />
-            <marker date="1509074368130" expanded="true" signature="12365:12467" placeholder="SELECT DISTI... sales_flow" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -837,7 +640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -845,7 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.064116985">
           <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -853,7 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1552306">
           <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -861,7 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19235095">
           <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -869,30 +668,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-20.357143">
           <caret line="192" column="15" selection-start-line="175" selection-start-column="12" selection-end-line="192" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.035714">
-          <caret line="181" column="12" selection-start-line="181" selection-start-column="12" selection-end-line="182" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Statistics/public/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.464285">
-          <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Public/js/iFramework.js">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="73" column="9" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="23" />
+          <caret line="181" column="12" selection-start-line="181" selection-start-column="12" selection-end-line="182" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -901,33 +683,178 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.2227222">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2992126">
+          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html">
+    <entry file="file://$PROJECT_DIR$/tpl/Statistics/public/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.208099">
-          <caret line="276" column="5" selection-start-line="276" selection-start-column="5" selection-end-line="276" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.7862767">
+          <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.267858">
-          <caret line="125" column="55" selection-start-line="125" selection-start-column="55" selection-end-line="125" selection-end-column="55" />
+        <state vertical-scroll-proportion="-5.875">
+          <caret line="228" column="51" selection-start-line="228" selection-start-column="51" selection-end-line="228" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Public/js/iFramework.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12431843">
+          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
           <folding>
-            <element signature="e#39#86#0#PHP" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6580427">
-          <caret line="194" column="38" selection-start-line="194" selection-start-column="38" selection-end-line="194" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.46569178">
+          <caret line="296" column="68" selection-start-line="296" selection-start-column="68" selection-end-line="296" selection-end-column="68" />
+          <folding>
+            <marker date="1509331562283" expanded="true" signature="12279:12595" placeholder="..." />
+            <marker date="1509331562283" expanded="true" signature="12664:12755" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/contrast.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75029033">
+          <caret line="43" column="76" selection-start-line="43" selection-start-column="76" selection-end-line="43" selection-end-column="76" />
+          <folding>
+            <marker date="1509331327337" expanded="true" signature="12923:13071" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13110:13191" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13446:13693" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13493:13583" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13629:13672" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13748:13996" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13795:13885" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13931:13975" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="14051:14303" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="14098:14189" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="14235:14282" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="14933:15249" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="15487:15816" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="17215:17419" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ChannelController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28346458">
+          <caret line="28" column="69" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/Channel/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.12823397">
+          <caret line="144" column="32" selection-start-line="144" selection-start-column="32" selection-end-line="144" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/Channel/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46341464">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="52" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/Channel/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6620209">
+          <caret line="102" column="58" selection-start-line="102" selection-start-column="58" selection-end-line="102" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/Channel/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42294714">
+          <caret line="45" column="12" selection-start-line="45" selection-start-column="12" selection-end-line="49" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/Station/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.5">
+          <caret line="139" column="32" selection-start-line="139" selection-start-column="32" selection-end-line="139" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/Station/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5296167">
+          <caret line="114" column="58" selection-start-line="114" selection-start-column="58" selection-end-line="114" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/Station/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50754935">
+          <caret line="56" column="12" selection-start-line="56" selection-start-column="12" selection-end-line="60" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/StationController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25646794">
+          <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.214286">
+          <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.642857">
+          <caret line="80" column="56" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36895388">
+          <caret line="546" column="69" selection-start-line="546" selection-start-column="69" selection-end-line="546" selection-end-column="69" />
+          <folding>
+            <element signature="e#34#76#0#PHP" expanded="true" />
+            <marker date="1509335525839" expanded="true" signature="2414:2790" placeholder="SELECT count... sales_flow" />
+            <marker date="1509335525839" expanded="true" signature="11476:11570" placeholder="SELECT * FRO... dic_data" />
+            <marker date="1509335525839" expanded="true" signature="11519:11568" placeholder="SELECT id FR... dic_data" />
+            <marker date="1509335525839" expanded="true" signature="12294:12499" placeholder="SELECT s.* F... station" />
+            <marker date="1509335525839" expanded="true" signature="12294:12515" placeholder="SELECT s.* F... station" />
+            <marker date="1509335525839" expanded="true" signature="12351:12453" placeholder="SELECT DISTI... sales_flow" />
+          </folding>
         </state>
       </provider>
     </entry>

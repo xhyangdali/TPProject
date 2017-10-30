@@ -148,6 +148,10 @@
             myDate1 = Date_Format(myDate1,"yyyy-MM-dd");
             _Search_end = myDate1;
       }
+    if(_Search_start && !_Search_end)
+    {
+        _Search_end = _Search_start;
+    }
     $(function(){
 		//图表统计数据处理
 		Charts_data_deal();
@@ -239,9 +243,9 @@
 							for(var j=0;j < ex_mony.length ;j++)
                             {
                                 //console.log(ex_tcket[j][1]);
-                                if(echannel[i] == ex_tcket[j][1] )
+                                if(echannel[i] == ex_mony[j][1] )
                                 {
-                                    _dd0 = ex_tcket[j][3];
+                                    _dd0 = ex_mony[j][3];
                                 }
                             }
                             temp.data = _dd;
@@ -288,7 +292,7 @@
 									_html += '<h3>综合预览</h3>';
 									_html += '<p class="Ctext">窗口票销售情况：'+total_.total_ck_t+' 张，共计：'+total_.total_ck_m+' 万元;</p>';
 									_html += '<p class="Ctext">电子票销售情况：'+total_.etotal_t+' 张，共计：'+total_.etotal_m+' 元;</p>';
-									_html += '<p class="Ctext">保险票销售情况：：'+total_.total_i+' 张 ;</p>';
+									_html += '<p class="Ctext">保险票销售情况：'+total_.total_i+' 张 ;</p>';
 									$("#div_wtotal").html(_html);
 									//									
 									$("#div_cktotal").html("总计："+total_.total_ck_m+" 万元");
@@ -352,7 +356,7 @@
                 text: '窗口售票金额'
             },
             grid: {
-                y2: 60
+                y2: 40
             },
             tooltip: {},
             color: ['rgb(25, 183, 207)'],
@@ -410,7 +414,7 @@
                 text: '窗口售票金额'
             },
             grid: {
-                y2: 50
+                y2: 60
             },
             tooltip: {},
             legend: {
@@ -422,7 +426,7 @@
                 ,
                 axisLabel:{
                     interval:0,//横轴信息全部显示
-                    rotate:60,//60度角倾斜显示
+                    rotate:30,//60度角倾斜显示
                 }
             },
             yAxis: {

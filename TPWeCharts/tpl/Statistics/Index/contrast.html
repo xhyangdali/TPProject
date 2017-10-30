@@ -41,7 +41,7 @@
                 <div class="weui-panel weui-panel_access">
                     <div class="weui-panel__hd"><h3>电子客票销售金额同比</h3><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
-                        <canvas id="myChart4" ></canvas>
+                        <canvas id="myChart4"  width="400px" height="300px;" ></canvas>
                     </div>
                 </div>
 
@@ -364,7 +364,7 @@
 									_html += '<p class="Ctext">电子票销售情况：'+total_.etotal_t
 									+' 张(比上时段'+fix_+c+'张 '+fix_fd+f+'%)，，共计：'+total_.etotal_m
 									+'  元(比上时段'+fix_2+c2+' 元 '+fix_fd2+f2+'%);</p>';
-									_html += '<p class="Ctext">保险票销售情况：：'+total_.total_i+total_.total_i
+									_html += '<p class="Ctext">保险票销售情况：：'+total_.total_i
 									+' 张(比上时段'+fix_1+c1+'张 '+fix_fd1+f1+'%)， ;</p>';
 									$("#div_wtotal").html(_html);
 									//									
@@ -424,18 +424,19 @@
 									+'</p>';
 								}
 							}
+							_html +="<br/>";
 							if(et_data_w_)
 							{
 								_html +='<p >日期：'+_Search_start_next+'至'+_Search_end_next;
-								for(var i=0;i < et_data_w.length ;i++)
+								for(var i=0;i < et_data_w_.length ;i++)
 								{
-									_html += '<p class="Ctext">'+et_data_w[i][1]+'：'
-									+et_data_w[i][2]+et_data_w[i][3]
-									+et_data_w[i][4]+et_data_w[i][5]+' 元'
-									+'；'+et_data_w[i][6]+et_data_w[i][7]
-									+et_data_w[i][8]+et_data_w[i][9]+' 元'
-									+'；'+et_data_w[i][10]+et_data_w[i][11]
-									+et_data_w[i][12]+et_data_w[i][13]+' 元'
+									_html += '<p class="Ctext">'+et_data_w_[i][1]+'：'
+									+et_data_w_[i][2]+et_data_w_[i][3]
+									+et_data_w_[i][4]+et_data_w_[i][5]+' 元'
+									+'；'+et_data_w_[i][6]+et_data_w_[i][7]
+									+et_data_w_[i][8]+et_data_w_[i][9]+' 元'
+									+'；'+et_data_w_[i][10]+et_data_w_[i][11]
+									+et_data_w_[i][12]+et_data_w_[i][13]+' 元'
 									+'</p>';
 								}
 								
@@ -483,6 +484,7 @@
 									var v2 = parseFloat(c2); 
 									var a2 = parseFloat(total_.etotal_m); 
 									var f2 = Math.round((v2/a2)*100);
+									_html +="<br/>";
 									_html += '<p >总计：车票 '+total_.etotal_t+' 张(比上时段'+fix_+c+'张 '+fix_fd+f+'%)，保险'
 									+total_.total_i+' 张(比上时段'+fix_1+c1+'张 '+fix_fd1+f1+'%)，共计：'
 									+total_.etotal_m+'  元(比上时段'+fix_2+c2+' 元 '+fix_fd2+f2+'%);</p>';
@@ -664,7 +666,7 @@
                 grid: {
                     left: '3%',
                     right: '4%',
-                    bottom: '3%',
+                    bottom: '15%',
                     containLabel: true
                 },
                 toolbox: {
@@ -678,7 +680,7 @@
                     data: xfckstation,
 					axisLabel:{
 							interval:0,//横轴信息全部显示
-							rotate:30,//-30度角倾斜显示
+							rotate:60,//-30度角倾斜显示
 						}
                 },
                 yAxis: {
@@ -695,7 +697,7 @@
                         name:'上时段',
                         type:'line',
                         stack: '总量',
-                        data:gq_next_ck
+                        data:xf_next_ck
                     }
                 ]
             };
@@ -715,7 +717,7 @@
             // 指定图表的配置项和数据
             var option4 = {
                  title: {
-                    text: '单位：元'
+                    text: '单位：万元'
                 },
                 tooltip : {
                     trigger: 'axis',

@@ -26,14 +26,14 @@ class ChannelController extends AdminBaseController{
 			$condition["createdate[<>]"] =array($start_date,$end_date);
 		}
 		
-		$totalRows = $channel->where($condition)->order('createdate desc')->count();
+		$totalRows = $channel->where($condition)->order('iseffective ,sort ')->count();
 		$totalPages = 1;
 		$listRows = C('PAGE_NUM');;
 		if($totalRows>$listRows)
 		{
 			$totalPages = $totalRows/$listRows;
 		}
-		$channels=$channel->where($condition)->order('createdate desc')->page($p,$listRows)->select();
+		$channels=$channel->where($condition)->order('iseffective,sort ')->page($p,$listRows)->select();
 		foreach ($channels as &$item){
 			//$item['createdateformat'] = gmdate("Y-m-d H:i:s",$item['createdate']);
 			$item['iseffectiveformat'] = $item['iseffective'] =="0"?"有效":"无效";

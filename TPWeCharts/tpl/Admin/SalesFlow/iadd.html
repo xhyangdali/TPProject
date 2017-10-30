@@ -69,16 +69,16 @@ div:active{
 				<input class="form-control" type="hidden" name="{$v['code']}_id" id="{$v['code']}_id" />
 				</td>
 				<td >
-					<if condition="$v['code'] eq '1010' ">
-						<input class="form-control" type="text"   name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" disabled="disabled" required number="true" placeholder="{$v['name']}(票数)" />
+					<if condition="$v['code'] eq '101001' ">
+						<input class="form-control" type="text"   name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" disabled="disabled" readonly required number="true" placeholder="{$v['name']}(票数)" />
 						<else />
 						<input class="form-control" type="text" onchange="CheckCount(this);" name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" required number="true" placeholder="{$v['name']}(票数)" />
 					</if>
 				</td>
 				<td ><label for="{$v['code']}_moneynum" >{$v['name']}(金额)</label></td>
 				<td >
-					<if condition="$v['code'] eq '1010' ">
-						<input class="form-control" type="text"  name="{$v['code']}_moneynum" id="{$v['code']}_moneynum" disabled="disabled" required number="true" placeholder="{$v['name']}(金额)" />
+					<if condition="$v['code'] eq '101001' ">
+						<input class="form-control" type="text"  name="{$v['code']}_moneynum" id="{$v['code']}_moneynum" disabled="disabled" readonly required number="true" placeholder="{$v['name']}(金额)" />
 						<else />
 						<input class="form-control" type="text" onchange="CheckCount(this);" name="{$v['code']}_moneynum" id="{$v['code']}_moneynum" required number="true" placeholder="{$v['name']}(金额)" />
 					</if>

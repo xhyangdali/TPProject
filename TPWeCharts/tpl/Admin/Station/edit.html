@@ -57,6 +57,11 @@
 					</td>
 				</tr>
 				<tr>
+					<th><label for="sort">排序</label></th>
+					<td><input class="form-control" type="text" name="sort" id="sort">
+					</td>
+				</tr>
+				<tr>
 					<th><label for="iseffective">是否有效</label></th>
 					<td>
 						<select  class="form-control" name="iseffective" id="iseffective" required>
@@ -132,6 +137,7 @@
 								$("#code").val(item.code);
 								$("#address").val(item.address);
 								$("#type").val(item.type);
+								$("#sort").val(item.sort);
 								$("#description").val(item.description);
 								$("#iseffective").val(item.iseffective);
 							}else

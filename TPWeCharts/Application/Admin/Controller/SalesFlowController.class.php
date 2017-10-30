@@ -95,7 +95,7 @@ class SalesFlowController extends AdminBaseController{
         $sql .=$wherestr;
         $Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
         $counts = $Model->query($sql);
-        $totalRows = $counts['icount'];
+        $totalRows = $counts[0]['icount'];
         $totalPages = 1;
         $listRows = C('PAGE_NUM');
         if($totalRows>$listRows)
@@ -112,7 +112,7 @@ class SalesFlowController extends AdminBaseController{
             ->field('a.groupnum,a.stationcode,c.name station,a.flowdate ')
             ->alias('a')
             ->join(' LEFT JOIN Station c ON c.code= a.stationcode')
-            ->order('a.groupnum desc')->page($p,$listRows)->select();
+            ->order('a.groupnum desc ')->page($p,$listRows)->select();
         $page =new Think\Page();
         $page->firstRow = 1;//
         $page->listRows = $listRows;
@@ -138,7 +138,7 @@ class SalesFlowController extends AdminBaseController{
 			'iseffective' => 0,
 			'isdel' => 0
 		);
-		$channels = $channel->where($cargs)->order('createdate desc')->select();
+		$channels = $channel->where($cargs)->order('sort')->select();
 		//
 		$assign=array(
 			'channels' => $channels
@@ -157,7 +157,7 @@ class SalesFlowController extends AdminBaseController{
             'iseffective' => 0,
             'isdel' => 0
         );
-        $channels = $channel->where($cargs)->order('createdate desc')->select();
+        $channels = $channel->where($cargs)->order('sort')->select();
         //
         $assign=array(
             'channels' => $channels
@@ -176,7 +176,7 @@ class SalesFlowController extends AdminBaseController{
             'iseffective' => 0,
             'isdel' => 0
         );
-        $channels = $channel->where($cargs)->order('createdate desc')->select();
+        $channels = $channel->where($cargs)->order('sort')->select();
         //
         $assign=array(
             'channels' => $channels
@@ -513,7 +513,7 @@ class SalesFlowController extends AdminBaseController{
 			'isdel' => 0,
 			'iseffective' => 0
 		);
-		$stations = $station->where($sargs)->select();
+		$stations = $station->where($sargs)->order("sort")->select();
 		if($units&&$channels&&$stations) {
 			$result = array(
 				'state' => 0,
@@ -544,7 +544,7 @@ class SalesFlowController extends AdminBaseController{
 			$sql = "SELECT s.* FROM station AS s WHERE s.`code` NOT IN(
 					SELECT DISTINCT sf.stationcode AS 'code' FROM sales_flow AS sf WHERE sf.groupnum=$gnum  AND sf.isdel=0
 					)
-					AND s.iseffective=0 AND s.isdel=0
+					AND s.iseffective=0 AND s.isdel=0 ORDER BY s.sort
 			";
 			$Model = new \Think\Model(); // 实例化一个model对象 没有对应任何数据表
 			$stations = $Model->query($sql);

@@ -15,7 +15,7 @@ BEGIN
 			sf.stationcode,/* 车站编码 */
 			sf.channelcode,/* 渠道编码 */
 			s.`name` AS stationName,/* 车站名称 */
-			c.`name` AS ChannelName,/* 渠道名称 */
+			CASE WHEN sf.channelcode LIKE '2010%' THEN '微信售票' ELSE  c.`name` END AS ChannelName,/* 渠道名称 */
 			COUNT(sf.moneynum) AS M_COUNT,/* 统计记录数目 */
 			SUM(sf.moneynum) AS M_NUM,/* 金额 */
 			COUNT(sf.ticketnum) AS T_COUNT,/* 统计记录数目 */
@@ -50,7 +50,7 @@ BEGIN
 			left(sf.stationcode,2),
 			sf.channelcode,
 			'县分公司' AS stationName,
-			c.`name` AS ChannelName,
+			CASE WHEN sf.channelcode LIKE '2010%' THEN '微信售票' ELSE  c.`name` END AS ChannelName,
 			COUNT(sf.moneynum) AS M_COUNT,
 			SUM(sf.moneynum) AS M_NUM,
 			COUNT(sf.ticketnum) AS T_COUNT,
@@ -83,4 +83,4 @@ BEGIN
 		;
 END;
 
-CALL GQXF_ETICKET_CHARTS("10%","20%","20%","2017-10-25 00:00:00","2017-10-26 00:00:00");
+CALL GQXF_ETICKET_CHARTS("10%","20%","20%","2017-10-25 00:00:00","2017-10-30 00:00:00");
