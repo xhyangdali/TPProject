@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-10-27 17:54:51
+Date: 2017-10-30 17:53:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -300,6 +300,7 @@ CREATE TABLE `channel` (
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '渠道名称（微信，窗口，其他）',
   `description` text COLLATE utf8mb4_unicode_ci COMMENT '渠道描述',
   `iseffective` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '是否有效',
+  `sort` int(11) DEFAULT '1' COMMENT '排序',
   `createuserid` int(11) DEFAULT NULL COMMENT '数据添加人员编码',
   `createdate` datetime DEFAULT NULL COMMENT '数据创建日期',
   `updateuserid` int(11) DEFAULT NULL COMMENT '数据修改人员',
@@ -313,20 +314,20 @@ CREATE TABLE `channel` (
 -- ----------------------------
 -- Records of channel
 -- ----------------------------
-INSERT INTO `channel` VALUES ('1', '101001', '窗口售票', '窗口售票分类信息', '0', '88', '2017-10-19 13:57:14', '88', '2017-10-24 14:13:31', '88', '2017-10-19 16:09:56', '0');
-INSERT INTO `channel` VALUES ('2', '201001', '微信售票', '微信端售票分类', '0', '88', '2017-10-19 14:00:49', '88', '2017-10-24 14:13:37', null, null, '0');
-INSERT INTO `channel` VALUES ('3', '202001', '自助机售票', '自主售票机分类', '0', '88', '2017-10-19 14:02:27', '88', '2017-10-24 14:13:43', null, null, '0');
-INSERT INTO `channel` VALUES ('4', '203001', '其他网销售票', '其他网销渠道售票分类', '0', '88', '2017-10-19 14:03:40', '88', '2017-10-24 14:13:50', null, null, '0');
-INSERT INTO `channel` VALUES ('5', '1', '1', '1', '1', '88', '2017-10-19 15:37:47', null, null, '88', '2017-10-19 15:48:54', '1');
-INSERT INTO `channel` VALUES ('6', '052104', '快速客运站', '02', '1', '88', '2017-10-19 16:01:53', null, null, '88', '2017-10-19 16:04:22', '1');
-INSERT INTO `channel` VALUES ('7', '1', '1', '1', '1', '88', '2017-10-19 16:02:21', null, null, '88', '2017-10-19 16:04:15', '1');
-INSERT INTO `channel` VALUES ('8', '1', '1', '1', '1', '88', '2017-10-19 16:03:00', null, null, '88', '2017-10-19 16:04:19', '1');
-INSERT INTO `channel` VALUES ('9', '1', '1', '1', '1', '88', '2017-10-20 08:54:25', null, null, '88', '2017-10-20 08:54:29', '1');
-INSERT INTO `channel` VALUES ('10', '1', '1', '1', '0', '88', '2017-10-20 13:09:34', null, null, '88', '2017-10-20 13:10:25', '1');
-INSERT INTO `channel` VALUES ('11', '1', '1', '1', '0', '88', '2017-10-20 13:09:37', null, null, '88', '2017-10-20 13:10:29', '1');
-INSERT INTO `channel` VALUES ('12', '1', '1', '1', '0', '88', '2017-10-20 13:09:43', null, null, '88', '2017-10-20 13:10:32', '1');
-INSERT INTO `channel` VALUES ('13', '203002', '测试', '测试', '1', '88', '2017-10-24 09:20:37', '88', '2017-10-24 14:16:16', null, null, '0');
-INSERT INTO `channel` VALUES ('14', '201002', '微信售票1', '微信售票1', '0', '88', '2017-10-26 10:59:48', null, null, null, null, '0');
+INSERT INTO `channel` VALUES ('1', '101001', '窗口售票', '窗口售票分类信息', '0', '99', '88', '2017-10-19 13:57:14', '88', '2017-10-30 11:42:46', '88', '2017-10-19 16:09:56', '0');
+INSERT INTO `channel` VALUES ('2', '201001', '微信售票', '微信端售票分类', '0', '2', '88', '2017-10-19 14:00:49', '88', '2017-10-30 11:28:35', null, null, '0');
+INSERT INTO `channel` VALUES ('3', '202001', '自助机售票', '自主售票机分类', '0', '3', '88', '2017-10-19 14:02:27', '88', '2017-10-30 11:28:45', null, null, '0');
+INSERT INTO `channel` VALUES ('4', '203001', '其他网销售票', '其他网销渠道售票分类', '0', '4', '88', '2017-10-19 14:03:40', '88', '2017-10-30 11:29:01', null, null, '0');
+INSERT INTO `channel` VALUES ('5', '1', '1', '1', '1', '1', '88', '2017-10-19 15:37:47', null, null, '88', '2017-10-19 15:48:54', '1');
+INSERT INTO `channel` VALUES ('6', '052104', '快速客运站', '02', '1', '1', '88', '2017-10-19 16:01:53', null, null, '88', '2017-10-19 16:04:22', '1');
+INSERT INTO `channel` VALUES ('7', '1', '1', '1', '1', '1', '88', '2017-10-19 16:02:21', null, null, '88', '2017-10-19 16:04:15', '1');
+INSERT INTO `channel` VALUES ('8', '1', '1', '1', '1', '1', '88', '2017-10-19 16:03:00', null, null, '88', '2017-10-19 16:04:19', '1');
+INSERT INTO `channel` VALUES ('9', '1', '1', '1', '1', '1', '88', '2017-10-20 08:54:25', null, null, '88', '2017-10-20 08:54:29', '1');
+INSERT INTO `channel` VALUES ('10', '1', '1', '1', '0', '1', '88', '2017-10-20 13:09:34', null, null, '88', '2017-10-20 13:10:25', '1');
+INSERT INTO `channel` VALUES ('11', '1', '1', '1', '0', '1', '88', '2017-10-20 13:09:37', null, null, '88', '2017-10-20 13:10:29', '1');
+INSERT INTO `channel` VALUES ('12', '1', '1', '1', '0', '1', '88', '2017-10-20 13:09:43', null, null, '88', '2017-10-20 13:10:32', '1');
+INSERT INTO `channel` VALUES ('13', '203002', '测试', '测试', '1', '1', '88', '2017-10-24 09:20:37', '88', '2017-10-24 14:16:16', null, null, '0');
+INSERT INTO `channel` VALUES ('14', '201002', '微信售票1', '微信售票1', '0', '2', '88', '2017-10-26 10:59:48', '88', '2017-10-30 11:29:20', null, null, '0');
 
 -- ----------------------------
 -- Table structure for `custom_user`
@@ -469,7 +470,7 @@ CREATE TABLE `insurance` (
   `deldate` datetime DEFAULT NULL COMMENT '数据删除时间',
   `isdel` int(11) DEFAULT '0' COMMENT '数据是否删除（0是 1否）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='保险信息';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='保险信息';
 
 -- ----------------------------
 -- Records of insurance
@@ -478,20 +479,22 @@ INSERT INTO `insurance` VALUES ('1', '20171013', '111', '2017-10-13 00:00:00', '
 INSERT INTO `insurance` VALUES ('2', '20171011', '3333', '2017-10-11 00:00:00', '123124', '88', '2017-10-19 17:52:17', null, null, '88', '2017-10-20 09:08:00', '1');
 INSERT INTO `insurance` VALUES ('3', '20171019', '1243254', '2017-10-19 00:00:00', '1', '88', '2017-10-19 17:54:00', null, null, '88', '2017-10-20 11:38:02', '1');
 INSERT INTO `insurance` VALUES ('4', '20171004', '34343', '2017-10-04 00:00:00', 'xdgdf', '88', '2017-10-20 08:25:00', null, null, '88', '2017-10-20 11:38:07', '1');
-INSERT INTO `insurance` VALUES ('5', '20171006', '2423', '2017-10-06 00:00:00', '阅历', '88', '2017-10-20 09:01:58', '88', '2017-10-22 14:12:51', null, null, '0');
-INSERT INTO `insurance` VALUES ('6', '20171003', '436546', '2017-10-03 00:00:00', '历史', '88', '2017-10-20 09:06:23', '88', '2017-10-22 15:50:00', null, null, '0');
+INSERT INTO `insurance` VALUES ('5', '20171006', '242', '2017-10-06 00:00:00', '阅历', '88', '2017-10-20 09:01:58', '88', '2017-10-30 11:16:50', null, null, '0');
+INSERT INTO `insurance` VALUES ('6', '20171003', '436', '2017-10-03 00:00:00', '历史', '88', '2017-10-20 09:06:23', '88', '2017-10-30 11:16:45', null, null, '0');
 INSERT INTO `insurance` VALUES ('7', '20171017', '2342354', '2017-10-17 00:00:00', '34546', '88', '2017-10-20 09:06:40', null, null, '88', '2017-10-20 09:07:54', '1');
 INSERT INTO `insurance` VALUES ('8', '20171003', '10004', '2017-10-04 00:00:00', '属于', '88', '2017-10-20 09:18:33', '88', '2017-10-20 09:28:54', '88', '2017-10-22 15:49:46', '1');
-INSERT INTO `insurance` VALUES ('9', '20171020', '24352', '2017-10-20 00:00:00', '到底', '88', '2017-10-20 09:29:53', '88', '2017-10-22 14:19:14', null, null, '0');
+INSERT INTO `insurance` VALUES ('9', '20171020', '243', '2017-10-20 00:00:00', '到底', '88', '2017-10-20 09:29:53', '88', '2017-10-30 11:16:39', null, null, '0');
 INSERT INTO `insurance` VALUES ('10', '20171003', '0', '2017-10-03 00:00:00', 'qq', '88', '2017-10-20 14:02:37', null, null, '88', '2017-10-20 14:02:49', '1');
 INSERT INTO `insurance` VALUES ('11', '20171003', '1245', '2017-10-03 00:00:00', '看剧吐', '88', '2017-10-20 14:03:12', null, null, '88', '2017-10-22 15:49:52', '1');
-INSERT INTO `insurance` VALUES ('12', '20171019', '11111', '2017-10-19 00:00:00', '2', '88', '2017-10-22 15:50:19', '88', '2017-10-23 08:12:04', null, null, '0');
-INSERT INTO `insurance` VALUES ('13', '20171018', '2222', '2017-10-18 00:00:00', '1', '88', '2017-10-22 15:50:31', '88', '2017-10-23 08:11:59', null, null, '0');
+INSERT INTO `insurance` VALUES ('12', '20171019', '111', '2017-10-19 00:00:00', '2', '88', '2017-10-22 15:50:19', '88', '2017-10-30 11:16:26', null, null, '0');
+INSERT INTO `insurance` VALUES ('13', '20171018', '222', '2017-10-18 00:00:00', '1', '88', '2017-10-22 15:50:31', '88', '2017-10-30 11:16:31', null, null, '0');
 INSERT INTO `insurance` VALUES ('14', '20171017', '33', '2017-10-17 00:00:00', '3', '88', '2017-10-22 15:50:48', null, null, null, null, '0');
-INSERT INTO `insurance` VALUES ('15', '20171021', '2423423', '2017-10-21 00:00:00', '3', '88', '2017-10-22 15:51:01', null, null, null, null, '0');
-INSERT INTO `insurance` VALUES ('16', '20171022', '234234', '2017-10-22 00:00:00', '234', '88', '2017-10-22 15:51:16', null, null, null, null, '0');
-INSERT INTO `insurance` VALUES ('17', '20171023', '23434', '2017-10-23 00:00:00', '2', '88', '2017-10-24 09:11:17', null, null, null, null, '0');
+INSERT INTO `insurance` VALUES ('15', '20171021', '242', '2017-10-21 00:00:00', '3', '88', '2017-10-22 15:51:01', '88', '2017-10-30 11:16:19', null, null, '0');
+INSERT INTO `insurance` VALUES ('16', '20171022', '234', '2017-10-22 00:00:00', '234', '88', '2017-10-22 15:51:16', '88', '2017-10-30 11:16:07', null, null, '0');
+INSERT INTO `insurance` VALUES ('17', '20171023', '234', '2017-10-23 00:00:00', '2', '88', '2017-10-24 09:11:17', '88', '2017-10-30 11:16:01', null, null, '0');
 INSERT INTO `insurance` VALUES ('18', '20171025', '343', '2017-10-25 00:00:00', '', '88', '2017-10-25 08:21:42', null, null, null, null, '0');
+INSERT INTO `insurance` VALUES ('19', '20171029', '300', '2017-10-29 00:00:00', '', '88', '2017-10-30 10:26:17', null, null, null, null, '0');
+INSERT INTO `insurance` VALUES ('20', '20171030', '311', '2017-10-30 00:00:00', '', '88', '2017-10-30 10:26:27', null, null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for `log`
@@ -510,7 +513,7 @@ CREATE TABLE `log` (
   PRIMARY KEY (`id`),
   KEY `op_time` (`op_time`),
   KEY `class_name` (`class_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=545 DEFAULT CHARSET=utf8 COMMENT='操作日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=826 DEFAULT CHARSET=utf8 COMMENT='操作日志表';
 
 -- ----------------------------
 -- Records of log
@@ -1059,6 +1062,287 @@ INSERT INTO `log` VALUES ('541', 'admin', 'LOGIN', 'Users', '88', '{\"IP\":\"0.0
 INSERT INTO `log` VALUES ('542', 'admin', 'ACSESS', 'AdminIndex', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508999763', '');
 INSERT INTO `log` VALUES ('543', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1508999767', '');
 INSERT INTO `log` VALUES ('544', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509062749', '');
+INSERT INTO `log` VALUES ('545', 'admin', 'LOGIN', 'Users', '88', '{\"IP\":\"0.0.0.0\"}', '{\"id\":\"88\",\"username\":\"admin\",\"password\":\"e10adc3949ba59abbe56e057f20f883e\",\"avatar\":\"\\/Upload\\/avatar\\/user1.jpg\",\"email\":\"yxh.network@gmail.com\",\"email_code\":\"\",\"nickname\":\"\\u7ba1\\u7406\\u5458\",\"phone\":\"15025134157\",\"org_id\":\"1\",\"dept_id\":\"0\",\"p_id\":\"0\",\"e_id\":\"0\",\"status\":\"1\",\"register_time\":\"1449199996\",\"last_login_ip\":\"\",\"last_login_time\":\"0\"}', '1509322003', '');
+INSERT INTO `log` VALUES ('546', 'admin', 'ACSESS', 'AdminIndex', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322004', '');
+INSERT INTO `log` VALUES ('547', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322011', '');
+INSERT INTO `log` VALUES ('548', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322017', '');
+INSERT INTO `log` VALUES ('549', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"3\",\"name\":\"\\u4e1c\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"1002\",\"description\":\"\\u4e1c\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"DL\",\"type\":\"0\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 08:07:24\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"3\",\"code\":\"1002\",\"name\":\"\\u4e1c\\u90e8\\u6c7d\\u8f66\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"0\",\"address\":\"DL\",\"description\":\"\\u4e1c\\u90e8\\u6c7d\\u8f66\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"createuserid\":\"88\",\"createdate\":\"2017-10-19 16:13:01\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-24 14:14:47\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509322044', '');
+INSERT INTO `log` VALUES ('550', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322044', '');
+INSERT INTO `log` VALUES ('551', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"2\",\"name\":\"\\u5feb\\u901f\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"1001\",\"description\":\"\\u5feb\\u901f\\u6c7d\\u8f66\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"DL\",\"type\":\"0\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 08:07:35\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"2\",\"code\":\"1001\",\"name\":\"\\u5feb\\u901f\\u6c7d\\u8f66\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"0\",\"address\":\"DL\",\"description\":\"\\u5feb\\u901f\\u6c7d\\u8f66\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"createuserid\":\"88\",\"createdate\":\"2017-10-19 16:11:44\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-24 14:14:39\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509322055', '');
+INSERT INTO `log` VALUES ('552', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322055', '');
+INSERT INTO `log` VALUES ('553', 'admin', 'ADD', 'Station', '88', '{\"Result::\":\"10\",\"Data::\":{\"name\":\"\\u5317\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"1004\",\"description\":\"\\u5317\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5317\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"iseffective\":\"0\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:08:32\"},\"IP::\":\"0.0.0.0\"}', '', '1509322112', '');
+INSERT INTO `log` VALUES ('554', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322113', '');
+INSERT INTO `log` VALUES ('555', 'admin', 'ADD', 'Station', '88', '{\"Result::\":\"11\",\"Data::\":{\"name\":\"\\u5357\\u6da7\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2003\",\"description\":\"\\u5357\\u6da7\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5357\\u6da7\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"iseffective\":\"0\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:09:21\"},\"IP::\":\"0.0.0.0\"}', '', '1509322161', '');
+INSERT INTO `log` VALUES ('556', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322161', '');
+INSERT INTO `log` VALUES ('557', 'admin', 'ADD', 'Station', '88', '{\"Result::\":\"12\",\"Data::\":{\"name\":\"\\u5bbe\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2004\",\"description\":\"\\u5bbe\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5bbe\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"iseffective\":\"0\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:10:05\"},\"IP::\":\"0.0.0.0\"}', '', '1509322205', '');
+INSERT INTO `log` VALUES ('558', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322205', '');
+INSERT INTO `log` VALUES ('559', 'admin', 'ADD', 'Station', '88', '{\"Result::\":\"13\",\"Data::\":{\"name\":\"\\u9e64\\u5e86\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2005\",\"description\":\"\\u9e64\\u5e86\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u9e64\\u5e86\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"iseffective\":\"0\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:10:47\"},\"IP::\":\"0.0.0.0\"}', '', '1509322247', '');
+INSERT INTO `log` VALUES ('560', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322247', '');
+INSERT INTO `log` VALUES ('561', 'admin', 'ADD', 'Station', '88', '{\"Result::\":\"14\",\"Data::\":{\"name\":\"\\u5f25\\u6e21\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2006\",\"description\":\"\\u5f25\\u6e21\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5f25\\u6e21\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"iseffective\":\"0\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:11:18\"},\"IP::\":\"0.0.0.0\"}', '', '1509322278', '');
+INSERT INTO `log` VALUES ('562', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322278', '');
+INSERT INTO `log` VALUES ('563', 'admin', 'ADD', 'Station', '88', '{\"Result::\":\"15\",\"Data::\":{\"name\":\"\\u5251\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2007\",\"description\":\"\\u5251\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5251\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"iseffective\":\"0\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:11:47\"},\"IP::\":\"0.0.0.0\"}', '', '1509322307', '');
+INSERT INTO `log` VALUES ('564', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322308', '');
+INSERT INTO `log` VALUES ('565', 'admin', 'ADD', 'Station', '88', '{\"Result::\":\"16\",\"Data::\":{\"name\":\"\\u6c38\\u5e73\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2008\",\"description\":\"\\u6c38\\u5e73\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u6c38\\u5e73\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"iseffective\":\"0\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:14:13\"},\"IP::\":\"0.0.0.0\"}', '', '1509322453', '');
+INSERT INTO `log` VALUES ('566', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322454', '');
+INSERT INTO `log` VALUES ('567', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509322505', '');
+INSERT INTO `log` VALUES ('568', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"1\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"1001\",\"ticketnum\":\"34\",\"moneynum\":\"300\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:16:11\"},\"IP::\":\"0.0.0.0\"}', '', '1509322571', '');
+INSERT INTO `log` VALUES ('569', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"2\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"1001\",\"ticketnum\":\"23\",\"moneynum\":\"300\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:16:11\"},\"IP::\":\"0.0.0.0\"}', '', '1509322571', '');
+INSERT INTO `log` VALUES ('570', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"3\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"1001\",\"ticketnum\":\"23\",\"moneynum\":\"300\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:16:11\"},\"IP::\":\"0.0.0.0\"}', '', '1509322571', '');
+INSERT INTO `log` VALUES ('571', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"4\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"1001\",\"ticketnum\":\"61\",\"moneynum\":\"600\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:16:11\"},\"IP::\":\"0.0.0.0\"}', '', '1509322571', '');
+INSERT INTO `log` VALUES ('572', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"5\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"1001\",\"ticketnum\":\"159\",\"moneynum\":\"4500.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:16:11\"},\"IP::\":\"0.0.0.0\"}', '', '1509322571', '');
+INSERT INTO `log` VALUES ('573', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"6\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"1002\",\"ticketnum\":\"24\",\"moneynum\":\"241\",\"unit\":\"1010\",\"description\":\"2\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:17:04\"},\"IP::\":\"0.0.0.0\"}', '', '1509322624', '');
+INSERT INTO `log` VALUES ('574', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"7\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"1002\",\"ticketnum\":\"30\",\"moneynum\":\"302\",\"unit\":\"1010\",\"description\":\"2\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:17:04\"},\"IP::\":\"0.0.0.0\"}', '', '1509322624', '');
+INSERT INTO `log` VALUES ('575', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"8\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"1002\",\"ticketnum\":\"20\",\"moneynum\":\"201\",\"unit\":\"1010\",\"description\":\"2\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:17:04\"},\"IP::\":\"0.0.0.0\"}', '', '1509322624', '');
+INSERT INTO `log` VALUES ('576', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"9\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"1002\",\"ticketnum\":\"40\",\"moneynum\":\"406\",\"unit\":\"1010\",\"description\":\"2\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:17:04\"},\"IP::\":\"0.0.0.0\"}', '', '1509322624', '');
+INSERT INTO `log` VALUES ('577', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"10\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"1002\",\"ticketnum\":\"574\",\"moneynum\":\"5738.00\",\"unit\":\"1010\",\"description\":\"2\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:17:04\"},\"IP::\":\"0.0.0.0\"}', '', '1509322624', '');
+INSERT INTO `log` VALUES ('578', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"11\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"1003\",\"ticketnum\":\"23\",\"moneynum\":\"230\",\"unit\":\"1010\",\"description\":\"2\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:17:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509322672', '');
+INSERT INTO `log` VALUES ('579', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"12\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"1003\",\"ticketnum\":\"24\",\"moneynum\":\"240\",\"unit\":\"1010\",\"description\":\"2\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:17:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509322672', '');
+INSERT INTO `log` VALUES ('580', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"13\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"1003\",\"ticketnum\":\"34\",\"moneynum\":\"341\",\"unit\":\"1010\",\"description\":\"2\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:17:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509322672', '');
+INSERT INTO `log` VALUES ('581', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"14\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"1003\",\"ticketnum\":\"22\",\"moneynum\":\"221\",\"unit\":\"1010\",\"description\":\"2\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:17:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509322672', '');
+INSERT INTO `log` VALUES ('582', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"15\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"1003\",\"ticketnum\":\"530\",\"moneynum\":\"5301.00\",\"unit\":\"1010\",\"description\":\"2\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:17:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509322672', '');
+INSERT INTO `log` VALUES ('583', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"16\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"1004\",\"ticketnum\":\"19\",\"moneynum\":\"190\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:18:44\"},\"IP::\":\"0.0.0.0\"}', '', '1509322724', '');
+INSERT INTO `log` VALUES ('584', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"17\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"1004\",\"ticketnum\":\"21\",\"moneynum\":\"211\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:18:44\"},\"IP::\":\"0.0.0.0\"}', '', '1509322724', '');
+INSERT INTO `log` VALUES ('585', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"18\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"1004\",\"ticketnum\":\"22\",\"moneynum\":\"231\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:18:44\"},\"IP::\":\"0.0.0.0\"}', '', '1509322724', '');
+INSERT INTO `log` VALUES ('586', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"19\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"1004\",\"ticketnum\":\"42\",\"moneynum\":\"431\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:18:44\"},\"IP::\":\"0.0.0.0\"}', '', '1509322724', '');
+INSERT INTO `log` VALUES ('587', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"20\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"1004\",\"ticketnum\":\"462\",\"moneynum\":\"4603.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:18:44\"},\"IP::\":\"0.0.0.0\"}', '', '1509322724', '');
+INSERT INTO `log` VALUES ('588', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"21\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"2001\",\"ticketnum\":\"17\",\"moneynum\":\"170\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:19:27\"},\"IP::\":\"0.0.0.0\"}', '', '1509322767', '');
+INSERT INTO `log` VALUES ('589', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"22\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"2001\",\"ticketnum\":\"16\",\"moneynum\":\"160\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:19:27\"},\"IP::\":\"0.0.0.0\"}', '', '1509322767', '');
+INSERT INTO `log` VALUES ('590', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"23\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"2001\",\"ticketnum\":\"15\",\"moneynum\":\"150\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:19:27\"},\"IP::\":\"0.0.0.0\"}', '', '1509322767', '');
+INSERT INTO `log` VALUES ('591', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"24\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"2001\",\"ticketnum\":\"12\",\"moneynum\":\"120\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:19:27\"},\"IP::\":\"0.0.0.0\"}', '', '1509322767', '');
+INSERT INTO `log` VALUES ('592', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"25\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"2001\",\"ticketnum\":\"262\",\"moneynum\":\"2622.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:19:27\"},\"IP::\":\"0.0.0.0\"}', '', '1509322767', '');
+INSERT INTO `log` VALUES ('593', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"26\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"2002\",\"ticketnum\":\"12\",\"moneynum\":\"121\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:20:12\"},\"IP::\":\"0.0.0.0\"}', '', '1509322812', '');
+INSERT INTO `log` VALUES ('594', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"27\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"2002\",\"ticketnum\":\"11\",\"moneynum\":\"111\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:20:12\"},\"IP::\":\"0.0.0.0\"}', '', '1509322812', '');
+INSERT INTO `log` VALUES ('595', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"28\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"2002\",\"ticketnum\":\"13\",\"moneynum\":\"131\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:20:12\"},\"IP::\":\"0.0.0.0\"}', '', '1509322812', '');
+INSERT INTO `log` VALUES ('596', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"29\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"2002\",\"ticketnum\":\"11\",\"moneynum\":\"111\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:20:12\"},\"IP::\":\"0.0.0.0\"}', '', '1509322812', '');
+INSERT INTO `log` VALUES ('597', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"30\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"2002\",\"ticketnum\":\"508\",\"moneynum\":\"5081.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:20:12\"},\"IP::\":\"0.0.0.0\"}', '', '1509322812', '');
+INSERT INTO `log` VALUES ('598', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"31\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"2003\",\"ticketnum\":\"11\",\"moneynum\":\"111\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:20:57\"},\"IP::\":\"0.0.0.0\"}', '', '1509322857', '');
+INSERT INTO `log` VALUES ('599', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"32\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"2003\",\"ticketnum\":\"12\",\"moneynum\":\"121\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:20:57\"},\"IP::\":\"0.0.0.0\"}', '', '1509322857', '');
+INSERT INTO `log` VALUES ('600', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"33\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"2003\",\"ticketnum\":\"13\",\"moneynum\":\"131\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:20:57\"},\"IP::\":\"0.0.0.0\"}', '', '1509322857', '');
+INSERT INTO `log` VALUES ('601', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"34\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"2003\",\"ticketnum\":\"10\",\"moneynum\":\"110\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:20:57\"},\"IP::\":\"0.0.0.0\"}', '', '1509322857', '');
+INSERT INTO `log` VALUES ('602', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"35\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"2003\",\"ticketnum\":\"497\",\"moneynum\":\"5079.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:20:57\"},\"IP::\":\"0.0.0.0\"}', '', '1509322857', '');
+INSERT INTO `log` VALUES ('603', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"36\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"2004\",\"ticketnum\":\"10\",\"moneynum\":\"100\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:21:47\"},\"IP::\":\"0.0.0.0\"}', '', '1509322907', '');
+INSERT INTO `log` VALUES ('604', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"37\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"2004\",\"ticketnum\":\"14\",\"moneynum\":\"142\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:21:47\"},\"IP::\":\"0.0.0.0\"}', '', '1509322907', '');
+INSERT INTO `log` VALUES ('605', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"38\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"2004\",\"ticketnum\":\"16\",\"moneynum\":\"160\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:21:47\"},\"IP::\":\"0.0.0.0\"}', '', '1509322907', '');
+INSERT INTO `log` VALUES ('606', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"39\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"2004\",\"ticketnum\":\"9\",\"moneynum\":\"900\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:21:47\"},\"IP::\":\"0.0.0.0\"}', '', '1509322907', '');
+INSERT INTO `log` VALUES ('607', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"40\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"2004\",\"ticketnum\":\"463\",\"moneynum\":\"3818.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:21:47\"},\"IP::\":\"0.0.0.0\"}', '', '1509322907', '');
+INSERT INTO `log` VALUES ('608', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"41\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"2005\",\"ticketnum\":\"11\",\"moneynum\":\"111\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:22:22\"},\"IP::\":\"0.0.0.0\"}', '', '1509322942', '');
+INSERT INTO `log` VALUES ('609', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"42\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"2005\",\"ticketnum\":\"12\",\"moneynum\":\"121\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:22:22\"},\"IP::\":\"0.0.0.0\"}', '', '1509322942', '');
+INSERT INTO `log` VALUES ('610', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"43\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"2005\",\"ticketnum\":\"13\",\"moneynum\":\"131\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:22:22\"},\"IP::\":\"0.0.0.0\"}', '', '1509322942', '');
+INSERT INTO `log` VALUES ('611', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"44\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"2005\",\"ticketnum\":\"14\",\"moneynum\":\"141\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:22:22\"},\"IP::\":\"0.0.0.0\"}', '', '1509322942', '');
+INSERT INTO `log` VALUES ('612', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"45\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"2005\",\"ticketnum\":\"402\",\"moneynum\":\"4018.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:22:22\"},\"IP::\":\"0.0.0.0\"}', '', '1509322942', '');
+INSERT INTO `log` VALUES ('613', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"46\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"2006\",\"ticketnum\":\"12\",\"moneynum\":\"121\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:22:56\"},\"IP::\":\"0.0.0.0\"}', '', '1509322976', '');
+INSERT INTO `log` VALUES ('614', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"47\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"2006\",\"ticketnum\":\"13\",\"moneynum\":\"131\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:22:56\"},\"IP::\":\"0.0.0.0\"}', '', '1509322976', '');
+INSERT INTO `log` VALUES ('615', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"48\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"2006\",\"ticketnum\":\"14\",\"moneynum\":\"141\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:22:56\"},\"IP::\":\"0.0.0.0\"}', '', '1509322976', '');
+INSERT INTO `log` VALUES ('616', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"49\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"2006\",\"ticketnum\":\"15\",\"moneynum\":\"152\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:22:56\"},\"IP::\":\"0.0.0.0\"}', '', '1509322976', '');
+INSERT INTO `log` VALUES ('617', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"50\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"2006\",\"ticketnum\":\"397\",\"moneynum\":\"3966.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:22:56\"},\"IP::\":\"0.0.0.0\"}', '', '1509322976', '');
+INSERT INTO `log` VALUES ('618', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"51\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"2007\",\"ticketnum\":\"11\",\"moneynum\":\"112\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:23:29\"},\"IP::\":\"0.0.0.0\"}', '', '1509323009', '');
+INSERT INTO `log` VALUES ('619', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"52\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"2007\",\"ticketnum\":\"10\",\"moneynum\":\"101\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:23:29\"},\"IP::\":\"0.0.0.0\"}', '', '1509323009', '');
+INSERT INTO `log` VALUES ('620', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"53\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"2007\",\"ticketnum\":\"12\",\"moneynum\":\"121\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:23:29\"},\"IP::\":\"0.0.0.0\"}', '', '1509323009', '');
+INSERT INTO `log` VALUES ('621', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"54\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"2007\",\"ticketnum\":\"13\",\"moneynum\":\"134\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:23:29\"},\"IP::\":\"0.0.0.0\"}', '', '1509323009', '');
+INSERT INTO `log` VALUES ('622', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"55\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"2007\",\"ticketnum\":\"299\",\"moneynum\":\"2987.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:23:29\"},\"IP::\":\"0.0.0.0\"}', '', '1509323009', '');
+INSERT INTO `log` VALUES ('623', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"56\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201002\",\"stationcode\":\"2008\",\"ticketnum\":\"10\",\"moneynum\":\"101\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:24:00\"},\"IP::\":\"0.0.0.0\"}', '', '1509323040', '');
+INSERT INTO `log` VALUES ('624', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"57\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"203001\",\"stationcode\":\"2008\",\"ticketnum\":\"12\",\"moneynum\":\"121\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:24:00\"},\"IP::\":\"0.0.0.0\"}', '', '1509323040', '');
+INSERT INTO `log` VALUES ('625', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"58\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"202001\",\"stationcode\":\"2008\",\"ticketnum\":\"13\",\"moneynum\":\"131\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:24:00\"},\"IP::\":\"0.0.0.0\"}', '', '1509323040', '');
+INSERT INTO `log` VALUES ('626', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"59\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"201001\",\"stationcode\":\"2008\",\"ticketnum\":\"14\",\"moneynum\":\"141\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:24:00\"},\"IP::\":\"0.0.0.0\"}', '', '1509323040', '');
+INSERT INTO `log` VALUES ('627', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"60\",\"Data::\":{\"flowdate\":\"2017-10-30\",\"groupnum\":\"20171030\",\"channelcode\":\"101001\",\"stationcode\":\"2008\",\"ticketnum\":\"307\",\"moneynum\":\"3061.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:24:00\"},\"IP::\":\"0.0.0.0\"}', '', '1509323040', '');
+INSERT INTO `log` VALUES ('628', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509323043', '');
+INSERT INTO `log` VALUES ('629', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509323058', '');
+INSERT INTO `log` VALUES ('630', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509323069', '');
+INSERT INTO `log` VALUES ('631', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"61\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"1001\",\"ticketnum\":\"9\",\"moneynum\":\"90\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:25:23\"},\"IP::\":\"0.0.0.0\"}', '', '1509323123', '');
+INSERT INTO `log` VALUES ('632', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"62\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"1001\",\"ticketnum\":\"9\",\"moneynum\":\"90\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:25:23\"},\"IP::\":\"0.0.0.0\"}', '', '1509323123', '');
+INSERT INTO `log` VALUES ('633', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"63\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"1001\",\"ticketnum\":\"8\",\"moneynum\":\"80\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:25:23\"},\"IP::\":\"0.0.0.0\"}', '', '1509323123', '');
+INSERT INTO `log` VALUES ('634', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"64\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"1001\",\"ticketnum\":\"5\",\"moneynum\":\"50\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:25:23\"},\"IP::\":\"0.0.0.0\"}', '', '1509323123', '');
+INSERT INTO `log` VALUES ('635', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"65\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"1001\",\"ticketnum\":\"80\",\"moneynum\":\"801.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:25:23\"},\"IP::\":\"0.0.0.0\"}', '', '1509323123', '');
+INSERT INTO `log` VALUES ('636', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509323126', '');
+INSERT INTO `log` VALUES ('637', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"66\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"1002\",\"ticketnum\":\"8\",\"moneynum\":\"80\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:26:13\"},\"IP::\":\"0.0.0.0\"}', '', '1509323173', '');
+INSERT INTO `log` VALUES ('638', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"67\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"1002\",\"ticketnum\":\"9\",\"moneynum\":\"90\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:26:13\"},\"IP::\":\"0.0.0.0\"}', '', '1509323173', '');
+INSERT INTO `log` VALUES ('639', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"68\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"1002\",\"ticketnum\":\"7\",\"moneynum\":\"70\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:26:13\"},\"IP::\":\"0.0.0.0\"}', '', '1509323173', '');
+INSERT INTO `log` VALUES ('640', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"69\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"1002\",\"ticketnum\":\"5\",\"moneynum\":\"51\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:26:13\"},\"IP::\":\"0.0.0.0\"}', '', '1509323173', '');
+INSERT INTO `log` VALUES ('641', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"70\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"1002\",\"ticketnum\":\"93\",\"moneynum\":\"931.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:26:13\"},\"IP::\":\"0.0.0.0\"}', '', '1509323173', '');
+INSERT INTO `log` VALUES ('642', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"71\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"1003\",\"ticketnum\":\"9\",\"moneynum\":\"90\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:26:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509323212', '');
+INSERT INTO `log` VALUES ('643', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"72\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"1003\",\"ticketnum\":\"8\",\"moneynum\":\"80\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:26:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509323212', '');
+INSERT INTO `log` VALUES ('644', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"73\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"1003\",\"ticketnum\":\"9\",\"moneynum\":\"90\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:26:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509323212', '');
+INSERT INTO `log` VALUES ('645', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"74\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"1003\",\"ticketnum\":\"8\",\"moneynum\":\"80\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:26:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509323212', '');
+INSERT INTO `log` VALUES ('646', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"75\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"1003\",\"ticketnum\":\"77\",\"moneynum\":\"771.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:26:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509323212', '');
+INSERT INTO `log` VALUES ('647', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"76\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"1004\",\"ticketnum\":\"12\",\"moneynum\":\"121\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:27:28\"},\"IP::\":\"0.0.0.0\"}', '', '1509323248', '');
+INSERT INTO `log` VALUES ('648', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"77\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"1004\",\"ticketnum\":\"13\",\"moneynum\":\"131\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:27:28\"},\"IP::\":\"0.0.0.0\"}', '', '1509323248', '');
+INSERT INTO `log` VALUES ('649', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"78\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"1004\",\"ticketnum\":\"11\",\"moneynum\":\"111\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:27:28\"},\"IP::\":\"0.0.0.0\"}', '', '1509323248', '');
+INSERT INTO `log` VALUES ('650', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"79\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"1004\",\"ticketnum\":\"10\",\"moneynum\":\"100\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:27:28\"},\"IP::\":\"0.0.0.0\"}', '', '1509323248', '');
+INSERT INTO `log` VALUES ('651', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"80\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"1004\",\"ticketnum\":\"298\",\"moneynum\":\"2981.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:27:28\"},\"IP::\":\"0.0.0.0\"}', '', '1509323248', '');
+INSERT INTO `log` VALUES ('652', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509323251', '');
+INSERT INTO `log` VALUES ('653', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"81\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"2001\",\"ticketnum\":\"8\",\"moneynum\":\"80\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:28:26\"},\"IP::\":\"0.0.0.0\"}', '', '1509323306', '');
+INSERT INTO `log` VALUES ('654', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"82\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"2001\",\"ticketnum\":\"7\",\"moneynum\":\"70\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:28:26\"},\"IP::\":\"0.0.0.0\"}', '', '1509323306', '');
+INSERT INTO `log` VALUES ('655', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"83\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"2001\",\"ticketnum\":\"9\",\"moneynum\":\"90\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:28:26\"},\"IP::\":\"0.0.0.0\"}', '', '1509323306', '');
+INSERT INTO `log` VALUES ('656', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"84\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"2001\",\"ticketnum\":\"6\",\"moneynum\":\"60\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:28:26\"},\"IP::\":\"0.0.0.0\"}', '', '1509323306', '');
+INSERT INTO `log` VALUES ('657', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"85\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"2001\",\"ticketnum\":\"92\",\"moneynum\":\"922.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:28:26\"},\"IP::\":\"0.0.0.0\"}', '', '1509323306', '');
+INSERT INTO `log` VALUES ('658', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509323307', '');
+INSERT INTO `log` VALUES ('659', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509323851', '');
+INSERT INTO `log` VALUES ('660', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324382', '');
+INSERT INTO `log` VALUES ('661', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324385', '');
+INSERT INTO `log` VALUES ('662', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324386', '');
+INSERT INTO `log` VALUES ('663', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324388', '');
+INSERT INTO `log` VALUES ('664', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324408', '');
+INSERT INTO `log` VALUES ('665', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324519', '');
+INSERT INTO `log` VALUES ('666', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324523', '');
+INSERT INTO `log` VALUES ('667', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324528', '');
+INSERT INTO `log` VALUES ('668', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324536', '');
+INSERT INTO `log` VALUES ('669', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324549', '');
+INSERT INTO `log` VALUES ('670', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324551', '');
+INSERT INTO `log` VALUES ('671', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324719', '');
+INSERT INTO `log` VALUES ('672', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324723', '');
+INSERT INTO `log` VALUES ('673', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324872', '');
+INSERT INTO `log` VALUES ('674', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324886', '');
+INSERT INTO `log` VALUES ('675', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324906', '');
+INSERT INTO `log` VALUES ('676', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324908', '');
+INSERT INTO `log` VALUES ('677', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324928', '');
+INSERT INTO `log` VALUES ('678', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324940', '');
+INSERT INTO `log` VALUES ('679', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324952', '');
+INSERT INTO `log` VALUES ('680', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324954', '');
+INSERT INTO `log` VALUES ('681', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509324957', '');
+INSERT INTO `log` VALUES ('682', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509330364', '');
+INSERT INTO `log` VALUES ('683', 'admin', 'ADD', 'Insurance', '88', '{\"Result::\":\"19\",\"Data::\":{\"groupnum\":\"20171029\",\"indate\":\"2017-10-29\",\"num\":\"300\",\"description\":\"\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:26:17\"},\"IP::\":\"0.0.0.0\"}', '', '1509330377', '');
+INSERT INTO `log` VALUES ('684', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509330378', '');
+INSERT INTO `log` VALUES ('685', 'admin', 'ADD', 'Insurance', '88', '{\"Result::\":\"20\",\"Data::\":{\"groupnum\":\"20171030\",\"indate\":\"2017-10-30\",\"num\":\"311\",\"description\":\"\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:26:27\"},\"IP::\":\"0.0.0.0\"}', '', '1509330387', '');
+INSERT INTO `log` VALUES ('686', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509330388', '');
+INSERT INTO `log` VALUES ('687', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509330493', '');
+INSERT INTO `log` VALUES ('688', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"86\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"2002\",\"ticketnum\":\"11\",\"moneynum\":\"111\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:28:50\"},\"IP::\":\"0.0.0.0\"}', '', '1509330530', '');
+INSERT INTO `log` VALUES ('689', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"87\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"2002\",\"ticketnum\":\"1\",\"moneynum\":\"10\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:28:50\"},\"IP::\":\"0.0.0.0\"}', '', '1509330530', '');
+INSERT INTO `log` VALUES ('690', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"88\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"2002\",\"ticketnum\":\"1\",\"moneynum\":\"10\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:28:50\"},\"IP::\":\"0.0.0.0\"}', '', '1509330530', '');
+INSERT INTO `log` VALUES ('691', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"89\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"2002\",\"ticketnum\":\"1\",\"moneynum\":\"10\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:28:50\"},\"IP::\":\"0.0.0.0\"}', '', '1509330530', '');
+INSERT INTO `log` VALUES ('692', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"90\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"2002\",\"ticketnum\":\"97\",\"moneynum\":\"970.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:28:50\"},\"IP::\":\"0.0.0.0\"}', '', '1509330530', '');
+INSERT INTO `log` VALUES ('693', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"91\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"2003\",\"ticketnum\":\"11\",\"moneynum\":\"111\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:29:10\"},\"IP::\":\"0.0.0.0\"}', '', '1509330550', '');
+INSERT INTO `log` VALUES ('694', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"92\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"2003\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:29:10\"},\"IP::\":\"0.0.0.0\"}', '', '1509330550', '');
+INSERT INTO `log` VALUES ('695', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"93\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"2003\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:29:10\"},\"IP::\":\"0.0.0.0\"}', '', '1509330550', '');
+INSERT INTO `log` VALUES ('696', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"94\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"2003\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:29:10\"},\"IP::\":\"0.0.0.0\"}', '', '1509330550', '');
+INSERT INTO `log` VALUES ('697', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"95\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"2003\",\"ticketnum\":\"97\",\"moneynum\":\"967.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:29:10\"},\"IP::\":\"0.0.0.0\"}', '', '1509330550', '');
+INSERT INTO `log` VALUES ('698', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"96\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"2004\",\"ticketnum\":\"11\",\"moneynum\":\"111\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:29:33\"},\"IP::\":\"0.0.0.0\"}', '', '1509330573', '');
+INSERT INTO `log` VALUES ('699', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"97\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"2004\",\"ticketnum\":\"1\",\"moneynum\":\"12\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:29:33\"},\"IP::\":\"0.0.0.0\"}', '', '1509330573', '');
+INSERT INTO `log` VALUES ('700', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"98\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"2004\",\"ticketnum\":\"1\",\"moneynum\":\"12\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:29:33\"},\"IP::\":\"0.0.0.0\"}', '', '1509330573', '');
+INSERT INTO `log` VALUES ('701', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"99\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"2004\",\"ticketnum\":\"1\",\"moneynum\":\"12\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:29:33\"},\"IP::\":\"0.0.0.0\"}', '', '1509330573', '');
+INSERT INTO `log` VALUES ('702', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"100\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"2004\",\"ticketnum\":\"98\",\"moneynum\":\"975.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:29:33\"},\"IP::\":\"0.0.0.0\"}', '', '1509330573', '');
+INSERT INTO `log` VALUES ('703', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"101\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"2005\",\"ticketnum\":\"11\",\"moneynum\":\"111\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:04\"},\"IP::\":\"0.0.0.0\"}', '', '1509330604', '');
+INSERT INTO `log` VALUES ('704', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"102\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"2005\",\"ticketnum\":\"22\",\"moneynum\":\"221\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:04\"},\"IP::\":\"0.0.0.0\"}', '', '1509330604', '');
+INSERT INTO `log` VALUES ('705', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"103\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"2005\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:04\"},\"IP::\":\"0.0.0.0\"}', '', '1509330604', '');
+INSERT INTO `log` VALUES ('706', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"104\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"2005\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:04\"},\"IP::\":\"0.0.0.0\"}', '', '1509330604', '');
+INSERT INTO `log` VALUES ('707', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"105\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"2005\",\"ticketnum\":\"187\",\"moneynum\":\"1868.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:04\"},\"IP::\":\"0.0.0.0\"}', '', '1509330604', '');
+INSERT INTO `log` VALUES ('708', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"106\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"2006\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:28\"},\"IP::\":\"0.0.0.0\"}', '', '1509330628', '');
+INSERT INTO `log` VALUES ('709', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"107\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"2006\",\"ticketnum\":\"11\",\"moneynum\":\"119\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:28\"},\"IP::\":\"0.0.0.0\"}', '', '1509330628', '');
+INSERT INTO `log` VALUES ('710', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"108\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"2006\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:28\"},\"IP::\":\"0.0.0.0\"}', '', '1509330628', '');
+INSERT INTO `log` VALUES ('711', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"109\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"2006\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:28\"},\"IP::\":\"0.0.0.0\"}', '', '1509330628', '');
+INSERT INTO `log` VALUES ('712', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"110\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"2006\",\"ticketnum\":\"109\",\"moneynum\":\"1081.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:28\"},\"IP::\":\"0.0.0.0\"}', '', '1509330628', '');
+INSERT INTO `log` VALUES ('713', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"111\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"2007\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509330652', '');
+INSERT INTO `log` VALUES ('714', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"112\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"2007\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509330652', '');
+INSERT INTO `log` VALUES ('715', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"113\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"2007\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509330652', '');
+INSERT INTO `log` VALUES ('716', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"114\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"2007\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509330652', '');
+INSERT INTO `log` VALUES ('717', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"115\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"2007\",\"ticketnum\":\"129\",\"moneynum\":\"1289.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:30:52\"},\"IP::\":\"0.0.0.0\"}', '', '1509330652', '');
+INSERT INTO `log` VALUES ('718', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"116\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201002\",\"stationcode\":\"2008\",\"ticketnum\":\"11\",\"moneynum\":\"111\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:31:12\"},\"IP::\":\"0.0.0.0\"}', '', '1509330672', '');
+INSERT INTO `log` VALUES ('719', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"117\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"203001\",\"stationcode\":\"2008\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:31:12\"},\"IP::\":\"0.0.0.0\"}', '', '1509330672', '');
+INSERT INTO `log` VALUES ('720', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"118\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"202001\",\"stationcode\":\"2008\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:31:12\"},\"IP::\":\"0.0.0.0\"}', '', '1509330672', '');
+INSERT INTO `log` VALUES ('721', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"119\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"201001\",\"stationcode\":\"2008\",\"ticketnum\":\"1\",\"moneynum\":\"11\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:31:12\"},\"IP::\":\"0.0.0.0\"}', '', '1509330672', '');
+INSERT INTO `log` VALUES ('722', 'admin', 'ADD', 'SalesFlow', '88', '{\"Result::\":\"120\",\"Data::\":{\"flowdate\":\"2017-10-29\",\"groupnum\":\"20171029\",\"channelcode\":\"101001\",\"stationcode\":\"2008\",\"ticketnum\":\"109\",\"moneynum\":\"1089.00\",\"unit\":\"1010\",\"description\":\"1\",\"isdel\":0,\"createuserid\":\"88\",\"createdate\":\"2017-10-30 10:31:12\"},\"IP::\":\"0.0.0.0\"}', '', '1509330672', '');
+INSERT INTO `log` VALUES ('723', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509330676', '');
+INSERT INTO `log` VALUES ('724', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509330678', '');
+INSERT INTO `log` VALUES ('725', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509332753', '');
+INSERT INTO `log` VALUES ('726', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509332754', '');
+INSERT INTO `log` VALUES ('727', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509332762', '');
+INSERT INTO `log` VALUES ('728', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509332775', '');
+INSERT INTO `log` VALUES ('729', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333096', '');
+INSERT INTO `log` VALUES ('730', 'admin', 'Log', 'WhiteList', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333098', '');
+INSERT INTO `log` VALUES ('731', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333102', '');
+INSERT INTO `log` VALUES ('732', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333128', '');
+INSERT INTO `log` VALUES ('733', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333130', '');
+INSERT INTO `log` VALUES ('734', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333133', '');
+INSERT INTO `log` VALUES ('735', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333135', '');
+INSERT INTO `log` VALUES ('736', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333323', '');
+INSERT INTO `log` VALUES ('737', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333335', '');
+INSERT INTO `log` VALUES ('738', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333340', '');
+INSERT INTO `log` VALUES ('739', 'admin', 'MODIFY', 'Insurance', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"17\",\"groupnum\":\"20171023\",\"num\":\"234\",\"description\":\"2\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:16:01\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"17\",\"groupnum\":\"20171023\",\"num\":\"23434\",\"indate\":\"2017-10-23 00:00:00\",\"description\":\"2\",\"createuserid\":\"88\",\"createdate\":\"2017-10-24 09:11:17\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509333361', '');
+INSERT INTO `log` VALUES ('740', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333361', '');
+INSERT INTO `log` VALUES ('741', 'admin', 'MODIFY', 'Insurance', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"16\",\"groupnum\":\"20171022\",\"num\":\"234\",\"description\":\"234\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:16:07\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"16\",\"groupnum\":\"20171022\",\"num\":\"234234\",\"indate\":\"2017-10-22 00:00:00\",\"description\":\"234\",\"createuserid\":\"88\",\"createdate\":\"2017-10-22 15:51:16\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509333367', '');
+INSERT INTO `log` VALUES ('742', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333368', '');
+INSERT INTO `log` VALUES ('743', 'admin', 'MODIFY', 'Insurance', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"15\",\"groupnum\":\"20171021\",\"num\":\"2423\",\"description\":\"3\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:16:13\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"15\",\"groupnum\":\"20171021\",\"num\":\"2423423\",\"indate\":\"2017-10-21 00:00:00\",\"description\":\"3\",\"createuserid\":\"88\",\"createdate\":\"2017-10-22 15:51:01\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509333373', '');
+INSERT INTO `log` VALUES ('744', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333373', '');
+INSERT INTO `log` VALUES ('745', 'admin', 'MODIFY', 'Insurance', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"15\",\"groupnum\":\"20171021\",\"num\":\"242\",\"description\":\"3\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:16:19\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"15\",\"groupnum\":\"20171021\",\"num\":\"2423\",\"indate\":\"2017-10-21 00:00:00\",\"description\":\"3\",\"createuserid\":\"88\",\"createdate\":\"2017-10-22 15:51:01\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:16:13\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509333379', '');
+INSERT INTO `log` VALUES ('746', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333380', '');
+INSERT INTO `log` VALUES ('747', 'admin', 'MODIFY', 'Insurance', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"12\",\"groupnum\":\"20171019\",\"num\":\"111\",\"description\":\"2\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:16:26\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"12\",\"groupnum\":\"20171019\",\"num\":\"11111\",\"indate\":\"2017-10-19 00:00:00\",\"description\":\"2\",\"createuserid\":\"88\",\"createdate\":\"2017-10-22 15:50:19\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-23 08:12:04\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509333386', '');
+INSERT INTO `log` VALUES ('748', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333386', '');
+INSERT INTO `log` VALUES ('749', 'admin', 'MODIFY', 'Insurance', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"13\",\"groupnum\":\"20171018\",\"num\":\"222\",\"description\":\"1\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:16:31\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"13\",\"groupnum\":\"20171018\",\"num\":\"2222\",\"indate\":\"2017-10-18 00:00:00\",\"description\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-22 15:50:31\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-23 08:11:59\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509333391', '');
+INSERT INTO `log` VALUES ('750', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333392', '');
+INSERT INTO `log` VALUES ('751', 'admin', 'MODIFY', 'Insurance', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"9\",\"groupnum\":\"20171020\",\"num\":\"243\",\"description\":\"\\u5230\\u5e95\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:16:39\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"9\",\"groupnum\":\"20171020\",\"num\":\"24352\",\"indate\":\"2017-10-20 00:00:00\",\"description\":\"\\u5230\\u5e95\",\"createuserid\":\"88\",\"createdate\":\"2017-10-20 09:29:53\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-22 14:19:14\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509333399', '');
+INSERT INTO `log` VALUES ('752', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333400', '');
+INSERT INTO `log` VALUES ('753', 'admin', 'MODIFY', 'Insurance', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"6\",\"groupnum\":\"20171003\",\"num\":\"436\",\"description\":\"\\u5386\\u53f2\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:16:45\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"6\",\"groupnum\":\"20171003\",\"num\":\"436546\",\"indate\":\"2017-10-03 00:00:00\",\"description\":\"\\u5386\\u53f2\",\"createuserid\":\"88\",\"createdate\":\"2017-10-20 09:06:23\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-22 15:50:00\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509333405', '');
+INSERT INTO `log` VALUES ('754', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333405', '');
+INSERT INTO `log` VALUES ('755', 'admin', 'MODIFY', 'Insurance', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"5\",\"groupnum\":\"20171006\",\"num\":\"242\",\"description\":\"\\u9605\\u5386\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:16:50\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"5\",\"groupnum\":\"20171006\",\"num\":\"2423\",\"indate\":\"2017-10-06 00:00:00\",\"description\":\"\\u9605\\u5386\",\"createuserid\":\"88\",\"createdate\":\"2017-10-20 09:01:58\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-22 14:12:51\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509333410', '');
+INSERT INTO `log` VALUES ('756', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333410', '');
+INSERT INTO `log` VALUES ('757', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333419', '');
+INSERT INTO `log` VALUES ('758', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509333931', '');
+INSERT INTO `log` VALUES ('759', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334046', '');
+INSERT INTO `log` VALUES ('760', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334070', '');
+INSERT INTO `log` VALUES ('761', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334090', '');
+INSERT INTO `log` VALUES ('762', 'admin', 'MODIFY', 'Channel', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"2\",\"name\":\"\\u5fae\\u4fe1\\u552e\\u7968\",\"code\":\"201001\",\"description\":\"\\u5fae\\u4fe1\\u7aef\\u552e\\u7968\\u5206\\u7c7b\",\"sort\":\"2\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:28:35\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"2\",\"code\":\"201001\",\"name\":\"\\u5fae\\u4fe1\\u552e\\u7968\",\"description\":\"\\u5fae\\u4fe1\\u7aef\\u552e\\u7968\\u5206\\u7c7b\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-19 14:00:49\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-24 14:13:37\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334115', '');
+INSERT INTO `log` VALUES ('763', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334116', '');
+INSERT INTO `log` VALUES ('764', 'admin', 'MODIFY', 'Channel', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"3\",\"name\":\"\\u81ea\\u52a9\\u673a\\u552e\\u7968\",\"code\":\"202001\",\"description\":\"\\u81ea\\u4e3b\\u552e\\u7968\\u673a\\u5206\\u7c7b\",\"sort\":\"3\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:28:45\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"3\",\"code\":\"202001\",\"name\":\"\\u81ea\\u52a9\\u673a\\u552e\\u7968\",\"description\":\"\\u81ea\\u4e3b\\u552e\\u7968\\u673a\\u5206\\u7c7b\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-19 14:02:27\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-24 14:13:43\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334125', '');
+INSERT INTO `log` VALUES ('765', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334126', '');
+INSERT INTO `log` VALUES ('766', 'admin', 'MODIFY', 'Channel', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"4\",\"name\":\"\\u5176\\u4ed6\\u7f51\\u9500\\u552e\\u7968\",\"code\":\"203001\",\"description\":\"\\u5176\\u4ed6\\u7f51\\u9500\\u6e20\\u9053\\u552e\\u7968\\u5206\\u7c7b\",\"sort\":\"4\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:29:01\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"4\",\"code\":\"203001\",\"name\":\"\\u5176\\u4ed6\\u7f51\\u9500\\u552e\\u7968\",\"description\":\"\\u5176\\u4ed6\\u7f51\\u9500\\u6e20\\u9053\\u552e\\u7968\\u5206\\u7c7b\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-19 14:03:40\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-24 14:13:50\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334141', '');
+INSERT INTO `log` VALUES ('767', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334141', '');
+INSERT INTO `log` VALUES ('768', 'admin', 'MODIFY', 'Channel', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"14\",\"name\":\"\\u5fae\\u4fe1\\u552e\\u79681\",\"code\":\"201002\",\"description\":\"\\u5fae\\u4fe1\\u552e\\u79681\",\"sort\":\"2\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:29:20\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"14\",\"code\":\"201002\",\"name\":\"\\u5fae\\u4fe1\\u552e\\u79681\",\"description\":\"\\u5fae\\u4fe1\\u552e\\u79681\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-26 10:59:48\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334160', '');
+INSERT INTO `log` VALUES ('769', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334160', '');
+INSERT INTO `log` VALUES ('770', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334189', '');
+INSERT INTO `log` VALUES ('771', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334205', '');
+INSERT INTO `log` VALUES ('772', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334215', '');
+INSERT INTO `log` VALUES ('773', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334251', '');
+INSERT INTO `log` VALUES ('774', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334271', '');
+INSERT INTO `log` VALUES ('775', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334283', '');
+INSERT INTO `log` VALUES ('776', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334342', '');
+INSERT INTO `log` VALUES ('777', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334373', '');
+INSERT INTO `log` VALUES ('778', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334398', '');
+INSERT INTO `log` VALUES ('779', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334561', '');
+INSERT INTO `log` VALUES ('780', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"3\",\"name\":\"\\u4e1c\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"1002\",\"description\":\"\\u4e1c\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"DL\",\"type\":\"0\",\"sort\":\"2\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:36:31\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"3\",\"code\":\"1002\",\"name\":\"\\u4e1c\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"0\",\"address\":\"DL\",\"description\":\"\\u4e1c\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-19 16:13:01\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 08:07:24\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334591', '');
+INSERT INTO `log` VALUES ('781', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334592', '');
+INSERT INTO `log` VALUES ('782', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"7\",\"name\":\"\\u5174\\u76db\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"1003\",\"description\":\"\\u5174\\u76db\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5174\\u76db\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"0\",\"sort\":\"3\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:36:37\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"7\",\"code\":\"1003\",\"name\":\"\\u5174\\u76db\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"0\",\"address\":\"\\u5174\\u76db\\u5ba2\\u8fd0\\u7ad9\",\"description\":\"\\u5174\\u76db\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-20 13:17:08\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-24 14:14:54\",\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334597', '');
+INSERT INTO `log` VALUES ('783', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334597', '');
+INSERT INTO `log` VALUES ('784', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"10\",\"name\":\"\\u5317\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"1004\",\"description\":\"\\u5317\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5317\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"sort\":\"4\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:36:43\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"10\",\"code\":\"1004\",\"name\":\"\\u5317\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"address\":\"\\u5317\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"description\":\"\\u5317\\u90e8\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:08:32\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334604', '');
+INSERT INTO `log` VALUES ('785', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334604', '');
+INSERT INTO `log` VALUES ('786', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"8\",\"name\":\"\\u7965\\u4e91\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2001\",\"description\":\"\\u7965\\u4e91\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"XY\",\"type\":\"1\",\"sort\":\"5\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:37:06\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"8\",\"code\":\"2001\",\"name\":\"\\u7965\\u4e91\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"address\":\"XY\",\"description\":\"\\u7965\\u4e91\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-24 14:15:37\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334626', '');
+INSERT INTO `log` VALUES ('787', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334626', '');
+INSERT INTO `log` VALUES ('788', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334716', '');
+INSERT INTO `log` VALUES ('789', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334719', '');
+INSERT INTO `log` VALUES ('790', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334724', '');
+INSERT INTO `log` VALUES ('791', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334729', '');
+INSERT INTO `log` VALUES ('792', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334736', '');
+INSERT INTO `log` VALUES ('793', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334742', '');
+INSERT INTO `log` VALUES ('794', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"9\",\"name\":\"\\u5dcd\\u5c71\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2002\",\"description\":\"\\u5dcd\\u5c71\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5dcd\\u5c71\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"sort\":\"6\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:39:30\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"9\",\"code\":\"2002\",\"name\":\"\\u5dcd\\u5c71\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"address\":\"\\u5dcd\\u5c71\\u5ba2\\u8fd0\\u7ad9\",\"description\":\"\\u5dcd\\u5c71\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-26 11:08:33\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334770', '');
+INSERT INTO `log` VALUES ('795', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334771', '');
+INSERT INTO `log` VALUES ('796', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"11\",\"name\":\"\\u5357\\u6da7\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2003\",\"description\":\"\\u5357\\u6da7\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5357\\u6da7\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"sort\":\"7\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:39:37\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"11\",\"code\":\"2003\",\"name\":\"\\u5357\\u6da7\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"address\":\"\\u5357\\u6da7\\u5ba2\\u8fd0\\u7ad9\",\"description\":\"\\u5357\\u6da7\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:09:21\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334777', '');
+INSERT INTO `log` VALUES ('797', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334777', '');
+INSERT INTO `log` VALUES ('798', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"12\",\"name\":\"\\u5bbe\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2004\",\"description\":\"\\u5bbe\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5bbe\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"sort\":\"8\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:39:42\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"12\",\"code\":\"2004\",\"name\":\"\\u5bbe\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"address\":\"\\u5bbe\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"description\":\"\\u5bbe\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:10:05\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334782', '');
+INSERT INTO `log` VALUES ('799', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334782', '');
+INSERT INTO `log` VALUES ('800', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"13\",\"name\":\"\\u9e64\\u5e86\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2005\",\"description\":\"\\u9e64\\u5e86\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u9e64\\u5e86\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"sort\":\"9\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:39:50\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"13\",\"code\":\"2005\",\"name\":\"\\u9e64\\u5e86\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"address\":\"\\u9e64\\u5e86\\u5ba2\\u8fd0\\u7ad9\",\"description\":\"\\u9e64\\u5e86\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:10:47\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334790', '');
+INSERT INTO `log` VALUES ('801', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334790', '');
+INSERT INTO `log` VALUES ('802', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"14\",\"name\":\"\\u5f25\\u6e21\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2006\",\"description\":\"\\u5f25\\u6e21\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5f25\\u6e21\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"sort\":\"10\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:39:58\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"14\",\"code\":\"2006\",\"name\":\"\\u5f25\\u6e21\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"address\":\"\\u5f25\\u6e21\\u5ba2\\u8fd0\\u7ad9\",\"description\":\"\\u5f25\\u6e21\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:11:18\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334798', '');
+INSERT INTO `log` VALUES ('803', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334798', '');
+INSERT INTO `log` VALUES ('804', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"15\",\"name\":\"\\u5251\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2007\",\"description\":\"\\u5251\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u5251\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"sort\":\"11\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:40:03\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"15\",\"code\":\"2007\",\"name\":\"\\u5251\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"address\":\"\\u5251\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"description\":\"\\u5251\\u5ddd\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:11:47\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334803', '');
+INSERT INTO `log` VALUES ('805', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334804', '');
+INSERT INTO `log` VALUES ('806', 'admin', 'MODIFY', 'Station', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"16\",\"name\":\"\\u6c38\\u5e73\\u5ba2\\u8fd0\\u7ad9\",\"code\":\"2008\",\"description\":\"\\u6c38\\u5e73\\u5ba2\\u8fd0\\u7ad9\",\"address\":\"\\u6c38\\u5e73\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"sort\":\"12\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:40:09\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"16\",\"code\":\"2008\",\"name\":\"\\u6c38\\u5e73\\u5ba2\\u8fd0\\u7ad9\",\"type\":\"1\",\"address\":\"\\u6c38\\u5e73\\u5ba2\\u8fd0\\u7ad9\",\"description\":\"\\u6c38\\u5e73\\u5ba2\\u8fd0\\u7ad9\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-30 08:14:13\",\"updateuserid\":null,\"updatedate\":null,\"deluserid\":null,\"deldate\":null,\"isdel\":\"0\"}]', '1509334809', '');
+INSERT INTO `log` VALUES ('807', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334809', '');
+INSERT INTO `log` VALUES ('808', 'admin', 'Log', 'Station', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334842', '');
+INSERT INTO `log` VALUES ('809', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334855', '');
+INSERT INTO `log` VALUES ('810', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334903', '');
+INSERT INTO `log` VALUES ('811', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334905', '');
+INSERT INTO `log` VALUES ('812', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334958', '');
+INSERT INTO `log` VALUES ('813', 'admin', 'MODIFY', 'Channel', '88', '{\"Result::\":1,\"Data::\":{\"id\":\"1\",\"name\":\"\\u7a97\\u53e3\\u552e\\u7968\",\"code\":\"101001\",\"description\":\"\\u7a97\\u53e3\\u552e\\u7968\\u5206\\u7c7b\\u4fe1\\u606f\",\"sort\":\"99\",\"iseffective\":\"0\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-30 11:42:46\"},\"IP::\":\"0.0.0.0\"}', '[{\"id\":\"1\",\"code\":\"101001\",\"name\":\"\\u7a97\\u53e3\\u552e\\u7968\",\"description\":\"\\u7a97\\u53e3\\u552e\\u7968\\u5206\\u7c7b\\u4fe1\\u606f\",\"iseffective\":\"0\",\"sort\":\"1\",\"createuserid\":\"88\",\"createdate\":\"2017-10-19 13:57:14\",\"updateuserid\":\"88\",\"updatedate\":\"2017-10-24 14:13:31\",\"deluserid\":\"88\",\"deldate\":\"2017-10-19 16:09:56\",\"isdel\":\"0\"}]', '1509334966', '');
+INSERT INTO `log` VALUES ('814', 'admin', 'Log', 'Channel', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334966', '');
+INSERT INTO `log` VALUES ('815', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509334974', '');
+INSERT INTO `log` VALUES ('816', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509335032', '');
+INSERT INTO `log` VALUES ('817', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509335151', '');
+INSERT INTO `log` VALUES ('818', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509335457', '');
+INSERT INTO `log` VALUES ('819', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509335528', '');
+INSERT INTO `log` VALUES ('820', 'admin', 'Log', 'Insurance', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509335558', '');
+INSERT INTO `log` VALUES ('821', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509342677', '');
+INSERT INTO `log` VALUES ('822', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509342965', '');
+INSERT INTO `log` VALUES ('823', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509342967', '');
+INSERT INTO `log` VALUES ('824', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509352412', '');
+INSERT INTO `log` VALUES ('825', 'admin', 'Log', 'SalesFlow', '88', '{\"Result::\":true,\"Data::\":\"\",\"IP::\":\"0.0.0.0\"}', '', '1509352415', '');
 
 -- ----------------------------
 -- Table structure for `oauth_user`
@@ -4634,70 +4918,131 @@ CREATE TABLE `sales_flow` (
   `deldate` datetime DEFAULT NULL COMMENT '数据删除时间',
   `isdel` int(11) DEFAULT '0' COMMENT '数据是否删除（0是 1否）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='销售流水信息';
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='销售流水信息';
 
 -- ----------------------------
 -- Records of sales_flow
 -- ----------------------------
-INSERT INTO `sales_flow` VALUES ('1', '203001', '1001', '20171024', '123', '23', '1010', '2017-10-24 00:00:00', '测试', '88', '2017-10-24 14:20:38', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('2', '202001', '1001', '20171024', '456', '2', '1010', '2017-10-24 00:00:00', '测试', '88', '2017-10-24 14:20:38', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('3', '201001', '1001', '20171024', '345', '2', '1010', '2017-10-24 00:00:00', '测试', '88', '2017-10-24 14:20:38', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('4', '101001', '1001', '20171024', '22510', '187', '1010', '2017-10-24 00:00:00', '测试', '88', '2017-10-24 14:20:38', '88', '2017-10-24 14:21:14', null, null, '0');
-INSERT INTO `sales_flow` VALUES ('5', '203001', '1001', '20171001', '12', '11', '1010', '2017-10-01 00:00:00', '22', '88', '2017-10-24 14:30:17', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('6', '202001', '1001', '20171001', '2', '21', '1010', '2017-10-01 00:00:00', '22', '88', '2017-10-24 14:30:17', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('7', '201001', '1001', '20171001', '2', '31', '1010', '2017-10-01 00:00:00', '22', '88', '2017-10-24 14:30:17', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('8', '101001', '1001', '20171001', '789440', '67828', '1010', '2017-10-01 00:00:00', '22', '88', '2017-10-24 14:30:17', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('9', '203001', '1001', '20171025', '1', '1', '1010', '2017-10-25 00:00:00', '', '88', '2017-10-25 08:20:44', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('10', '202001', '1001', '20171025', '1', '1', '1010', '2017-10-25 00:00:00', '', '88', '2017-10-25 08:20:44', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('11', '201001', '1001', '20171025', '1', '1', '1010', '2017-10-25 00:00:00', '', '88', '2017-10-25 08:20:44', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('12', '101001', '1001', '20171025', '31', '31', '1010', '2017-10-25 00:00:00', '', '88', '2017-10-25 08:20:44', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('13', '203001', '1001', '20171026', '2', '11', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:16:51', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('14', '202001', '1001', '20171026', '2', '2', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:16:51', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('15', '201001', '1001', '20171026', '2', '1', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:16:52', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('16', '101001', '1001', '20171026', '234319', '132309', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:16:52', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('17', '203001', '1002', '20171026', '33', '1', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:17:11', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('18', '202001', '1002', '20171026', '3', '2', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:17:11', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('19', '201001', '1002', '20171026', '3', '3', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:17:11', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('20', '101001', '1002', '20171026', '3204', '4657681', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:17:11', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('21', '203001', '1003', '20171026', '3', '3', '1010', '2017-10-26 00:00:00', '21', '88', '2017-10-26 09:17:31', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('22', '202001', '1003', '20171026', '3', '1', '1010', '2017-10-26 00:00:00', '21', '88', '2017-10-26 09:17:31', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('23', '201001', '1003', '20171026', '3', '3', '1010', '2017-10-26 00:00:00', '21', '88', '2017-10-26 09:17:31', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('24', '101001', '1003', '20171026', '457448', '336', '1010', '2017-10-26 00:00:00', '21', '88', '2017-10-26 09:17:31', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('25', '203001', '2001', '20171026', '3', '34', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:17:55', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('26', '202001', '2001', '20171026', '3', '3', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:17:55', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('27', '201001', '2001', '20171026', '3', '3', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:17:55', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('28', '101001', '2001', '20171026', '1224', '3393', '1010', '2017-10-26 00:00:00', '.', '88', '2017-10-26 09:17:55', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('29', '203001', '1001', '20171023', '1', '1', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:26:49', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('30', '202001', '1001', '20171023', '1', '1', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:26:49', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('31', '201001', '1001', '20171023', '1', '1', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:26:49', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('32', '101001', '1001', '20171023', '21410', '2543542', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:26:49', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('33', '203001', '1002', '20171023', '1', '1', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:27:04', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('34', '202001', '1002', '20171023', '1', '1', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:27:04', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('35', '201001', '1002', '20171023', '1', '1', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:27:04', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('36', '101001', '1002', '20171023', '12320', '354542', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:27:04', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('37', '203001', '1003', '20171023', '1', '234', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:27:29', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('38', '202001', '1003', '20171023', '1', '234', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:27:29', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('39', '201001', '1003', '20171023', '2', '2343', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:27:29', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('40', '101001', '1003', '20171023', '547453', '321423', '1010', '2017-10-23 00:00:00', '1', '88', '2017-10-26 10:27:29', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('41', '203001', '2001', '20171023', '546', '654', '1010', '2017-10-23 00:00:00', '5', '88', '2017-10-26 10:27:46', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('42', '202001', '2001', '20171023', '546', '54', '1010', '2017-10-23 00:00:00', '5', '88', '2017-10-26 10:27:46', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('43', '201001', '2001', '20171023', '546', '546', '1010', '2017-10-23 00:00:00', '5', '88', '2017-10-26 10:27:46', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('44', '101001', '2001', '20171023', '234907', '5311', '1010', '2017-10-23 00:00:00', '5', '88', '2017-10-26 10:27:46', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('45', '201002', '1002', '20171025', '123', '12', '1010', '2017-10-25 00:00:00', '1', '88', '2017-10-26 11:00:44', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('46', '203001', '1002', '20171025', '44', '333', '1010', '2017-10-25 00:00:00', '1', '88', '2017-10-26 11:00:44', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('47', '202001', '1002', '20171025', '44', '44', '1010', '2017-10-25 00:00:00', '1', '88', '2017-10-26 11:00:44', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('48', '201001', '1002', '20171025', '457', '1', '1010', '2017-10-25 00:00:00', '1', '88', '2017-10-26 11:00:44', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('49', '101001', '1002', '20171025', '3878', '7898407', '1010', '2017-10-25 00:00:00', '1', '88', '2017-10-26 11:00:44', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('50', '201002', '2002', '20171026', '2', '2', '1010', '2017-10-26 00:00:00', '.。。', '88', '2017-10-26 11:09:10', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('51', '203001', '2002', '20171026', '3', '33', '1010', '2017-10-26 00:00:00', '.。。', '88', '2017-10-26 11:09:10', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('52', '202001', '2002', '20171026', '4', '44', '1010', '2017-10-26 00:00:00', '.。。', '88', '2017-10-26 11:09:10', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('53', '201001', '2002', '20171026', '6', '44', '1010', '2017-10-26 00:00:00', '.。。', '88', '2017-10-26 11:09:10', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('54', '101001', '2002', '20171026', '11096', '8888765', '1010', '2017-10-26 00:00:00', '.。。', '88', '2017-10-26 11:09:10', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('55', '201002', '2002', '20171025', '1', '11', '1010', '2017-10-25 00:00:00', '1', '88', '2017-10-26 11:21:05', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('56', '203001', '2002', '20171025', '1', '1', '1010', '2017-10-25 00:00:00', '1', '88', '2017-10-26 11:21:05', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('57', '202001', '2002', '20171025', '1', '1', '1010', '2017-10-25 00:00:00', '1', '88', '2017-10-26 11:21:05', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('58', '201001', '2002', '20171025', '1', '1', '1010', '2017-10-25 00:00:00', '1', '88', '2017-10-26 11:21:05', null, null, null, null, '0');
-INSERT INTO `sales_flow` VALUES ('59', '101001', '2002', '20171025', '2134210', '208', '1010', '2017-10-25 00:00:00', '1', '88', '2017-10-26 11:21:05', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('1', '201002', '1001', '20171030', '34', '300', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:16:11', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('2', '203001', '1001', '20171030', '23', '300', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:16:11', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('3', '202001', '1001', '20171030', '23', '300', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:16:11', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('4', '201001', '1001', '20171030', '61', '600', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:16:11', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('5', '101001', '1001', '20171030', '159', '4500', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:16:11', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('6', '201002', '1002', '20171030', '24', '241', '1010', '2017-10-30 00:00:00', '2', '88', '2017-10-30 08:17:04', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('7', '203001', '1002', '20171030', '30', '302', '1010', '2017-10-30 00:00:00', '2', '88', '2017-10-30 08:17:04', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('8', '202001', '1002', '20171030', '20', '201', '1010', '2017-10-30 00:00:00', '2', '88', '2017-10-30 08:17:04', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('9', '201001', '1002', '20171030', '40', '406', '1010', '2017-10-30 00:00:00', '2', '88', '2017-10-30 08:17:04', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('10', '101001', '1002', '20171030', '574', '5738', '1010', '2017-10-30 00:00:00', '2', '88', '2017-10-30 08:17:04', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('11', '201002', '1003', '20171030', '23', '230', '1010', '2017-10-30 00:00:00', '2', '88', '2017-10-30 08:17:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('12', '203001', '1003', '20171030', '24', '240', '1010', '2017-10-30 00:00:00', '2', '88', '2017-10-30 08:17:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('13', '202001', '1003', '20171030', '34', '341', '1010', '2017-10-30 00:00:00', '2', '88', '2017-10-30 08:17:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('14', '201001', '1003', '20171030', '22', '221', '1010', '2017-10-30 00:00:00', '2', '88', '2017-10-30 08:17:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('15', '101001', '1003', '20171030', '530', '5301', '1010', '2017-10-30 00:00:00', '2', '88', '2017-10-30 08:17:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('16', '201002', '1004', '20171030', '19', '190', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:18:44', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('17', '203001', '1004', '20171030', '21', '211', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:18:44', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('18', '202001', '1004', '20171030', '22', '231', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:18:44', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('19', '201001', '1004', '20171030', '42', '431', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:18:44', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('20', '101001', '1004', '20171030', '462', '4603', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:18:44', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('21', '201002', '2001', '20171030', '17', '170', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:19:27', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('22', '203001', '2001', '20171030', '16', '160', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:19:27', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('23', '202001', '2001', '20171030', '15', '150', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:19:27', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('24', '201001', '2001', '20171030', '12', '120', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:19:27', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('25', '101001', '2001', '20171030', '262', '2622', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:19:27', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('26', '201002', '2002', '20171030', '12', '121', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:20:12', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('27', '203001', '2002', '20171030', '11', '111', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:20:12', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('28', '202001', '2002', '20171030', '13', '131', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:20:12', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('29', '201001', '2002', '20171030', '11', '111', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:20:12', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('30', '101001', '2002', '20171030', '508', '5081', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:20:12', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('31', '201002', '2003', '20171030', '11', '111', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:20:57', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('32', '203001', '2003', '20171030', '12', '121', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:20:57', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('33', '202001', '2003', '20171030', '13', '131', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:20:57', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('34', '201001', '2003', '20171030', '10', '110', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:20:57', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('35', '101001', '2003', '20171030', '497', '5079', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:20:57', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('36', '201002', '2004', '20171030', '10', '100', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:21:47', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('37', '203001', '2004', '20171030', '14', '142', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:21:47', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('38', '202001', '2004', '20171030', '16', '160', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:21:47', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('39', '201001', '2004', '20171030', '9', '900', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:21:47', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('40', '101001', '2004', '20171030', '463', '3818', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:21:47', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('41', '201002', '2005', '20171030', '11', '111', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:22:22', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('42', '203001', '2005', '20171030', '12', '121', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:22:22', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('43', '202001', '2005', '20171030', '13', '131', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:22:22', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('44', '201001', '2005', '20171030', '14', '141', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:22:22', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('45', '101001', '2005', '20171030', '402', '4018', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:22:22', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('46', '201002', '2006', '20171030', '12', '121', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:22:56', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('47', '203001', '2006', '20171030', '13', '131', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:22:56', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('48', '202001', '2006', '20171030', '14', '141', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:22:56', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('49', '201001', '2006', '20171030', '15', '152', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:22:56', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('50', '101001', '2006', '20171030', '397', '3966', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:22:56', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('51', '201002', '2007', '20171030', '11', '112', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:23:29', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('52', '203001', '2007', '20171030', '10', '101', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:23:29', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('53', '202001', '2007', '20171030', '12', '121', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:23:29', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('54', '201001', '2007', '20171030', '13', '134', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:23:29', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('55', '101001', '2007', '20171030', '299', '2987', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:23:29', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('56', '201002', '2008', '20171030', '10', '101', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:24:00', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('57', '203001', '2008', '20171030', '12', '121', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:24:00', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('58', '202001', '2008', '20171030', '13', '131', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:24:00', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('59', '201001', '2008', '20171030', '14', '141', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:24:00', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('60', '101001', '2008', '20171030', '307', '3061', '1010', '2017-10-30 00:00:00', '1', '88', '2017-10-30 08:24:00', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('61', '201002', '1001', '20171029', '9', '90', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:25:23', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('62', '203001', '1001', '20171029', '9', '90', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:25:23', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('63', '202001', '1001', '20171029', '8', '80', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:25:23', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('64', '201001', '1001', '20171029', '5', '50', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:25:23', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('65', '101001', '1001', '20171029', '80', '801', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:25:23', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('66', '201002', '1002', '20171029', '8', '80', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:26:13', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('67', '203001', '1002', '20171029', '9', '90', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:26:13', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('68', '202001', '1002', '20171029', '7', '70', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:26:13', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('69', '201001', '1002', '20171029', '5', '51', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:26:13', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('70', '101001', '1002', '20171029', '93', '931', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:26:13', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('71', '201002', '1003', '20171029', '9', '90', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:26:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('72', '203001', '1003', '20171029', '8', '80', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:26:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('73', '202001', '1003', '20171029', '9', '90', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:26:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('74', '201001', '1003', '20171029', '8', '80', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:26:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('75', '101001', '1003', '20171029', '77', '771', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:26:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('76', '201002', '1004', '20171029', '12', '121', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:27:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('77', '203001', '1004', '20171029', '13', '131', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:27:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('78', '202001', '1004', '20171029', '11', '111', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:27:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('79', '201001', '1004', '20171029', '10', '100', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:27:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('80', '101001', '1004', '20171029', '298', '2981', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:27:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('81', '201002', '2001', '20171029', '8', '80', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:28:26', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('82', '203001', '2001', '20171029', '7', '70', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:28:26', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('83', '202001', '2001', '20171029', '9', '90', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:28:26', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('84', '201001', '2001', '20171029', '6', '60', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:28:26', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('85', '101001', '2001', '20171029', '92', '922', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 08:28:26', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('86', '201002', '2002', '20171029', '11', '111', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:28:50', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('87', '203001', '2002', '20171029', '1', '10', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:28:50', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('88', '202001', '2002', '20171029', '1', '10', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:28:50', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('89', '201001', '2002', '20171029', '1', '10', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:28:50', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('90', '101001', '2002', '20171029', '97', '970', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:28:50', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('91', '201002', '2003', '20171029', '11', '111', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:29:10', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('92', '203001', '2003', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:29:10', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('93', '202001', '2003', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:29:10', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('94', '201001', '2003', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:29:10', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('95', '101001', '2003', '20171029', '97', '967', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:29:10', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('96', '201002', '2004', '20171029', '11', '111', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:29:33', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('97', '203001', '2004', '20171029', '1', '12', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:29:33', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('98', '202001', '2004', '20171029', '1', '12', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:29:33', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('99', '201001', '2004', '20171029', '1', '12', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:29:33', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('100', '101001', '2004', '20171029', '98', '975', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:29:33', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('101', '201002', '2005', '20171029', '11', '111', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:04', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('102', '203001', '2005', '20171029', '22', '221', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:04', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('103', '202001', '2005', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:04', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('104', '201001', '2005', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:04', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('105', '101001', '2005', '20171029', '187', '1868', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:04', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('106', '201002', '2006', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('107', '203001', '2006', '20171029', '11', '119', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('108', '202001', '2006', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('109', '201001', '2006', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('110', '101001', '2006', '20171029', '109', '1081', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:28', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('111', '201002', '2007', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('112', '203001', '2007', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('113', '202001', '2007', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('114', '201001', '2007', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('115', '101001', '2007', '20171029', '129', '1289', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:30:52', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('116', '201002', '2008', '20171029', '11', '111', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:31:12', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('117', '203001', '2008', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:31:12', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('118', '202001', '2008', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:31:12', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('119', '201001', '2008', '20171029', '1', '11', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:31:12', null, null, null, null, '0');
+INSERT INTO `sales_flow` VALUES ('120', '101001', '2008', '20171029', '109', '1089', '1010', '2017-10-29 00:00:00', '1', '88', '2017-10-30 10:31:12', null, null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for `station`
@@ -4711,6 +5056,7 @@ CREATE TABLE `station` (
   `address` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '地址',
   `description` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   `iseffective` varchar(8) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否启用',
+  `sort` int(11) DEFAULT '1' COMMENT '排序键',
   `createuserid` int(11) DEFAULT NULL COMMENT '数据添加人员编码',
   `createdate` datetime DEFAULT NULL COMMENT '数据创建日期',
   `updateuserid` int(11) DEFAULT NULL COMMENT '数据修改人员',
@@ -4719,20 +5065,27 @@ CREATE TABLE `station` (
   `deldate` datetime DEFAULT NULL COMMENT '数据删除时间',
   `isdel` int(11) DEFAULT '0' COMMENT '数据是否删除（0是 1否）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='客运站信息';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='客运站信息';
 
 -- ----------------------------
 -- Records of station
 -- ----------------------------
-INSERT INTO `station` VALUES ('1', '1', '1', '12', 'QQ去', '1', '0', '88', '2017-10-19 16:05:45', '88', '2017-10-19 16:09:26', '88', '2017-10-19 17:51:52', '1');
-INSERT INTO `station` VALUES ('2', '1001', '快速汽车客运站', '0', 'DL', '快速汽车客运站', '0', '88', '2017-10-19 16:11:44', '88', '2017-10-24 14:14:39', null, null, '0');
-INSERT INTO `station` VALUES ('3', '1002', '东部汽车客运站', '0', 'DL', '东部汽车客运站', '0', '88', '2017-10-19 16:13:01', '88', '2017-10-24 14:14:47', null, null, '0');
-INSERT INTO `station` VALUES ('4', '1', '1', '1', '1', '1', '0', '88', '2017-10-20 08:54:54', null, null, '88', '2017-10-20 10:01:59', '1');
-INSERT INTO `station` VALUES ('5', '', '', null, null, null, null, '88', '2017-10-20 13:11:49', null, null, '88', '2017-10-20 13:12:05', '1');
-INSERT INTO `station` VALUES ('6', '1', '111', '1', '1', '1', '0', '88', '2017-10-20 13:12:27', '88', '2017-10-20 13:12:57', '88', '2017-10-20 13:13:14', '1');
-INSERT INTO `station` VALUES ('7', '1003', '兴盛客运站', '0', '兴盛客运站', '兴盛客运站', '0', '88', '2017-10-20 13:17:08', '88', '2017-10-24 14:14:54', null, null, '0');
-INSERT INTO `station` VALUES ('8', '2001', '祥云客运站', '1', 'XY', '祥云客运站', '0', '88', '2017-10-24 14:15:37', null, null, null, null, '0');
-INSERT INTO `station` VALUES ('9', '2002', '巍山客运站', '1', '巍山客运站', '巍山客运站', '0', '88', '2017-10-26 11:08:33', null, null, null, null, '0');
+INSERT INTO `station` VALUES ('1', '1', '1', '12', 'QQ去', '1', '0', '1', '88', '2017-10-19 16:05:45', '88', '2017-10-19 16:09:26', '88', '2017-10-19 17:51:52', '1');
+INSERT INTO `station` VALUES ('2', '1001', '快速客运站', '0', 'DL', '快速汽车客运站', '0', '1', '88', '2017-10-19 16:11:44', '88', '2017-10-30 08:07:35', null, null, '0');
+INSERT INTO `station` VALUES ('3', '1002', '东部客运站', '0', 'DL', '东部客运站', '0', '2', '88', '2017-10-19 16:13:01', '88', '2017-10-30 11:36:31', null, null, '0');
+INSERT INTO `station` VALUES ('4', '1', '1', '1', '1', '1', '0', '1', '88', '2017-10-20 08:54:54', null, null, '88', '2017-10-20 10:01:59', '1');
+INSERT INTO `station` VALUES ('5', '', '', null, null, null, null, '1', '88', '2017-10-20 13:11:49', null, null, '88', '2017-10-20 13:12:05', '1');
+INSERT INTO `station` VALUES ('6', '1', '111', '1', '1', '1', '0', '1', '88', '2017-10-20 13:12:27', '88', '2017-10-20 13:12:57', '88', '2017-10-20 13:13:14', '1');
+INSERT INTO `station` VALUES ('7', '1003', '兴盛客运站', '0', '兴盛客运站', '兴盛客运站', '0', '3', '88', '2017-10-20 13:17:08', '88', '2017-10-30 11:36:37', null, null, '0');
+INSERT INTO `station` VALUES ('8', '2001', '祥云客运站', '1', 'XY', '祥云客运站', '0', '5', '88', '2017-10-24 14:15:37', '88', '2017-10-30 11:37:06', null, null, '0');
+INSERT INTO `station` VALUES ('9', '2002', '巍山客运站', '1', '巍山客运站', '巍山客运站', '0', '6', '88', '2017-10-26 11:08:33', '88', '2017-10-30 11:39:30', null, null, '0');
+INSERT INTO `station` VALUES ('10', '1004', '北部客运站', '1', '北部客运站', '北部客运站', '0', '4', '88', '2017-10-30 08:08:32', '88', '2017-10-30 11:36:43', null, null, '0');
+INSERT INTO `station` VALUES ('11', '2003', '南涧客运站', '1', '南涧客运站', '南涧客运站', '0', '7', '88', '2017-10-30 08:09:21', '88', '2017-10-30 11:39:37', null, null, '0');
+INSERT INTO `station` VALUES ('12', '2004', '宾川客运站', '1', '宾川客运站', '宾川客运站', '0', '8', '88', '2017-10-30 08:10:05', '88', '2017-10-30 11:39:42', null, null, '0');
+INSERT INTO `station` VALUES ('13', '2005', '鹤庆客运站', '1', '鹤庆客运站', '鹤庆客运站', '0', '9', '88', '2017-10-30 08:10:47', '88', '2017-10-30 11:39:50', null, null, '0');
+INSERT INTO `station` VALUES ('14', '2006', '弥渡客运站', '1', '弥渡客运站', '弥渡客运站', '0', '10', '88', '2017-10-30 08:11:18', '88', '2017-10-30 11:39:58', null, null, '0');
+INSERT INTO `station` VALUES ('15', '2007', '剑川客运站', '1', '剑川客运站', '剑川客运站', '0', '11', '88', '2017-10-30 08:11:47', '88', '2017-10-30 11:40:03', null, null, '0');
+INSERT INTO `station` VALUES ('16', '2008', '永平客运站', '1', '永平客运站', '永平客运站', '0', '12', '88', '2017-10-30 08:14:13', '88', '2017-10-30 11:40:09', null, null, '0');
 
 -- ----------------------------
 -- Table structure for `users`
@@ -4800,9 +5153,15 @@ CREATE TABLE `weixin_user` (
 DROP TABLE IF EXISTS `white_list`;
 CREATE TABLE `white_list` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键-微信识别号白名单',
-  `weixid` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '微信识别码',
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '姓名',
-  `phonenum` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '电话号码',
+  `useruid` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信识别号',
+  `mobilephone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '电话号码',
+  `nickname` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户名',
+  `avatarurl` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '图标地址',
+  `APoint` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CPoint` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `EPoint` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Type` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `TimeCreated` datetime DEFAULT NULL COMMENT '操作时间',
   `gender` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '性别',
   `moduleids` text COLLATE utf8mb4_unicode_ci COMMENT '模块编码',
   `description` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
@@ -4820,12 +5179,12 @@ CREATE TABLE `white_list` (
 -- ----------------------------
 -- Records of white_list
 -- ----------------------------
-INSERT INTO `white_list` VALUES ('1', 'adfljhdlasghdgsfhdgf', '李阳', '13619673512', '男', '1', '描述', '1', '88', '2017-10-19 15:40:24', '88', '2017-10-19 15:46:25', null, null, '0');
-INSERT INTO `white_list` VALUES ('2', '1', '1', '1', '男', '1', '1', '1', '88', '2017-10-19 15:47:29', null, null, '88', '2017-10-19 15:47:38', '1');
-INSERT INTO `white_list` VALUES ('3', '131242364', '杨希', '6547548', '男', '568679', '67989', '1', '88', '2017-10-19 15:47:52', null, null, null, null, '0');
-INSERT INTO `white_list` VALUES ('4', '2543333333333', '丽丽', '33434343434343434343', '男', '43333333333333', '34444444444', '1', '88', '2017-10-19 15:49:10', null, null, null, null, '0');
-INSERT INTO `white_list` VALUES ('5', '1', '1', '1', '男', '1', '1', '1', '88', '2017-10-20 08:54:45', null, null, '88', '2017-10-20 13:11:21', '1');
-INSERT INTO `white_list` VALUES ('6', '1', '1', '1', '男', '1', '1', '0', '88', '2017-10-20 13:11:10', null, null, '88', '2017-10-20 13:11:25', '1');
+INSERT INTO `white_list` VALUES ('1', null, null, null, null, null, null, null, null, null, '男', '1', '描述', '1', '88', '2017-10-19 15:40:24', '88', '2017-10-19 15:46:25', null, null, '0');
+INSERT INTO `white_list` VALUES ('2', null, null, null, null, null, null, null, null, null, '男', '1', '1', '1', '88', '2017-10-19 15:47:29', null, null, '88', '2017-10-19 15:47:38', '1');
+INSERT INTO `white_list` VALUES ('3', null, null, null, null, null, null, null, null, null, '男', '568679', '67989', '1', '88', '2017-10-19 15:47:52', null, null, null, null, '0');
+INSERT INTO `white_list` VALUES ('4', null, null, null, null, null, null, null, null, null, '男', '43333333333333', '34444444444', '1', '88', '2017-10-19 15:49:10', null, null, null, null, '0');
+INSERT INTO `white_list` VALUES ('5', null, null, null, null, null, null, null, null, null, '男', '1', '1', '1', '88', '2017-10-20 08:54:45', null, null, '88', '2017-10-20 13:11:21', '1');
+INSERT INTO `white_list` VALUES ('6', null, null, null, null, null, null, null, null, null, '男', '1', '1', '0', '88', '2017-10-20 13:11:10', null, null, '88', '2017-10-20 13:11:25', '1');
 
 -- ----------------------------
 -- Procedure structure for `GQXF_ETICKET_CHARTS`
@@ -4837,8 +5196,8 @@ BEGIN
 		SELECT
 			sf.stationcode,/* 车站编码 */
 			sf.channelcode,/* 渠道编码 */
-			s.`name` AS StationName,/* 车站名称 */
-			c.`name` AS ChannelName,/* 渠道名称 */
+			s.`name` AS stationName,/* 车站名称 */
+			CASE WHEN sf.channelcode LIKE '2010%' THEN '微信售票' ELSE  c.`name` END AS ChannelName,/* 渠道名称 */
 			COUNT(sf.moneynum) AS M_COUNT,/* 统计记录数目 */
 			SUM(sf.moneynum) AS M_NUM,/* 金额 */
 			COUNT(sf.ticketnum) AS T_COUNT,/* 统计记录数目 */
@@ -4849,9 +5208,9 @@ BEGIN
 			ON sf.stationcode=s.`code`
 		LEFT JOIN channel AS c ON sf.channelcode=c.`code`
 		WHERE
-				sf.flowdate>=start_date /* 数据日期 */
+				sf.flowdate>=start_date
 			AND
-				sf.flowdate<=end_date /* 数据日期 */
+				sf.flowdate<=end_date
 			AND
 				sf.stationcode LIKE station_fix_a
 			AND
@@ -4873,20 +5232,20 @@ BEGIN
 			left(sf.stationcode,2),
 			sf.channelcode,
 			'县分公司' AS stationName,
-			c.`name` AS ChannelName,/* 渠道名称 */
-			COUNT(sf.moneynum) AS M_COUNT,/* 统计记录数目 */
-			SUM(sf.moneynum) AS M_NUM,/* 金额 */
-			COUNT(sf.ticketnum) AS T_COUNT,/* 统计记录数目 */
-			SUM(sf.ticketnum) AS T_NUM /* 电子票数目 */
+			CASE WHEN sf.channelcode LIKE '2010%' THEN '微信售票' ELSE  c.`name` END AS ChannelName,
+			COUNT(sf.moneynum) AS M_COUNT,
+			SUM(sf.moneynum) AS M_NUM,
+			COUNT(sf.ticketnum) AS T_COUNT,
+			SUM(sf.ticketnum) AS T_NUM
 		FROM 
 			sales_flow AS sf
 		LEFT JOIN station AS s 
 			ON sf.stationcode=s.`code`
 		LEFT JOIN channel AS c ON sf.channelcode=c.`code`
 		WHERE
-				sf.flowdate>=start_date /* 数据日期 */
+				sf.flowdate>=start_date
 			AND
-				sf.flowdate<=end_date /* 数据日期 */
+				sf.flowdate<=end_date
 			AND
 				sf.stationcode LIKE station_fix_b
 			AND
@@ -5021,7 +5380,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `TB_CHARTS`(IN station_fix VARCHAR(20),IN channel_fix VARCHAR(20),IN start_date DATETIME,IN end_date DATETIME,IN start_date_next DATETIME,IN end_date_next DATETIME)
 BEGIN
 		SELECT
-			'Now',
+			'Now' as flag,
 			sf.stationcode,/* 车站编码 */
 			s.`name` AS stationName,/* 车站名称 */
 			COUNT(sf.moneynum) AS M_COUNT,/* 统计记录数目 */
@@ -5050,7 +5409,7 @@ BEGIN
 				sf.stationcode
 			UNION ALL
 			SELECT
-				'Next',
+				'Next' as flag,
 				sf.stationcode,/* 车站编码 */
 				s.`name` AS stationName,/* 车站名称 */
 				COUNT(sf.moneynum) AS M_COUNT,/* 统计记录数目 */
