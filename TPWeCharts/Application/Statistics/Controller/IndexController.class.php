@@ -3,6 +3,7 @@ namespace Statistics\Controller;
 use Common\Controller\StatisticsBaseController;
 use Think\Controller;
 use Think\Model;
+
 /**
  * 查询统计 首页Controller
  */
@@ -11,6 +12,14 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计页面
 	 */
 	public function Index(){
+		if(!$_SESSION['user_']['id']) {
+			//$setuid = new \Statistics\Controller\Imp();
+			//$uid = $setuid->useruid();
+		}
+		$assign=array(
+			'uid' => 00
+		);
+		$this->assign($assign);
         $this->display();
 	}
 
@@ -18,12 +27,20 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计对比页面
 	 */
 	public function Contrast(){
+		if(!$_SESSION['user_']['id']) {
+			//$setuid = new \Statistics\Controller\Imp();
+			//$uid = $setuid->useruid();
+		}
 		$this->display();
 	}
 	/**
 	 * 查询统计（搜索页面）
 	 */
 	public function Search(){
+		if(!$_SESSION['user_']['id']) {
+			//$setuid = new \Statistics\Controller\Imp();
+			//$uid = $setuid->useruid();
+		}
 		$this->display();
 	}
 

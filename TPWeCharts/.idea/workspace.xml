@@ -24,39 +24,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="iadd.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html">
+      <file leaf-file-name="Imp.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/Imp.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.214286">
-              <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="iedit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.642857">
-              <caret line="80" column="56" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SalesFlowController.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36895388">
-              <caret line="546" column="69" selection-start-line="546" selection-start-column="69" selection-end-line="546" selection-end-column="69" />
+            <state vertical-scroll-proportion="-10.714286">
+              <caret line="104" column="12" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="30" />
               <folding>
-                <element signature="e#34#76#0#PHP" expanded="true" />
-                <marker date="1509335525839" expanded="true" signature="2414:2790" placeholder="SELECT count... sales_flow" />
-                <marker date="1509335525839" expanded="true" signature="11476:11570" placeholder="SELECT * FRO... dic_data" />
-                <marker date="1509335525839" expanded="true" signature="11519:11568" placeholder="SELECT id FR... dic_data" />
-                <marker date="1509335525839" expanded="true" signature="12294:12499" placeholder="SELECT s.* F... station" />
-                <marker date="1509335525839" expanded="true" signature="12294:12515" placeholder="SELECT s.* F... station" />
-                <marker date="1509335525839" expanded="true" signature="12351:12453" placeholder="SELECT DISTI... sales_flow" />
+                <element signature="e#137#184#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contrast.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/contrast.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.107143">
+              <caret line="216" column="24" selection-start-line="216" selection-start-column="24" selection-end-line="216" selection-end-column="38" />
+              <folding>
+                <marker date="1509331327337" expanded="true" signature="12923:13071" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="13110:13191" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="13446:13693" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="13493:13583" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="13629:13672" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="13748:13996" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="13795:13885" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="13931:13975" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="14051:14303" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="14098:14189" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="14235:14282" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="14933:15249" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="15487:15816" placeholder="..." />
+                <marker date="1509331327337" expanded="true" signature="17215:17419" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.26480836">
+              <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+              <folding>
+                <element signature="e#39#86#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,12 +81,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Application/Common/Model/ChannelModel.class.php" />
-        <option value="$PROJECT_DIR$/Application/Common/Model/WhiteListModel.class.php" />
-        <option value="$PROJECT_DIR$/tpl/Admin/WhiteList/detail.html" />
-        <option value="$PROJECT_DIR$/tpl/Admin/WhiteList/edit.html" />
-        <option value="$PROJECT_DIR$/tpl/Admin/WhiteList/add.html" />
-        <option value="$PROJECT_DIR$/Application/Admin/Controller/WhiteListController.class.php" />
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/add.html" />
         <option value="$PROJECT_DIR$/Public/statics/js/Calendar.js" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/InsuranceController.class.php" />
@@ -98,16 +103,13 @@
         <option value="$PROJECT_DIR$/Application/Home1/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Controller/StatisticsBaseController.class.php" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" />
-        <option value="$PROJECT_DIR$/Application/Common/Conf/config.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Conf/convention.php" />
         <option value="$PROJECT_DIR$/tpl/Public/js/jQuery.cookie.js" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Think/Db/Driver.class.php" />
         <option value="$PROJECT_DIR$/Application/Common/Model/StatisticsModel.class.php" />
         <option value="$PROJECT_DIR$/tpl/Statistics/Index/search.html" />
         <option value="$PROJECT_DIR$/tpl/Statistics/public/base.html" />
-        <option value="$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/tpl/Statistics/Index/contrast.html" />
-        <option value="$PROJECT_DIR$/tpl/Statistics/Index/index.html" />
         <option value="$PROJECT_DIR$/tpl/Public/js/iFramework.js" />
         <option value="$PROJECT_DIR$/tpl/Admin/Channel/add.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/Channel/edit.html" />
@@ -121,6 +123,15 @@
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php" />
+        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Weixinpay/Weixinpay.php" />
+        <option value="$PROJECT_DIR$/Application/Api/Controller/ImpController.class.php" />
+        <option value="$PROJECT_DIR$/tpl/Statistics/Index/index.html" />
+        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Weixin/Imp.class.php" />
+        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Imp/Imp.php" />
+        <option value="$PROJECT_DIR$/Application/Common/Conf/config.php" />
+        <option value="$PROJECT_DIR$/Application/Common/Model/LogModel.class.php" />
+        <option value="$PROJECT_DIR$/Application/Statistics/Controller/Imp.class.php" />
+        <option value="$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php" />
       </list>
     </option>
   </component>
@@ -272,28 +283,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SalesFlow" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -312,7 +301,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
+              <option name="myItemId" value="Statistics" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -330,29 +319,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
+              <option name="myItemId" value="Statistics" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TPWeCharts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TPWeCharts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -448,80 +437,12 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Controller/PublicBaseController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42294714">
-          <caret line="111" column="5" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/Public/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49156356">
-          <caret line="131" column="6" selection-start-line="131" selection-start-column="6" selection-end-line="131" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Controller/HomeBaseController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Tag/My.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.1799774">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThinkPHP/Conf/convention.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6062992">
-          <caret line="45" column="47" selection-start-line="45" selection-start-column="47" selection-end-line="45" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.064116985">
-          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/Station/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5500562">
-          <caret line="94" column="23" selection-start-line="94" selection-start-column="23" selection-end-line="94" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThinkPHP/Common/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -561,6 +482,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.056243">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -582,6 +504,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19235095">
           <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -612,6 +535,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12823397">
           <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -619,6 +543,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -647,13 +572,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.064116985">
           <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Conf/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1552306">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -702,14 +620,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.875">
-          <caret line="228" column="51" selection-start-line="228" selection-start-column="51" selection-end-line="228" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Public/js/iFramework.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12431843">
@@ -717,48 +627,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46569178">
-          <caret line="296" column="68" selection-start-line="296" selection-start-column="68" selection-end-line="296" selection-end-column="68" />
-          <folding>
-            <marker date="1509331562283" expanded="true" signature="12279:12595" placeholder="..." />
-            <marker date="1509331562283" expanded="true" signature="12664:12755" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/contrast.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75029033">
-          <caret line="43" column="76" selection-start-line="43" selection-start-column="76" selection-end-line="43" selection-end-column="76" />
-          <folding>
-            <marker date="1509331327337" expanded="true" signature="12923:13071" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="13110:13191" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="13446:13693" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="13493:13583" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="13629:13672" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="13748:13996" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="13795:13885" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="13931:13975" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="14051:14303" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="14098:14189" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="14235:14282" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="14933:15249" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="15487:15816" placeholder="..." />
-            <marker date="1509331327337" expanded="true" signature="17215:17419" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ChannelController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28346458">
-          <caret line="28" column="69" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -828,7 +696,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iadd.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.214286">
+        <state vertical-scroll-proportion="0.3847019">
           <caret line="71" column="56" selection-start-line="71" selection-start-column="56" selection-end-line="71" selection-end-column="56" />
           <folding />
         </state>
@@ -836,16 +704,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/Admin/SalesFlow/iedit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.642857">
+        <state vertical-scroll-proportion="-54.285713">
           <caret line="80" column="56" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Api/Controller/RongController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.98762655">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.234/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66254216">
+          <caret line="163" column="31" selection-start-line="163" selection-start-column="31" selection-end-line="163" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Api/Controller/AlipayController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2992126">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/SalesFlowController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36895388">
-          <caret line="546" column="69" selection-start-line="546" selection-start-column="69" selection-end-line="546" selection-end-column="69" />
+        <state vertical-scroll-proportion="0.64116985">
+          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="55" selection-end-column="31" />
           <folding>
             <element signature="e#34#76#0#PHP" expanded="true" />
             <marker date="1509335525839" expanded="true" signature="2414:2790" placeholder="SELECT count... sales_flow" />
@@ -854,6 +754,118 @@
             <marker date="1509335525839" expanded="true" signature="12294:12499" placeholder="SELECT s.* F... station" />
             <marker date="1509335525839" expanded="true" signature="12294:12515" placeholder="SELECT s.* F... station" />
             <marker date="1509335525839" expanded="true" signature="12351:12453" placeholder="SELECT DISTI... sales_flow" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.807/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8211474">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Api/Controller/WeixinpayController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21372329">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.75">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+          <folding>
+            <marker date="1509347360805" expanded="true" signature="12285:12601" placeholder="..." />
+            <marker date="1509347360805" expanded="true" signature="12670:12761" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThinkPHP/Library/Vendor/Imp/Imp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.464286">
+          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+          <folding>
+            <element signature="e#136#183#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/contrast.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.107143">
+          <caret line="216" column="24" selection-start-line="216" selection-start-column="24" selection-end-line="216" selection-end-column="38" />
+          <folding>
+            <marker date="1509331327337" expanded="true" signature="12923:13071" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13110:13191" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13446:13693" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13493:13583" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13629:13672" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13748:13996" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13795:13885" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="13931:13975" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="14051:14303" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="14098:14189" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="14235:14282" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="14933:15249" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="15487:15816" placeholder="..." />
+            <marker date="1509331327337" expanded="true" signature="17215:17419" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Conf/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45296168">
+          <caret line="47" column="17" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/ChannelController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.535714">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Model/LogModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.178572">
+          <caret line="30" column="56" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32058492">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="18" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/Imp.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.714286">
+          <caret line="104" column="12" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="30" />
+          <folding>
+            <element signature="e#137#184#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26480836">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding>
+            <element signature="e#39#86#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
