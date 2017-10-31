@@ -19,10 +19,10 @@
 <body>
 <block name="content"></block>
 <!-- footer copyright start -->
-	<div class="weui-footer">
+	<div  class="weui-footer">
             <p class="weui-footer__links">
                 <a href="javascript:void(0);" class="weui-footer__link">反馈</a>
-                <a id="goToTop" href="javascript:void(0);" class="weui-footer__link">回顶部</a>
+                <a id="goToTop" class="weui-footer__link">回顶部</a>
             </p>
             <p class="weui-footer__text">Copyright &copy; 2008-2016 大理交通运输集团</p>
     </div>
@@ -56,6 +56,20 @@
 <script src="__PUBLIC_JS__/jquery-weui.min.js"></script>
 <script src="__PUBLIC_JS__/jQuery.cookie.js"></script>
 <script src="__PUBLIC_JS__/iFramework.js"></script>
+<script type="text/javascript">
+    $('#goToTop').click(function(){
+        var speed = 200;//滑动的速度
+        var fl = $("#tab_type").val();
+        var _href = "#firstAnchor";
+        if(fl == "tab2")
+        {
+            _href = "#div_wtotal";
+        }
+        window.location.href = _href;
+        $('html,body').animate({ scrollTop: 0 }, speed);//去顶部
+
+    });
+</script>
 <block name="js"> </block>
 </body>
 </html>

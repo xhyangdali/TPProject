@@ -44,12 +44,12 @@
               <thead>
                 <tr>
                   <th style="width:30px"></th>
-                  <th style="width:50px">姓名</th>
-                  <th style="width:35px">电话号码</th>
-                    <th style="width:35px">可视模块</th>
+                  <th style="width:50px">昵称</th>
+                  <th style="width:35px">微信识别码</th>
+                    <th style="width:35px">电话号码</th>
                   <th style="width:35px">描述</th>
                   <th style="width:100px">创建时间</th>
-                    <th style="width:100px">是否有效</th>
+                    <th style="width:100px">是否启用</th>
                     <th style="width:100px">操作</th>
                 </tr>
               </thead>
@@ -57,9 +57,9 @@
                 <foreach name="data" item="v">
                   <tr>
                     <td></td>
-                    <td>{$v['name']}</td>
-                    <td>{$v['phonenum']}</td>
-                      <td>{$v['moduleids']}</td>
+                    <td>{$v['nickname']}</td>
+                    <td>{$v['useruid']}</td>
+                      <td>{$v['mobilephone']}</td>
                     <td>{$v['description']}</td>
                     <td>{$v['createdate']|strtotime|date="Y年m月d日 h:i:s",###}</td>
                       <td>{$v['iseffectiveformat']}</td>

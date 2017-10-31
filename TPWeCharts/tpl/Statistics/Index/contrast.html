@@ -4,7 +4,7 @@
     <!-- tab选项卡 start -->
     <div class="weui-tab">
         <div class="weui-navbar" >
-            <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+            <a id="charts_select" class="weui-navbar__item weui-bar__item--on" href="#tab1">
                 图表分析
             </a>
             <a id="words_select" class="weui-navbar__item " href="#tab2">
@@ -15,8 +15,8 @@
         <div class="weui-tab__bd" >
             <!-- weui-tab__bd-item start -->
             <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-
-                <div class="weui-panel weui-panel_access">
+				<input type="hidden" id="tab_type" value="tab1">
+                <div id="firstAnchor" class="weui-panel weui-panel_access">
                     <div class="weui-panel__hd"><h3>关区客运站窗口售票金额同比</h3><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart1" width="400px" height="300px;"></canvas>
@@ -235,7 +235,9 @@
 		function Charts_data_deal(){
 			var lbtxt = ' (本时段)'+_Search_start+"/"+_Search_end;
 			lbtxt += '：(上时段)'+_Search_start_next+"/"+_Search_end_next;
-			
+			$("#charts_select").click(function() {
+				$("#tab_type").val("tab1");
+			});
 			
 			$("label[name='lbdate']").each(function(){
 				$(this).html(lbtxt);
@@ -295,6 +297,9 @@
 			//文字信息统计处理
 		var action_ = "{:U('GetResultWords')}";
 		$("#words_select").click(function(){
+			$("#tab_type").val("tab2");
+			var c = 0,c1 = 0,c2 = 0,f= 0,f1= 0,f2=0;
+			var fix_ = "增加  ",fix_1 = "增加  ",fix_2 = "增加  ",fix_fd = "增幅  ",fix_fd1 = "增幅  ",fix_fd2 = "增幅  ";
 			$.ajax({
 				url:action_,
 				type:"POST",
@@ -315,57 +320,55 @@
 							var total_ = data.total_data[0];
 							var total_1 = data.total_data_[0];
 							if(total_){
-									var c = 0,c1 = 0,c2 =0;
-									var fix_ = "增加  ",fix_1 = "增加  ",fix_2 = "增加  ",fix_fd = "增幅  ",fix_fd1 = "增幅  ",fix_fd2 = "增幅  ";
-									if(total_1.etotal_t > total_.etotal_t)
+									if(parseInt(total_1.etotal_t) >= parseInt(total_.etotal_t))
 									{
-										c = total_1.etotal_t - total_.etotal_t;
+										c = parseInt(total_1.etotal_t) - parseInt(total_.etotal_t);
 										fix_ ="减少  ";
 										fix_fd = "减幅  "
 									}else
 									{
-										c = total_.etotal_t - total_1.etotal_t;
+										c = parseInt(total_.etotal_t) - parseInt(total_1.etotal_t);
 									}
 									//
-									if(total_1.total_i > total_.total_i)
+									if(parseInt(total_1.total_i) >= parseInt(total_.total_i))
 									{
-										c1 = total_1.total_i - total_.total_i;
+										c1 = parseInt(total_1.total_i) - parseInt(total_.total_i);
 										fix_1 ="减少  ";
 										fix_fd1 = "减幅  "
 									}else
 									{
-										c1 = total_.total_i - total_1.total_i;
+										c1 = parseInt(total_.total_i) - parseInt(total_1.total_i);
 									}
 									//
-									if(total_1.etotal_m > total_.etotal_m)
+									if(parseFloat(total_1.etotal_m) >= parseFloat(total_.etotal_m))
 									{
-										c2 = total_1.etotal_m - total_.etotal_m;
+										c2 = parseFloat(total_1.etotal_m) - parseFloat(total_.etotal_m);
 										fix_2 ="减少  ";
 										fix_fd2 = "减幅  "
 									}else
 									{
-										c2 = total_.etotal_m - total_1.etotal_m;
+										c2 = parseFloat(total_.etotal_m) - parseFloat(total_1.etotal_m);
 									}
 									var v = parseFloat(c); 
 									var a = parseFloat(total_.etotal_t); 
-									var f = Math.round((v/a)*100); 
+									f = Math.round((v/a)*100);
 									//
 									var v1 = parseFloat(c1); 
 									var a1 = parseFloat(total_.total_i); 
-									var f1 = Math.round((v1/a1)*100);
+									f1 = Math.round((v1/a1)*100);
 									//
 									var v2 = parseFloat(c2); 
 									var a2 = parseFloat(total_.etotal_m); 
-									var f2 = Math.round((v2/a2)*100);
+									f2 = Math.round((v2/a2)*100);
 									//综合统计
 									var _html ='';
 									_html += '<h3>综合预览</h3>';
-									_html += '<p class="Ctext">窗口票销售情况：'+total_.total_ck_t+' 张，共计：'+total_.total_ck_m+' 万元;</p>';
+									_html += '<p class="Ctext">窗口票销售情况：'+total_.total_ck_m+' 万元;</p>';
 									_html += '<p class="Ctext">电子票销售情况：'+total_.etotal_t
-									+' 张(比上时段'+fix_+c+'张 '+fix_fd+f+'%)，，共计：'+total_.etotal_m
+									+' 张(比上时段'+fix_+c+'张 '+fix_fd+f+'%)，，共计：'+parseFloat(total_.etotal_m)
 									+'  元(比上时段'+fix_2+c2+' 元 '+fix_fd2+f2+'%);</p>';
 									_html += '<p class="Ctext">保险票销售情况：：'+total_.total_i
-									+' 张(比上时段'+fix_1+c1+'张 '+fix_fd1+f1+'%)， ;</p>';
+									+' 张(比上时段'+fix_1+c1+'张 '+fix_fd1+f1+'%) ;</p>';
 									$("#div_wtotal").html(_html);
 									//									
 									$("#div_ettotal").html("总计："+total_.etotal_m+" 元");
@@ -442,48 +445,7 @@
 								
 							}
 							if(total_){
-									var c = 0,c1 = 0,c2 =0;
-									var fix_ = "增加  ",fix_1 = "增加  ",fix_2 = "增加  ",fix_fd = "增幅  ",fix_fd1 = "增幅  ",fix_fd2 = "增幅  ";
-									if(total_1.etotal_t > total_.etotal_t)
-									{
-										c = total_1.etotal_t - total_.etotal_t;
-										fix_ ="减少  ";
-										fix_fd = "减幅  "
-									}else
-									{
-										c = total_.etotal_t - total_1.etotal_t;
-									}
-									//
-									if(total_1.total_i > total_.total_i)
-									{
-										c1 = total_1.total_i - total_.total_i;
-										fix_1 ="减少  ";
-										fix_fd1 = "减幅  "
-									}else
-									{
-										c1 = total_.total_i - total_1.total_i;
-									}
-									//
-									if(total_1.etotal_m > total_.etotal_m)
-									{
-										c2 = total_1.etotal_m - total_.etotal_m;
-										fix_2 ="减少  ";
-										fix_fd2 = "减幅  "
-									}else
-									{
-										c2 = total_.etotal_m - total_1.etotal_m;
-									}
-									var v = parseFloat(c); 
-									var a = parseFloat(total_.etotal_t); 
-									var f = Math.round((v/a)*100); 
-									//
-									var v1 = parseFloat(c1); 
-									var a1 = parseFloat(total_.total_i); 
-									var f1 = Math.round((v1/a1)*100);
-									//
-									var v2 = parseFloat(c2); 
-									var a2 = parseFloat(total_.etotal_m); 
-									var f2 = Math.round((v2/a2)*100);
+
 									_html +="<br/>";
 									_html += '<p >总计：车票 '+total_.etotal_t+' 张(比上时段'+fix_+c+'张 '+fix_fd+f+'%)，保险'
 									+total_.total_i+' 张(比上时段'+fix_1+c1+'张 '+fix_fd1+f1+'%)，共计：'
@@ -525,6 +487,8 @@
                     }
                 },
                 legend: {
+					x:'right',
+					y:'top',
                     data:['本时段','上时段']
                 },
                 xAxis : [
@@ -593,6 +557,8 @@
                     }
                 },
                 legend: {
+					x:'right',
+					y:'top',
                     data:['本时段','上时段']
                 },
                 xAxis : [
@@ -661,6 +627,8 @@
                     trigger: 'axis'
                 },
                 legend: {
+					x:'right',
+					y:'top',
                     data:['本时段','上时段']
                 },
                 grid: {
@@ -668,11 +636,6 @@
                     right: '4%',
                     bottom: '15%',
                     containLabel: true
-                },
-                toolbox: {
-                    feature: {
-                        saveAsImage: {}
-                    }
                 },
                 xAxis: {
                     type: 'category',
@@ -726,6 +689,8 @@
                     }
                 },
                 legend: {
+					x:'right',
+					y:'top',
                     data:['本时段','上时段']
                 },
                 xAxis : [

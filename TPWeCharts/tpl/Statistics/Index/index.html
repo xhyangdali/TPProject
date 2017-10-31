@@ -4,8 +4,9 @@
     <!-- tab选项卡 start -->
     <div class="weui-tab">
         <div class="weui-navbar" >
-            <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
-                图表分析{$uid}
+            <input type="hidden" id="tab_type" value="tab1">
+            <a id="charts_select" class="weui-navbar__item weui-bar__item--on" href="#tab1">
+                图表分析
             </a>
             <a id="words_select" class="weui-navbar__item" href="#tab2">
                 文字分析
@@ -14,8 +15,7 @@
         <div class="weui-tab__bd" >
             <!-- weui-tab__bd-item start -->
             <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-
-                <div class="weui-panel weui-panel_access">
+                <div id="firstAnchor" class="weui-panel weui-panel_access">
                     <div class="weui-panel__hd"><h3>关区客运站窗口售票金额</h3><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart1" width="400px" height="300px;"></canvas>
@@ -57,7 +57,7 @@
                 <!-- page__bd end -->
                 <!-- page__bd start -->
                 <div class="page__bd">
-                    <div class="weui-cells__title"><label name="lbdate"></label></div>
+                    <div  class="weui-cells__title"><label name="lbdate"></label></div>
                     <div class="weui-cells">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
@@ -168,9 +168,7 @@
         });
         //weui-navbar
 
-        $('#goToTop').click(function(){
-            $('html , body').animate({scrollTop: 0},'slow');
-        });
+
         htmlFontSize();
 		Words_data_deal();
 		
@@ -178,7 +176,9 @@
 	//图表部分数据处理Ajax
 	function Charts_data_deal()
 	{
-		
+        $("#charts_select").click(function() {
+            $("#tab_type").val("tab1");
+        });
         var lbtxt = _Search_start+"至"+_Search_end;
         $("label[name='lbdate']").each(function(){
             $(this).html(lbtxt);
@@ -268,6 +268,7 @@
 		//文字信息统计处理
 		var action_ = "{:U('GetResultWords')}";
 		$("#words_select").click(function(){
+            $("#tab_type").val("tab2");
 			$.ajax({
 				url:action_,
 				type:"POST",
@@ -290,7 +291,7 @@
 									//综合统计
 									var _html ='';
 									_html += '<h3>综合预览</h3>';
-									_html += '<p class="Ctext">窗口票销售情况：'+total_.total_ck_t+' 张，共计：'+total_.total_ck_m+' 万元;</p>';
+									_html += '<p class="Ctext">窗口票销售情况：'+total_.total_ck_m+' 万元;</p>';
 									_html += '<p class="Ctext">电子票销售情况：'+total_.etotal_t+' 张，共计：'+total_.etotal_m+' 元;</p>';
 									_html += '<p class="Ctext">保险票销售情况：'+total_.total_i+' 张 ;</p>';
 									$("#div_wtotal").html(_html);
@@ -361,6 +362,8 @@
             tooltip: {},
             color: ['rgb(25, 183, 207)'],
             legend: {
+                x:'right',
+                y:'top',
                 data:['单位：万元']
             },
             itemStyle:{
@@ -370,8 +373,7 @@
                         var colorList = ['rgb(164,205,238)','rgb(42,170,227)','rgb(25,46,94)','rgb(195,229,235)'];
                         return colorList[params.dataIndex];
                     }
-                },
-
+                }
             },
             xAxis: {
                 data: gqstations,
@@ -418,9 +420,23 @@
             },
             tooltip: {},
             legend: {
+                x:'right',
+                y:'top',
                 data:['单位：万元']
             },
             color: ['rgb(25, 183, 207)'],
+            itemStyle:{
+                normal:{
+                    //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+                    color: function (params){
+                        var colorList = ['rgb(164,205,238)','rgb(42,170,227)','rgb(25,46,94)'
+                            ,'rgb(195,229,235)','rgb(5,229,5)','rgb(142,100,200)','rgb(25,46,94)','rgb(50,20,50)'
+                            ,'rgb(200,170,227)','rgb(100,46,94)'
+                            ,'rgb(211,10,255)','rgb(211,10,255)'];
+                        return colorList[params.dataIndex];
+                    }
+                }
+            },
             xAxis: {
 				data: xfstations
                 ,
@@ -501,6 +517,9 @@
         var myChart_4 = echarts.init(worldMapContainer4);
         // 指定图表的配置项和数据
         var option4 = {
+            title: {
+                text: ''
+            },
             tooltip : {
                 trigger: 'axis',
                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效

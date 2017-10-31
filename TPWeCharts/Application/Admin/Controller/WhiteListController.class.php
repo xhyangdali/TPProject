@@ -36,7 +36,7 @@ class WhiteListController extends AdminBaseController{
 		$channels=$WhiteList->where($condition)->order('createdate desc')->page($p,$listRows)->select();
 		foreach ($channels as &$item){
 			//$item['createdateformat'] = gmdate("Y-m-d H:i:s",$item['createdate']);
-			$item['iseffectiveformat'] = $item['iseffective'] =="0"?"有效":"无效";
+			$item['iseffectiveformat'] = $item['iseffective'] =="0"?"启用":"禁止";
 		}
 		$page =new Think\Page();
 		$page->firstRow = 1;//
