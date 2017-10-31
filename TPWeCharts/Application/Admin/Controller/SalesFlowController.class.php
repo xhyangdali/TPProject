@@ -580,22 +580,36 @@ class SalesFlowController extends AdminBaseController{
 	public function GetChannelsByParams()
 	{
 		$data=I('post.');
-		$channels = array();
+		
 		$state = 0;
 		$msg ="成功！";
 		if(!empty($data["StationCode"]))	{
 			$channel = D('Channel');
-			$IDS_ = implode(',',$data["StationCode"]);
-
+			$IDS_ = explode(',',$data["StationCode"]);
+			foreach($IDS_ as $item)
+			{
+				$item = '\''.$item.'\' ,';
+				$str .=$item."";
+			}
 			$cargs = array(
-				'in' => $IDS_,
+				'code' => array('in',$IDS_),
 				'iseffective' => 0,
 				'isdel' => 0
 			);
 			$channels = $channel->where($cargs)->order('sort')->select();
+			if($channels)
+			{
+				//
+			}
+			else
+			{
+				$state = -1;
+				$msg ="查询失败！";
+			}
 		}else{
 			$state = 1;
 			$msg ="失败！";
+			$channels = array();
 		}
 		//
 		$result = array(

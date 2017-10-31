@@ -47,7 +47,7 @@ div:active{
 			<tr>
 				<th><label for="stationcode">客运站</label></th>
 				<td colspan="3">
-					<select  class="form-control" name="stationcode" id="stationcode" onchange="CheckData(this);" required>
+					<select  class="form-control" name="stationcode" id="stationcode"  required>
 						<option value="">===请选择===</option>
 					</select>
 				</td>
@@ -115,7 +115,7 @@ div:active{
 	var submitmsg ="";
 
  	$(function(){
-		//$("#isert_").after('<tr><td>4</td><td>4</td><td>4</td></tr>'); 动态添加
+		// 动态添加
 		$("[data-toggle='tooltip']").tooltip();
 		//日期控件初始化
 		Calendar.setup({
@@ -130,6 +130,91 @@ div:active{
 			onfocusout: function(element){
 				$(element).valid();
 			}
+		});
+		$("#stationcode").change(function(){
+			//渠道部分动态加载处理
+			var _u = "{:U('Admin/SalesFlow/GetChannelsByParams')}";
+			var code = $(this).find("option:selected").attr("ids");
+			console.log(code);
+			$.ajax({
+				url:_u,
+				type:"POST",
+				data:{StationCode:code},
+				dataType:"json",
+				error:function(data){
+					layer.closeAll('loading');
+				},
+				success:function(data){
+					if(data)
+					{
+						//初始化下拉框数据
+						if(data.state == 0)	{
+							//移除旧的渠道信息
+							$("table tr[name]").each(function(index){
+									$(this).remove();
+							});
+							//加载渠道
+							var _html ='';
+							var channels = data.data;
+							for(var o in channels){
+								var td_0 ='',td_1='';
+								if(channels[o].code == _WCODE)
+								{
+									td_0 = '<input class="form-control" type="text"   name="'
+									+channels[o].code+'_ticketnum" id="'+channels[o].code
+									+'_ticketnum" value="0" disabled="disabled" readonly required number="true" placeholder="'
+									+channels[o].name+'(票数)" />';
+									td_1 = '<input class="form-control" type="text"   name="'
+									+channels[o].code+'_moneynum" id="'+channels[o].code
+									+'_moneynum" value="0" disabled="disabled" readonly required number="true" placeholder="'
+									+channels[o].name+'(金额)" />';
+								}else
+								{
+									td_0 = '<input class="form-control" type="text" onchange="CheckCount(this);"   name="'
+									+channels[o].code+'_ticketnum" id="'+channels[o].code
+									+'_ticketnum" value="0"  required number="true" placeholder="'
+									+channels[o].name+'(票数)" />';
+									td_1 = '<input class="form-control" type="text" onchange="CheckCount(this);"   name="'
+									+channels[o].code+'_moneynum" id="'+channels[o].code
+									+'_moneynum" value=""  required number="true" placeholder="'
+									+channels[o].name+'(金额)" />';
+								} 
+								_html += '<tr name="'+channels[o].code+'">';
+								_html += '<td >';
+								_html += '<label for="'+channels[o].code+'_ticketnum" >'+channels[o].name+'(票数)</label>';
+								_html += '<input class="form-control" type="hidden" name="'
+								+channels[o].code+'_id" id="'+channels[o].code+'_id" />';
+								_html += '</td>';
+								//
+								_html += '<td >';
+								_html += td_0;
+								_html += '</td>';
+								
+								//
+								_html += '<td>';
+								_html += '<label for="'+channels[o].code+'_moneynum" >'+channels[o].name+'(金额)</label>';
+								_html += '<input class="form-control" type="hidden" name="'
+								+channels[o].code+'_id" id="'+channels[o].code+'_id" />';
+								_html += '</td>';
+								//
+								_html += '<td >';
+								_html += td_1;
+								_html += '</td>';
+								//
+								_html += '</tr> ';
+							}
+							
+							$("#isert_").after(_html);
+						}else{
+							layer.msg(data.msg, {icon: -1});
+						}
+						layer.closeAll('loading');
+					}
+				}
+			});
+			
+			//
+			CheckData(this);
 		});
 		//数据校验
 		var validator = $("#form").validate({
@@ -276,6 +361,8 @@ div:active{
 	//查询是否添加过该日信息（依据分组编码，渠道，站点）
 	function CheckData(obj)
 	{
+		
+		//
         var _date = $("#flowdate").val();
         if(_date)
         {

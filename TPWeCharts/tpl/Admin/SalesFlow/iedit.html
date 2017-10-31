@@ -131,6 +131,7 @@ div:active{
 				$(element).valid();
 			}
 		});
+		
 		//数据校验
 		var validator = $("#form").validate({
 			errorPlacement: function(error, element) {
@@ -514,11 +515,11 @@ div:active{
 		for(var i =0;i<data.length;i++)
 		{
 			if(id != "unit") {
-				$(obj).append("<option value='" + data[i]['code'] + "'>" + data[i]['name'] + "</option>");
+				$(obj).append("<option IDS ='"+ data[i]['channels']+"' value='" + data[i]['code'] + "'>" + data[i]['name'] + "</option>");
 			}
 			else
 			{
-				$(obj).append("<option value='" + data[i]['dicvalue'] + "'>" + data[i]['name'] + "</option>");
+				$(obj).append("<option IDS ='"+ data[i]['channels']+"' value='" + data[i]['dicvalue'] + "'>" + data[i]['name'] + "</option>");
 			}
 		}
 	}
