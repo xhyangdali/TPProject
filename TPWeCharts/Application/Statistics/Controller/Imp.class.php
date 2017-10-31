@@ -43,12 +43,13 @@ class Imp extends StatisticsBaseController{
         //跳转。相关页面获取
         //读取配置WEBURL
         $weburl = C('WEIXINDOMAIN');
-        $redirect = $weburl.'Statistics/Index/Index';
+        $redirect = $weburl.'Statistics/Index/Index';//
         $redirect_url = urlencode($redirect);
         //传递的完整地址
         $url = 'http://imp.dlkcp.com/UserCenter/WechatAuth?ret='. $redirect_url. '';
         //跳转
-        $this->redirect($url);
+        header("Location:{$url}");
+        //$this->redirect($url);
     }
 
     //获取信息，获取USERID,用户具体信息

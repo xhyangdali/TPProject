@@ -53,6 +53,90 @@ class StationController extends AdminBaseController{
 		$this->display();
 	}
 	/**
+	 * 客运站信添加视图
+	 */
+	function add()
+	{
+		$channel = D('Channel');
+		//
+		$cargs = array(
+			'iseffective' => 0,
+			'isdel' => 0
+		);
+		$channels = $channel->where($cargs)->order('sort')->select();
+		foreach($channels as $item)
+		{
+			if(substr($item["code"],-2) == "01" )
+			{
+				$item["flag"] = 0;
+			}else{
+				$item["flag"] = 1;
+			}
+		}
+		//
+		$assign=array(
+			'channels' => $channels
+		);
+		$this->assign($assign);
+		$this->display();
+	}
+	/**
+	 * 客运站信编辑视图
+	 */
+	function edit()
+	{
+		$channel = D('Channel');
+		//
+		$cargs = array(
+			'iseffective' => 0,
+			'isdel' => 0
+		);
+		$channels = $channel->where($cargs)->order('sort')->select();
+		foreach($channels as $item)
+		{
+			if(substr($item["code"],-2) == "01" )
+			{
+				$item["flag"] = 0;
+			}else{
+				$item["flag"] = 1;
+			}
+		}
+		//
+		$assign=array(
+			'channels' => $channels
+		);
+		$this->assign($assign);
+		$this->display();
+	}
+	/**
+	 * 客运站信详细视图
+	 */
+	function detail()
+	{
+		$channel = D('Channel');
+		//
+		$cargs = array(
+			'iseffective' => 0,
+			'isdel' => 0
+		);
+		$channels = $channel->where($cargs)->order('sort')->select();
+		foreach($channels as $item)
+		{
+			if(substr($item["code"],-2) == "01" )
+			{
+				$item["flag"] = 0;
+			}else{
+				$item["flag"] = 1;
+			}
+		}
+		//
+		$assign=array(
+			'channels' => $channels
+		);
+		$this->assign($assign);
+		$this->display();
+	}
+	/**
 	 * 客运站信息添加
 	 */
 	function adddata()

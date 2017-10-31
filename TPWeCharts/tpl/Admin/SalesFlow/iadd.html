@@ -52,7 +52,7 @@ div:active{
 					</select>
 				</td>
 			</tr>
-			<tr>
+			<tr id ="isert_">
 				<td ><label for="totalticketnum" >合计票数</label></td>
 				<td >
 					<input class="form-control" type="text"   name="totalticketnum" id="totalticketnum" disabled value="0" number="true" placeholder="合计票数" />
@@ -115,6 +115,7 @@ div:active{
 	var submitmsg ="";
 
  	$(function(){
+		//$("#isert_").after('<tr><td>4</td><td>4</td><td>4</td></tr>'); 动态添加
 		$("[data-toggle='tooltip']").tooltip();
 		//日期控件初始化
 		Calendar.setup({
@@ -549,18 +550,13 @@ div:active{
 		for(var i =0;i<data.length;i++)
 		{
 			if(id != "unit") {
-				$(obj).append("<option value='" + data[i]['code'] + "'>" + data[i]['name'] + "</option>");
+				$(obj).append("<option IDS ='"+ data[i]['channels']+"' value='" + data[i]['code'] + "'>" + data[i]['name'] + "</option>");
 			}
 			else
 			{
-				$(obj).append("<option value='" + data[i]['dicvalue'] + "'>" + data[i]['name'] + "</option>");
+				$(obj).append("<option IDS ='"+ data[i]['channels']+"' value='" + data[i]['dicvalue'] + "'>" + data[i]['name'] + "</option>");
 			}
 		}
-	}
-	//
-	function showMSG(obj)
-	{
-		layer.msg('ko.....');
 	}
 	//保存按钮（来自父页面）
 	function submitdata()

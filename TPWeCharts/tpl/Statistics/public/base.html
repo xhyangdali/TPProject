@@ -58,10 +58,15 @@
 <script src="__PUBLIC_JS__/iFramework.js"></script>
 <script type="text/javascript">
     $('#goToTop').click(function(){
-        var speed = 200;//滑动的速度
+        var speed = 500;//滑动的速度
         var fl = $("#tab_type").val();
         var _href = "#firstAnchor";
-        if(fl == "tab2")
+        if($("#tab1").hasClass("weui-tab__bd-item--active"))
+        {
+            _href = "#firstAnchor";
+        }
+        //
+        if($("#tab2").hasClass("weui-tab__bd-item--active"))
         {
             _href = "#div_wtotal";
         }

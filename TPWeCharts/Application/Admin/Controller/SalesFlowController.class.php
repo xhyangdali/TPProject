@@ -573,4 +573,36 @@ class SalesFlowController extends AdminBaseController{
 		}
 		$this->ajaxReturn($result);//返回操作结果
 	}
+	/*
+	 *依据车站获得所需要的渠道详细列表
+	 *xhy
+	 * */
+	public function GetChannelsByParams()
+	{
+		$data=I('post.');
+		$channels = array();
+		$state = 0;
+		$msg ="成功！";
+		if(!empty($data["StationCode"]))	{
+			$channel = D('Channel');
+			$IDS_ = implode(',',$data["StationCode"]);
+
+			$cargs = array(
+				'in' => $IDS_,
+				'iseffective' => 0,
+				'isdel' => 0
+			);
+			$channels = $channel->where($cargs)->order('sort')->select();
+		}else{
+			$state = 1;
+			$msg ="失败！";
+		}
+		//
+		$result = array(
+			'state' => $state,
+			'msg' => $msg,
+			'data' => $channels
+		);
+		$this->ajaxReturn($result);//返回操作结果
+	}
 }

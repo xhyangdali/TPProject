@@ -99,8 +99,8 @@ $(function() {
 			  maxmin: true,
 			  scrollbar: false,
 			  title:"客运站信息添加",
-			  area:['800px','450px'],
-			  content:[ url,'no']//注意，如果str是object，那么需要字符拼接。
+			  area:['800px','480px'],
+			  content:[ url,'yes']//注意，如果str是object，那么需要字符拼接。
 			  ,btn: ['保存', '关闭'] //只是为了演示
 			  ,yes: function(index, layero){
 				//保存
@@ -128,8 +128,8 @@ $(function() {
             maxmin: true,
             scrollbar: false,
             title:"查看客运站信息",
-            area:['800px','450px'],
-            content: url//注意，如果str是object，那么需要字符拼接。
+            area:['800px','480px'],
+            content: [url,"yes"]//注意，如果str是object，那么需要字符拼接。
         });
     });
     //编辑客运站信息
@@ -142,8 +142,8 @@ $(function() {
             maxmin: true,
             scrollbar: false,
             title:"编辑客运站信息",
-            area:['800px','450px'],
-            content: [url,'no']//注意，如果str是object，那么需要字符拼接。
+            area:['800px','480px'],
+            content: [url,'yes']//注意，如果str是object，那么需要字符拼接。
             ,btn: ['保存', '关闭'] //只是为了演示
             ,yes: function(index, layero){
                 //保存

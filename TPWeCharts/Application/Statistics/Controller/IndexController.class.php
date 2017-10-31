@@ -13,13 +13,21 @@ class IndexController extends StatisticsBaseController{
 	 */
 	public function Index(){
 		if(!$_SESSION['user_']['id']) {
-			//$setuid = new \Statistics\Controller\Imp();
+			$setuid = new \Statistics\Controller\Imp();
 			//$uid = $setuid->useruid();
 		}
-		$assign=array(
-			'uid' => 00
+		$ip = get_client_ip();
+		//查询条件
+		$cookie_ = array(
+			"_Search_start" => $_COOKIE['_Search_start'],
+			"_Search_end" => $_COOKIE['_Search_end'],
+			"_Search_start_next" =>  $_COOKIE['_Search_start_next'],
+			"_Search_end_next" =>  $_COOKIE['_Search_end_next'],
+			"_Search_flag" =>  $_COOKIE['_Search_flag']
 		);
-		$this->assign($assign);
+		$log = D("Log");
+		$log->addLog('ACSESS','ContrastIndex',json_encode(array('Result::' => true,'Data::'=>$cookie_,'IP::'=>$ip)),'');
+
         $this->display();
 	}
 
@@ -28,9 +36,20 @@ class IndexController extends StatisticsBaseController{
 	 */
 	public function Contrast(){
 		if(!$_SESSION['user_']['id']) {
-			//$setuid = new \Statistics\Controller\Imp();
+			$setuid = new \Statistics\Controller\Imp();
 			//$uid = $setuid->useruid();
 		}
+		$ip = get_client_ip();
+		//查询条件
+		$cookie_ = array(
+			"_Search_start" => $_COOKIE['_Search_start'],
+			"_Search_end" => $_COOKIE['_Search_end'],
+			"_Search_start_next" =>  $_COOKIE['_Search_start_next'],
+			"_Search_end_next" =>  $_COOKIE['_Search_end_next'],
+			"_Search_flag" =>  $_COOKIE['_Search_flag']
+		);
+		$log = D("Log");
+		$log->addLog('ACSESS','Contrast',json_encode(array('Result::' => true,'Data::'=>$cookie_,'IP::'=>$ip)),'');
 		$this->display();
 	}
 	/**
@@ -38,12 +57,22 @@ class IndexController extends StatisticsBaseController{
 	 */
 	public function Search(){
 		if(!$_SESSION['user_']['id']) {
-			//$setuid = new \Statistics\Controller\Imp();
+			$setuid = new \Statistics\Controller\Imp();
 			//$uid = $setuid->useruid();
 		}
+		$ip = get_client_ip();
+		//查询条件
+		$cookie_ = array(
+			"_Search_start" => $_COOKIE['_Search_start'],
+			"_Search_end" => $_COOKIE['_Search_end'],
+			"_Search_start_next" =>  $_COOKIE['_Search_start_next'],
+			"_Search_end_next" =>  $_COOKIE['_Search_end_next'],
+			"_Search_flag" =>  $_COOKIE['_Search_flag']
+		);
+		$log = D("Log");
+		$log->addLog('ACSESS','Search',json_encode(array('Result::' => true,'Data::'=>$cookie_,'IP::'=>$ip)),'');
 		$this->display();
 	}
-
 	/**
 	 * 查询统计（搜索查询）图表信息
 	 * 执行存储过程

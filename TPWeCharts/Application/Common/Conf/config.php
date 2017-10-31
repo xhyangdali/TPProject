@@ -45,7 +45,7 @@ return array(
 	//***********************************分页数目*********************************
 	'PAGE_NUM'        => '15',  // 分页数目
 	//***********************************微信跳转域名*********************************
-	'WEIXINDOMAIN'        => 'http://127.0.0.1:81/TPWeCharts/index.php/',  // 微信跳转域名
+	'WEIXINDOMAIN'        => 'http://localhost:81/TPWeCharts/index.php/',  // 微信跳转域名
 //***********************************数据库备份设置*******************************
 	'DATA_BACKUP_PATH'		=>  './Data/',//数据库备路径必须以 / 结尾
 	'DATA_BACKUP_PART_SIZE'		=>  '20971520',//数据库备份卷大小，该值用于限制压缩后的分卷最大长度。单位：B；建议设置20M
@@ -98,6 +98,9 @@ return array(
 		'WhiteList' => '白名单',
 		'SalesFlow' => '销售流水管理',
 		'Insurance' => '保险管理',
+		'Contrast' => '同比查询模块',
+		'ContrastIndex' => '总数查询模块',
+		'Search' => '统计查询模块',
     ),
 //***********************************页面设置**************************************
     'TMPL_EXCEPTION_FILE'    => APP_DEBUG ? THINK_PATH.'Tpl/think_exception.tpl' : './Template/default/Home/Public/404.html',

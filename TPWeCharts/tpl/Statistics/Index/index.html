@@ -48,12 +48,15 @@
             <!-- weui-tab__bd-item start -->
             <div id="tab2" class="weui-tab__bd-item ">
                 <!-- page__bd start -->
+
                 <div id="div_wtotal" class="page__bd">
+                    <br />
                     <h3>统计概况</h3>
                     <p class="Ctext">窗口售票金额共计：共计销售车票1763张，销售金额：79.13万元</p>
                     <p class="Ctext">电子客票：共计销售车票1763张，销售金额：94,354元。</p>
                     <p class="Ctext">客票保险：保险票255张，销售金额：8,354元。</p>
                 </div>
+
                 <!-- page__bd end -->
                 <!-- page__bd start -->
                 <div class="page__bd">
@@ -210,48 +213,49 @@
 						var CK_WArray = data.CK_WArray;
 						var e_total_html ='';
 						//图表信息数据处理
-                        for(var i=0;i < echannel.length ;i++)
-                        {
-                            var temp = {};
-                            temp.name = echannel[i];
-                            temp.type = "bar";
-                            temp.label =  {
-                                normal: {
-                                    show: true,
-                                    position: 'top'
+                        if(echannel) {
+                            for (var i = 0; i < echannel.length; i++) {
+                                var temp = {};
+                                temp.name = echannel[i];
+                                temp.type = "bar";
+                                temp.label = {
+                                    normal: {
+                                        show: true,
+                                        position: 'top'
+                                    }
+                                };
+                                var temp0 = {};
+                                temp0.name = echannel[i];
+                                temp0.type = "bar";
+                                temp0.label = {
+                                    normal: {
+                                        show: true,
+                                        position: 'top'
+                                    }
+                                };
+                                var _dd = [];
+                                var _dd0 = [];
+                                if(ex_tcket) {
+                                    for (var j = 0; j < ex_tcket.length; j++) {
+                                        //console.log(ex_tcket[j][1]);
+                                        if (echannel[i] == ex_tcket[j][1]) {
+                                            _dd = ex_tcket[j][3];
+                                        }
+                                    }
                                 }
-                            };
-							var temp0 = {};
-                            temp0.name = echannel[i];
-                            temp0.type = "bar";
-                            temp0.label =  {
-                                normal: {
-                                    show: true,
-                                    position: 'top'
+                                if(ex_mony) {
+                                    for (var j = 0; j < ex_mony.length; j++) {
+                                        //console.log(ex_tcket[j][1]);
+                                        if (echannel[i] == ex_mony[j][1]) {
+                                            _dd0 = ex_mony[j][3];
+                                        }
+                                    }
                                 }
-                            };
-                            var _dd = [];
-							var _dd0 = [];
-                            for(var j=0;j < ex_tcket.length ;j++)
-                            {
-                                //console.log(ex_tcket[j][1]);
-                                if(echannel[i] == ex_tcket[j][1] )
-                                {
-                                    _dd = ex_tcket[j][3];
-                                }
+                                temp.data = _dd;
+                                temp0.data = _dd0;
+                                ex_data_ticket.push(temp);
+                                ex_data_money.push(temp0);
                             }
-							for(var j=0;j < ex_mony.length ;j++)
-                            {
-                                //console.log(ex_tcket[j][1]);
-                                if(echannel[i] == ex_mony[j][1] )
-                                {
-                                    _dd0 = ex_mony[j][3];
-                                }
-                            }
-                            temp.data = _dd;
-							temp0.data = _dd0;
-                            ex_data_ticket.push(temp);
-							ex_data_money.push(temp0);
                         }
 						//
                         fun_charts();
@@ -289,7 +293,7 @@
 							if(total_){
 									
 									//综合统计
-									var _html ='';
+									var _html ='<p>&nbsp;</p>';
 									_html += '<h3>综合预览</h3>';
 									_html += '<p class="Ctext">窗口票销售情况：'+total_.total_ck_m+' 万元;</p>';
 									_html += '<p class="Ctext">电子票销售情况：'+total_.etotal_t+' 张，共计：'+total_.etotal_m+' 元;</p>';

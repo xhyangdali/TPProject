@@ -57,6 +57,15 @@
 					</td>
 				</tr>
 				<tr>
+					<th><label >客运站渠道选择</label></th>
+					<td>
+						<input class="form-control" type="hidden" name="channels" id="channels">
+						<foreach name="channels" item="v">
+							<label class = "checked"><input type="checkbox" id="ck_{$v['code']}" id="ck_{$v['code']}"  name="box_check" value="{$v['code']}">{$v["name"]}</label>
+						</foreach>
+					</td>
+				</tr>
+				<tr>
 					<th><label for="sort">排序</label></th>
 					<td><input class="form-control" type="text" name="sort" id="sort">
 					</td>
@@ -137,9 +146,29 @@
 								$("#code").val(item.code);
 								$("#address").val(item.address);
 								$("#type").val(item.type);
-								$("#sort").val(item.sort);
+								$("#sort").val(item.sort);//
+								$("#channels").val(item.channels);
 								$("#description").val(item.description);
 								$("#iseffective").val(item.iseffective);
+								//复选框处理
+								var channels_ = item.channels;
+								if(channels_) {
+									$("table tr td input[name='box_check']").each(function () {
+										var code_ = $(this).val();
+										//
+										var strs= new Array(); //定义一数组
+										strs=channels_.split(","); //字符分割
+										for (i=0;i<strs.length ;i++ )
+										{
+											if(strs[i] == code_)
+											{
+												$(this).attr("checked","checked");
+												obj = $(this).parent().attr("class","checked");
+												//alert($(obj).html());
+											}
+										}
+									});
+								}
 							}else
 							{
 								layer.msg(data.msg);
@@ -161,6 +190,21 @@
 			 var load = layer.load(2, {
 				 shade: [0.1,'#fff'] //0.1透明度的白色背景
 			 });
+			 var da_ = "";
+			 //渠道详细处理box_check
+			 $("table tr td input[name='box_check']").each(function(){
+				 var chk = $(this).attr("checked");
+				 var ch_ = $(this).val();
+				 //
+				 if($(this).is(':checked'))
+				 {
+					 da_ +=","+ch_;
+				 }
+			 });
+			 da_=da_.replace(',',"");
+			 //alert(da_);
+			 $("#channels").val(da_);
+			 var channels = $("#channels").val();
 			 var postdata = $('#form').serialize();
 			 $.ajax({
 				 url:url,
