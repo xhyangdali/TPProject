@@ -116,8 +116,8 @@
 </block>
 <block name="js">
 <script type="text/javascript">
-    var gqstations = [];//关区客运站
-    var gqmoneys = [];//关区客运站客票统计
+    var gqstations = ["东站","兴盛站","快速站","北站"];//关区客运站
+    var gqmoneys = [7.8,10.9,8.0,6.4,6.1];//关区客运站客票统计
     var xfstations = [];//县分客运站
     var xfmoneys = [];//县分客运站客票统计
     var estation = [];//电子票统计客运站
@@ -170,8 +170,6 @@
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
         //weui-navbar
-
-
         htmlFontSize();
 		Words_data_deal();
 		
@@ -350,31 +348,52 @@
         //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
         var resizeWorldMapContainer = function () {
             worldMapContainer.style.width = window.innerWidth+'px';
-            worldMapContainer.style.height = window.innerHeight+'px';
+            worldMapContainer.style.height = parseInt(window.innerHeight)*0.6+'px';
         };
         //设置容器高宽
         resizeWorldMapContainer();
         var myChart_ = echarts.init(worldMapContainer);
         // 指定图表的配置项和数据
         var option = {
-            title: {
-                text: '窗口售票金额'
+            title:{
+                text:'关区窗口销售金额',
+                x:'left',
+                y:'top',
+                textStyle:{
+                    //文字颜色
+                    color:'#5B5B5B',
+                    //字体风格,'normal','italic','oblique'
+                    fontStyle:'normal',
+                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                    fontWeight:'bold',
+                    //字体系列
+                    fontFamily:'sans-serif',
+                    //字体大小
+                    fontSize:12
+                }
             },
             grid: {
                 y2: 40
             },
             tooltip: {},
-            color: ['rgb(25, 183, 207)'],
+            color: ['#ff69b4'],
             legend: {
                 x:'right',
                 y:'top',
                 data:['单位：万元']
             },
+            lable:{
+                normal:{
+                    textStyle:{
+                        fontsize:'1rem'
+                    }
+                }
+            },
             itemStyle:{
                 normal:{
                     //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
                     color: function (params){
-                        var colorList = ['rgb(164,205,238)','rgb(42,170,227)','rgb(25,46,94)','rgb(195,229,235)'];
+                        var colorList = ['#ff7f50','#87cefa','#da70d6','#6495ed'];
                         return colorList[params.dataIndex];
                     }
                 }
@@ -386,7 +405,9 @@
                     rotate:30,//-30度角倾斜显示
                 }
             },
-            yAxis: {},
+            yAxis: {
+
+            },
             series: [{
                 name: '单位：万元',
                 type: 'bar',
@@ -409,15 +430,29 @@
         //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
         var resizeWorldMapContainer2 = function () {
             worldMapContainer2.style.width = window.innerWidth+'px';
-            worldMapContainer2.style.height = window.innerHeight+'px';
+            worldMapContainer2.style.height = parseInt(window.innerHeight)*0.6+'px';
         };
         //设置容器高宽
         resizeWorldMapContainer2();
         var myChart_2 = echarts.init(worldMapContainer2);
         // 指定图表的配置项和数据
         var option2 = {
-            title: {
-                text: '窗口售票金额'
+            title:{
+                text:'县分公司窗口销售金额',
+                x:'left',
+                y:'top',
+                textStyle:{
+                    //文字颜色
+                    color:'#5B5B5B',
+                    //字体风格,'normal','italic','oblique'
+                    fontStyle:'normal',
+                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                    fontWeight:'bold',
+                    //字体系列
+                    fontFamily:'sans-serif',
+                    //字体大小
+                    fontSize:12
+                }
             },
             grid: {
                 y2: 60
@@ -433,10 +468,10 @@
                 normal:{
                     //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
                     color: function (params){
-                        var colorList = ['rgb(164,205,238)','rgb(42,170,227)','rgb(25,46,94)'
-                            ,'rgb(195,229,235)','rgb(5,229,5)','rgb(142,100,200)','rgb(25,46,94)','rgb(50,20,50)'
-                            ,'rgb(200,170,227)','rgb(100,46,94)'
-                            ,'rgb(211,10,255)','rgb(211,10,255)'];
+                        var colorList = ['#ff7f50','#87cefa','#da70d6','#32cd32','#6495ed',
+                            '#ff69b4','#ba55d3','#cd5c5c','#ffa500','#40e0d0',
+                            '#1e90ff','#ff6347','#7b68ee','#00fa9a','#ffd700',
+                            '#6699FF','#ff6666','#3cb371','#b8860b','#30e0e0'];
                         return colorList[params.dataIndex];
                     }
                 }
@@ -472,7 +507,7 @@
         //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
         var resizeWorldMapContainer3 = function () {
             worldMapContainer3.style.width = window.innerWidth+'px';
-            worldMapContainer3.style.height = window.innerHeight+'px';
+            worldMapContainer3.style.height = parseInt(window.innerHeight)*0.6+'px';
         };
         //设置容器高宽
         resizeWorldMapContainer3();
@@ -480,6 +515,23 @@
         var myChart_3 = echarts.init(worldMapContainer3);
         // 指定图表的配置项和数据
         var option3 = {
+            title:{
+                text:'单位：张',
+                x:'right',
+                y:'top',
+                textStyle:{
+                    //文字颜色
+                    color:'#5B5B5B',
+                    //字体风格,'normal','italic','oblique'
+                    fontStyle:'normal',
+                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                    fontWeight:'bold',
+                    //字体系列
+                    fontFamily:'sans-serif',
+                    //字体大小
+                    fontSize:10
+                }
+            },
             tooltip : {
                 trigger: 'axis',
                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -487,6 +539,8 @@
                 }
             },
             legend: {
+                x:'left',
+                y:'top',
                 data:echannel
             },
             xAxis : [
@@ -514,15 +568,29 @@
         //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
         var resizeWorldMapContainer4 = function () {
             worldMapContainer4.style.width = window.innerWidth+'px';
-            worldMapContainer4.style.height = window.innerHeight+'px';
+            worldMapContainer4.style.height = parseInt(window.innerHeight)*0.6+'px';
         };
         //设置容器高宽
         resizeWorldMapContainer4();
         var myChart_4 = echarts.init(worldMapContainer4);
         // 指定图表的配置项和数据
         var option4 = {
-            title: {
-                text: ''
+            title:{
+                text:'单位：万元',
+                x:'right',
+                y:'top',
+                textStyle:{
+                    //文字颜色
+                    color:'#5B5B5B',
+                    //字体风格,'normal','italic','oblique'
+                    fontStyle:'normal',
+                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                    fontWeight:'bold',
+                    //字体系列
+                    fontFamily:'sans-serif',
+                    //字体大小
+                    fontSize:10
+                }
             },
             tooltip : {
                 trigger: 'axis',
@@ -531,6 +599,8 @@
                 }
             },
             legend: {
+                x:'left',
+                y:'top',
                 data:echannel
             },
             xAxis : [
@@ -555,7 +625,6 @@
         //
         window.onresize = function () {
             //重置容器高宽
-
             resizeWorldMapContainer();
             myChart_.resize();
             resizeWorldMapContainer2();

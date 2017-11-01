@@ -17,7 +17,7 @@
             <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
 				<input type="hidden" id="tab_type" value="tab1">
                 <div id="firstAnchor" class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>关区客运站窗口售票金额同比</h3><label name="lbdate"></label></div>
+                    <div class="weui-panel__hd"><h3>关区客运站窗口售票金额同比</h3><label name="lbdate_"></label><br/><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart1" width="400px" height="300px;"></canvas>
                     </div>
@@ -25,21 +25,21 @@
 
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额同比</h3><label name="lbdate"></label></div>
+                    <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额同比</h3><label name="lbdate_"></label><br/><label name="lbdate"></label></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart3" width="400px" height="300px;"></canvas>
                     </div>
                 </div>
 
 				 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>电子客票销售张数同比</h3><label name="lbdate"></label></div>
+                    <div class="weui-panel__hd"><h3>电子客票销售张数同比</h3><label name="lbdate_"></label><br/><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart2" width="400px" height="300px;"></canvas>
                     </div>
                 </div>
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>电子客票销售金额同比</h3><label name="lbdate"></label></div>
+                    <div class="weui-panel__hd"><h3>电子客票销售金额同比</h3><label name="lbdate_"></label><br/><label name="lbdate"></label></div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart4"  width="400px" height="300px;" ></canvas>
                     </div>
@@ -59,7 +59,7 @@
                 <!-- page__bd end -->
                 <!-- page__bd start -->
                 <div class="page__bd">
-                    <div class="weui-cells__title"><label name="lbdate"></label></div>
+                    <div class="weui-cells__title"><label name="lbdate_"></label><br/><label name="lbdate"></label></div>
                     <div class="weui-cells">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
@@ -134,7 +134,7 @@
                 <!-- page__bd end -->
                 <!-- page__bd start -->
                 <div class="page__bd">
-                    <div class="weui-cells__title"><label name="lbdate"></label></div>
+                    <div class="weui-cells__title"><label name="lbdate_"></label><br/><label name="lbdate"></label></div>
                     <div class="weui-cells">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
@@ -234,7 +234,7 @@
 		//图表部分数据处理Ajax
 		function Charts_data_deal(){
 			var lbtxt = ' (本时段)'+_Search_start+"/"+_Search_end;
-			lbtxt += '：(上时段)'+_Search_start_next+"/"+_Search_end_next;
+			var lbtxt_  = '(上时段)'+_Search_start_next+"/"+_Search_end_next;
 			$("#charts_select").click(function() {
 				$("#tab_type").val("tab1");
 			});
@@ -242,6 +242,9 @@
 			$("label[name='lbdate']").each(function(){
 				$(this).html(lbtxt);
 			});
+            $("label[name='lbdate_']").each(function(){
+                $(this).html(lbtxt_);
+            });
 			var action_ = "{:U('GetResult')}";
 			//请求统计数据
 			$.ajax({
@@ -298,8 +301,8 @@
 		var action_ = "{:U('GetResultWords')}";
 		$("#words_select").click(function(){
 			$("#tab_type").val("tab2");
-			var c = 0,c1 = 0,c2 = 0,f= 0,f1= 0,f2=0;
-			var fix_ = "增加  ",fix_1 = "增加  ",fix_2 = "增加  ",fix_fd = "增幅  ",fix_fd1 = "增幅  ",fix_fd2 = "增幅  ";
+			var c = 0,c1 = 0,c2 = 0,f= 0,f1= 0,f2= 0,c3= 0,f3=0;
+			var fix_ = "增加  ",fix_1 = "增加  ",fix_2 = "增加  ",fix_3 = "增加  ",fix_fd = "增幅  ",fix_fd1 = "增幅  ",fix_fd2 = "增幅  ",fix_fd3 = "增幅  ";
 			$.ajax({
 				url:action_,
 				type:"POST",
@@ -349,23 +352,40 @@
 									{
 										c2 = parseFloat(total_.etotal_m) - parseFloat(total_1.etotal_m);
 									}
+                                    //窗口售票统计处理
+                                    if(parseInt(total_1.total_ck_m) >= parseInt(total_.total_ck_m))
+                                    {
+                                        c3 = parseFloat(total_1.total_ck_m) - parseFloat(total_.total_ck_m);
+                                        fix_3 ="减少  ";
+                                        fix_fd3 = "减幅  "
+                                    }else {
+                                        c3 = parseFloat(total_.total_ck_m) - parseFloat(total_1.total_ck_m);
+                                    }
 									var v = parseFloat(c); 
 									var a = parseFloat(total_.etotal_t); 
 									f = Math.round((v/a)*100);
+                                    c = c.toFixed(2);
 									//
 									var v1 = parseFloat(c1); 
 									var a1 = parseFloat(total_.total_i); 
 									f1 = Math.round((v1/a1)*100);
+                                    c1 = c1.toFixed(2);
 									//
 									var v2 = parseFloat(c2); 
 									var a2 = parseFloat(total_.etotal_m); 
 									f2 = Math.round((v2/a2)*100);
+                                    c2 = c2.toFixed(2);
+                                    //
+                                    var v3 = parseFloat(c3);
+                                    var a3 = parseFloat(total_.total_ck_m);
+                                    f3 = Math.round((v3/a3)*100);
+                                    c3 = c3.toFixed(2);
 									//综合统计
 									var _html ='<p>&nbsp;</p>';
 									_html += '<h3>综合预览</h3>';
-									_html += '<p class="Ctext">窗口票销售情况：'+total_.total_ck_m+' 万元;</p>';
+									_html += '<p class="Ctext">窗口票销售情况：'+parseFloat(total_.total_ck_m)+'  万元(比上时段'+fix_3+c3+' 万元 '+fix_fd3+f3+'%);</p>';
 									_html += '<p class="Ctext">电子票销售情况：'+total_.etotal_t
-									+' 张(比上时段'+fix_+c+'张 '+fix_fd+f+'%)，，共计：'+parseFloat(total_.etotal_m)
+									+' 张(比上时段'+fix_+c+'张 '+fix_fd+f+'%)，共计：'+parseFloat(total_.etotal_m)
 									+'  元(比上时段'+fix_2+c2+' 元 '+fix_fd2+f2+'%);</p>';
 									_html += '<p class="Ctext">保险票销售情况：：'+total_.total_i
 									+' 张(比上时段'+fix_1+c1+'张 '+fix_fd1+f1+'%) ;</p>';
@@ -470,15 +490,29 @@
             //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
             var resizeWorldMapContainer = function () {
                 worldMapContainer.style.width = window.innerWidth+'px';
-                worldMapContainer.style.height = window.innerHeight+'px';
+                worldMapContainer.style.height = parseInt(window.innerHeight)*0.6+'px';
             };
             //设置容器高宽
             resizeWorldMapContainer();
             var myChart_ = echarts.init(worldMapContainer);
             // 指定图表的配置项和数据
             var option = {
-                title: {
-                    text: '单位：万元'
+                title:{
+                    text:'单位：万元',
+                    x:'right',
+                    y:'top',
+                    textStyle:{
+                        //文字颜色
+                        color:'#5B5B5B',
+                        //字体风格,'normal','italic','oblique'
+                        fontStyle:'normal',
+                        //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                        fontWeight:'bold',
+                        //字体系列
+                        fontFamily:'sans-serif',
+                        //字体大小
+                        fontSize:12
+                    }
                 },
                 tooltip : {
                     trigger: 'axis',
@@ -487,7 +521,7 @@
                     }
                 },
                 legend: {
-					x:'right',
+					x:'left',
 					y:'top',
                     data:['本时段','上时段']
                 },
@@ -540,15 +574,29 @@
             //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
             var resizeWorldMapContainer2 = function () {
                 worldMapContainer2.style.width = window.innerWidth+'px';
-                worldMapContainer2.style.height = window.innerHeight+'px';
+                worldMapContainer2.style.height = parseInt(window.innerHeight)*0.6+'px';
             };
             //设置容器高宽
             resizeWorldMapContainer2();
             var myChart_2 = echarts.init(worldMapContainer2);
             // 指定图表的配置项和数据
             var option2 = {
-                title: {
-                    text: '单位：张'
+                title:{
+                    text:'单位：张',
+                    x:'right',
+                    y:'top',
+                    textStyle:{
+                        //文字颜色
+                        color:'#5B5B5B',
+                        //字体风格,'normal','italic','oblique'
+                        fontStyle:'normal',
+                        //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                        fontWeight:'bold',
+                        //字体系列
+                        fontFamily:'sans-serif',
+                        //字体大小
+                        fontSize:12
+                    }
                 },
                 tooltip : {
                     trigger: 'axis',
@@ -557,7 +605,7 @@
                     }
                 },
                 legend: {
-					x:'right',
+					x:'left',
 					y:'top',
                     data:['本时段','上时段']
                 },
@@ -612,7 +660,7 @@
             //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
             var resizeWorldMapContainer3 = function () {
                 worldMapContainer3.style.width = window.innerWidth+'px';
-                worldMapContainer3.style.height = window.innerHeight+'px';
+                worldMapContainer3.style.height = parseInt(window.innerHeight)*0.6+'px';
             };
             //设置容器高宽
             resizeWorldMapContainer3();
@@ -620,14 +668,28 @@
             var myChart_3 = echarts.init(worldMapContainer3);
             // 指定图表的配置项和数据
             var option3 = {
-                title: {
-                    text: '售票金额同比'
+                title:{
+                    text:'单位：万元',
+                    x:'right',
+                    y:'top',
+                    textStyle:{
+                        //文字颜色
+                        color:'#5B5B5B',
+                        //字体风格,'normal','italic','oblique'
+                        fontStyle:'normal',
+                        //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                        fontWeight:'bold',
+                        //字体系列
+                        fontFamily:'sans-serif',
+                        //字体大小
+                        fontSize:12
+                    }
                 },
                 tooltip: {
                     trigger: 'axis'
                 },
                 legend: {
-					x:'right',
+					x:'left',
 					y:'top',
                     data:['本时段','上时段']
                 },
@@ -672,15 +734,29 @@
             //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
             var resizeWorldMapContainer4 = function () {
                 worldMapContainer4.style.width = window.innerWidth+'px';
-                worldMapContainer4.style.height = window.innerHeight+'px';
+                worldMapContainer4.style.height = parseInt(window.innerHeight)*0.6+'px';
             };
             //设置容器高宽
             resizeWorldMapContainer4();
             var myChart_4 = echarts.init(worldMapContainer4);
             // 指定图表的配置项和数据
             var option4 = {
-                 title: {
-                    text: '单位：万元'
+                title:{
+                    text:'单位：张',
+                    x:'right',
+                    y:'top',
+                    textStyle:{
+                        //文字颜色
+                        color:'#5B5B5B',
+                        //字体风格,'normal','italic','oblique'
+                        fontStyle:'normal',
+                        //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                        fontWeight:'bold',
+                        //字体系列
+                        fontFamily:'sans-serif',
+                        //字体大小
+                        fontSize:12
+                    }
                 },
                 tooltip : {
                     trigger: 'axis',
@@ -689,7 +765,7 @@
                     }
                 },
                 legend: {
-					x:'right',
+					x:'left',
 					y:'top',
                     data:['本时段','上时段']
                 },
@@ -740,7 +816,6 @@
             myChart_4.setOption(option4);
             window.onresize = function () {
                 //重置容器高宽
-
                 resizeWorldMapContainer();
                 myChart_.resize();
                 resizeWorldMapContainer2();

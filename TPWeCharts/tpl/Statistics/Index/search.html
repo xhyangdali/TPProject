@@ -58,7 +58,7 @@
 </style>
 </block>
 <block name="content">
-    <div class="head"><a href="javascript:;" class="return"></a>搜索信息<a href="" class="operation">搜索</a></div>
+    <div class="head"><a href="javascript:;" class="return"></a>搜索信息<a href="javascript:;" class="operation">搜索</a></div>
     <!-- personal start -->
     <div class="personal" style="padding-top: 50px;">
 
@@ -168,6 +168,10 @@
 				//搜索事件
 				Validate_();
 			});
+            $(".operation").click(function(){
+                //搜索事件
+                Validate_();
+            });
 			$("#_data").click(function(){
 				//搜索事件
 				history.go(-1);

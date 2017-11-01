@@ -396,7 +396,7 @@ div:active{
 						$("#totalticketnum").val(windowcount);
 						$("#totalmoneynum").val(moneycount);
 						//
-						//layer.msg("该天的数据录入完成，若要修改点击保存！");
+						$("#unit").val(_UNIT_CODE);
 						url = aurl;
 					}else{
 						layer.msg(data.msg);

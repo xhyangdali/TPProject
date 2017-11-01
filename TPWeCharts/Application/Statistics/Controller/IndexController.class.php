@@ -12,9 +12,11 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计页面
 	 */
 	public function Index(){
-		if(!$_SESSION['user_']['id']) {
+		$setuid = new \Statistics\Controller\Imp();
+		$uid = $setuid->useruid();
+		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" ) ) {
 			$setuid = new \Statistics\Controller\Imp();
-			//$uid = $setuid->useruid();
+			$uid = $setuid->useruid();
 		}
 		$ip = get_client_ip();
 		//查询条件
@@ -35,9 +37,9 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计对比页面
 	 */
 	public function Contrast(){
-		if(!$_SESSION['user_']['id']) {
+		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" )  ) {
 			$setuid = new \Statistics\Controller\Imp();
-			//$uid = $setuid->useruid();
+			$uid = $setuid->useruid();
 		}
 		$ip = get_client_ip();
 		//查询条件
@@ -56,9 +58,9 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计（搜索页面）
 	 */
 	public function Search(){
-		if(!$_SESSION['user_']['id']) {
+		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" ) ) {
 			$setuid = new \Statistics\Controller\Imp();
-			//$uid = $setuid->useruid();
+			$uid = $setuid->useruid();
 		}
 		$ip = get_client_ip();
 		//查询条件
@@ -169,7 +171,9 @@ class IndexController extends StatisticsBaseController{
 							if($v_['stationname'] == $_item && $v_['channelname'] == $item )
 							{
 								array_push($_data,$v_['t_num']);//客票数目
-								array_push($_tdata,$v_['m_num']);//客票金额
+								$m_ = $v_['m_num']/10000;
+								$m_ = number_format($m_,2,".","");
+								array_push($_tdata,$m_);//客票金额
 								
 							}
 						}
@@ -456,10 +460,11 @@ class IndexController extends StatisticsBaseController{
 					{
 						$m_ = $item['m_num']/10000;
 						$m_ = number_format($m_,2,".","");
-						$CK_WTotal +=$m_;
-						$CK_WTicket +=$item["t_num"];
+
 						if($item['flag'] == "Now")
 						{
+							$CK_WTotal +=$m_;
+							$CK_WTicket +=$item["t_num"];
 							array_push($TBWArray,array(
 								'stationname' => $item["stationname"],
 								'num' => $m_,
@@ -467,6 +472,8 @@ class IndexController extends StatisticsBaseController{
 							));
 						}else
 						{
+							$CK_WTotal_ +=$m_;
+							$CK_WTicket_ +=$item["t_num"];
 							array_push($TBWArray_next,array(
 								'stationname' => $item["stationname"],
 								'num' => $m_,

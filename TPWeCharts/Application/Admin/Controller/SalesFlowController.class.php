@@ -151,12 +151,36 @@ class SalesFlowController extends AdminBaseController{
      */
     public function iedit()
     {
+		$data = I("get.");
+		$cargs = array(
+			'iseffective' => 0,
+			'isdel' => 0
+		);
+		if(!empty($data["stationcode"]))	{
+			$station = D('Station');
+			$c = array(
+				'code' => $data["stationcode"],
+				'iseffective' => 0,
+				'isdel' => 0
+			);
+			$code_ = $station->where($c)->field("channels")->select();
+			$IDS_ = explode(',',$code_[0]["channels"]);
+			//
+			$str = "";
+			foreach($IDS_ as $item)
+			{
+				$item = '\''.$item.'\' ,';
+				$str .=$item."";
+			}
+			$cargs = array(
+				'code' => array('in',$IDS_),
+				'iseffective' => 0,
+				'isdel' => 0
+			);
+		}
         $channel = D('Channel');
         //
-        $cargs = array(
-            'iseffective' => 0,
-            'isdel' => 0
-        );
+
         $channels = $channel->where($cargs)->order('sort')->select();
         //
         $assign=array(
@@ -170,13 +194,37 @@ class SalesFlowController extends AdminBaseController{
      */
     public function idetail()
     {
-        $channel = D('Channel');
-        //
-        $cargs = array(
-            'iseffective' => 0,
-            'isdel' => 0
-        );
-        $channels = $channel->where($cargs)->order('sort')->select();
+		$data = I("get.");
+		$cargs = array(
+			'iseffective' => 0,
+			'isdel' => 0
+		);
+		if(!empty($data["stationcode"]))	{
+			$station = D('Station');
+			$c = array(
+				'code' => $data["stationcode"],
+				'iseffective' => 0,
+				'isdel' => 0
+			);
+			$code_ = $station->where($c)->field("channels")->select();
+			$IDS_ = explode(',',$code_[0]["channels"]);
+			//
+			$str = "";
+			foreach($IDS_ as $item)
+			{
+				$item = '\''.$item.'\' ,';
+				$str .=$item."";
+			}
+			$cargs = array(
+				'code' => array('in',$IDS_),
+				'iseffective' => 0,
+				'isdel' => 0
+			);
+			//
+			$channel = D('Channel');
+			$channels = $channel->where($cargs)->order('sort')->select();
+		}
+
         //
         $assign=array(
             'channels' => $channels
@@ -586,6 +634,7 @@ class SalesFlowController extends AdminBaseController{
 		if(!empty($data["StationCode"]))	{
 			$channel = D('Channel');
 			$IDS_ = explode(',',$data["StationCode"]);
+			$str = "";
 			foreach($IDS_ as $item)
 			{
 				$item = '\''.$item.'\' ,';

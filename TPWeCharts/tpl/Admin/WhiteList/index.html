@@ -57,16 +57,21 @@
                 <foreach name="data" item="v">
                   <tr>
                     <td></td>
-                    <td>{$v['nickname']}</td>
+                    <td>{$v['nickname']| base64_decode }</td>
                     <td>{$v['useruid']}</td>
                       <td>{$v['mobilephone']}</td>
                     <td>{$v['description']}</td>
                     <td>{$v['createdate']|strtotime|date="Y年m月d日 h:i:s",###}</td>
                       <td>{$v['iseffectiveformat']}</td>
                       <td>
+                          <a href="javascript:;" navId="{$v['id']}" navName="{$v['nickname']| base64_decode }" isuse="{$v['iseffective']}" onclick="forbidden(this)">
+                              <if condition="$v['iseffective'] eq 0 "> 禁止
+                                  <else /> 启用
+                              </if>
+                          </a>|
                           <a  class="adetail" href="javascript:;"  name="{$v['id']}">查看</a>&nbsp;
                           <a class="aedit" href="javascript:;" name="{$v['id']}">编辑</a>&nbsp;
-                          <a class="adel" href="javascript:;" name="{$v['id']}" tips="{$v['name']}">删除</a>&nbsp;
+                          <a class="adel" href="javascript:;" name="{$v['id']}" tips="{$v['nickname']| base64_decode }">删除</a>&nbsp;
                       </td>
                   </tr>
                 </foreach>
@@ -197,6 +202,41 @@ $(function() {
 
     //
 });
+//启用-禁止 菜单
+function forbidden(obj)
+{
+    var tips = $(obj).attr("navName");
+    var _Id = $(obj).attr("navId");
+    var _Iseffictive = $(obj).attr("isuse");
+    var op = _Iseffictive =="0"?"禁止":"启用";
+    var _ise  = _Iseffictive =="0"?"1":"0";
+    layer.confirm('你确定'+op+'用户“'+tips+'”访问统计模块吗？', {icon: 3, title:op+'提示',area:["300px","230px"]}, function(index){
+        var url = "{:U('Admin/WhiteList/ForBidden')}";
+        //提交数据
+        var load = layer.load(2, {
+            shade: [0.1,'#fff'] //0.1透明度的白色背景
+        });
+        $.ajax({
+            url:url,
+            type:"POST",
+            data:{id:_Id,iseffictive:_ise},
+            dataType:"json",
+            error:function(data){
+                layer.closeAll('loading');
+                layer.msg(data.state);
+            },
+            success:function(data){
+                if(data)
+                {
+                    //回掉函数刷新列表页面
+                    freshen(data.state,op+data.msg);
+                    layer.closeAll('loading');
+                }
+            }
+        });
+        layer.close(index);
+    });
+}
 //列表刷新（回掉函数）
 function freshen(state,msg){
     layer.msg(msg, {icon: state});

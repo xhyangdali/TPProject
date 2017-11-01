@@ -90,7 +90,12 @@ class Imp extends StatisticsBaseController{
             $data['CPoint'] = $arrayinfo['CPoint'];
             $data['EPoint'] = $arrayinfo['EPoint'];
             $data['Type'] = $arrayinfo['Type'];
+            $data['description'] = "来自公众平台";
             $data['TimeCreated'] = $arrayinfo['TimeCreated'];
+            $data['createdate'] = $arrayinfo['TimeCreated'];
+            $data['createuserid'] = $openid;//
+            $data['iseffective'] = 1;//禁止状态
+            $data['isdel'] = 0;//删除标记
             //将获取到的USER信息写入到数据库
             $list = D("WhiteList");
             $condition = array(
@@ -100,13 +105,20 @@ class Imp extends StatisticsBaseController{
             );
             $clist = $list->where($condition)->select();
             //
+            $access = $clist?"0":"1";
             $ip = get_client_ip();
             $log = D("Log");
             //把UID存入到session里面使用
-            $_SESSION['user_']=array(
+            $session_data=array(
                 'id'=>$arrayinfo['UserUid'],//用户信息
-                'name'=>$arrayinfo['NickName']//模块管理
+                'name'=>$arrayinfo['NickName'],//模块管理
+                'access' => $access
             );
+            $expire=600;//十分钟
+            $session_data = array();
+            $session_data['data'] = $data;
+            $session_data['expire'] = time()+$expire;
+            $_SESSION['user_'] = $session_data;
             if($clist)
             {
                 //已经激活，可以访问
@@ -115,25 +127,27 @@ class Imp extends StatisticsBaseController{
                 $log->addLog('Auth_ACCESS','Statistics',json_encode(array('Result::' => true,'Data::'=>$clist,'IP::'=>$ip)),'');
             }else{
                 //未添加
-                unset($data['id']);
+
                 $condition_ = array(
-                    "useruid" => $uid,
+                    "useruid" => $data['useruid'],
                     "isdel" => 0
                 );
-                $count_ = $list->where($condition)->count();
-                if($count_ <= 0)
+                $count_ = $list->where($condition_)->select();
+                \think\Log::record('获取用户accesskey时accesskey长度不对',$count_);
+                if(!$count_)
                 {
                     //新增访问用户到用户列表
+                    unset($data['id']);
                     $result = $list->add($data);
                     $log->addLog('AuthAdd','Statistics',json_encode(array('Result::' => $result,'Data::'=>$data,'IP::'=>$ip)),'');
                 }
+                if($access != "0") {
+                    $this->error('对不起，您没有访问权限!');
+                }
             }
-
-            $indexurl = C('indexurl');
-            $this->redirect($indexurl);
         } else {
             $this->error('非法登录!');
-            //\think\Log::record('获取用户accesskey时accesskey长度不对', 'error');
+            \think\Log::record('获取用户accesskey时accesskey长度不对', 'error');
         }
     }
 

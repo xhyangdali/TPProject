@@ -59,6 +59,7 @@ class WhiteListController extends AdminBaseController{
 	{
 		$data=I('post.');
 		unset($data['id']);
+		$data["nickname"] = base64_encode($data["nickname"]);
 		$result = D('WhiteList')->iaddData($data);
 		if ($result) {
 			$msg = '添加成功';//,U('Admin/DicData/index')
@@ -85,6 +86,7 @@ class WhiteListController extends AdminBaseController{
 		$map=array(
 			'id'=>$data['id']
 		);
+		$data["nickname"] = base64_encode($data["nickname"]);
 		$result = D('WhiteList')->ieditData($map,$data);
 		if ($result) {
 			$msg = '编辑成功';//,U('Admin/DicData/index')
@@ -144,6 +146,36 @@ class WhiteListController extends AdminBaseController{
 				'id'=>$id
 			);
 			$result=D('WhiteList')->ideleteData($map);
+			if($result){
+				$state = 0;
+				$msg ="成功！";
+			}else{
+				$state = -1;
+				$msg ="失败！";
+			}
+		}else{
+			$state = -1;
+			$msg ="失败(参数不正确)！";
+		}
+		$result =array(
+			'state' => $state,
+			'msg' => $msg
+		);
+		$this->ajaxReturn($result);//返回操作结果
+	}
+	/**
+	 * 启用，禁止 用户访问统计模块
+	 */
+	public function ForBidden($id =0,$iseffictive =0)
+	{
+		if(!empty($id) && $id !=0)
+		{
+			$admin=D('WhiteList');
+			$map=array(
+				'id'=>$id
+			);
+			$sql = " UPDATE white_list SET iseffective=$iseffictive WHERE id=$id  ";
+			$result = $admin->execute($sql);
 			if($result){
 				$state = 0;
 				$msg ="成功！";

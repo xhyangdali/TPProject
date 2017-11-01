@@ -68,12 +68,12 @@
 					</td>
 				</tr>
 				<tr>
-					<th><label for="iseffective">是否有效</label></th>
+					<th><label for="iseffective">是否禁止</label></th>
 					<td>
 						<select  class="form-control" name="iseffective" id="iseffective" required>
 							<option value="">===请选择===</option>
-							<option value="1">有效</option>
-							<option value="0">无效</option>
+							<option value="0">启用</option>
+							<option value="1">禁止</option>
 						</select>
 					</td>
 				</tr>
@@ -114,7 +114,9 @@
 							{
 								var item = data.data[0];
 								$("#id").val(item.id);
-								$("#nickname").val(item.nickname);
+								var base = new Base64();
+								var result = base.decode(item.nickname);
+								$("#nickname").val(result);
 								$("#useruid").val(item.useruid);
 								$("#gender").val(item.gender);
 								$("#mobilephone").val(item.mobilephone);

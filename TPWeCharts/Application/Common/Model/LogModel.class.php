@@ -18,17 +18,18 @@ class LogModel extends BaseModel{
 		{
 			$now_time = time();
 			$log = D("Log");
-			if($_SESSION['user']['username']) {
+			if($_SESSION['user']['username'] && empty($_SESSION['user_']['name']) ) {
 				$log->user_name = $_SESSION['user']['username'];
 			}else{
 				$log->user_name = $_SESSION['user_']['name'];
 			}
 			$log->action = $action;
 			$log->class_name = $class_name;
-			if( $_SESSION['user']['id']) {
+			//日志记录处理
+			if( $_SESSION['user']['id'] && empty($_SESSION['user_']['id'])) {
 				$log->class_obj = $_SESSION['user']['id'];
 			}else{
-				$log->user_name = $_SESSION['user_']['id'];
+				$log->class_obj = $_SESSION['user_']['id'];
 			}
 			$log->op_time = $now_time;
 			$log->result = $result;
