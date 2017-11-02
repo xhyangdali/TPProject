@@ -1,54 +1,265 @@
 <extend name="Public:base"/>
-<block name="title">岗位管理</block>
-
+<block name="title">便签管理</block>
 <block name="content">
-  <div class="page-header">
-    <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;岗位管理</h1>
-  </div>
-  <div class="col-xs-12">
-    <div class="tabbable">
-      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
-        <li class="active"> <a href="#home" data-toggle="tab">岗位列表</a></li>
-        <li> <a href="javascript:;" onclick="add(this);">添加岗位</a></li>
-      </ul>
-      <div class="tab-content">
-        <table id="list"  ></table>  
-		<div id="pager"  ></div>
-		<div style="height:30px;width:100%;" ></div>
-      </div>
-    </div>
-  </div>
-  
+	<div class="page-header">
+		<h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;便签管理</h1>
+	</div>
+	<div class="col-xs-12">
+		<div class="tabbable">
+			<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
+				<li class="active"> <a href="#home" data-toggle="tab">便签信息列表</a></li>
+			</ul>
+			<div class="tab-content">
+				<!-- 内容部分 -->
+				<div style="border:0px;padding-bottom:5px;height:auto">
+					<form action="" method="GET" style="margin-bottom:0px">
+						<div class="block"> <a href="#page-tab" class="block-heading" data-toggle="collapse"><strong>收起工具栏</strong></a>
+							<div id="page-tab" class="block-body collapse in">
+								<table >
+									<tr>
+										<td><label></label></td>
+										<td colspan="7">
+											<button id="btnadd" type="button" class="btn btn-primary" >添加</button>
+											&nbsp;&nbsp; &nbsp;&nbsp;
+										</td>
+									</tr>
+									<tr>
+										<td><label> 选择起始时间：</label></td>
+										<td>
+											<input  class="form-control" placeholder="起始时间" type="text"   readonly="true" value="{$_GET.start_date}"  name="start_date" id="start_date"   />
+										</td>
+										<td><label> 选择结束时间：</label></td>
+										<td>
+											<input  class="form-control" placeholder="结束时间" type="text"   readonly="true" value="{$_GET.end_date}"  name="end_date" id="end_date"   />
+										</td>
+										<td><label> 关键字：</label></td>
+										<td><input type="text" name="keywords" value="{$_GET.keywords}" placeholder="关键字" ></td>
+										<td><label> 查询：</label></td>
+										<td><button type="submit" class="btn btn-primary"><strong>查询</strong></button></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="block"> <a href="#page-stats" class="block-heading" data-toggle="collapse"><strong>收起列表</strong></a>
+					<div id="page-stats" class="block-body collapse in">
+						<table class="table table-striped">
+							<thead>
+							<tr>
+								<th style="width:30px"></th>
+								<th style="width:50px">昵称</th>
+								<th style="width:35px">微信识别码</th>
+								<th style="width:35px">电话号码</th>
+								<th style="width:35px">描述</th>
+								<th style="width:100px">创建时间</th>
+								<th style="width:100px">是否启用</th>
+								<th style="width:100px">操作</th>
+							</tr>
+							</thead>
+							<tbody>
+							<foreach name="data" item="v">
+								<tr>
+									<td></td>
+									<td>{$v['nickname']| base64_decode }</td>
+									<td>{$v['useruid']}</td>
+									<td>{$v['mobilephone']}</td>
+									<td>{$v['description']}</td>
+									<td>{$v['createdate']|strtotime|date="Y年m月d日 h:i:s",###}</td>
+									<td>{$v['iseffectiveformat']}</td>
+									<td>
+										<a href="javascript:;" navId="{$v['id']}" navName="{$v['nickname']| base64_decode }" isuse="{$v['iseffective']}" onclick="forbidden(this)">
+											<if condition="$v['iseffective'] eq 0 "> 禁止
+												<else /> 启用
+											</if>
+										</a>|
+										<a  class="adetail" href="javascript:;"  name="{$v['id']}">查看</a>&nbsp;
+										<a class="aedit" href="javascript:;" name="{$v['id']}">编辑</a>&nbsp;
+										<a class="adel" href="javascript:;" name="{$v['id']}" tips="{$v['nickname']| base64_decode }">删除</a>&nbsp;
+									</td>
+								</tr>
+							</foreach>
+							<empty name="data">
+								<tr>
+									<td colspan="7">
+										<strong style="color:red;">没有查询到相关记录！</strong>
+									</td>
+								</tr>
+							</empty>
+							</tbody>
+						</table>
+						<!--- START 分页模板 --->
+						{$pagehtml}
+						<!--- END --->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
 </block>
 <block name="js">
-  <script>
-  	$(function(){ 
-		jQuery("#list").jqGrid(
-			{
-				url : '',//组件创建完成之后请求数据的url
-				datatype : "json",//请求数据返回的类型。可选json,xml,txt
-				colNames : [ 'Inv No', 'Date', 'Client', 'Amount', 'Tax','Total', 'Notes' ],//jqGrid的列显示名字
-				colModel : [ //jqGrid每一列的配置信息。包括名字，索引，宽度,对齐方式.....
-				             {name : 'id',index : 'id',width : 55}, 
-				             {name : 'invdate',index : 'invdate',width : 90}, 
-				             {name : 'name',index : 'name asc, invdate',width : 100}, 
-				             {name : 'amount',index : 'amount',width : 80,align : "right"}, 
-				             {name : 'tax',index : 'tax',width : 80,align : "right"}, 
-				             {name : 'total',index : 'total',width : 80,align : "right"}, 
-				             {name : 'note',index : 'note',width : 150,sortable : false} 
-				           ],
-				rowNum : 10,//一页显示多少条
-				rowList : [ 10, 20, 30 ],//可供用户选择一页显示多少条
-				pager : '#pager',//表格页脚的占位符(一般是div)的id
-				sortname : 'id',//初始化的时候排序的字段
-				sortorder : "desc",//排序方式,可选desc,asc
-				mtype : "post",//向后台请求数据的ajax的类型。可选post,get
-				viewrecords : true,
-				caption : ""//表格的标题名字
+	<link rel="stylesheet" href="__PUBLIC__/statics/css/calendar-blue.css"/>
+	<script src="__PUBLIC__/statics/js/Calendar_main.js"></script>
+	<script>
+		$(function() {
+			//
+			Calendar.setup({
+				inputField : "start_date",
+				ifFormat : "%Y-%m-%d",
+				showsTime : false,
+				timeFormat : "24"
 			});
-	/*创建jqGrid的操作按钮容器*/
-	/*可以控制界面上增删改查的按钮是否显示*/
-	jQuery("#list").jqGrid('navGrid', '#pager', {edit : false,add : false,del : false});
-	}); 
-  </script>
+			Calendar.setup({
+				inputField : "end_date",
+				ifFormat : "%Y-%m-%d",
+				showsTime : false,
+				timeFormat : "24"
+			});
+			//数据添加
+			$("#btnadd").click(function(){
+				var url = "{:U('add')}";
+				layer.open({
+					type: 2,
+					id: 'add_form',
+					maxmin: true,
+					scrollbar: false,
+					title:"便签信息添加",
+					area:['800px','450px'],
+					content:[ url,'no']//注意，如果str是object，那么需要字符拼接。
+					,btn: ['保存', '关闭'] //只是为了演示
+					,yes: function(index, layero){
+						//保存
+						var body = layer.getChildFrame('body', index);
+						var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
+						iframeWin.submitdata();//调用子页面的方法，得到子页面返回的ids
+						//layer.close(index);//需要手动关闭窗口
+					}
+					,btn2: function(){
+						layer.closeAll();
+					}
+					,zIndex: layer.zIndex //重点1
+					,success: function(layero){
+						layer.setTop(layero); //重点2
+					}
+				});
+			});
+			//查看便签信息
+			$(".adetail").click(function(){
+				var url = "{:U('detail')}";
+				var id = $(this).attr("name");
+				url +="?id="+id;
+				layer.open({
+					type: 2,
+					maxmin: true,
+					scrollbar: false,
+					title:"查看便签信息",
+					area:['800px','450px'],
+					content: url//注意，如果str是object，那么需要字符拼接。
+				});
+			});
+			//编辑便签信息
+			$(".aedit").click(function(){
+				var url = "{:U('edit')}";
+				var id = $(this).attr("name");
+				url +="?id="+id;
+				layer.open({
+					type: 2,
+					maxmin: true,
+					scrollbar: false,
+					title:"编辑便签信息",
+					area:['800px','450px'],
+					content: [url,'no']//注意，如果str是object，那么需要字符拼接。
+					,btn: ['保存', '关闭'] //只是为了演示
+					,yes: function(index, layero){
+						//保存
+						var body = layer.getChildFrame('body', index);
+						var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
+						iframeWin.submitdata();//调用子页面的方法，得到子页面返回的ids
+						//layer.close(index);//需要手动关闭窗口
+					}
+					,btn2: function(){
+						layer.closeAll();
+					}
+					,zIndex: layer.zIndex //重点1
+					,success: function(layero){
+						layer.setTop(layero); //重点2
+					}
+				});
+			});
+			//
+			$(".adel").click(function(){
+				var tips = $(this).attr("tips");
+				var _Id = $(this).attr("name");
+				layer.confirm('你确定删除数据‘'+tips+'’吗？', {icon: 3, title:'删除提示',area:["300px","200px"]}, function(index){
+					var url = "{:U('Admin/WhiteList/delete')}";
+					//提交数据
+					var load = layer.load(2, {
+						shade: [0.1,'#fff'] //0.1透明度的白色背景
+					});
+					$.ajax({
+						url:url,
+						type:"POST",
+						data:{id:_Id},
+						dataType:"json",
+						error:function(data){
+							layer.closeAll('loading');
+							layer.msg(data.state);
+						},
+						success:function(data){
+							if(data)
+							{
+								//回掉函数刷新列表页面
+								freshen(data.state,data.msg);
+								layer.closeAll('loading');
+							}
+						}
+					});
+					layer.close(index);
+				});
+			});
+
+			//
+		});
+		//启用-禁止 菜单
+		function forbidden(obj)
+		{
+			var tips = $(obj).attr("navName");
+			var _Id = $(obj).attr("navId");
+			var _Iseffictive = $(obj).attr("isuse");
+			var op = _Iseffictive =="0"?"禁止":"启用";
+			var _ise  = _Iseffictive =="0"?"1":"0";
+			layer.confirm('你确定'+op+'用户“'+tips+'”访问便签模块吗？', {icon: 3, title:op+'提示',area:["300px","230px"]}, function(index){
+				var url = "{:U('Admin/WhiteList/ForBidden')}";
+				//提交数据
+				var load = layer.load(2, {
+					shade: [0.1,'#fff'] //0.1透明度的白色背景
+				});
+				$.ajax({
+					url:url,
+					type:"POST",
+					data:{id:_Id,iseffictive:_ise},
+					dataType:"json",
+					error:function(data){
+						layer.closeAll('loading');
+						layer.msg(data.state);
+					},
+					success:function(data){
+						if(data)
+						{
+							//回掉函数刷新列表页面
+							freshen(data.state,op+data.msg);
+							layer.closeAll('loading');
+						}
+					}
+				});
+				layer.close(index);
+			});
+		}
+		//列表刷新（回掉函数）
+		function freshen(state,msg){
+			layer.msg(msg, {icon: state});
+			window.location.reload();//刷新列表
+		}
+	</script>
 </block>
