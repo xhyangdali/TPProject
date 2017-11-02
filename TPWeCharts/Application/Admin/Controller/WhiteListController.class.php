@@ -19,13 +19,23 @@ class WhiteListController extends AdminBaseController{
 		//查询
 		$condition=array();
 		$condition["isdel"] = 0;
+		$where = array();
 		if($keywords != ''){
-			$condition["name"] =array('like','%'.$keywords.'%');
+			$where["nickname"] =array('like','%'.$keywords.'%');
+			$where['_logic'] = 'or';
+			$where["mobilephone"] =array('like','%'.$keywords.'%');
+			$where['_logic'] = 'or';
+			$where["useruid"] =array('like','%'.$keywords.'%');
+			$condition["_complex"] = $where;
 		}
-		if($start_date !='' && $end_date !=''){
-			$condition["createdate[<>]"] =array($start_date,$end_date);
+		//
+		if(!empty($start_date) &&  $start_date!=''){
+			$condition["createdate"] =array('egt',$start_date);
 		}
-		
+		if(!empty($end_date) &&  $end_date!=''){
+			$condition["createdate"] =array('elt',$end_date);
+		}
+		//
 		$totalRows = $WhiteList->where($condition)->order('createdate desc')->count();
 		$totalPages = 1;
 		$listRows = C('PAGE_NUM');;

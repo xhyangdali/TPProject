@@ -24,10 +24,14 @@
                 </td>
               </tr>
               <tr>
-                <td><label> 选择起始时间：</label></td>
-                <td><input type="text" id="start_date" name="start_date" value="{$_GET.start_date}" placeholder="起始时间" ></td>
-                <td><label> 选择结束时间：</label></td>
-                <td><input type="text" id="end_date" name="start_date" value="{$_GET.end_date}" placeholder="结束时间" ></td>
+                  <td><label> 选择起始时间：</label></td>
+                  <td>
+                      <input  class="form-control" placeholder="起始时间" type="text"   readonly="true" value="{$_GET.start_date}"  name="start_date" id="start_date"   />
+                  </td>
+                  <td><label> 选择结束时间：</label></td>
+                  <td>
+                      <input  class="form-control" placeholder="结束时间" type="text"   readonly="true" value="{$_GET.end_date}"  name="end_date" id="end_date"   />
+                  </td>
                 <td><label> 关键字：</label></td>
                 <td><input type="text" name="keywords" value="{$_GET.keywords}" placeholder="关键字" ></td>
                 <td><label> 查询：</label></td>
@@ -88,8 +92,23 @@
   </div>
 </block>
 <block name="js">
+    <link rel="stylesheet" href="__PUBLIC__/statics/css/calendar-blue.css"/>
+    <script src="__PUBLIC__/statics/js/Calendar_main.js"></script>
   <script>
 $(function() {
+    //
+    Calendar.setup({
+        inputField : "start_date",
+        ifFormat : "%Y-%m-%d",
+        showsTime : false,
+        timeFormat : "24"
+    });
+    Calendar.setup({
+        inputField : "end_date",
+        ifFormat : "%Y-%m-%d",
+        showsTime : false,
+        timeFormat : "24"
+    });
 	//数据添加
 		$("#btnadd").click(function(){
 			var url = "{:U('add')}";

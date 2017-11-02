@@ -19,15 +19,30 @@ class SalesFlowController extends AdminBaseController{
 		$log->addLog('Log','SalesFlow',json_encode(array('Result::' => true,'Data::'=>'','IP::'=>$ip)),'');
 		//查询
 		$condition=array();
-		$condition["isdel"] = 0;
+		$condition["a.isdel"] = 0;
 		if($keywords != ''){
-			$condition["name"] =array('like','%'.$keywords.'%');
+			$where["c.name"] =array('like','%'.$keywords.'%');
+			$where['_logic'] = 'or';
+			$where["b.name"] =array('like','%'.$keywords.'%');
+			$condition["_complex"] = $where;
 		}
-		if($start_date !='' && $end_date !=''){
-			$condition["createdate[<>]"] =array($start_date,$end_date);
+		if(!empty($start_date) &&  $start_date!=''){
+			$where1["a.flowdate"] =array('egt',$start_date);
+			//$where1['_logic'] = 'or';
+			//$where1["a.createdate"] =array('egt',$start_date);
+			$condition["_complex"] = $where1;
+		}
+		if(!empty($end_date) &&  $end_date!=''){
+			$where2["a.flowdate"] =array('elt',$end_date);
+			//$where2['_logic'] = 'or';
+			//$where2["a.createdate"] =array('elt',$end_date);
+			$condition["_complex"] = $where2;
 		}
 		
-		$totalRows = $SalesFlow->where($condition)->order('createdate desc')->count();
+		$totalRows = $SalesFlow->where($condition)->field('a.*,b.name as channel,c.name station ')
+			->alias('a')->join(' LEFT JOIN Channel b ON b.code= a.channelcode')
+			->join(' LEFT JOIN Station c ON c.code= a.stationcode')
+			->order('a.createdate desc')->count();
 		$totalPages = 1;
 		$listRows = C('PAGE_NUM');
 		if($totalRows>$listRows)
@@ -35,13 +50,12 @@ class SalesFlowController extends AdminBaseController{
 			$totalPages = $totalRows/$listRows;
 		}
 		//$channels=$SalesFlow->where($condition)->order('createdate desc')->page($p,$listRows)->select();
-		$condition_ = array();
-		$condition_["a.isdel"] = 0;
-		$channels=$SalesFlow->where($condition_)
+
+		$channels=$SalesFlow->where($condition)
 			->field('a.*,b.name as channel,c.name station ')
 			->alias('a')->join(' LEFT JOIN Channel b ON b.code= a.channelcode')
 			->join(' LEFT JOIN Station c ON c.code= a.stationcode')
-			->order('createdate desc')->page($p,$listRows)->select();
+			->order('a.createdate desc')->page($p,$listRows)->select();
 		$page =new Think\Page();
 		$page->firstRow = 1;//
 		$page->listRows = $listRows;
@@ -67,14 +81,18 @@ class SalesFlowController extends AdminBaseController{
         $log->addLog('Log','SalesFlow',json_encode(array('Result::' => true,'Data::'=>'','IP::'=>$ip)),'');
         //查询
         $wherestr ="  ";//搜索条件
+		$condition_ = array();
         if($keywords != ''){
             $wherestr .= " AND s.name LIKE '%$keywords%' ";
+			$condition_["c.name"] =array('like','%'.$keywords.'%');
         }
         if($start_date !='' ){
             $wherestr .= " AND sf.flowdate>=$start_date  ";
+			$condition_["a.flowdate"] =array('egt',$start_date);
         }
         if( $end_date !=''){
             $wherestr .= " AND  sf.flowdate<=$end_date ";
+			$condition_["a.flowdate"] =array('elt',$end_date);
         }
 
         $sql = "
@@ -103,7 +121,7 @@ class SalesFlowController extends AdminBaseController{
             $totalPages = $totalRows/$listRows;
         }
         //$channels=$SalesFlow->where($condition)->order('createdate desc')->page($p,$listRows)->select();
-        $condition_ = array();
+
         $condition_["a.isdel"] = 0;
         $condition_["c.isdel"] = 0;
         $condition_["c.iseffective"] = 0;

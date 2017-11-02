@@ -152,7 +152,32 @@ select{-moz-appearance:none;-webkit-appearance:none;appearance:none;background:#
   text-indent:32px
 }
 .Ctext{
-  text-indent:32px
+  	text-indent:32px;
+	font-size:13px;
+	color: #999999;
+	font-size: 13px;
+	line-height: 1.2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+}
+.p_date{
+	font-size:13px;
+	color: #999999;
+	font-size: 13px;
+	line-height: 1.2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+}
+.weui-grid .js_grid .a_{
+	font-size:13px;
+	color: #999999;
+	font-size: 13px;
+	line-height: 1.2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
 }
 
 

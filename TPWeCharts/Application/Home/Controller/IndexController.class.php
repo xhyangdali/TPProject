@@ -73,7 +73,8 @@ class IndexController extends HomeBaseController{
             }else{
                 $_SESSION['user']=array(
                     'id'=>$data['id'],
-                    'username'=>$data['username'],
+					'username'=>$data['username'],
+					'nickname'=>$data['nickname'],//昵称
 					'org_id'=>$data['org_id'],//机构
 					'dept_id'=>$data['dept_id'],//部门
 					'p_id'=>$data['p_id'],//岗位

@@ -16,28 +16,40 @@
             <!-- weui-tab__bd-item start -->
             <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
                 <div id="firstAnchor" class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>关区客运站窗口售票金额</h3><label name="lbdate"></label></div>
+                    <div class="weui-cells__title">
+                        <label >关区客运站窗口售票金额</label><label class="title_r"></label><br/>
+                        <label >统计时段</label><label class="title_r"  name="lbdate"></label>
+                    </div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart1" width="400px" height="300px;"></canvas>
                     </div>
                 </div>
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>县分公司客运站窗口售票金额</h3><label name="lbdate"></label></div>
+                    <div class="weui-cells__title">
+                        <label >县分公司客运站窗口售票金额</label><label class="title_r"></label><br/>
+                        <label >统计时段</label><label class="title_r"  name="lbdate"></label>
+                    </div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart2" width="400px" height="300px;"></canvas>
                     </div>
                 </div>
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>电子客票销售张数统计</h3><label name="lbdate"></label></div>
+                    <div class="weui-cells__title">
+                        <label >电子客票销售张数统计</label><label class="title_r">单位：张 </label><br/>
+                        <label >统计时段</label><label class="title_r"  name="lbdate"></label>
+                    </div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart3" width="400px" height="300px;"></canvas>
                     </div>
                 </div>
 
                 <div class="weui-panel weui-panel_access">
-                    <div class="weui-panel__hd"><h3>电子客票销售金额统计</h3><label name="lbdate"></label></div>
+                    <div class="weui-cells__title">
+                        <label >电子客票销售金额统计</label><label class="title_r">单位：万元</label><br/>
+                        <label >统计时段</label><label class="title_r"  name="lbdate"></label>
+                    </div>
                     <div class="weui-panel__bd">
                         <canvas id="myChart4" width="400px" height="300px;"></canvas>
                     </div>
@@ -48,26 +60,30 @@
             <!-- weui-tab__bd-item start -->
             <div id="tab2" class="weui-tab__bd-item ">
                 <!-- page__bd start -->
-
-                <div id="div_wtotal" class="page__bd">
-                    <br />
-                    <h3>统计概况</h3>
-                    <p class="Ctext">窗口售票金额共计：共计销售车票1763张，销售金额：79.13万元</p>
-                    <p class="Ctext">电子客票：共计销售车票1763张，销售金额：94,354元。</p>
-                    <p class="Ctext">客票保险：保险票255张，销售金额：8,354元。</p>
+                <div class="weui-cells__title"><label >统计概况</label></div>
+                <div class="weui-cells">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <div id="div_wtotal" class="page__bd">
+                                <p class="Ctext">售票金额：687,553元。</p>
+                                <p class="Ctext">电子客票： 12280张。</p>
+                                <p class="Ctext">客票保险： 1575张。</p>
+                            </div>
+                        </div>
+                        <div class="weui-cell__ft"></div>
+                    </div>
                 </div>
 
                 <!-- page__bd end -->
                 <!-- page__bd start -->
                 <div class="page__bd">
-                    <div  class="weui-cells__title"><label name="lbdate"></label></div>
+                    <div  class="weui-cells__title">
+                        <label >窗口售票金额</label><label class="title_r"></label><br/>
+                        <label   name="lbdate_t">统计时段</label><label class="title_r"  name="lbdate"></label><br/>
+                        <label  name="lbdate_t">共计</label><label class="title_r" id="div_cktotal" name="lbdate_"></label>
+                    </div>
                     <div class="weui-cells">
-                        <div class="weui-cell">
-                            <div class="weui-cell__bd">
-                                <p>窗口售票金额</p>
-                            </div>
-                            <div id="div_cktotal" class="weui-cell__ft">共计：79.13万元</div>
-                        </div>
+
                         <div class="weui-cell weui-cell_swiped">
                             <div id="words_ck" class="page__bd">
                                 <p class="Ctext">东部客运站：10.58万元</p>
@@ -86,14 +102,12 @@
                 <!-- page__bd end -->
                 <!-- page__bd start -->
                 <div class="page__bd">
-                    <div class="weui-cells__title"><label name="lbdate"></label></div>
+                    <div class="weui-cells__title">
+                        <label >电子客票销售情况</label><label class="title_r"></label><br/>
+                        <label   name="lbdate_t">统计时段</label><label class="title_r"  name="lbdate"></label><br/>
+                        <label  name="lbdate_t">共计</label><label class="title_r" id="div_ettotal" name="lbdate_"></label>
+                    </div>
                     <div class="weui-cells">
-                        <div class="weui-cell">
-                            <div class="weui-cell__bd">
-                                <p>电子客票销售情况</p>
-                            </div>
-                            <div id="div_ettotal" class="weui-cell__ft">共计：94,354元</div>
-                        </div>
                         <div class="weui-cell weui-cell_swiped">
                             <div id="words_et" class="page__bd">
                                 <p class="Ctext" >东部客运站：微信销售：47张，共计：4,662元；自助设备销售：352张，共计：9,076元；其它网销渠道销售: 67张，共计：8,082元。</p>
@@ -115,7 +129,9 @@
     <!-- tab选项卡 end -->
 </block>
 <block name="js">
+
 <script type="text/javascript">
+
     var gqstations = ["东站","兴盛站","快速站","北站"];//关区客运站
     var gqmoneys = [7.8,10.9,8.0,6.4,6.1];//关区客运站客票统计
     var xfstations = [];//县分客运站
@@ -155,6 +171,27 @@
     {
         _Search_end = _Search_start;
     }
+    //
+    //查询cookie设置
+    var cookietime = new Date();
+    var d = new Date()
+    cookietime.setTime(d.getTime() + (60 * 60 * 1000));//coockie保存一小时
+    if(!$.cookie('_Search_start'))
+    {
+        $.cookie('_Search_start', null);
+        $.cookie("_Search_start",_Search_start ,{expires:cookietime});
+    }
+    if(!$.cookie('_Search_end'))
+    {
+        $.cookie('_Search_end', null);
+        $.cookie("_Search_end",_Search_end ,{expires:cookietime});
+    }
+    if(!$.cookie('_Search_flag'))
+    {
+        $.cookie('_Search_flag', null);
+        $.cookie("_Search_flag",_Search_flag ,{expires:cookietime});
+    }
+    //
     $(function(){
 		//图表统计数据处理
 		Charts_data_deal();
@@ -291,15 +328,14 @@
 							if(total_){
 									
 									//综合统计
-									var _html ='<p>&nbsp;</p>';
-									_html += '<h3>综合预览</h3>';
+									var _html ='';
 									_html += '<p class="Ctext">窗口票销售情况：'+total_.total_ck_m+' 万元;</p>';
 									_html += '<p class="Ctext">电子票销售情况：'+total_.etotal_t+' 张，共计：'+total_.etotal_m+' 元;</p>';
 									_html += '<p class="Ctext">保险票销售情况：'+total_.total_i+' 张 ;</p>';
 									$("#div_wtotal").html(_html);
 									//									
-									$("#div_cktotal").html("总计："+total_.total_ck_m+" 万元");
-									$("#div_ettotal").html("总计："+total_.etotal_m+" 元");
+									$("#div_cktotal").html(total_.total_ck_m+" 万元");
+									$("#div_ettotal").html(total_.etotal_m+" 元");
 								}
 							if(ck_data_w)
 							{
@@ -355,33 +391,21 @@
         var myChart_ = echarts.init(worldMapContainer);
         // 指定图表的配置项和数据
         var option = {
-            title:{
-                text:'关区窗口销售金额',
-                x:'left',
-                y:'top',
-                textStyle:{
-                    //文字颜色
-                    color:'#5B5B5B',
-                    //字体风格,'normal','italic','oblique'
-                    fontStyle:'normal',
-                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                    fontWeight:'bold',
-                    //字体系列
-                    fontFamily:'sans-serif',
-                    //字体大小
-                    fontSize:12
-                }
-            },
             grid: {
                 y2: 40
             },
-            tooltip: {},
-            color: ['#ff69b4'],
             legend: {
-                x:'right',
+                x:'center',
                 y:'top',
+                textStyle: {
+                    fontSize: 13,
+                    fontWeight: 'normal',
+                    color: '#000000'          // 主标题文字颜色
+                },
                 data:['单位：万元']
             },
+            tooltip: {},
+            color: ['#ff69b4'],
             lable:{
                 normal:{
                     textStyle:{
@@ -391,6 +415,11 @@
             },
             itemStyle:{
                 normal:{
+                    textStyle: {
+                        fontSize: 13,
+                        fontWeight: 'normal',
+                        color: '#000000'          // 主标题文字颜色
+                    },
                     //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
                     color: function (params){
                         var colorList = ['#ff7f50','#87cefa','#da70d6','#6495ed'];
@@ -437,35 +466,28 @@
         var myChart_2 = echarts.init(worldMapContainer2);
         // 指定图表的配置项和数据
         var option2 = {
-            title:{
-                text:'县分公司窗口销售金额',
-                x:'left',
-                y:'top',
-                textStyle:{
-                    //文字颜色
-                    color:'#5B5B5B',
-                    //字体风格,'normal','italic','oblique'
-                    fontStyle:'normal',
-                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                    fontWeight:'bold',
-                    //字体系列
-                    fontFamily:'sans-serif',
-                    //字体大小
-                    fontSize:12
-                }
-            },
             grid: {
                 y2: 60
             },
-            tooltip: {},
             legend: {
-                x:'right',
+                x:'center',
                 y:'top',
+                textStyle: {
+                    fontSize: 13,
+                    fontWeight: 'normal',
+                    color: '#000000'          // 主标题文字颜色
+                },
                 data:['单位：万元']
             },
+            tooltip: {},
             color: ['rgb(25, 183, 207)'],
             itemStyle:{
                 normal:{
+                    textStyle: {
+                        fontSize: 13,
+                        fontWeight: 'normal',
+                        color: '#000000'          // 主标题文字颜色
+                    },
                     //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
                     color: function (params){
                         var colorList = ['#ff7f50','#87cefa','#da70d6','#32cd32','#6495ed',
@@ -515,23 +537,6 @@
         var myChart_3 = echarts.init(worldMapContainer3);
         // 指定图表的配置项和数据
         var option3 = {
-            title:{
-                text:'单位：张',
-                x:'right',
-                y:'top',
-                textStyle:{
-                    //文字颜色
-                    color:'#5B5B5B',
-                    //字体风格,'normal','italic','oblique'
-                    fontStyle:'normal',
-                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                    fontWeight:'bold',
-                    //字体系列
-                    fontFamily:'sans-serif',
-                    //字体大小
-                    fontSize:10
-                }
-            },
             tooltip : {
                 trigger: 'axis',
                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -539,7 +544,7 @@
                 }
             },
             legend: {
-                x:'left',
+                x:'center',
                 y:'top',
                 data:echannel
             },
@@ -575,23 +580,6 @@
         var myChart_4 = echarts.init(worldMapContainer4);
         // 指定图表的配置项和数据
         var option4 = {
-            title:{
-                text:'单位：万元',
-                x:'right',
-                y:'top',
-                textStyle:{
-                    //文字颜色
-                    color:'#5B5B5B',
-                    //字体风格,'normal','italic','oblique'
-                    fontStyle:'normal',
-                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                    fontWeight:'bold',
-                    //字体系列
-                    fontFamily:'sans-serif',
-                    //字体大小
-                    fontSize:10
-                }
-            },
             tooltip : {
                 trigger: 'axis',
                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -599,8 +587,13 @@
                 }
             },
             legend: {
-                x:'left',
+                x:'center',
                 y:'top',
+                textStyle: {
+                    fontSize: 13,
+                    fontWeight: 'normal',
+                    color: '#000000'          // 主标题文字颜色
+                },
                 data:echannel
             },
             xAxis : [

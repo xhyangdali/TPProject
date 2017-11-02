@@ -20,12 +20,18 @@ class StationController extends AdminBaseController{
 		$condition=array();
 		$condition["isdel"] = 0;
 		if($keywords != ''){
-			$condition["name"] =array('like','%'.$keywords.'%');
+			$where["name"] =array('like','%'.$keywords.'%');
+			$where['_logic'] = 'or';
+			$where["code"] =array('like','%'.$keywords.'%');
+			$condition["_complex"] = $where;
 		}
-		if($start_date !='' && $end_date !=''){
-			$condition["createdate[<>]"] =array($start_date,$end_date);
+		if(!empty($start_date) &&  $start_date!=''){
+			$condition["createdate"] =array('egt',$start_date);
 		}
-		
+		if(!empty($end_date) &&  $end_date!=''){
+			$condition["createdate"] =array('elt',$end_date);
+		}
+		//
 		$totalRows = $Station->where($condition)->order('iseffective ,sort')->count();
 		$totalPages = 1;
 		$listRows = C('PAGE_NUM');;

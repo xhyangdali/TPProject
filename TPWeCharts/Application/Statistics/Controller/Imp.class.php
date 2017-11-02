@@ -92,7 +92,8 @@ class Imp extends StatisticsBaseController{
             $data['Type'] = $arrayinfo['Type'];
             $data['description'] = "来自公众平台";
             $data['TimeCreated'] = $arrayinfo['TimeCreated'];
-            $data['createdate'] = $arrayinfo['TimeCreated'];
+            $now_time = time();
+            $data['createdate'] = $now_time;
             $data['createuserid'] = $openid;//
             $data['iseffective'] = 1;//禁止状态
             $data['isdel'] = 0;//删除标记
@@ -115,7 +116,7 @@ class Imp extends StatisticsBaseController{
                 'access' => $access
             );
             $expire=600;//十分钟
-            $session_data = array();
+            //$session_data = array();
             $session_data['data'] = $data;
             $session_data['expire'] = time()+$expire;
             $_SESSION['user_'] = $session_data;
@@ -124,7 +125,7 @@ class Imp extends StatisticsBaseController{
                 //已经激活，可以访问
                 //访问日志
 
-                $log->addLog('Auth_ACCESS','Statistics',json_encode(array('Result::' => true,'Data::'=>$clist,'IP::'=>$ip)),'');
+                $log->addLog('ACSESS','ContrastIndex',json_encode(array('Result::' => true,'Data::'=>$clist,'IP::'=>$ip)),'');
             }else{
                 //未添加
 
@@ -139,7 +140,7 @@ class Imp extends StatisticsBaseController{
                     //新增访问用户到用户列表
                     unset($data['id']);
                     $result = $list->add($data);
-                    $log->addLog('AuthAdd','Statistics',json_encode(array('Result::' => $result,'Data::'=>$data,'IP::'=>$ip)),'');
+                    $log->addLog('ADD','ContrastIndex',json_encode(array('Result::' => $result,'Data::'=>$data,'IP::'=>$ip)),'');
                 }
                 if($access != "0") {
                     $this->error('对不起，您没有访问权限!');
