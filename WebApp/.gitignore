@@ -1,1 +1,3 @@
-.idea
+Runtime/
+install.lock
+application/database.php

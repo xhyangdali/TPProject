@@ -110,7 +110,7 @@
 	//提交完成后执行
 	$.validator.setDefaults({
     	submitHandler: function() {
-			var url = "{:U('Admin/Posts/adddata')}";
+			var url = "{:U('Admin/Posts/editdata')}";
 			//提交数据
 			var load = layer.load(2, {
 				shade: [0.1,'#fff'] //0.1透明度的白色背景

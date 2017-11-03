@@ -14973,3 +14973,93 @@ CREATE TABLE `tp_demo1` (
 [ sql ] [ SQL ] INSERT INTO `tp_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (1 , '0.0.0.0' , '保留地址 保留地址  ' , 'Windows 10' , 'Chrome(49.0.2623.221)' , 'http://localhost:81/WebApp/public/admin.html' , 'admin' , 'Index' , 'index' , 'GET' , 'a:0:{}' , 1509695259) [ RunTime:0.000249s ]
 
 ---------------------------------------------------------------
+[ 2017-11-03T17:27:31+08:00 ] ::1 ::1 GET /WebApp/public/admin/demo/excel.html
+[ log ] localhost:81/WebApp/public/admin/demo/excel.html [运行时间：0.147817s][吞吐率：6.77req/s] [内存消耗：5,042.83kb] [文件加载：70]
+[ info ] [ LANG ] D:\xampp\htdocs\WebApp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'demo',
+    2 => 'excel',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost:81',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0',
+  'referer' => 'http://localhost:81/WebApp/public/admin.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|0; XHADMIN=u4vhojdj5b2os5r1io2cot5095; PHPSESSID=mhuo1bafj1ag6kucelt3d66ig4; Huiskin=default',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.004123s ]
+[ info ] [ RUN ] app\admin\controller\Demo->excel[ D:\xampp\htdocs\WebApp\application\admin\controller\Demo.php ]
+[ info ] [ VIEW ] D:\xampp\htdocs\WebApp\public/../application/admin\view\demo\excel.html [ array (
+) ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @app_end [ RunTime:0.103814s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000656s ] mysql:dbname=tpadmin;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_web_log_all` [ RunTime:0.094639s ]
+[ sql ] [ SQL ] INSERT INTO `tp_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (1 , '0.0.0.0' , '保留地址 保留地址  ' , 'Windows 10' , 'Chrome(49.0.2623.221)' , 'http://localhost:81/WebApp/public/admin/demo/excel.html' , 'admin' , 'Demo' , 'excel' , 'GET' , 'a:0:{}' , 1509701251) [ RunTime:0.001235s ]
+
+---------------------------------------------------------------
+[ 2017-11-03T17:27:35+08:00 ] ::1 ::1 GET /WebApp/public/admin/generate/index.html
+[ log ] localhost:81/WebApp/public/admin/generate/index.html [运行时间：0.140003s][吞吐率：7.14req/s] [内存消耗：5,059.24kb] [文件加载：70]
+[ info ] [ LANG ] D:\xampp\htdocs\WebApp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'generate',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost:81',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0',
+  'referer' => 'http://localhost:81/WebApp/public/admin.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|0; XHADMIN=u4vhojdj5b2os5r1io2cot5095; PHPSESSID=mhuo1bafj1ag6kucelt3d66ig4; Huiskin=default',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.003403s ]
+[ info ] [ RUN ] app\admin\controller\Generate->index[ D:\xampp\htdocs\WebApp\application\admin\controller\Generate.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\xampp\htdocs\WebApp\public/../application/admin\view\generate\index.html [ array (
+  0 => 'tables',
+) ]
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @app_end [ RunTime:0.096750s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000537s ] mysql:dbname=tpadmin;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW TABLES  [ RunTime:0.000446s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_web_log_all` [ RunTime:0.090074s ]
+[ sql ] [ SQL ] INSERT INTO `tp_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (1 , '0.0.0.0' , '保留地址 保留地址  ' , 'Windows 10' , 'Chrome(49.0.2623.221)' , 'http://localhost:81/WebApp/public/admin/generate/index.html' , 'admin' , 'Generate' , 'index' , 'GET' , 'a:0:{}' , 1509701255) [ RunTime:0.001052s ]
+
+---------------------------------------------------------------
