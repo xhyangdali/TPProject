@@ -1,0 +1,156 @@
+<block name="content">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="__ADMIN_ACEADMIN__/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="__ADMIN_ACEADMIN__/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/statics/font-awesome-4.4.0/css/font-awesome.min.css"/>
+<!--[if IE 7]><link rel="stylesheet" href="__ADMIN_ACEADMIN__/css/font-awesome-ie7.min.css"/><![endif]-->
+<link rel="stylesheet" href="__ADMIN_ACEADMIN__/css/ace.min.css"/>
+<!--[if lte IE 8]><link rel="stylesheet" href="__ADMIN_ACEADMIN__/css/ace-ie.min.css"/><![endif]-->
+<!--[if lt IE 9]><script src="__ADMIN_ACEADMIN__/js/html5shiv.js"></script><script src="__ADMIN_ACEADMIN__/js/respond.min.js"></script><![endif]-->
+<link rel="stylesheet" href="__PUBLIC_CSS__/base.css"/>
+<!--[if !IE]> -->
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/statics/ueditor/1.4.3/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/statics/ueditor/1.4.3/ueditor.all.min.js"> </script>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/statics/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+	<!--验证框架引用 必要-->
+<script src="__ADMIN_ACEADMIN__/js/jquery.js"></script>
+<script src="__ADMIN_ACEADMIN__/js/jquery.validate.min.js"></script>
+<script src="__ADMIN_ACEADMIN__/js/messages_zh.js"></script>
+	<!--验证框架引用 必要-->
+<script src="__ADMIN__/layer/layer.js"></script>
+<style>
+.error{
+	color:red;
+}
+</style>
+<!-- <![endif]-->
+<!--[if IE]><script src="__PUBLIC__/statics/js/jquery-1.10.2.min.js"></script><![endif]-->
+<!--[if !IE]> -->
+        <!-- 内容部分 -->
+	<div class='tab-content' style="background-color:#FFFFFF;">
+	<form id="form" action="" method="post">
+		<table class="table table-striped table-bordered table-hover table-condensed">
+			
+             <tr>
+                <th width="20%"><label for="title">便签标题</label></th>
+                <td>
+					<input class="form-control" type="hidden" name="content" id="id">
+					<input  class="form-control" required  type="text" name="title" id="title" >
+				</td>
+              </tr>
+              <tr>
+                <th><label for="type">类别</label></th>
+                <td>
+					<input class="form-control" type="text" name="type" id="type" value="0" required>
+                 </td>
+              </tr>
+              <tr>
+                <th><label for="description">描述</label></th>
+                <td>
+					<input class="form-control" type="text" name="description" id="description">
+                  </td>
+              </tr>
+			<tr>
+				<td colspan="2">
+					<script id="editor" type="text/plain" style="height:200px;width:100%;"></script>
+					<input class="form-control" type="hidden" name="content" id="content">
+				</td>
+			</tr>
+            </table>
+			
+	</form>
+	</div>
+</block>
+<block name="js">
+ <script>
+ 	var index = parent.layer.getFrameIndex(window.name);//获取子窗口
+	var editor;
+ 	$(function(){
+		//
+		//var ue = UE.getEditor('editor');
+		editor = UE.getEditor('editor',{
+			//这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+			toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','bold','test']],
+			//focus时自动清空初始化时的内容
+			autoClearinitialContent:true,
+			//关闭字数统计
+			wordCount:false,
+			//关闭elementPath
+			elementPathEnabled:false,
+			//默认的编辑区域高度
+			initialFrameHeight:300
+			//更多其他参数，请参考ueditor.config.js中的配置项
+		});
+		//数据校验
+		var validator = $("#form").validate({
+			errorPlacement: function(error, element) {
+				// Append error within linked label
+				$( element )
+						.closest( "form" )
+						.find( "label[for='" + element.attr( "id" ) + "']" )
+						.append( error );
+			},
+			errorElement: "span",
+			messages: {
+				title: {
+					required: " (必填字段)"
+				},
+				content: {
+					required: " (必填字段)"
+				},
+				description: {
+					required: " (必填字段)"
+				},
+				iseffective: {
+					required: " (必填字段)"
+				}
+			}
+		});
+	});
+	//提交完成后执行
+	$.validator.setDefaults({
+    	submitHandler: function() {
+			var url = "{:U('Admin/Posts/adddata')}";
+			//提交数据
+			var load = layer.load(2, {
+				shade: [0.1,'#fff'] //0.1透明度的白色背景
+			});
+			var da_ = "";
+			var c_ = editor.getContent();
+			$("#content").val(c_);
+			if(c_ == "")
+			{
+				layer.alert("请输入便签内容！");
+				return false;
+			}
+			url ="";
+			var postdata = $('#form').serialize();
+			$.ajax({
+				url:url,
+				type:"POST",
+				data:postdata,
+				dataType:"json",
+				error:function(data){
+					layer.closeAll('loading');
+					layer.msg(data.msg);
+				},
+				success:function(data){
+					if(data)
+					{
+						//回掉函数刷新列表页面
+						window.parent.freshen(data.state,data.msg);
+						layer.closeAll('loading');
+						parent.layer.close(index);
+					}
+				}
+			});
+   		}
+	});
+	//保存按钮（来自父页面）
+	function submitdata()
+	{
+		//layer.msg("正在建设中...");
+		$('#form').submit();
+	}
+</script>
+</block>

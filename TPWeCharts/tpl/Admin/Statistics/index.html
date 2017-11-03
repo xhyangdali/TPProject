@@ -1,265 +1,658 @@
 <extend name="Public:base"/>
-<block name="title">统计管理</block>
+<block name="title">图表统计</block>
 <block name="content">
-  <div class="page-header">
-    <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;统计管理</h1>
-  </div>
-  <div class="col-xs-12">
-    <div class="tabbable">
-      <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab">
-        <li class="active"> <a href="#home" data-toggle="tab">统计信息列表</a></li>
-      </ul>
-      <div class="tab-content">
-        <!-- 内容部分 -->
-        <div style="border:0px;padding-bottom:5px;height:auto">
-          <form action="" method="GET" style="margin-bottom:0px">
-            <div class="block"> <a href="#page-tab" class="block-heading" data-toggle="collapse"><strong>收起工具栏</strong></a>
-              <div id="page-tab" class="block-body collapse in">
-            <table >
-              <tr>
-                <td><label></label></td>
-                <td colspan="7">
-                  <button id="btnadd" type="button" class="btn btn-primary" >添加</button>
-                  &nbsp;&nbsp; &nbsp;&nbsp;
-                </td>
-              </tr>
-              <tr>
-                <td><label> 选择起始时间：</label></td>
-                <td>
-                    <input  class="form-control" placeholder="起始时间" type="text"   readonly="true" value="{$_GET.start_date}"  name="start_date" id="start_date"   />
-                </td>
-                <td><label> 选择结束时间：</label></td>
-                <td>
-                    <input  class="form-control" placeholder="结束时间" type="text"   readonly="true" value="{$_GET.end_date}"  name="end_date" id="end_date"   />
-                </td>
-                <td><label> 关键字：</label></td>
-                <td><input type="text" name="keywords" value="{$_GET.keywords}" placeholder="关键字" ></td>
-                <td><label> 查询：</label></td>
-                <td><button type="submit" class="btn btn-primary"><strong>查询</strong></button></td>
-              </tr>
-            </table>
-              </div>
-              </div>
-          </form>
-        </div>
-        <div class="block"> <a href="#page-stats" class="block-heading" data-toggle="collapse"><strong>收起列表</strong></a>
-          <div id="page-stats" class="block-body collapse in">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th style="width:30px"></th>
-                  <th style="width:50px">昵称</th>
-                  <th style="width:35px">微信识别码</th>
-                    <th style="width:35px">电话号码</th>
-                  <th style="width:35px">描述</th>
-                  <th style="width:100px">创建时间</th>
-                    <th style="width:100px">是否启用</th>
-                    <th style="width:100px">操作</th>
-                </tr>
-              </thead>
-              <tbody>
-                <foreach name="data" item="v">
-                  <tr>
-                    <td></td>
-                    <td>{$v['nickname']| base64_decode }</td>
-                    <td>{$v['useruid']}</td>
-                      <td>{$v['mobilephone']}</td>
-                    <td>{$v['description']}</td>
-                    <td>{$v['createdate']|strtotime|date="Y年m月d日 h:i:s",###}</td>
-                      <td>{$v['iseffectiveformat']}</td>
-                      <td>
-                          <a href="javascript:;" navId="{$v['id']}" navName="{$v['nickname']| base64_decode }" isuse="{$v['iseffective']}" onclick="forbidden(this)">
-                              <if condition="$v['iseffective'] eq 0 "> 禁止
-                                  <else /> 启用
-                              </if>
-                          </a>|
-                          <a  class="adetail" href="javascript:;"  name="{$v['id']}">查看</a>&nbsp;
-                          <a class="aedit" href="javascript:;" name="{$v['id']}">编辑</a>&nbsp;
-                          <a class="adel" href="javascript:;" name="{$v['id']}" tips="{$v['nickname']| base64_decode }">删除</a>&nbsp;
-                      </td>
-                  </tr>
-                </foreach>
-				<empty name="data">
-					<tr>
-						<td colspan="7">
-							<strong style="color:red;">没有查询到相关记录！</strong>
-						</td>
-					</tr>
-				</empty>
-              </tbody>
-            </table>
-            <!--- START 分页模板 --->
-            {$pagehtml}
-            <!--- END --->
-          </div>
-        </div>
-      </div>
+    <div class="page-header">
+        <h1><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 首页</a> &gt;图表统计</h1>
     </div>
-  </div>
-  </div>
+    <div class="panel-body">
+        <canvas id="myChart1" width="400px" height="300px;"></canvas>
+        <canvas id="myChart2" width="400px" height="300px;"></canvas>
+        <canvas id="myChart3" width="400px" height="300px;"></canvas>
+        <canvas id="myChart4" width="400px" height="300px;"></canvas>
+        <canvas id="myChart5" width="400px" height="300px;"></canvas>
+        <canvas id="myChart6" width="400px" height="300px;"></canvas>
+        <canvas id="myChart7" width="400px" height="300px;"></canvas>
+        <canvas id="myChart8" width="400px" height="300px;"></canvas>
+    </div>
 </block>
 <block name="js">
     <link rel="stylesheet" href="__PUBLIC__/statics/css/calendar-blue.css"/>
     <script src="__PUBLIC__/statics/js/Calendar_main.js"></script>
-  <script>
-$(function() {
-    //
-        Calendar.setup({
-            inputField : "start_date",
-            ifFormat : "%Y-%m-%d",
-            showsTime : false,
-            timeFormat : "24"
-        });
-        Calendar.setup({
-            inputField : "end_date",
-            ifFormat : "%Y-%m-%d",
-            showsTime : false,
-            timeFormat : "24"
-        });
-	//数据添加
-		$("#btnadd").click(function(){
-			var url = "{:U('add')}";
-			  layer.open({
-			  type: 2,
-			  id: 'add_form',
-			  maxmin: true,
-			  scrollbar: false,
-			  title:"统计信息添加",
-			  area:['800px','450px'],
-			  content:[ url,'no']//注意，如果str是object，那么需要字符拼接。
-			  ,btn: ['保存', '关闭'] //只是为了演示
-			  ,yes: function(index, layero){
-				//保存
-				var body = layer.getChildFrame('body', index);
-                var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
-                iframeWin.submitdata();//调用子页面的方法，得到子页面返回的ids
-                //layer.close(index);//需要手动关闭窗口
-			  }
-			  ,btn2: function(){
-				layer.closeAll();
-			  }
-			  ,zIndex: layer.zIndex //重点1
-			  ,success: function(layero){
-				layer.setTop(layero); //重点2
-			  }
-			});
-		});
-    //查看统计信息
-    $(".adetail").click(function(){
-        var url = "{:U('detail')}";
-        var id = $(this).attr("name");
-        url +="?id="+id;
-        layer.open({
-            type: 2,
-            maxmin: true,
-            scrollbar: false,
-            title:"查看统计信息",
-            area:['800px','450px'],
-            content: url//注意，如果str是object，那么需要字符拼接。
-        });
-    });
-    //编辑统计信息
-    $(".aedit").click(function(){
-        var url = "{:U('edit')}";
-        var id = $(this).attr("name");
-        url +="?id="+id;
-        layer.open({
-            type: 2,
-            maxmin: true,
-            scrollbar: false,
-            title:"编辑统计信息",
-            area:['800px','450px'],
-            content: [url,'no']//注意，如果str是object，那么需要字符拼接。
-            ,btn: ['保存', '关闭'] //只是为了演示
-            ,yes: function(index, layero){
-                //保存
-                var body = layer.getChildFrame('body', index);
-                var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
-                iframeWin.submitdata();//调用子页面的方法，得到子页面返回的ids
-                //layer.close(index);//需要手动关闭窗口
-            }
-            ,btn2: function(){
-                layer.closeAll();
-            }
-            ,zIndex: layer.zIndex //重点1
-            ,success: function(layero){
-                layer.setTop(layero); //重点2
-            }
-        });
+    <script src="__PUBLIC_JS__/charts/echarts.min.js"></script>
+<script type="application/javascript" >
+    $(function(){
+        init_();
     });
     //
-    $(".adel").click(function(){
-        var tips = $(this).attr("tips");
-        var _Id = $(this).attr("name");
-        layer.confirm('你确定删除数据‘'+tips+'’吗？', {icon: 3, title:'删除提示',area:["300px","200px"]}, function(index){
-            var url = "{:U('Admin/WhiteList/delete')}";
-            //提交数据
-            var load = layer.load(2, {
-                shade: [0.1,'#fff'] //0.1透明度的白色背景
-            });
-            $.ajax({
-                url:url,
-                type:"POST",
-                data:{id:_Id},
-                dataType:"json",
-                error:function(data){
-                    layer.closeAll('loading');
-                    layer.msg(data.state);
+    function init_() {
+        var worldMapContainer = document.getElementById('myChart1');
+        //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+        var resizeWorldMapContainer = function () {
+            worldMapContainer.style.width = 400 + 'px';
+            worldMapContainer.style.height = 300+ 'px';
+        };
+        //设置容器高宽
+        resizeWorldMapContainer();
+        var myChart_ = echarts.init(worldMapContainer);
+        // 指定图表的配置项和数据
+        var option = {
+            grid: {
+                y2: 40
+            },
+            legend: {
+                x: 'center',
+                y: 'top',
+                textStyle: {
+                    fontSize: 13,
+                    fontWeight: 'normal',
+                    color: '#000000'          // 主标题文字颜色
                 },
-                success:function(data){
-                    if(data)
-                    {
-                        //回掉函数刷新列表页面
-                        freshen(data.state,data.msg);
-                        layer.closeAll('loading');
+                data: ['单位：万元']
+            },
+            tooltip: {},
+            color: ['#ff69b4'],
+            lable: {
+                normal: {
+                    textStyle: {
+                        fontsize: '1rem'
                     }
                 }
-            });
-            layer.close(index);
-        });
-    });
-
-    //
-});
-//启用-禁止 菜单
-function forbidden(obj)
-{
-    var tips = $(obj).attr("navName");
-    var _Id = $(obj).attr("navId");
-    var _Iseffictive = $(obj).attr("isuse");
-    var op = _Iseffictive =="0"?"禁止":"启用";
-    var _ise  = _Iseffictive =="0"?"1":"0";
-    layer.confirm('你确定'+op+'用户“'+tips+'”访问统计模块吗？', {icon: 3, title:op+'提示',area:["300px","230px"]}, function(index){
-        var url = "{:U('Admin/WhiteList/ForBidden')}";
-        //提交数据
-        var load = layer.load(2, {
-            shade: [0.1,'#fff'] //0.1透明度的白色背景
-        });
-        $.ajax({
-            url:url,
-            type:"POST",
-            data:{id:_Id,iseffictive:_ise},
-            dataType:"json",
-            error:function(data){
-                layer.closeAll('loading');
-                layer.msg(data.state);
             },
-            success:function(data){
-                if(data)
-                {
-                    //回掉函数刷新列表页面
-                    freshen(data.state,op+data.msg);
-                    layer.closeAll('loading');
+            itemStyle: {
+                normal: {
+                    textStyle: {
+                        fontSize: 13,
+                        fontWeight: 'normal',
+                        color: '#000000'          // 主标题文字颜色
+                    },
+                    //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+                    color: function (params) {
+                        var colorList = ['#ff7f50', '#87cefa', '#da70d6', '#6495ed'];
+                        return colorList[params.dataIndex];
+                    }
                 }
-            }
-        });
-        layer.close(index);
-    });
-}
-//列表刷新（回掉函数）
-function freshen(state,msg){
-    layer.msg(msg, {icon: state});
-    window.location.reload();//刷新列表
-}
+            },
+            xAxis: {
+                data: ["快速客运站","兴盛客运站","东部客运站","北部客运站"],
+                axisLabel: {
+                    interval: 0,//横轴信息全部显示
+                    rotate: 30,//-30度角倾斜显示
+                }
+            },
+            yAxis: {},
+            series: [{
+                name: '单位：万元',
+                type: 'bar',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                data: [11,14,16,13.2],
+
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart_.setOption(option);
+        var worldMapContainer2 = document.getElementById('myChart2');
+        //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+        var resizeWorldMapContainer2 = function () {
+            worldMapContainer2.style.width = 400+'px';
+            worldMapContainer2.style.height = 300+'px';
+        };
+        //设置容器高宽
+        resizeWorldMapContainer2();
+        var myChart_2 = echarts.init(worldMapContainer2);
+        // 指定图表的配置项和数据
+        var option2 = {
+            grid: {
+                y2: 60
+            },
+            legend: {
+                x:'center',
+                y:'top',
+                textStyle: {
+                    fontSize: 13,
+                    fontWeight: 'normal',
+                    color: '#000000'          // 主标题文字颜色
+                },
+                data:['单位：万元']
+            },
+            tooltip: {},
+            color: ['rgb(25, 183, 207)'],
+            itemStyle:{
+                normal:{
+                    textStyle: {
+                        fontSize: 13,
+                        fontWeight: 'normal',
+                        color: '#000000'          // 主标题文字颜色
+                    },
+                    //每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+                    color: function (params){
+                        var colorList = ['#ff7f50','#87cefa','#da70d6','#32cd32','#6495ed',
+                            '#ff69b4','#ba55d3','#cd5c5c','#ffa500','#40e0d0',
+                            '#1e90ff','#ff6347','#7b68ee','#00fa9a','#ffd700',
+                            '#6699FF','#ff6666','#3cb371','#b8860b','#30e0e0'];
+                        return colorList[params.dataIndex];
+                    }
+                }
+            },
+            xAxis: {
+                data: ["祥云客运站","巍山客运站","弥渡客运站","宾川客运站"]
+                ,
+                axisLabel:{
+                    interval:0,//横轴信息全部显示
+                    rotate:30,//60度角倾斜显示
+                }
+            },
+            yAxis: {
+
+            },
+            series: [{
+                name: '单位：万元',
+                type: 'bar',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                data: [5.6,6.1,7.0,6.8]
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart_2.setOption(option2);
+        //
+        var worldMapContainer3 = document.getElementById('myChart3');
+        //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+        var resizeWorldMapContainer3 = function () {
+            worldMapContainer3.style.width = 400+'px';
+            worldMapContainer3.style.height = 300+'px';
+        };
+        //设置容器高宽
+        resizeWorldMapContainer3();
+        var myChart_3 = echarts.init(worldMapContainer3);
+        //
+        var option3 = {
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['邮件营销','联盟广告','直接访问','搜索引擎']
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : ['周一','周二','周三','周四','周五','周六','周日']
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    splitArea : {show : true}
+                }
+            ],
+            series : [
+                {
+                    name:'邮件营销',
+                    type:'line',
+                    stack: '总量',
+                    symbol: 'none',
+                    itemStyle: {
+                        normal: {
+                            areaStyle: {
+                                // 区域图，纵向渐变填充
+                                color : (function (){
+
+                                })()
+                            }
+                        }
+                    },
+                    data:[
+                        120, 132, 301, 134,
+                        {value:90, symbol:'droplet',symbolSize:5},
+                        230, 210
+                    ]
+                },
+                {
+                    name:'联盟广告',
+                    type:'line',
+                    stack: '总量',
+                    smooth: true,
+                    symbol: '',     // 系列级个性化拐点图形
+                    symbolSize: 8,
+                    data:[
+                        120, 82,
+                        {
+                            value:201,
+                            symbol: 'star',  // 数据级个性化拐点图形
+                            symbolSize : 15,
+                            itemStyle : { normal: {label : {
+                                show: true,
+                                textStyle : {
+                                    fontSize : '20',
+                                    fontFamily : '微软雅黑',
+                                    fontWeight : 'bold'
+                                }
+                            }}}
+                        },
+                        {
+                            value:134,
+                            symbol: 'none'
+                        },
+                        190,
+                        {
+                            value : 230,
+                            symbol: 'emptypin',
+                            symbolSize: 8
+                        },
+                        110
+                    ]
+                },
+                {
+                    name:'直接访问',
+                    type:'line',
+                    stack: '总量',
+                    symbol: 'arrow',
+                    symbolSize: 6,
+                    symbolRotate: -45,
+                    itemStyle: {
+                        normal: {
+                            color: 'red',
+                            lineStyle: {        // 系列级个性化折线样式
+                                width: 2,
+                                type: 'dashed'
+                            }
+                        },
+                        emphasis: {
+                            color: 'blue'
+                        }
+                    },
+                    data:[
+                        320, 332, '-', 334,
+                        {
+                            value: 390,
+                            symbol: 'star6',
+                            symbolSize : 20,
+                            symbolRotate : 10,
+                            itemStyle: {        // 数据级个性化折线样式
+                                normal: {
+                                    color: 'yellowgreen'
+                                },
+                                emphasis: {
+                                    color: 'orange',
+                                    label : {
+                                        show: true,
+                                        position: 'inside',
+                                        textStyle : {
+                                            fontSize : '20'
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        330, 320
+                    ]
+                },
+                {
+                    name:'搜索引擎',
+                    type:'line',
+                    symbol:'emptyCircle',
+                    itemStyle: {
+                        normal: {
+                            lineStyle: {            // 系列级个性化折线样式，横向渐变描边
+                                width: 2,
+                                color: (function (){
+
+                                })(),
+                                shadowColor : 'rgba(0,0,0,0.5)',
+                                shadowBlur: 10,
+                                shadowOffsetX: 8,
+                                shadowOffsetY: 8
+                            }
+                        },
+                        emphasis : {
+                            label : {show: true}
+                        }
+                    },
+                    data:[
+                        620, 732, 791,
+                        {value:734, symbol:'emptyHeart',symbolSize:10},
+                        890, 930, 820
+                    ],
+                    markPoint : {
+                        data : [
+                            {name : '周最高', value : 930, xAxis: '周六', yAxis: 935}
+                        ]
+                    }
+                }
+            ]
+        };
+        //
+        myChart_3.setOption(option3);
+        //
+        var worldMapContainer4 = document.getElementById('myChart4');
+        //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+        var resizeWorldMapContainer4 = function () {
+            worldMapContainer4.style.width = 400+'px';
+            worldMapContainer4.style.height = 300+'px';
+        };
+        //设置容器高宽
+        resizeWorldMapContainer4();
+        var myChart_4 = echarts.init(worldMapContainer4);
+        var json = [
+            {value:20,name:'窗口客票'},
+            {value:26,name:'电子客票'},
+            {value:24,name:'网销渠道'},
+            {value:10,name:'自助机'}
+        ];
+        var option4 = {
+            title : {
+                text: '饼图分布',
+                subtext: '统计',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} 岁"
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:['窗口客票','电子客票','网销渠道','自助机']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {
+                        show: true,
+                        type: ['pie', 'funnel'],
+                        option: {
+                            funnel: {
+                                x: '25%',
+                                width: '50%',
+                                funnelAlign: 'left',
+                                max: 1548
+                            }
+                        }
+                    },
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+            series : [
+                {
+                    name:'饼图',
+                    type:'pie',
+                    radius : '55%',//饼图的半径大小
+                    center: ['50%', '60%'],//饼图的位置
+                    data:json
+                }
+            ]
+        };
+        //
+        myChart_4.setOption(option4);
+        //
+        var worldMapContainer5 = document.getElementById('myChart5');
+        //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+        var resizeWorldMapContainer5 = function () {
+            worldMapContainer5.style.width = 400+'px';
+            worldMapContainer5.style.height = 300+'px';
+        };
+        //设置容器高宽
+        resizeWorldMapContainer5();
+        var myChart_5 = echarts.init(worldMapContainer5);
+        //
+        option5 = {
+            title: {
+                text: "对数轴示例",
+                x: "left",
+                y:'bottom'
+            },
+            tooltip: {
+                trigger: "item",
+                formatter: "{a} <br/>{b} : {c}"
+            },
+            legend: {
+                x: 'left',
+                data: ["2的指数", "3的指数"]
+            },
+            xAxis: [
+                {
+                    type: "category",
+                    name: "x",
+                    splitLine: {show: false},
+                    data: ["一", "二", "三", "四", "五", "六", "七", "八", "九"]
+                }
+            ],
+            yAxis: [
+                {
+                    type: "log",
+                    name: "y"
+                }
+            ],
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    dataView: {
+                        show: true,
+                        readOnly: true
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            calculable: true,
+            series: [
+                {
+                    name: "3的指数",
+                    type: "line",
+                    data: [1, 3, 9, 27, 81, 247, 741, 2223, 6669]
+
+                },
+                {
+                    name: "2的指数",
+                    type: "line",
+                    data: [1, 2, 4, 8, 16, 32, 64, 128, 256]
+
+                }
+            ]
+        };
+        //
+        myChart_5.setOption(option5);
+        //
+        var worldMapContainer6 = document.getElementById('myChart6');
+        //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+        var resizeWorldMapContainer6 = function () {
+            worldMapContainer6.style.width = 400+'px';
+            worldMapContainer6.style.height = 300+'px';
+        };
+        //设置容器高宽
+        resizeWorldMapContainer6();
+        var myChart_6 = echarts.init(worldMapContainer6);
+        //
+        var option6 = {
+            tooltip : {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            series : [
+                {
+                    name:'业务指标',
+                    type:'gauge',
+                    detail : {formatter:'{value}%'},
+                    data:[{value: 50, name: '完成率'}]
+                }
+            ]
+        };
+        var timeTicket;
+        myChart_6.setOption(option6);
+        clearInterval(timeTicket);
+        timeTicket = setInterval(function (){
+            option.series[0].data[0].value = (Math.random()*100).toFixed(2) - 0;
+            myChart_6.setOption(option6,true);
+        },2000);
+        var worldMapContainer7 = document.getElementById('myChart7');
+        //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+        var resizeWorldMapContainer7 = function () {
+            worldMapContainer7.style.width = 400+'px';
+            worldMapContainer7.style.height = 300+'px';
+        };
+        //设置容器高宽
+        resizeWorldMapContainer7();
+        var myChart_7 = echarts.init(worldMapContainer7);
+        var option7 = {
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                y : 'bottom',
+                data:['预算分配','实际开销']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            polar : [
+                {
+                    indicator : [
+                        { text: '销售', max: 6000},
+                        { text: '管理', max: 16000},
+                        { text: '信息技术', max: 30000},
+                        { text: '客服', max: 38000},
+                        { text: '研发', max: 52000},
+                        { text: '市场', max: 25000}
+                    ]
+                }
+            ],
+            calculable : true,
+            series : [
+                {
+                    name: '预算 vs 开销',
+                    type: 'radar',
+                    data : [
+                        {
+                            value : [4300, 10000, 28000, 35000, 50000, 19000],
+                            name : '预算分配'
+                        },
+                        {
+                            value : [5000, 14000, 28000, 31000, 42000, 21000],
+                            name : '实际开销'
+                        }
+                    ]
+                }
+            ]
+        };
+        //
+        myChart_7.setOption(option7);
+        //ACB
+        var worldMapContainer8 = document.getElementById('myChart8');
+        //用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+        var resizeWorldMapContainer8 = function () {
+            worldMapContainer8.style.width = 400+'px';
+            worldMapContainer8.style.height = 300+'px';
+        };
+        //设置容器高宽
+        resizeWorldMapContainer8();
+        var myChart_8 = echarts.init(worldMapContainer8);
+        //
+        var option8 = {
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {
+                        show: true,
+                        type: ['pie', 'funnel'],
+                        option: {
+                            funnel: {
+                                x: '25%',
+                                width: '50%',
+                                funnelAlign: 'center',
+                                max: 1548
+                            }
+                        }
+                    },
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+            series : [
+                {
+                    name:'访问来源',
+                    type:'pie',
+                    radius : ['50%', '70%'],
+                    itemStyle : {
+                        normal : {
+                            label : {
+                                show : false
+                            },
+                            labelLine : {
+                                show : false
+                            }
+                        },
+                        emphasis : {
+                            label : {
+                                show : true,
+                                position : 'center',
+                                textStyle : {
+                                    fontSize : '13',
+                                    fontWeight : 'bold'
+                                }
+                            }
+                        }
+                    },
+                    data:[
+                        {value:335, name:'直接访问'},
+                        {value:310, name:'邮件营销'},
+                        {value:234, name:'联盟广告'},
+                        {value:135, name:'视频广告'},
+                        {value:1548, name:'搜索引擎'}
+                    ]
+                }
+            ]
+        };
+        //
+        myChart_8.setOption(option8);
+    }
+
 </script>
 </block>
