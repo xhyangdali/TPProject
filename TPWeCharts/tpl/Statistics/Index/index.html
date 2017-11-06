@@ -345,7 +345,7 @@
 								var ck_html ="";
 								for(var i=0;i < ck_data_w.length ;i++)
 								{
-									ck_html +='<p class="Ctext">'+ck_data_w[i]["stationname"]+'：<var>'+ck_data_w[i]["money"]+'</var>万元</p>';
+									ck_html +='<p class="Ctext">'+ck_data_w[i]["stationname"]+'： <var>'+ck_data_w[i]["money"]+'</var>  万元</p>';
 								}
 								$("#words_ck").html(ck_html);
 							}
@@ -354,7 +354,7 @@
 								var _html ='';
 								for(var i=0;i < et_data_w.length ;i++)
 								{
-									_html += '<p class="Ctext">'+et_data_w[i][1]+'：'
+									_html += '<p class="Ctext">'+et_data_w[i][1]+'&nbsp;&nbsp;&nbsp;&nbsp;'
 									+et_data_w[i][2]+et_data_w[i][3]
 									+et_data_w[i][4]+'<var>'+et_data_w[i][5]+'</var> 元'
 									+'；'+et_data_w[i][6]+et_data_w[i][7]
@@ -365,7 +365,7 @@
                                     _html +="<br/>";
 								}
 								if(total_){
-									_html += '<p class="Ctext">总计：车票 <var>'+total_.etotal_t+'</var> 张，保险<var>'
+									_html += '<p class="Ctext">总计&nbsp;&nbsp;&nbsp;&nbsp;车票 <var>'+total_.etotal_t+'</var> 张，保险<var>'
 									+total_.total_i+'</var> 张 ，共计：<var>'+total_.etotal_m+'</var> 元;</p>';
 								}
 								$("#words_et").html(_html);

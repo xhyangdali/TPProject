@@ -167,12 +167,17 @@ select{-moz-appearance:none;-webkit-appearance:none;appearance:none;background:#
 	font-family:"Times New Roman";
 }
 .p_date{
-	font-size:13px;
-	color: #999999;
-	line-height: 1.2;
+	font-size:16px;
+	color: #000000;
+	line-height: 1.5;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
+}
+.p_date var{
+	color: #336666;
+	font-size:20px;
+	font-family:"Times New Roman";
 }
 .weui-grid .js_grid .a_{
 	font-size:13px;
