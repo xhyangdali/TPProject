@@ -261,9 +261,9 @@
         }
 		  //
         $(function(){
-			var surl = "{:U('Search')}";
-			var iurl ="{:U('Index')}";
-			var curl ="{:U('Contrast')}";
+			var surl = "{:U('Statistics/Index/Search')}";
+			var iurl ="{:U('Statistics/Index/Index')}";
+			var curl ="{:U('Statistics/Index/Contrast')}";
 			Charts_data_deal();
 			$("#_search").click(function(){
 				//搜索事件
@@ -287,12 +287,12 @@
 			});
 			
 			$("label[name='lbdate']").each(function(){
-				$(this).html(lbtxt);
+				$(this).html(lbtxt_);
 			});
             $("label[name='lbdate_']").each(function(){
-                $(this).html(lbtxt_);
+                $(this).html(lbtxt);
             });
-			var action_ = "{:U('GetResult')}";
+			var action_ = "{:U('Statistics/Index/GetResult')}";
 			//请求统计数据
 			$.ajax({
 				url:action_,
@@ -345,7 +345,7 @@
 		//文字部分数据处理方法Ajax
 		function Words_data_deal(){
 			//文字信息统计处理
-		var action_ = "{:U('GetResultWords')}";
+		var action_ = "{:U('Statistics/Index/GetResultWords')}";
 		$("#words_select").click(function(){
 			$("#tab_type").val("tab2");
 			var c = 0,c1 = 0,c2 = 0,f= 0,f1= 0,f2= 0,c3= 0,f3=0;

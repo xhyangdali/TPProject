@@ -115,10 +115,6 @@ class Imp extends StatisticsBaseController{
                 'name'=>$arrayinfo['NickName'],//模块管理
                 'access' => $access
             );
-            $expire=600;//十分钟
-            //$session_data = array();
-            $session_data['data'] = $data;
-            $session_data['expire'] = time()+$expire;
             $_SESSION['user_'] = $session_data;
             if($clist)
             {

@@ -16414,3 +16414,106 @@ CREATE TABLE `tp_demo1` (
 [ sql ] [ SQL ] INSERT INTO `tp_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (1 , '0.0.0.0' , '保留地址 保留地址  ' , 'Windows 10' , 'Chrome(49.0.2623.221)' , 'http://localhost:81/WebApp/public/admin/admin_group/index/_sort/desc/_order/sort.html' , 'admin' , 'AdminGroup' , 'index' , 'GET' , 'a:2:{s:5:\"_sort\";s:4:\"desc\";s:6:\"_order\";s:4:\"sort\";}' , 1509701982) [ RunTime:0.000235s ]
 
 ---------------------------------------------------------------
+[ 2017-11-03T17:50:45+08:00 ] ::1 ::1 GET /WebApp/public/admin/login_log/index.html
+[ log ] localhost:81/WebApp/public/admin/login_log/index.html [运行时间：0.150900s][吞吐率：6.63req/s] [内存消耗：5,629.23kb] [文件加载：80]
+[ info ] [ LANG ] D:\xampp\htdocs\WebApp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login_log',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost:81',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0',
+  'referer' => 'http://localhost:81/WebApp/public/admin.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|0; XHADMIN=u4vhojdj5b2os5r1io2cot5095; PHPSESSID=mhuo1bafj1ag6kucelt3d66ig4; Huiskin=default',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.005226s ]
+[ info ] [ RUN ] app\admin\controller\LoginLog->index[ D:\xampp\htdocs\WebApp\application\admin\traits\controller\Controller.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\xampp\htdocs\WebApp\public/../application/admin\view\login_log\index.html [ array (
+  0 => 'list',
+  1 => 'count',
+  2 => 'page',
+  3 => 'numPerPage',
+) ]
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @app_end [ RunTime:0.009594s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000854s ] mysql:dbname=tpadmin;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_login_log` [ RunTime:0.011900s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tp_login_log` `login_log` INNER JOIN `tp_admin_user` `user` ON `login_log`.`uid`=`user`.`id` LIMIT 1 [ RunTime:0.066852s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_login_log` `login_log` INNER JOIN `tp_admin_user` `user` ON `login_log`.`uid`=`user`.`id` ORDER BY login_log.id desc LIMIT 0,20 [ RunTime:0.000736s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_admin_user` [ RunTime:0.008169s ]
+[ sql ] [ SQL ] SELECT * FROM `tp_admin_user` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000345s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_web_log_all` [ RunTime:0.008697s ]
+[ sql ] [ SQL ] INSERT INTO `tp_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (1 , '0.0.0.0' , '保留地址 保留地址  ' , 'Windows 10' , 'Chrome(49.0.2623.221)' , 'http://localhost:81/WebApp/public/admin/login_log/index.html' , 'admin' , 'LoginLog' , 'index' , 'GET' , 'a:0:{}' , 1509702645) [ RunTime:0.000285s ]
+
+---------------------------------------------------------------
+[ 2017-11-03T17:50:58+08:00 ] ::1 ::1 GET /WebApp/public/admin/web_log/index.html
+[ log ] localhost:81/WebApp/public/admin/web_log/index.html [运行时间：0.056699s][吞吐率：17.64req/s] [内存消耗：5,560.25kb] [文件加载：75]
+[ info ] [ LANG ] D:\xampp\htdocs\WebApp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'web_log',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost:81',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0',
+  'referer' => 'http://localhost:81/WebApp/public/admin.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|0; XHADMIN=u4vhojdj5b2os5r1io2cot5095; PHPSESSID=mhuo1bafj1ag6kucelt3d66ig4; Huiskin=default',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @module_init [ RunTime:0.003897s ]
+[ info ] [ RUN ] app\admin\controller\WebLog->index[ D:\xampp\htdocs\WebApp\application\admin\controller\WebLog.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\xampp\htdocs\WebApp\public/../application/admin\view\web_log\index.html [ array (
+  0 => 'list',
+  1 => 'page',
+  2 => 'count',
+  3 => 'numPerPage',
+) ]
+[ info ] [ BEHAVIOR ] Run \app\common\behavior\WebLog @app_end [ RunTime:0.000632s ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000683s ] mysql:dbname=tpadmin;host=127.0.0.1;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tp_web_log_all` [ RunTime:0.010152s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tp_web_log_all` `w` LEFT JOIN `tp_admin_user` `u` ON `u`.`id`=`w`.`uid` LEFT JOIN `tp_node_map` `m` ON `m`.`method`=w.method AND m.module=w.module AND m.controller=w.controller AND m.action=w.action LEFT JOIN `tp_node_map` `md` ON `md`.`method`="ALL" AND md.module=w.module AND md.controller=w.controller AND md.action=w.action LIMIT 1 [ RunTime:0.002072s ]
+[ sql ] [ SQL ] SELECT `w`.`id`,`w`.`data`,`w`.`create_at`,`w`.`module`,`w`.`controller`,`w`.`action`,`w`.`method`,`u`.`realname`,`m`.`comment`,md.comment as default_comment FROM `tp_web_log_all` `w` LEFT JOIN `tp_admin_user` `u` ON `u`.`id`=`w`.`uid` LEFT JOIN `tp_node_map` `m` ON `m`.`method`=w.method AND m.module=w.module AND m.controller=w.controller AND m.action=w.action LEFT JOIN `tp_node_map` `md` ON `md`.`method`="ALL" AND md.module=w.module AND md.controller=w.controller AND md.action=w.action ORDER BY w.id desc LIMIT 0,20 [ RunTime:0.000772s ]
+[ sql ] [ SQL ] INSERT INTO `tp_web_log_all` (`uid` , `ip` , `location` , `os` , `browser` , `url` , `module` , `controller` , `action` , `method` , `data` , `create_at`) VALUES (1 , '0.0.0.0' , '保留地址 保留地址  ' , 'Windows 10' , 'Chrome(49.0.2623.221)' , 'http://localhost:81/WebApp/public/admin/web_log/index.html' , 'admin' , 'WebLog' , 'index' , 'GET' , 'a:0:{}' , 1509702658) [ RunTime:0.000281s ]
+
+---------------------------------------------------------------

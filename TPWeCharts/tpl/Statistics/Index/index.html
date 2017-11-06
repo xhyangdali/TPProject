@@ -141,9 +141,9 @@
     var ex_data_ticket = [];//电子数据
 	var ex_data_money = [];//电子票金额
     //
-    var surl = "{:U('Search')}";
-    var iurl ="{:U('Index')}";
-    var curl ="{:U('Contrast')}";
+    var surl = "{:U('Statistics/Index/Search')}";
+    var iurl ="{:U('Statistics/Index/Index')}";
+    var curl ="{:U('Statistics/Index/Contrast')}";
     //GetResult
     //查询参数获得
     var _Search_start = $.cookie('_Search_start');
@@ -152,10 +152,7 @@
     var _Search_end_next = $.cookie('_Search_end_next');
     var _Search_flag = $.cookie('_Search_flag');
 	//查询参数初始化
-	if(!_Search_flag)
-       {
-            _Search_flag=0;
-       }
+
     if(!_Search_start)
        {
             var myDate = new Date();
@@ -171,26 +168,31 @@
     {
         _Search_end = _Search_start;
     }
+    if(!_Search_flag)
+    {
+        _Search_flag=0;
+        //查询cookie设置
+        var cookietime = new Date();
+        var d = new Date()
+        cookietime.setTime(d.getTime() + (60 * 60 * 1000));//coockie保存一小时
+        if(!$.cookie('_Search_start'))
+        {
+            $.cookie('_Search_start', null);
+            $.cookie("_Search_start",_Search_start ,{expires:cookietime});
+        }
+        if(!$.cookie('_Search_end'))
+        {
+            $.cookie('_Search_end', null);
+            $.cookie("_Search_end",_Search_end ,{expires:cookietime});
+        }
+        if(!$.cookie('_Search_flag'))
+        {
+            $.cookie('_Search_flag', null);
+            $.cookie("_Search_flag",_Search_flag ,{expires:cookietime});
+        }
+    }
     //
-    //查询cookie设置
-    var cookietime = new Date();
-    var d = new Date()
-    cookietime.setTime(d.getTime() + (60 * 60 * 1000));//coockie保存一小时
-    if(!$.cookie('_Search_start'))
-    {
-        $.cookie('_Search_start', null);
-        $.cookie("_Search_start",_Search_start ,{expires:cookietime});
-    }
-    if(!$.cookie('_Search_end'))
-    {
-        $.cookie('_Search_end', null);
-        $.cookie("_Search_end",_Search_end ,{expires:cookietime});
-    }
-    if(!$.cookie('_Search_flag'))
-    {
-        $.cookie('_Search_flag', null);
-        $.cookie("_Search_flag",_Search_flag ,{expires:cookietime});
-    }
+
     //
     $(function(){
 		//图表统计数据处理
@@ -221,7 +223,7 @@
         $("label[name='lbdate']").each(function(){
             $(this).html(lbtxt);
         });
-		var action_ = "{:U('GetResult')}";
+		var action_ = "{:U('Statistics/Index/GetResult')}";
         $.ajax({
             url:action_,
             type:"POST",
@@ -305,7 +307,7 @@
 	function Words_data_deal()
 	{
 		//文字信息统计处理
-		var action_ = "{:U('GetResultWords')}";
+		var action_ = "{:U('Statistics/Index/GetResultWords')}";
 		$("#words_select").click(function(){
             $("#tab_type").val("tab2");
 			$.ajax({

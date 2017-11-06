@@ -12,6 +12,8 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计页面
 	 */
 	public function Index(){
+		$setuid = new \Statistics\Controller\Imp();
+		$uid = $setuid->useruid();
 		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" ) ) {
 			$setuid = new \Statistics\Controller\Imp();
 			$uid = $setuid->useruid();
@@ -35,6 +37,8 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计对比页面
 	 */
 	public function Contrast(){
+		//$setuid = new \Statistics\Controller\Imp();
+		//$uid = $setuid->useruid();
 		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" )  ) {
 			$setuid = new \Statistics\Controller\Imp();
 			$uid = $setuid->useruid();
@@ -56,6 +60,8 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计（搜索页面）
 	 */
 	public function Search(){
+		//$setuid = new \Statistics\Controller\Imp();
+		//$uid = $setuid->useruid();
 		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" ) ) {
 			$setuid = new \Statistics\Controller\Imp();
 			$uid = $setuid->useruid();

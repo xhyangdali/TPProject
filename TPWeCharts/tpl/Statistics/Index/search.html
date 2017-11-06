@@ -152,14 +152,52 @@
 	<script src="__PUBLIC_JS__/fastclick.js"></script>
     <script>
         var url = "";
-        var iurl = "{:U('Index')}";//统计数据
-        var curl = "{:U('Contrast')}";//同比数据
+        var iurl = "{:U('Statistics/Index/Index')}";//统计数据
+        var curl = "{:U('Statistics/Index/Contrast')}";//同比数据
 		var _flag = 0;
         $(function(){
+            //历史查询恢复
+            if($.cookie('_Search_flag') ==1)
+            {
+                var obj_i = $("#chk_near");
+                $(obj_i).attr("checked","checked");
+                checkFun(obj_i);
+            } else if($.cookie('_Search_flag') ==2)
+            {
+                var obj_i = $("#chk_lastyear");
+                $(obj_i).attr("checked","checked");
+                checkFun(obj_i);
+            }
+            else if($.cookie('_Search_flag') ==3)
+            {
+                var obj_i = $("#chk_diy");
+                $(obj_i).attr("checked","checked");
+                checkFun(obj_i);
+            }
+            init_data();
             init_();
 			url = iurl;
         });
-
+        //查询数据填充逻辑
+        function init_data()
+        {
+            if($.cookie('_Search_start'))
+            {
+                $("#date_start").val($.cookie('_Search_start'));
+            }
+            if($.cookie('_Search_end'))
+            {
+                $("#date_end").val($.cookie('_Search_end'));
+            }
+            if($.cookie('_Search_start_next'))
+            {
+                $("#date_start_next").val($.cookie('_Search_start_next'));
+            }
+            if($.cookie('_Search_end_next'))
+            {
+                $("#date_end_next").val($.cookie('_Search_end_next'));
+            }
+        }
         //初始化数据
         function init_()
         {

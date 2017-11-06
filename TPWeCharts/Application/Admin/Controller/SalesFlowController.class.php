@@ -40,8 +40,8 @@ class SalesFlowController extends AdminBaseController{
 		}
 		
 		$totalRows = $SalesFlow->where($condition)->field('a.*,b.name as channel,c.name station ')
-			->alias('a')->join(' LEFT JOIN Channel b ON b.code= a.channelcode')
-			->join(' LEFT JOIN Station c ON c.code= a.stationcode')
+			->alias('a')->join(' LEFT JOIN channel b ON b.code= a.channelcode')
+			->join(' LEFT JOIN station c ON c.code= a.stationcode')
 			->order('a.createdate desc')->count();
 		$totalPages = 1;
 		$listRows = C('PAGE_NUM');
@@ -53,8 +53,8 @@ class SalesFlowController extends AdminBaseController{
 
 		$channels=$SalesFlow->where($condition)
 			->field('a.*,b.name as channel,c.name station ')
-			->alias('a')->join(' LEFT JOIN Channel b ON b.code= a.channelcode')
-			->join(' LEFT JOIN Station c ON c.code= a.stationcode')
+			->alias('a')->join(' LEFT JOIN channel b ON b.code= a.channelcode')
+			->join(' LEFT JOIN station c ON c.code= a.stationcode')
 			->order('a.createdate desc')->page($p,$listRows)->select();
 		$page =new Think\Page();
 		$page->firstRow = 1;//
@@ -129,7 +129,7 @@ class SalesFlowController extends AdminBaseController{
             ->distinct(true)
             ->field('a.groupnum,a.stationcode,c.name station,a.flowdate ')
             ->alias('a')
-            ->join(' LEFT JOIN Station c ON c.code= a.stationcode')
+            ->join(' LEFT JOIN station c ON c.code= a.stationcode ')
             ->order('a.groupnum desc ')->page($p,$listRows)->select();
         $page =new Think\Page();
         $page->firstRow = 1;//

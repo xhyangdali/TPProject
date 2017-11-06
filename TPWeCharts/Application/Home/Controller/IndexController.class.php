@@ -36,7 +36,7 @@ class IndexController extends HomeBaseController{
 					'id_item'=>'-1'//模块管理
                   );
 				$log->addLog('LOGIN','Users',json_encode(array("IP" => $ip)),json_encode($data));
-                $this->success('登录成功、前往管理后台',U('Admin/Index/index'));
+                $this->success('登录成功、前往管理后台',U('Admin/Index/Index'));
             }
         }else{
             $data=check_login() ? $_SESSION['user']['username'].'已登录' : '未登录';
@@ -86,7 +86,7 @@ class IndexController extends HomeBaseController{
 					'id_item'=>'-1'//模块管理
                   );
 				$log->addLog('LOGIN','Users',json_encode(array("IP" => $ip)),json_encode($data));
-                $this->success('登录成功、前往管理后台',U('Admin/Index/index'));
+                $this->success('登录成功、前往管理后台',U('Admin/Index/Index'));
             }
         }else{
             $data=check_login() ? $_SESSION['user']['username'].'已登录' : '未登录';
@@ -109,7 +109,7 @@ class IndexController extends HomeBaseController{
 			$log->addLog('LOGOUT','Users',json_encode(array("IP" => $ip)),json_encode($_SESSION['user']));
 		}
         session('user',null);
-        $this->success('退出成功、前往登录页面',U('Home/Index/index'));
+        $this->success('退出成功、前往登录页面',U('Home/Index/Index'));
     }
 
     /**
