@@ -23,7 +23,83 @@
     <favorites_list name="TPWeCharts" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6248548">
+              <caret line="578" column="58" selection-start-line="578" selection-start-column="58" selection-end-line="578" selection-end-column="58" />
+              <folding>
+                <marker date="1509961978312" expanded="true" signature="12996:13165" placeholder="..." />
+                <marker date="1509961978312" expanded="true" signature="12998:13165" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tpl/Public/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.392857">
+              <caret line="165" column="16" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/Index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.464285">
+              <caret line="356" column="36" selection-start-line="356" selection-start-column="36" selection-end-line="362" selection-end-column="89" />
+              <folding>
+                <marker date="1509961109153" expanded="true" signature="14562:14583" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="14562:14611" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="14562:14626" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="14562:14653" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="14562:14654" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="14562:14676" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="14562:14743" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="14562:14920" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="14743:14852" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="14743:14904" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="14852:14904" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="15042:15166" placeholder="..." />
+                <marker date="1509961109153" expanded="true" signature="15088:15122" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Contrast.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/Contrast.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.785715">
+              <caret line="509" column="55" selection-start-line="509" selection-start-column="55" selection-end-line="509" selection-end-column="55" />
+              <folding>
+                <marker date="1509961962037" expanded="true" signature="17186:17356" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="17395:17474" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="17729:17976" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="17776:17866" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="17912:17955" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="18031:18279" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="18078:18168" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="18214:18258" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="18334:18586" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="18381:18472" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="18518:18565" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="19268:19429" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="19268:19819" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="19268:19871" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="20249:20261" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="20249:20865" placeholder="..." />
+                <marker date="1509961962037" expanded="true" signature="20980:21184" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,10 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tpl/Admin/Channel/detail.html" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Weixinpay/Weixinpay.php" />
-        <option value="$PROJECT_DIR$/Application/Api/Controller/ImpController.class.php" />
-        <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Weixin/Imp.class.php" />
         <option value="$PROJECT_DIR$/ThinkPHP/Library/Vendor/Imp/Imp.php" />
         <option value="$PROJECT_DIR$/Application/Common/Controller/StatisticsBaseController.class.php" />
         <option value="$PROJECT_DIR$/tpl/Admin/Station/edit.html" />
@@ -54,7 +126,6 @@
         <option value="$PROJECT_DIR$/tpl/Public/closedispatch_jump.tpl" />
         <option value="$PROJECT_DIR$/tpl/Public/weixindispatch_jump.tpl" />
         <option value="$PROJECT_DIR$/tpl/Statistics/public/base.html" />
-        <option value="$PROJECT_DIR$/tpl/Public/css/style.css" />
         <option value="$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/tpl/Admin/Index/index.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/WhiteList/index.html" />
@@ -67,7 +138,6 @@
         <option value="$PROJECT_DIR$/tpl/Admin/SalesFlow/indexlist.html" />
         <option value="$PROJECT_DIR$/tpl/Admin/Insurance/index.html" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/InsuranceController.class.php" />
-        <option value="$PROJECT_DIR$/tpl/Admin/Public/base.html" />
         <option value="$PROJECT_DIR$/tpl/Home/Index/index.html" />
         <option value="$PROJECT_DIR$/Application/Admin/Controller/StatisticsController.class.php" />
         <option value="$PROJECT_DIR$/tpl/Admin/Statistics/index.html" />
@@ -81,6 +151,12 @@
         <option value="$PROJECT_DIR$/tpl/Statistics/Index/index.html" />
         <option value="$PROJECT_DIR$/tpl/Statistics/Index/contrast.html" />
         <option value="$PROJECT_DIR$/Application/Statistics/Controller/Imp.class.php" />
+        <option value="$PROJECT_DIR$/tpl/Statistics/Public/base.html" />
+        <option value="$PROJECT_DIR$/tpl/Admin/Public/base.html" />
+        <option value="$PROJECT_DIR$/Application/Common/Conf/db.php" />
+        <option value="$PROJECT_DIR$/tpl/Public/css/style.css" />
+        <option value="$PROJECT_DIR$/tpl/Statistics/Index/Index.html" />
+        <option value="$PROJECT_DIR$/tpl/Statistics/Index/Contrast.html" />
         <option value="$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php" />
       </list>
     </option>
@@ -161,29 +237,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Upload" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="tpl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Statistics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -222,26 +280,8 @@
               <option name="myItemId" value="tpl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Home" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Index" />
+              <option name="myItemId" value="Public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -259,7 +299,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
+              <option name="myItemId" value="Public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -274,36 +318,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Statistics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TPWeCharts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Station" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -375,7 +389,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Common" />
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TPWeCharts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TPWeCharts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -443,10 +479,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18541667" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18541667" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -575,13 +611,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.95586526">
-          <caret line="179" column="25" selection-start-line="179" selection-start-column="25" selection-end-line="179" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/Controller/IndexController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.66254216">
@@ -638,17 +667,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Home/Index/index.html">
+    <entry file="file://$PROJECT_DIR$/tpl/Home/Index/Index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6132404">
           <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Admin/Public/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47019124">
-          <caret line="136" column="17" selection-start-line="133" selection-start-column="7" selection-end-line="136" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -670,13 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7266592">
           <caret line="111" column="7" selection-start-line="99" selection-start-column="3" selection-end-line="111" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Statistics/public/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.5">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -720,7 +735,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
           <folding>
-            <element signature="n#style#0;n#script#0;n#td#0;n#tr#3;n#table#0;n#form#0;n#div#0;n#block#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#script#0;n#td#0;n#tr#3;n#table#0;n#form#0;n#div#0;n#block#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -751,20 +766,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Common/Conf/db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/StatisticsController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.042744655">
           <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
           <folding>
-            <marker date="1509607506970" expanded="true" signature="2565:2621" placeholder="UPDATE white... " />
+            <marker date="1509952894730" expanded="true" signature="2565:2621" placeholder="UPDATE white... " />
           </folding>
         </state>
       </provider>
@@ -798,11 +805,11 @@
         <state vertical-scroll-proportion="1.2182227">
           <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
           <folding>
-            <marker date="1509937515110" expanded="true" signature="3194:3570" placeholder="SELECT count... sales_flow" />
-            <marker date="1509937515110" expanded="true" signature="13164:13258" placeholder="SELECT * FRO... dic_data" />
-            <marker date="1509937515110" expanded="true" signature="13207:13256" placeholder="SELECT id FR... dic_data" />
-            <marker date="1509937515110" expanded="true" signature="13982:14203" placeholder="SELECT s.* F... station" />
-            <marker date="1509937515110" expanded="true" signature="14039:14141" placeholder="SELECT DISTI... sales_flow" />
+            <marker date="1509952894750" expanded="true" signature="3194:3570" placeholder="SELECT count... sales_flow" />
+            <marker date="1509952894750" expanded="true" signature="13164:13258" placeholder="SELECT * FRO... dic_data" />
+            <marker date="1509952894750" expanded="true" signature="13207:13256" placeholder="SELECT id FR... dic_data" />
+            <marker date="1509952894750" expanded="true" signature="13982:14203" placeholder="SELECT s.* F... station" />
+            <marker date="1509952894750" expanded="true" signature="14039:14141" placeholder="SELECT DISTI... sales_flow" />
           </folding>
         </state>
       </provider>
@@ -815,40 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="191.5">
-          <caret line="309" column="45" selection-start-line="309" selection-start-column="45" selection-end-line="309" selection-end-column="45" />
-          <folding>
-            <marker date="1509940234325" expanded="true" signature="14456:14772" placeholder="..." />
-            <marker date="1509940234325" expanded="true" signature="14841:14932" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/contrast.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.321428">
-          <caret line="294" column="49" selection-start-line="294" selection-start-column="49" selection-end-line="294" selection-end-column="49" />
-          <folding>
-            <marker date="1509940311897" expanded="true" signature="17186:17356" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="17395:17474" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="17729:17976" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="17776:17866" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="17912:17955" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="18031:18279" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="18078:18168" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="18214:18258" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="18334:18586" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="18381:18472" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="18518:18565" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="19241:19557" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="19812:20141" placeholder="..." />
-            <marker date="1509940311897" expanded="true" signature="20257:20461" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Common/Conf/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.485482">
@@ -857,18 +830,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/search.html">
+    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/Search.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.035714">
           <caret line="163" column="32" selection-start-line="163" selection-start-column="32" selection-end-line="163" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="35.964287">
-          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -878,6 +843,99 @@
         <state vertical-scroll-proportion="0.5511811">
           <caret line="108" column="37" selection-start-line="108" selection-start-column="37" selection-end-line="108" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Public/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5343082">
+          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Admin/Public/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4431946">
+          <caret line="134" column="104" selection-start-line="134" selection-start-column="98" selection-end-line="134" selection-end-column="104" />
+          <folding>
+            <marker date="1509954602937" expanded="true" signature="8519:8649" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Conf/db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17097862">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.392857">
+          <caret line="165" column="16" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/Index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.464285">
+          <caret line="356" column="36" selection-start-line="356" selection-start-column="36" selection-end-line="362" selection-end-column="89" />
+          <folding>
+            <marker date="1509961109153" expanded="true" signature="14562:14583" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="14562:14611" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="14562:14626" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="14562:14653" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="14562:14654" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="14562:14676" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="14562:14743" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="14562:14920" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="14743:14852" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="14743:14904" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="14852:14904" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="15042:15166" placeholder="..." />
+            <marker date="1509961109153" expanded="true" signature="15088:15122" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/Statistics/Index/Contrast.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.785715">
+          <caret line="509" column="55" selection-start-line="509" selection-start-column="55" selection-end-line="509" selection-end-column="55" />
+          <folding>
+            <marker date="1509961962037" expanded="true" signature="17186:17356" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="17395:17474" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="17729:17976" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="17776:17866" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="17912:17955" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="18031:18279" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="18078:18168" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="18214:18258" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="18334:18586" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="18381:18472" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="18518:18565" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="19268:19429" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="19268:19819" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="19268:19871" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="20249:20261" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="20249:20865" placeholder="..." />
+            <marker date="1509961962037" expanded="true" signature="20980:21184" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Statistics/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6248548">
+          <caret line="578" column="58" selection-start-line="578" selection-start-column="58" selection-end-line="578" selection-end-column="58" />
+          <folding>
+            <marker date="1509961978312" expanded="true" signature="12996:13165" placeholder="..." />
+            <marker date="1509961978312" expanded="true" signature="12998:13165" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

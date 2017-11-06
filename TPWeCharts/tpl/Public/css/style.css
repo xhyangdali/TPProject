@@ -153,18 +153,22 @@ select{-moz-appearance:none;-webkit-appearance:none;appearance:none;background:#
 }
 .Ctext{
   	text-indent:32px;
-	font-size:13px;
-	color: #999999;
-	font-size: 13px;
-	line-height: 1.2;
+	font-family:"楷体";
+	font-size:16px;
+	color: #000000;
+	line-height: 1.5;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 }
+.Ctext var{
+	color: #336666;
+	font-size:20px;
+	font-family:"Times New Roman";
+}
 .p_date{
 	font-size:13px;
 	color: #999999;
-	font-size: 13px;
 	line-height: 1.2;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -173,7 +177,6 @@ select{-moz-appearance:none;-webkit-appearance:none;appearance:none;background:#
 .weui-grid .js_grid .a_{
 	font-size:13px;
 	color: #999999;
-	font-size: 13px;
 	line-height: 1.2;
 	overflow: hidden;
 	text-overflow: ellipsis;

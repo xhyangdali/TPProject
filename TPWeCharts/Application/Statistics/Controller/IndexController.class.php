@@ -13,10 +13,10 @@ class IndexController extends StatisticsBaseController{
 	 */
 	public function Index(){
 		$setuid = new \Statistics\Controller\Imp();
-		$uid = $setuid->useruid();
+		//$uid = $setuid->useruid();
 		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" ) ) {
 			$setuid = new \Statistics\Controller\Imp();
-			$uid = $setuid->useruid();
+			//$uid = $setuid->useruid();
 		}
 		$ip = get_client_ip();
 		//查询条件
@@ -41,7 +41,7 @@ class IndexController extends StatisticsBaseController{
 		//$uid = $setuid->useruid();
 		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" )  ) {
 			$setuid = new \Statistics\Controller\Imp();
-			$uid = $setuid->useruid();
+			//$uid = $setuid->useruid();
 		}
 		$ip = get_client_ip();
 		//查询条件
@@ -64,7 +64,7 @@ class IndexController extends StatisticsBaseController{
 		//$uid = $setuid->useruid();
 		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" ) ) {
 			$setuid = new \Statistics\Controller\Imp();
-			$uid = $setuid->useruid();
+			//$uid = $setuid->useruid();
 		}
 		$ip = get_client_ip();
 		//查询条件
@@ -109,10 +109,9 @@ class IndexController extends StatisticsBaseController{
 				$channelfix ="10%";//渠道标志过滤符号 窗口
 				$sql = "  CALL  GQ_CHARTS('{$stationfix}','{$channelfix}','{$_Search_start}','{$_Search_end}') ";
 				$Model = M(""); // 实例化一个model对象 没有对应任何数据表
-				$array_GQCK = $Model->query($sql);
+				$array_GQCK = $Model->cache('array_GQCK', 3600)->query($sql);
 				$GQstation = array();//关区客运站
 				$GQMmun= array();//关区客运站金额
-
 				foreach($array_GQCK as $item)
 				{
 					array_push($GQstation,$item['stationname']);
@@ -422,8 +421,8 @@ class IndexController extends StatisticsBaseController{
 						}
 						$total_t += $tt;
 						$total_m += $mm;
-						array_push($_i_data,$_item.'：',$tt);
-						array_push($_i_data,' 张，共计： ',number_format($mm,2,'.',''));
+						array_push($_i_data,$_item.'：<var> ',$tt);
+						array_push($_i_data,' </var> 张，共计： ',number_format($mm,2,'.',''));
 					}
 					array_push($words_data,$_i_data);
 				}
@@ -573,11 +572,11 @@ class IndexController extends StatisticsBaseController{
 							//后段
 							$total_t_ += $tt_;
 							$total_m_ += $mm_;
-							array_push($_i_data,$_item.'：',$tt);
-							array_push($_i_data,' 张，共计： ',number_format($mm,2,'.',''));
+							array_push($_i_data,$_item.'： <var> ',$tt);
+							array_push($_i_data,' </var> 张，共计： ',number_format($mm,2,'.',''));
 							//后段
-							array_push($_i_data_,$_item.'：',$tt_);
-							array_push($_i_data_,' 张，共计： ',number_format($mm_,2,'.',''));
+							array_push($_i_data_,$_item.'：<var> ',$tt_);
+							array_push($_i_data_,' </var> 张，共计： ',number_format($mm_,2,'.',''));
 						}
 						array_push($words_data,$_i_data);
 						array_push($words_data_,$_i_data_);

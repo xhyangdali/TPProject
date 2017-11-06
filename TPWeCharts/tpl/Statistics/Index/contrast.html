@@ -483,30 +483,32 @@
 								_html +='<p class = "p_date">日期：'+_Search_start+'至'+_Search_end;
 								for(var i=0;i < et_data_w.length ;i++)
 								{
-									_html += '<p class="Ctext">'+et_data_w[i][1]+'：'
-									+et_data_w[i][2]+et_data_w[i][3]
-									+et_data_w[i][4]+et_data_w[i][5]+' 元'
-									+'；'+et_data_w[i][6]+et_data_w[i][7]
-									+et_data_w[i][8]+et_data_w[i][9]+' 元'
-									+'；'+et_data_w[i][10]+et_data_w[i][11]
-									+et_data_w[i][12]+et_data_w[i][13]+' 元'
-									+'</p>';
+                                    _html += '<p class="Ctext">'+et_data_w[i][1]+'：'
+                                            +et_data_w[i][2]+et_data_w[i][3]
+                                            +et_data_w[i][4]+'<var>'+et_data_w[i][5]+'</var> 元'
+                                            +'；'+et_data_w[i][6]+et_data_w[i][7]
+                                            +et_data_w[i][8]+'<var>'+et_data_w[i][9]+'</var> 元'
+                                            +'；'+et_data_w[i][10]+et_data_w[i][11]
+                                            +et_data_w[i][12]+'<var>'+et_data_w[i][13]+'</var> 元'
+                                            +'</p>'
+                                    ;
+                                    _html +="<br/>";
 								}
 							}
-							_html +="<br/>";
+							_html +="<hr /><br/>";
 							if(et_data_w_)
 							{
 								_html +='<p class = "p_date" >日期：'+_Search_start_next+'至'+_Search_end_next;
 								for(var i=0;i < et_data_w_.length ;i++)
 								{
-									_html += '<p class="Ctext">'+et_data_w_[i][1]+'：'
-									+et_data_w_[i][2]+et_data_w_[i][3]
-									+et_data_w_[i][4]+et_data_w_[i][5]+' 元'
-									+'；'+et_data_w_[i][6]+et_data_w_[i][7]
-									+et_data_w_[i][8]+et_data_w_[i][9]+' 元'
-									+'；'+et_data_w_[i][10]+et_data_w_[i][11]
-									+et_data_w_[i][12]+et_data_w_[i][13]+' 元'
-									+'</p>';
+                                    _html += '<p class="Ctext">'+et_data_w_[i][1]+'：'
+                                            +et_data_w_[i][2]+et_data_w_[i][3]
+                                            +et_data_w_[i][4]+'<var>'+et_data_w_[i][5]+'</var> 元'
+                                            +'；'+et_data_w_[i][6]+et_data_w_[i][7]
+                                            +et_data_w_[i][8]+'<var>'+et_data_w_[i][9]+'</var> 元'
+                                            +'；'+et_data_w_[i][10]+et_data_w_[i][11]
+                                            +et_data_w_[i][12]+'<var>'+et_data_w_[i][13]+'</var> 元'
+                                            +'</p>'
 								}
 								
 							}

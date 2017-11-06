@@ -331,9 +331,9 @@
 									
 									//综合统计
 									var _html ='';
-									_html += '<p class="Ctext">窗口票销售情况：'+total_.total_ck_m+' 万元;</p>';
-									_html += '<p class="Ctext">电子票销售情况：'+total_.etotal_t+' 张，共计：'+total_.etotal_m+' 元;</p>';
-									_html += '<p class="Ctext">保险票销售情况：'+total_.total_i+' 张 ;</p>';
+									_html += '<p class="Ctext">窗口票销售情况：<var>'+total_.total_ck_m+'</var> 万元;</p>';
+									_html += '<p class="Ctext">电子票销售情况：<var>'+total_.etotal_t+'</var> 张，共计：<var>'+total_.etotal_m+'</var> 元;</p>';
+									_html += '<p class="Ctext">保险票销售情况：<var>'+total_.total_i+'</var> 张 ;</p>';
 									$("#div_wtotal").html(_html);
 									//									
 									$("#div_cktotal").html(total_.total_ck_m+" 万元");
@@ -345,7 +345,7 @@
 								var ck_html ="";
 								for(var i=0;i < ck_data_w.length ;i++)
 								{
-									ck_html +='<p class="Ctext">'+ck_data_w[i]["stationname"]+'：'+ck_data_w[i]["money"]+'万元</p>';
+									ck_html +='<p class="Ctext">'+ck_data_w[i]["stationname"]+'：<var>'+ck_data_w[i]["money"]+'</var>万元</p>';
 								}
 								$("#words_ck").html(ck_html);
 							}
@@ -356,16 +356,17 @@
 								{
 									_html += '<p class="Ctext">'+et_data_w[i][1]+'：'
 									+et_data_w[i][2]+et_data_w[i][3]
-									+et_data_w[i][4]+et_data_w[i][5]+' 元'
+									+et_data_w[i][4]+'<var>'+et_data_w[i][5]+'</var> 元'
 									+'；'+et_data_w[i][6]+et_data_w[i][7]
-									+et_data_w[i][8]+et_data_w[i][9]+' 元'
+									+et_data_w[i][8]+'<var>'+et_data_w[i][9]+'</var> 元'
 									+'；'+et_data_w[i][10]+et_data_w[i][11]
-									+et_data_w[i][12]+et_data_w[i][13]+' 元'
+									+et_data_w[i][12]+'<var>'+et_data_w[i][13]+'</var> 元'
 									+'</p>';
+                                    _html +="<br/>";
 								}
 								if(total_){
-									_html += '<p class="Ctext">总计：车票 '+total_.etotal_t+' 张，保险'
-									+total_.total_i+' 张 ，共计：'+total_.etotal_m+' 元;</p>';
+									_html += '<p class="Ctext">总计：车票 <var>'+total_.etotal_t+'</var> 张，保险<var>'
+									+total_.total_i+'</var> 张 ，共计：<var>'+total_.etotal_m+'</var> 元;</p>';
 								}
 								$("#words_et").html(_html);
 							}
