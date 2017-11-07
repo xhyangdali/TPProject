@@ -70,7 +70,7 @@ div:active{
 				</td>
 				<td >
 					<if condition="$v['code'] eq '101001' ">
-						<input class="form-control" type="text"   name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" value="0" disabled="disabled" readonly required number="true" placeholder="{$v['name']}(票数)" />
+						<input class="form-control" type="text"    name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" value="0" disabled="disabled" readonly required number="true" placeholder="{$v['name']}(票数)" />
 						<else />
 						<input class="form-control" type="text" onchange="CheckCount(this);" name="{$v['code']}_ticketnum" id="{$v['code']}_ticketnum" required number="true" placeholder="{$v['name']}(票数)" />
 					</if>
@@ -124,7 +124,6 @@ div:active{
 		showsTime : false,
 		timeFormat : "24"
 		});
-
 		init();
 		//失去焦点验证数据
 		$("#form").validate({

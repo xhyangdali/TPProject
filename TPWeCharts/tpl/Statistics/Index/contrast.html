@@ -318,14 +318,45 @@
 							{
 								//关区窗口数据
 								gqckstation = gq_data.station;
-								gq_now_ck = gq_data.now;
-								gq_next_ck = gq_data.next;
+								if(gqckstation){
+									//显示设置
+									for(var i=0;i < gqckstation.length;i++)
+									{
+										var str = gqckstation[i];
+										if(str.indexOf("东")>=0)
+										{
+											gqckstation[i] = "东客站";
+										}
+										if(str.indexOf("快")>=0)
+										{
+											gqckstation[i] = "快速站";
+										}
+										if(str.indexOf("北")>=0)
+										{
+											gqckstation[i] = "北站";
+										}
+										if(str.indexOf("兴")>=0)
+										{
+											gqckstation[i] = "兴盛站";
+										}
+									}
+							}
+							gq_now_ck = gq_data.now;
+							gq_next_ck = gq_data.next;
 							}
 							//
 							if(xf_data)
 							{
 								//县份窗口数据
 								xfckstation = xf_data.station;
+								if(xfckstation)
+								{
+									for(var i=0;i < xfckstation.length;i++)
+									{
+										var str = xfckstation[i];
+										xfckstation[i] = str.replace(/客运站/g, "")
+									}
+								}
 								xf_now_ck = xf_data.now;
 								xf_next_ck = xf_data.next;
 							}
@@ -333,6 +364,29 @@
 							if(et_data)
 							{
 								ettbstation = et_data.station;
+								if(ettbstation)
+								{
+									for(var i=0;i < ettbstation.length;i++)
+									{
+										var str = ettbstation[i];
+										if(str.indexOf("东")>=0)
+										{
+											ettbstation[i] = "东客站";
+										}
+										if(str.indexOf("快")>=0)
+										{
+											ettbstation[i] = "快速站";
+										}
+										if(str.indexOf("北")>=0)
+										{
+											ettbstation[i] = "北站";
+										}
+										if(str.indexOf("兴")>=0)
+										{
+											ettbstation[i] = "兴盛站";
+										}
+									}
+								}
 								ettb_now_m = et_data.now_m;
 								ettb_next_m = et_data.next_m;
 								ettb_now_t = et_data.now_t;

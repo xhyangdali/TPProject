@@ -244,52 +244,60 @@
                         xfmoneys = data.XFMmun;
                         estation = data.Estation;
                         echannel = data.Echannel;
-                        //显示设置
-                        for(var i=0;i < gqstations.length;i++)
-                        {
-                            var str = gqstations[i];
-                            if(str.indexOf("东")>=0)
-                            {
-                                gqstations[i] = "东客站";
-                            }
-                            if(str.indexOf("快")>=0)
-                            {
-                                gqstations[i] = "快速站";
-                            }
-                            if(str.indexOf("北")>=0)
-                            {
-                                gqstations[i] = "北站";
-                            }
-                            if(str.indexOf("兴")>=0)
-                            {
-                                gqstations[i] = "兴盛站";
-                            }
-                        }
-                        for(var i=0;i < xfstations.length;i++)
-                        {
-                            var str = xfstations[i];
-                            xfstations[i] = str.replace(/客运站/g, "")
-                        }
-                        for(var i=0;i < estation.length;i++)
-                        {
-                            var str = estation[i];
-                            if(str.indexOf("东")>=0)
-                            {
-                                estation[i] = "东客站";
-                            }
-                            if(str.indexOf("快")>=0)
-                            {
-                                estation[i] = "快速站";
-                            }
-                            if(str.indexOf("北")>=0)
-                            {
-                                estation[i] = "北站";
-                            }
-                            if(str.indexOf("兴")>=0)
-                            {
-                                estation[i] = "兴盛站";
-                            }
-                        }
+						if(gqstations){
+							//显示设置
+							for(var i=0;i < gqstations.length;i++)
+							{
+								var str = gqstations[i];
+								if(str.indexOf("东")>=0)
+								{
+									gqstations[i] = "东客站";
+								}
+								if(str.indexOf("快")>=0)
+								{
+									gqstations[i] = "快速站";
+								}
+								if(str.indexOf("北")>=0)
+								{
+									gqstations[i] = "北站";
+								}
+								if(str.indexOf("兴")>=0)
+								{
+									gqstations[i] = "兴盛站";
+								}
+							}
+						}
+						if(xfstations)
+						{
+							for(var i=0;i < xfstations.length;i++)
+							{
+								var str = xfstations[i];
+								xfstations[i] = str.replace(/客运站/g, "")
+							}
+						}
+						if(estation)
+						{
+							for(var i=0;i < estation.length;i++)
+							{
+								var str = estation[i];
+								if(str.indexOf("东")>=0)
+								{
+									estation[i] = "东客站";
+								}
+								if(str.indexOf("快")>=0)
+								{
+									estation[i] = "快速站";
+								}
+								if(str.indexOf("北")>=0)
+								{
+									estation[i] = "北站";
+								}
+								if(str.indexOf("兴")>=0)
+								{
+									estation[i] = "兴盛站";
+								}
+							}
+						}
                         //图表部分
                         var ex_tcket = data.ex_data_ticket;
 						var ex_mony = data.ex_data_money;
