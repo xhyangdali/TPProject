@@ -195,6 +195,9 @@
 		var ettb_next_m = [];
 		var ettb_now_t = [];
 		var ettb_next_t = [];
+
+        //
+        var colors_ = ['#40e0d0','#ff6666','#ff6666'];
 		//查询参数获得
 		var _Search_start = $.cookie('_Search_start');
 		var _Search_end = $.cookie('_Search_end');
@@ -555,6 +558,7 @@
                         type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                     }
                 },
+                color:colors_,
                 legend: {
 					x:'center',
 					y:'top',
@@ -627,6 +631,7 @@
                         type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                     }
                 },
+                color:colors_,
                 legend: {
 					x:'center',
 					y:'top',
@@ -699,6 +704,7 @@
                 tooltip: {
                     trigger: 'axis'
                 },
+                color:colors_,
                 legend: {
 					x:'center',
 					y:'top',
@@ -763,6 +769,7 @@
                         type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                     }
                 },
+                color:colors_,
                 legend: {
 					x:'center',
 					y:'top',

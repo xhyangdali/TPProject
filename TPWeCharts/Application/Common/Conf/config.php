@@ -135,7 +135,7 @@ return array(
     'RONGLIAN_TEMPLATE_ID'   => '', //容联云通讯 模板Id
 //***********************************缓存设置**********************************
     'DATA_CACHE_TIME'        => 7200,        // 数据缓存有效期s 2 小时
-    'DATA_CACHE_PREFIX'      => 'mem_',      // 缓存前缀
+    'DATA_CACHE_PREFIX'      => 'cach_TJ',      // 缓存前缀
     'DATA_CACHE_TYPE'        => 'File', // 数据缓存类型,
     'MEMCACHED_SERVER'       => '127.0.0.1', // 服务器ip
     'ALIOSS_CONFIG'          => array(

@@ -35,10 +35,14 @@ class WhiteListController extends AdminBaseController{
 		if(!empty($end_date) &&  $end_date!=''){
 			$condition["createdate"] =array('elt',$end_date);
 		}
+		$w["useruid"] =array('EXP','IS NOT NULL ');
+		$w['_logic'] = 'OR';
+		$w["mobilephone"] =array('EXP','IS NOT NULL ');
+		$condition["_complex"] = $w;
 		//
 		$totalRows = $WhiteList->where($condition)->order('createdate desc')->count();
 		$totalPages = 1;
-		$listRows = C('PAGE_NUM');;
+		$listRows = C('PAGE_NUM');
 		if($totalRows>$listRows)
 		{
 			$totalPages = $totalRows/$listRows;

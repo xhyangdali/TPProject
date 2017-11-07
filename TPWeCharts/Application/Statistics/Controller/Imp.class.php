@@ -92,7 +92,7 @@ class Imp extends StatisticsBaseController{
             $data['Type'] = $arrayinfo['Type'];
             $data['description'] = "来自公众平台";
             $data['TimeCreated'] = $arrayinfo['TimeCreated'];
-            $now_time = time();
+            $now_time = date("Y-m-d H:i:s");
             $data['createdate'] = $now_time;
             $data['createuserid'] = $openid;//
             $data['iseffective'] = 1;//禁止状态

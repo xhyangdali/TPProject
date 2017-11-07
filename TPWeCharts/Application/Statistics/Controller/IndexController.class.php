@@ -111,14 +111,15 @@ class IndexController extends StatisticsBaseController{
 					$channelfix ="10%";//渠道标志过滤符号 窗口
 					$sql = "  CALL  GQ_CHARTS('{$stationfix}','{$channelfix}','{$_Search_start}','{$_Search_end}') ";
 					$Model = M(""); // 实例化一个model对象 没有对应任何数据表
-					$cache_gqck = 'gqck'.$_Search_start.'VS'.$_Search_end;
-					if(!S($cache_gqck)){
-						$array_GQCK = $Model->query($sql);
-						S($cache_gqck,$array_GQCK,7200,'File');
-					}else
-					{
-						$array_GQCK = S($cache_gqck);
-					}
+                    $array_GQCK = $Model->query($sql);
+//					$cache_gqck = 'gqck'.$_Search_start.'VS'.$_Search_end;
+//					if(!S($cache_gqck)){
+//						$array_GQCK = $Model->query($sql);
+//						S($cache_gqck,$array_GQCK,7200,'File');
+//					}else
+//					{
+//						$array_GQCK = S($cache_gqck);
+//					}
 					$GQstation = array();//关区客运站
 					$GQMmun= array();//关区客运站金额
 					foreach($array_GQCK as $item)
@@ -133,16 +134,17 @@ class IndexController extends StatisticsBaseController{
 					$channelfix_1 ="10%";//渠道标志过滤符号 窗口
 					$sql_1 = "  CALL  GQ_CHARTS('{$stationfix_1}','{$channelfix_1}','{$_Search_start}','{$_Search_end}') ";
 					$Model_1 = M(""); // 实例化一个model对象 没有对应任何数据表
+                    $array_XFCK = $Model_1->query($sql_1);
 					//
-					$cache_xfck = 'xfck'.$_Search_start.'VS'.$_Search_end;
-					//$array_XFCK = array();
-					if(!S($cache_xfck)){
-						$array_XFCK = $Model_1->query($sql_1);
-						S($cache_xfck,$array_XFCK,7200,'File');
-					}else
-					{
-						$array_XFCK = S($cache_xfck);
-					}
+//					$cache_xfck = 'xfck'.$_Search_start.'VS'.$_Search_end;
+//					//$array_XFCK = array();
+//					if(!S($cache_xfck)){
+//                        $array_XFCK = $Model_1->query($sql_1);
+//						S($cache_xfck,$array_XFCK,7200,'File');
+//					}else
+//					{
+//						$array_XFCK = S($cache_xfck);
+//					}
 					$XFstation = array();//县分客运站
 					$XFMmun= array();//县分客运站金额
 					//
@@ -160,15 +162,16 @@ class IndexController extends StatisticsBaseController{
 					$sql_2 = "  CALL  GQXF_ETICKET_CHARTS('{$stationfix_2_a}','{$stationfix_2_b}','{$channelfix_2}','{$_Search_start}','{$_Search_end}') ";
 					$Model_2 = M(""); // 实例化一个model对象 没有对应任何数据表
 					//
-					$cache_et= 'et'.$_Search_start.'VS'.$_Search_end;
-					//$array_ET = array();
-					if(!S($cache_et)){
-						$array_ET = $Model_2->query($sql_2);
-						S($cache_et,$array_ET,7200,'File');
-					}else
-					{
-						$array_ET = S($cache_et);
-					}
+                    $array_ET = $Model_2->query($sql_2);
+//					$cache_et= 'et'.$_Search_start.'VS'.$_Search_end;
+//					//$array_ET = array();
+//					if(!S($cache_et)){
+//						$array_ET = $Model_2->query($sql_2);
+//						S($cache_et,$array_ET,7200,'File');
+//					}else
+//					{
+//						$array_ET = S($cache_et);
+//					}
 					
 					$Estation = array();//统计的客运站
 					$Echannel = array();//统计的渠道
@@ -240,14 +243,15 @@ class IndexController extends StatisticsBaseController{
 						$sql = "  CALL TB_CHARTS('{$stationfix}','{$channelfix}','{$_Search_start}','{$_Search_end}'
 						,'{$_Search_start_next}','{$_Search_end_next}') ";
 						$Model = M(""); // 实例化一个model对象 没有对应任何数据表
-						$cache_gqck = $_Search_flag.'_gqck'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
-						if(!S($cache_gqck)){
-							$array_GQCK = $Model->query($sql);
-							S($cache_gqck,$array_GQCK,7200,'File');
-						}else
-						{
-							$array_GQCK = S($cache_gqck);
-						}
+                        $array_GQCK = $Model->query($sql);
+//						$cache_gqck = $_Search_flag.'_gqck'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
+//						if(!S($cache_gqck)){
+//							$array_GQCK = $Model->query($sql);
+//							S($cache_gqck,$array_GQCK,7200,'File');
+//						}else
+//						{
+//							$array_GQCK = S($cache_gqck);
+//						}
 						//关区窗口售票情况对比处理
 						$GQStations = array();
 						$GQ_Now_MData = array();
@@ -278,14 +282,15 @@ class IndexController extends StatisticsBaseController{
 						,'{$_Search_start_next}','{$_Search_end_next}') ";
 						$Model_1 = M(""); // 实例化一个model对象 没有对应任何数据表
 						//
-						$cache_xfck = $_Search_flag.'_xfck'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
-						if(!S($cache_xfck)){
-							$array_XFCK = $Model_1->query($sql_1);
-							S($cache_xfck,$array_XFCK,7200,'File');
-						}else
-						{
-							$array_XFCK = S($cache_xfck);
-						}
+                        $array_XFCK = $Model_1->query($sql_1);
+//						$cache_xfck = $_Search_flag.'_xfck'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
+//						if(!S($cache_xfck)){
+//							$array_XFCK = $Model_1->query($sql_1);
+//							S($cache_xfck,$array_XFCK,7200,'File');
+//						}else
+//						{
+//							$array_XFCK = S($cache_xfck);
+//						}
 						
 						//关区窗口售票情况对比处理
 						$XFStations = array();
@@ -319,14 +324,15 @@ class IndexController extends StatisticsBaseController{
 						,'{$_Search_start_next}','{$_Search_end_next}') ";
 						$Model_2 = M(""); // 实例化一个model对象 没有对应任何数据表
 						//
-						$cache_ettb = $_Search_flag.'_ettb'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
-						if(!S($cache_ettb)){
-							$array_ETTB = $Model_2->query($sql_2);
-							S($cache_ettb,$array_ETTB,7200,'File');
-						}else
-						{
-							$array_ETTB = S($cache_ettb);
-						}
+                        $array_ETTB = $Model_2->query($sql_2);
+//						$cache_ettb = $_Search_flag.'_ettb'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
+//						if(!S($cache_ettb)){
+//							$array_ETTB = $Model_2->query($sql_2);
+//							S($cache_ettb,$array_ETTB,7200,'File');
+//						}else
+//						{
+//							$array_ETTB = S($cache_ettb);
+//						}
 						
 						$ETStations = array();
 						$ET_Now_MData = array();
@@ -403,14 +409,15 @@ class IndexController extends StatisticsBaseController{
 					$sql = "  CALL  GQ_CHARTS('{$stationfix}','{$channelfix}','{$_Search_start}','{$_Search_end}') ";
 					$Model = M(""); // 实例化一个model对象 没有对应任何数据表
 					//
-					$cache_gqck = 'words_gqck'.$_Search_start.'VS'.$_Search_end;
-					if(!S($cache_gqck)){
-						$array_GQCK = $Model->query($sql);
-						S($cache_gqck,$array_GQCK,7200,'File');
-					}else
-					{
-						$array_GQCK = S($cache_gqck);
-					}
+                    $array_GQCK = $Model->query($sql);
+//					$cache_gqck = 'words_gqck'.$_Search_start.'VS'.$_Search_end;
+//					if(!S($cache_gqck)){
+//						$array_GQCK = $Model->query($sql);
+//						S($cache_gqck,$array_GQCK,7200,'File');
+//					}else
+//					{
+//						$array_GQCK = S($cache_gqck);
+//					}
 					
 					$CK_WArray = array();//各客运站售票金额统计
 					$ET_WArray = array();//各客运站售票金额统
@@ -433,14 +440,15 @@ class IndexController extends StatisticsBaseController{
 					$sql_1 = "  CALL  GQ_CHARTS('{$stationfix_1}','{$channelfix_1}','{$_Search_start}','{$_Search_end}') ";
 					$Model_1 = M(""); // 实例化一个model对象 没有对应任何数据表
 					//
-					$cache_xfck = 'words_xfck'.$_Search_start.'VS'.$_Search_end;
-					if(!S($cache_xfck)){
-						$array_XFCK = $Model_1->query($sql_1);
-						S($cache_xfck,$array_XFCK,7200,'File');
-					}else
-					{
-						$array_XFCK = S($cache_xfck);
-					}			
+                    $array_XFCK = $Model_1->query($sql_1);
+//					$cache_xfck = 'words_xfck'.$_Search_start.'VS'.$_Search_end;
+//					if(!S($cache_xfck)){
+//						$array_XFCK = $Model_1->query($sql_1);
+//						S($cache_xfck,$array_XFCK,7200,'File');
+//					}else
+//					{
+//						$array_XFCK = S($cache_xfck);
+//					}
 					
 					foreach($array_XFCK as $item)
 					{
@@ -460,14 +468,15 @@ class IndexController extends StatisticsBaseController{
 					$sql_2 = "  CALL  GQXF_ETICKET_CHARTS('{$stationfix_2_a}','{$stationfix_2_b}','{$channelfix_2}','{$_Search_start}','{$_Search_end}') ";
 					$Model_2 = M(""); // 实例化一个model对象 没有对应任何数据表
 					//
-					$cache_et = 'words_et'.$_Search_start.'VS'.$_Search_end;
-					if(!S($cache_et)){
-						$array_ET = $Model_2->query($sql_2);
-						S($cache_et,$array_ET,7200,'File');
-					}else
-					{
-						$array_ET = S($cache_et);
-					}
+                    $array_ET = $Model_2->query($sql_2);
+//					$cache_et = 'words_et'.$_Search_start.'VS'.$_Search_end;
+//					if(!S($cache_et)){
+//						$array_ET = $Model_2->query($sql_2);
+//						S($cache_et,$array_ET,7200,'File');
+//					}else
+//					{
+//						$array_ET = S($cache_et);
+//					}
 					
 					$Estation = array();//统计的客运站
 					$Echannel = array();//统计的渠道
@@ -484,14 +493,15 @@ class IndexController extends StatisticsBaseController{
 					$sql_3 = "  CALL  TJ_BX('{$_Search_start}','{$_Search_end}') ";
 					$Model_3 = M(""); // 实例化一个model对象 没有对应任何数据表
 					//
-					$cache_bx = 'words_bx'.$_Search_start.'VS'.$_Search_end;
-					if(!S($cache_bx)){
-						$array_BX = $Model_3->query($sql_3);
-						S($cache_bx,$array_BX,7200,'File');
-					}else
-					{
-						$array_BX = S($cache_bx);
-					}
+                    $array_BX = $Model_3->query($sql_3);
+//					$cache_bx = 'words_bx'.$_Search_start.'VS'.$_Search_end;
+//					if(!S($cache_bx)){
+//						$array_BX = $Model_3->query($sql_3);
+//						S($cache_bx,$array_BX,7200,'File');
+//					}else
+//					{
+//						$array_BX = S($cache_bx);
+//					}
 					
 					//文字统计处理
 					$words_data = array();//依据车站统计
@@ -555,14 +565,15 @@ class IndexController extends StatisticsBaseController{
 						$sql = "  CALL TB_CHARTS('{$stationfix}','{$channelfix}','{$_Search_start}','{$_Search_end}'
 						,'{$_Search_start_next}','{$_Search_end_next}') ";
 						$Model = M(""); // 实例化一个model对象 没有对应任何数据表
-						$cache_gqck = $_Search_flag.'_words_gqck'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
-						if(!S($cache_gqck)){
-							$array_GQCK = $Model->query($sql);
-							S($cache_gqck,$array_GQCK,7200,'File');
-						}else
-						{
-							$array_GQCK = S($cache_gqck);
-						}
+                        $array_GQCK = $Model->query($sql);
+//						$cache_gqck = $_Search_flag.'_words_gqck'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
+//						if(!S($cache_gqck)){
+//							$array_GQCK = $Model->query($sql);
+//							S($cache_gqck,$array_GQCK,7200,'File');
+//						}else
+//						{
+//							$array_GQCK = S($cache_gqck);
+//						}
 						
 						$TBWArray = array();
 						$TBWArray_next = array();
@@ -635,14 +646,15 @@ class IndexController extends StatisticsBaseController{
 						$sql_2 = "  CALL  QDTB_ETICKET_CHARTS('{$stationfix_2_a}','{$stationfix_2_b}','{$channelfix_2}','{$_Search_start}','{$_Search_end}','{$_Search_start_next}','{$_Search_end_next}') ";
 						$Model_2 = M(""); // 实例化一个model对象 没有对应任何数据表
 						//
-						$cache_et = $_Search_flag.'_words_et'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
-						if(!S($cache_et)){
-							$array_ET = $Model_2->query($sql_2);
-							S($cache_et,$array_ET,7200,'File');
-						}else
-						{
-							$array_ET = S($cache_et);
-						}					
+                        $array_ET = $Model_2->query($sql_2);
+//						$cache_et = $_Search_flag.'_words_et'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
+//						if(!S($cache_et)){
+//							$array_ET = $Model_2->query($sql_2);
+//							S($cache_et,$array_ET,7200,'File');
+//						}else
+//						{
+//							$array_ET = S($cache_et);
+//						}
 						//
 						$Echannel = array();
 						$Estation = array();
@@ -705,13 +717,15 @@ class IndexController extends StatisticsBaseController{
 						$sql_3 = "  CALL  TBTJ_BX('{$_Search_start}','{$_Search_end}','{$_Search_start_next}','{$_Search_end_next}') ";
 						$Model_3 = M(""); // 实例化一个model对象 没有对应任何数据表
 						$cache_bx = $_Search_flag.'_words_bx_'.$_Search_start.'T'.$_Search_end.'Cp'.$_Search_start_next.'T'.$_Search_end_next;
-						if(!S($cache_bx)){
-							$array_BX = $Model_3->query($sql_3);
-							S($cache_bx,$array_BX,7200,'File');
-						}else
-						{
-							$array_BX = S($cache_bx);
-						}					
+                        //
+                        $array_BX = $Model_3->query($sql_3);
+//						if(!S($cache_bx)){
+//							$array_BX = $Model_3->query($sql_3);
+//							S($cache_bx,$array_BX,7200,'File');
+//						}else
+//						{
+//							$array_BX = S($cache_bx);
+//						}
 						//
 						$total_i = 0;
 						$total_i_ =0;
