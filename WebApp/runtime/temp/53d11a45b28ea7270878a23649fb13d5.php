@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:75:"D:\xampp\htdocs\WebApp\public/../application/admin\view\generate\index.html";i:1488899632;s:74:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\base.html";i:1488899632;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:75:"D:\xampp\htdocs\WebApp\public/../application/admin\view\generate\index.html";i:1510121258;s:74:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\base.html";i:1488899632;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -53,7 +53,18 @@
 
 <div class="page-container">
     <form class="form form-horizontal" id="form" method="post" action="<?php echo \think\Url::build('run'); ?>">
-        <div class="row cl">
+	<!-- 选项卡 start -->
+	<div id="tab_demo" class="HuiTab">
+	  <div class="tabBar clearfix">
+		<span>代码生成基本信息</span>
+		<span>表单信息</span>
+		<span>数据表信息</span>
+		<span>其他选项</span>
+	</div>
+	  <!-- 选项卡1 start -->
+	  <div class="tabCon">
+	  <!-- row cl -->
+		<div class="row cl">
             <label class="form-label col-xs-1">从数据表生成：</label>
             <div class="formControls col-xs-8">
                 <div class="select-box" style="width: 260px">
@@ -70,6 +81,7 @@
             </div>
             <div class="col-xs-2"></div>
         </div>
+		<!-- row cl -->
         <div class="row cl">
             <label class="form-label col-xs-1">生成文件：</label>
             <div class="formControls col-xs-8">
@@ -94,9 +106,9 @@
                 </div>
             </div>
             <div class="col-xs-2"></div>
-        </div>
-        <h2>控制器信息 ：</h2>
-        <div class="row cl">
+        </div>	  
+		<!-- row cl -->
+		<div class="row cl">
             <label class="form-label col-xs-1"><span class="c-red">*</span>模块：</label>
             <div class="formControls col-xs-8">
                 <input type="text" class="input-text" placeholder="默认为当前模块" name="module"
@@ -107,6 +119,7 @@
             </div>
             <div class="col-xs-2"></div>
         </div>
+		<!-- row cl -->
         <div class="row cl">
             <label class="form-label col-xs-1"><span class="c-red">*</span>控制器：</label>
             <div class="formControls col-xs-8">
@@ -118,7 +131,11 @@
             </div>
             <div class="col-xs-2"></div>
         </div>
-        <h2>表单信息 ：</h2>
+	  </div>
+	  <!-- 选项卡1 end -->
+	  <!-- 选项卡2 start -->
+	  <div class="tabCon">
+		<!-- row cl -->
         <table class="table-form table table-border table-bordered table-hover table-bg mt-20 skin-minimal">
             <thead>
             <tr class="text-c">
@@ -217,9 +234,12 @@
             </tr>
             </tbody>
         </table>
-
-        <?php if(!\think\Request::instance()->param('table')): ?>
-        <h2>数据表信息 ：</h2>
+	  </div>
+	  <!-- 选项卡2 end -->
+	  <!-- 选项卡3 start -->
+	  <div class="tabCon">
+		  <?php if(!\think\Request::instance()->param('table')): ?>
+		<!-- row cl -->
         <div class="row cl">
             <label class="form-label col-xs-1">数据表：</label>
             <div class="formControls col-xs-8 skin-minimal">
@@ -237,6 +257,7 @@
             </div>
             <div class="col-xs-3"></div>
         </div>
+		<!-- row cl -->
         <div class="row cl">
             <label class="form-label col-xs-1"></label>
             <div class="formControls col-xs-8">
@@ -244,6 +265,7 @@
             </div>
             <div class="col-xs-3"></div>
         </div>
+		<!-- row cl -->
         <div class="row cl">
             <label class="form-label col-xs-1"></label>
             <div class="formControls col-xs-8 skin-minimal">
@@ -261,6 +283,7 @@
             </div>
             <div class="col-xs-3"></div>
         </div>
+		<!-- table -->
         <table class="table-table table table-border table-bordered table-hover table-bg mt-20 skin-minimal">
             <thead>
             <tr class="text-c">
@@ -311,10 +334,23 @@
             </tr>
             </tbody>
         </table>
-        <?php endif; ?>
-        <h2>其他选项</h2>
+		<?php else: ?> 
+		<!-- row cl -->
         <div class="row cl">
-            <label class="form-label col-xs-1">首页菜单：</label>
+            <label class="form-label col-xs-1">数据表：</label>
+            <div class="formControls col-xs-8 skin-minimal">
+                <label>无需创建数据表，数据表已经存在</label>
+            </div>
+            <div class="col-xs-3"></div>
+        </div>
+        <?php endif; ?>
+	  </div>
+	  <!-- 选项卡3 end -->
+	  <!-- 选项卡4 start -->
+	  <div class="tabCon">
+		<!-- row cl -->
+		<div class="row cl">
+            <label class="form-label col-xs-1">按钮：</label>
             <div class="formControls col-xs-8 skin-minimal">
                 <div class="radio-box">
                     <input type="checkbox" name="menu[]" id="radio-0" value="add" checked>
@@ -343,6 +379,7 @@
             </div>
             <div class="col-xs-3"></div>
         </div>
+		<!-- row cl -->
         <div class="row cl">
             <label class="form-label col-xs-1">创建模型：</label>
             <div class="formControls col-xs-8 skin-minimal">
@@ -357,6 +394,7 @@
             </div>
             <div class="col-xs-3"></div>
         </div>
+		<!-- row cl -->
         <div class="row cl">
             <label class="form-label col-xs-1">验证器：</label>
             <div class="formControls col-xs-8 skin-minimal">
@@ -367,7 +405,7 @@
             </div>
             <div class="col-xs-3"></div>
         </div>
-
+		<!-- row cl -->
         <div class="row cl">
             <label class="form-label col-xs-1">删除代码：</label>
             <div class="formControls col-xs-8 skin-minimal">
@@ -378,11 +416,17 @@
             </div>
             <div class="col-xs-3"></div>
         </div>
-        <div class="row cl">
+		<!-- row cl -->
+		<div class="row cl">
             <div class="col-xs-8 col-xs-offset-1">
                 <button type="submit" class="btn btn-primary radius">&nbsp;&nbsp;确认创建&nbsp;&nbsp;</button>
             </div>
         </div>
+	  </div>
+	  <!-- 选项卡4 end -->
+	</div>
+	<!-- 选项卡 end -->        
+        
     </form>
 </div>
 
@@ -396,6 +440,8 @@
 <script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
 <script>
     $(function () {
+		//选项卡
+		$.Huitab("#tab_demo .tabBar span","#tab_demo .tabCon","current","click","0");
         table_fixed('.table-form');
         table_fixed('.table-table');
         $(".db-table").find("[value='<?php echo \think\Request::instance()->param('table'); ?>']").attr("selected",true);
