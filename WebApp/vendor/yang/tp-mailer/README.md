@@ -54,7 +54,7 @@
 use mailer\tp5\Mailer;
 
 $mailer = Mailer::instance();
-$mailer->from('tianpian0805@gmail.com', 'yuan1994')
+$mailer->from('yxh.network@gmail.com', 'yang')
     ->to('your-mail@domain.com')
     ->subject('纯文本测试')
     ->text('欢迎您使用Tp Mailer')
@@ -67,13 +67,13 @@ require_once '/path/to/tp-mailer/src/autoload.php';
 use mailer\tp32\Mailer;
 
 $mailer = Mailer::instance();
-$mailer->from('tianpian0805@gmail.com', 'yuan1994')
+$mailer->from('yxh.network@gmail.com', 'yang')
     ->to('your-mail@domain.com')
     ->subject('多行文本测试')
     ->line('PHPer们: ')
     ->line('欢迎你们使用Tp Mailer, 如果使用感觉很方面请给个Star, 也欢迎大家Fork帮忙完善')
     ->line()
-    ->line('yuan1994 <tianpian0805@gmail.com ' . date('Y-m-d'))
+    ->line('yang <yxh.network@gmail.com ' . date('Y-m-d'))
     ->attach('/path/to/文件名.pdf', '自定义文件名.pdf')
     ->send();
 ```
@@ -85,7 +85,7 @@ use mailer\tp31\Mailer;
 
 $mailer = Mailer::instance();
 $mailer->send(function($mailer, $message) {
-    $mailer->to('tianpian0805@gmail.com')
+    $mailer->to('yxh.network@gmail.com')
         ->subject('使用框架模板引擎渲染模板测试')
         ->view('mail:test', array(
             'param1' => '参数1',
@@ -100,20 +100,20 @@ $mailer->send(function($mailer, $message) {
 ### 使用 Composer 安装 (强烈推荐):
 支持 `psr-4` 规范, 开箱即用
 ```
-composer require yuan1994/tp-mailer
+composer require yang/tp-mailer
 ```
 
 ### github下载 或 直接手动下载源码:
 需手动引入自动载入文件
 
 #### 下载文件:
-git clone https://github.com/yuan1994/tp-mailer tp-mailer
+git clone https://github.com/yang/tp-mailer tp-mailer
 
 git clone https://github.com/swiftmailer/swiftmailer swiftmailer
 
 或者点击直接下载:
 
-[https://github.com/yuan1994/tp-mailer/archive/master.zip](https://github.com/yuan1994/tp-mailer/archive/master.zip)
+[https://github.com/yang/tp-mailer/archive/master.zip](https://github.com/yang/tp-mailer/archive/master.zip)
 
 [https://github.com/swiftmailer/swiftmailer/archive/5.x.zip](https://github.com/swiftmailer/swiftmailer/archive/5.x.zip)
 
@@ -222,18 +222,18 @@ $mailer = Mailer::instance('sendmail');
 ### 设置收件人
 以下几种方式任选一种
 ```
-$mailer->to(['tianpian0805@gmail.com']);
-$mailer->to(['tianpian0805@gmail.com' => 'yuan1994']);
-$mailer->to('tianpian0805@gmail.com', 'yuan1994');
-$mailer->to(['tianpian0805@qq.com', 'tianpian0805@gmail.com' => 'yuan1994']);
-$mailer->to(['tianpian0805@qq.com', 'tianpian0805@gmail.com', 'tianpian0805@163.com']);
+$mailer->to(['yxh.network@gmail.com']);
+$mailer->to(['yxh.network@gmail.com' => 'yang']);
+$mailer->to('yxh.network@gmail.com', 'yang');
+$mailer->to(['yxh.network@qq.com', 'yxh.network@gmail.com' => 'yang']);
+$mailer->to(['yxh.network@qq.com', 'yxh.network@gmail.com', 'yxh.network@163.com']);
 ```
 
 ### 设置发件人
 发件人邮箱地址必须和配置项里一致, 默认会自动设置发件地址 (配置里的addr) 和发件人 (配置里的name)
 ```
-$mailer->from('tianpian0805@gmail.com', 'yuan1994');
-$mailer->from(['tianpian0805@gmail.com' => 'yuan1994']);
+$mailer->from('yxh.network@gmail.com', 'yang');
+$mailer->from(['yxh.network@gmail.com' => 'yang']);
 ```
 
 ### 设置邮件主题
@@ -271,13 +271,13 @@ $mailer->text('欢迎使用{name}', ['name' => 'Tp Mailer']);
 $mailer->line('尊敬的 访客: ');
 $mailer->line('   欢迎您使用Tp Mailer');
 $mailer->line(); // 不传值默认输出空行
-$mailer->line('yuan1994 ' . date('Y-m-d') );
+$mailer->line('yang ' . date('Y-m-d') );
 // 以上历程输出
 /***************
 尊敬的 访客: 
    欢迎您使用Tp Mailer
    
-yuan1994 2016-12-01
+yang 2016-12-01
 ****************/
 ```
 
@@ -314,7 +314,7 @@ $mailer->view('admin@mail/register', ['account' => $account, 'name' => $name]);
 #### 示例
 ```
 Mailer::instance()
-    ->to('tianpian0805@gmail.com', 'yuan1994') 
+    ->to('yxh.network@gmail.com', 'yang') 
     ->subject('测试邮件模板中嵌入图片元数据')
     ->view('index@mail/index', [
         'date' => date('Y-m-d H:i:s'),     
@@ -334,7 +334,7 @@ Mailer::instance()
     <title>测试邮件</title>
 </head>
 <body>
-<p>尊敬的yuan1994:</p>
+<p>尊敬的yang:</p>
 <p>     这是一封模板测试邮件</p>
 <p>{$date}</p>
 <p>
@@ -346,7 +346,7 @@ Mailer::instance()
 在 HTML 中使用一样:
 ```
 Mailer::instance()
-    ->to('tianpian0805@gmail.com', 'yuan1994') 
+    ->to('yxh.network@gmail.com', 'yang') 
     ->subject('测试邮件模板中嵌入图片元数据')
     ->html('<img src="{image}" />图片测试', [
         'embed:image' => ROOT_PATH . 'image.jpg',
@@ -413,7 +413,7 @@ $mailer->priority(MailerConfig::PRIORITY_HIGHEST);
 
 ### Requesting a Read Receipt
 ```
-$mailer->readReceiptTo('tianpian0805@gamil.com');
+$mailer->readReceiptTo('yxh.network@gamil.com');
 ```
 
 ### 注册插件
@@ -434,7 +434,7 @@ $mailer->send();
 使用匿名函数, $mailer是 `Mailer` 对象, $message是 `Swift_Message` 对象
 ```
 $mailer->send(function ($mailer, $message) {
-    $mailer->to('tianpian0805@gmail.com')
+    $mailer->to('yxh.network@gmail.com')
         ->line('你好')
         ->line('这是一封测试邮件')
         ->subject('测试邮件');
@@ -444,7 +444,7 @@ $mailer->send(function ($mailer, $message) {
 ```
 $mailer->send(
     function ($mailer, $message) {
-        $mailer->to('tianpian0805@gmail.com')
+        $mailer->to('yxh.network@gmail.com')
             ->line('你好')
             ->line('这是一封测试邮件')
             ->subject('测试邮件');
@@ -462,7 +462,7 @@ $mailer->send(
 ```
 $mailer->send(
     function ($mailer, $message) {
-        $mailer->to('tianpian0805@gmail.com')
+        $mailer->to('yxh.network@gmail.com')
             ->line('你好')
             ->line('这是一封测试邮件')
             ->subject('测试邮件');
@@ -482,7 +482,7 @@ $mailer->send(
 
 以上所有方法 (除最后发送的方法 `send()`) 都支持连贯调用
 ```
-$mailer->to('tianpian0805@gmail.com')
+$mailer->to('yxh.network@gmail.com')
     ->subject('邮件主题')
     ->text('邮件内容')
     ->send();
@@ -491,7 +491,7 @@ $mailer->to('tianpian0805@gmail.com')
 如果执行过邮件发送过邮件发送之后, 需要重新初始化
 ```
 // 第一次发送
-$mailer->to('tianpian0805@gmail.com')
+$mailer->to('yxh.network@gmail.com')
     ->subject('邮件主题')
     ->text('邮件内容')
     ->send();
@@ -579,7 +579,7 @@ Mailer::addMethod('view', function ($template, $param = [], $config = [])
 
 // 不用use mailer\tp5\Mailer，直接使用mailer\lib\Mailer调用view方法发送邮件
 $ret = Mailer::instance()
-        ->to('tianpian0805@gmail.com')
+        ->to('yxh.network@gmail.com')
         ->subject('测试邮件')
         ->view('index@mail/index', [
             'date' => date('Y-m-d H:i:s'),
@@ -661,7 +661,7 @@ Mailer::addMethod('view', function ($template, $param = [], $config = [])
 
 // 第三步：发送邮件
 $ret = Mailer::instance()
-        ->to('tianpian0805@gmail.com')
+        ->to('yxh.network@gmail.com')
         ->subject('测试邮件')
         ->view('index@mail/index', [
             'date' => date('Y-m-d H:i:s'),
@@ -670,7 +670,7 @@ $ret = Mailer::instance()
         
 // 第三步 (2)：如果你不需要使用view方法，可以忽略第二步
 $ret = Mailer::instance()
-        ->to('tianpian0805@gmail.com')
+        ->to('yxh.network@gmail.com')
         ->subject('测试邮件')
         ->html('<img src="{image}"/>图片测试', [
             'embed:image' => 'http://image34.360doc.com/DownloadImg/2011/08/2222/16275597_64.jpg'
@@ -696,7 +696,7 @@ $mailer->attach(ROOT_PATH . 'foo.ext', function($attachment, $mailer) {
 
 
 ## Issues
-如果有遇到问题请提交 [issues](https://github.com/yuan1994/tp-mailer/issues)
+如果有遇到问题请提交 [issues](https://github.com/yang/tp-mailer/issues)
 
 
 ## License

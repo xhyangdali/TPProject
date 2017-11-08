@@ -26,7 +26,7 @@
         "topthink/think-captcha": "^1.0",
         "qiniu/php-sdk": "^7.0",
         "PHPOffice/PHPExcel": "^1.8",
-        "yuan1994/tp-mailer": "^0.2.3"
+        "yang/tp-mailer": "^0.2.3"
     },
     "extra": {
         "think-path": "thinkphp"
