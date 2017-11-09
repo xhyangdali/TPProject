@@ -129,6 +129,7 @@ function layer_open(title, url, opt) {
             return $(window).height() * num / 100 + 'px';
         });
     }
+	//console.log(w);
     return layer.open({
         type: opt.type || 2,
         area: [w, h],

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1488899632;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1510207887;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="__STATIC__/h-ui.admin/css/H-ui.admin.css" />
     <link rel="stylesheet" type="text/css" href="__LIB__/Hui-iconfont/1.0.7/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="__LIB__/icheck/icheck.css" />
-    <link rel="stylesheet" type="text/css" href="__STATIC__/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/h-ui.admin/skin/blue/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="__STATIC__/h-ui.admin/css/style.css" />
     <link rel="stylesheet" type="text/css" href="__STATIC__/css/app.css" />
     <!--[if IE 6]>
@@ -56,16 +56,16 @@
                     <li><?php echo \think\Session::get('realname'); ?></li>
                     <li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A"><?php echo \think\Session::get('real_name'); ?> <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" onclick="layer_open('个人信息', '<?php echo \think\Url::build('Pub/profile'); ?>')">个人信息</a></li>
-                            <li><a href="javascript:;" onclick="layer_open('个人信息', '<?php echo \think\Url::build('Pub/password'); ?>')">修改密码</a></li>
+                            <li><a href="javascript:;" onclick="layer_open('个人信息', '<?php echo \think\Url::build('Pub/profile'); ?>',{'w':'600px','h':'400px'})">个人信息</a></li>
+                            <li><a href="javascript:;" onclick="layer_open('个人信息', '<?php echo \think\Url::build('Pub/password'); ?>',{'w':'400px','h':'300px'})">修改密码</a></li>
                             <li><a href="javascript:;" onclick="logout()">退出</a></li>
                         </ul>
                     </li>
                     <li id="Hui-msg"> <a href="javascript:;" onclick="layer.msg('这个功能自己做')" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
                     <li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
-                            <li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
+                            <li><a href="javascript:;" data-val="blue" title="默认（蓝色）">默认（蓝色）</a></li>
+                            <li><a href="javascript:;" data-val="default" title="黑色">黑色</a></li>
                             <li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
                             <li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
                             <li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
