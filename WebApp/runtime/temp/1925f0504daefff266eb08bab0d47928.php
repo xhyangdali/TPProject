@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"D:\xampp\htdocs\WebApp\public/../application/admin\view\pub\login.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"D:\xampp\htdocs\WebApp\public/../application/admin\view\pub\login.html";i:1510118913;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -69,7 +69,7 @@
         </form>
     </div>
 </div>
-<div class="footer">Copyright yuan1994 by <?php echo \think\Config::get('site.name'); ?> <?php echo \think\Config::get('site.version'); ?></div>
+<div class="footer">Copyright xhyang by <?php echo \think\Config::get('site.name'); ?> <?php echo \think\Config::get('site.version'); ?></div>
 <script type="text/javascript" src="__LIB__/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="__LIB__/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
