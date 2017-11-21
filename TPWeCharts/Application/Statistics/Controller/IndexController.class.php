@@ -104,8 +104,38 @@ class IndexController extends StatisticsBaseController{
 						$_Search_end = $_Search_start;
 					}
 				}		
+				
 				$cache_charts = 'charts'.$_Search_start.'VS'.$_Search_end;
 				if(!S($cache_charts)){
+					//电子卡占比统计
+					$sql_ = "  CALL  ZB_ETICKET_CHARTS('{$_Search_start}','{$_Search_end}') ";
+					$Model_ = M(""); // 实例化一个model对象 没有对应任何数据表
+					$array_ZB = $Model_->query($sql_);
+					$ZB_ck=0;
+					$ZB_et=0;
+					$ZB_ck_t=0;
+					$ZB_et_t=0;
+					if(count($array_ZB)>0){
+						foreach($array_ZB as $v)
+						{
+							if($v["flag"] == "CK")
+							{
+								$ZB_ck_t = $v["t_num"];
+								$ZB_ck = $v["m_num"];
+							}else{
+								$ZB_et_t = $v["t_num"];
+								$ZB_et = $v["m_num"];
+							}
+						}
+					}
+					$ZB_m = $ZB_et/($ZB_ck+$ZB_et);
+					$ZB_m = number_format($ZB_m,2,".","");
+					$ZB_n = $ZB_et_t/($ZB_ck_t+$ZB_et_t);
+					$ZB_n = number_format($ZB_n,2,".","");
+					$ZB_result = array(
+						"ZB_m" => $ZB_m,
+						"ZB_n" => $ZB_n
+					);
 					//关区窗口售票数据查询
 					$stationfix ="10%";//关区客运站标志过滤符号
 					$channelfix ="10%";//渠道标志过滤符号 窗口
@@ -225,7 +255,8 @@ class IndexController extends StatisticsBaseController{
 							'Estation' =>$Estation,//电子票对比客运站
 							'ex_data_ticket' => $ex_data_ticket,//客票数目
 							'ex_data_money' => $ex_data_money,//客票金额
-							'array_ET' =>$array_ET
+							'array_ET' =>$array_ET,
+							'ZB_result' => $ZB_result /* 占比：电子客票与窗口票 */
 						);
 					S($cache_charts,$iresult,7200,'File');
 				}else{
