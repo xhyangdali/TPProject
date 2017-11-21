@@ -12,11 +12,11 @@ class IndexController extends StatisticsBaseController{
 	 * 查询统计页面
 	 */
 	public function Index(){
-		$setuid = new \Statistics\Controller\Imp();
+		//$setuid = new \Statistics\Controller\Imp();
 		//$uid = $setuid->useruid();
 		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" ) ) {
 			$setuid = new \Statistics\Controller\Imp();
-			//$uid = $setuid->useruid();
+			$uid = $setuid->useruid();
 		}
 		$ip = get_client_ip();
 		//查询条件
@@ -41,7 +41,7 @@ class IndexController extends StatisticsBaseController{
 		//$uid = $setuid->useruid();
 		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" )  ) {
 			$setuid = new \Statistics\Controller\Imp();
-			//$uid = $setuid->useruid();
+			$uid = $setuid->useruid();
 		}
 		$ip = get_client_ip();
 		//查询条件
@@ -64,7 +64,7 @@ class IndexController extends StatisticsBaseController{
 		//$uid = $setuid->useruid();
 		if(!$_SESSION['user_'] && ( !$_SESSION['user_']['id']  || $_SESSION['user_']['access'] != "0" ) ) {
 			$setuid = new \Statistics\Controller\Imp();
-			//$uid = $setuid->useruid();
+			$uid = $setuid->useruid();
 		}
 		$ip = get_client_ip();
 		//查询条件
