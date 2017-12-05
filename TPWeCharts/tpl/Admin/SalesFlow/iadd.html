@@ -531,7 +531,7 @@ div:active{
 	{
 		var totalticketnum = $("#totalticketnum").val();
 		var totalmoneynum = $("#totalmoneynum").val();
-		var windowcount = 0,moneycount=0;
+		var windowcount = 0,moneycount= 0,tcount= 0 ;
 
 		submitmsg ="";
 		$("table tr[name]").each(function(index){
@@ -562,15 +562,17 @@ div:active{
 		if(parseInt(totalticketnum).toString() != "NaN") {
 			tnum = eval(parseInt(totalticketnum) - windowcount);
 		}
+
 		if(parseFloat(totalmoneynum).toString() != "NaN") {
 			mnum = eval(parseFloat(totalmoneynum) - moneycount);
 		}
-
+		///
+		///TODO 合计票数处理 不记录窗口售票数目
+		///
 		if(tnum <0)
 		{
 			tnum =0;
-			submitmsg +="合计票数必须要大于等于各分项票数之和!";
-			layer.alert(submitmsg, {icon: 2});
+			submitmsg ="";
 		}
 		var _br = submitmsg==""?"":"<br/>";
 		if(mnum <0)
@@ -580,7 +582,7 @@ div:active{
 			layer.alert(submitmsg, {icon: 2});
 		}
 		mnum = mnum.toFixed(2);
-		$("#"+_WCODE+"_ticketnum").val(tnum);
+		$("#totalticketnum").val(windowcount);
 		$("#"+_WCODE+"_moneynum").val(mnum);
 	}
 	//页面数据初始化

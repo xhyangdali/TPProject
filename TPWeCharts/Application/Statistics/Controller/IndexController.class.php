@@ -128,9 +128,9 @@ class IndexController extends StatisticsBaseController{
 							}
 						}
 					}
-					$ZB_m = $ZB_et/($ZB_ck+$ZB_et);
+					$ZB_m = ($ZB_et/($ZB_ck+$ZB_et))*100;
 					$ZB_m = number_format($ZB_m,2,".","");
-					$ZB_n = $ZB_et_t/($ZB_ck_t+$ZB_et_t);
+					$ZB_n = ($ZB_et_t/($ZB_ck_t+$ZB_et_t))*100;
 					$ZB_n = number_format($ZB_n,2,".","");
 					$ZB_result = array(
 						"ZB_m" => $ZB_m,

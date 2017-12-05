@@ -446,12 +446,16 @@ div:active{
 		if(parseFloat(totalmoneynum).toString() != "NaN") {
 			mnum = eval(parseFloat(totalmoneynum) - moneycount);
 		}
-
+		///
+		///TODO 合计票数处理 不记录窗口售票数目
+		///
 		if(tnum <0)
 		{
-			tnum =0;
-			submitmsg +="合计票数必须要大于等于各分项票数之和!";
-			layer.alert(submitmsg, {icon: 2});
+			var t_ = eval(parseInt(totalticketnum) - tnum);
+			$("#totalticketnum").val(t_);
+			submitmsg ="";
+		}else {
+			$("#"+_WCODE+"_ticketnum").val(tnum);
 		}
 		var _br = submitmsg==""?"":"<br/>";
 		if(mnum <0)
@@ -461,7 +465,6 @@ div:active{
 			layer.alert(submitmsg, {icon: 2});
 		}
 		mnum = mnum.toFixed(2);
-		$("#"+_WCODE+"_ticketnum").val(tnum);
 		$("#"+_WCODE+"_moneynum").val(mnum);
 	}
 	//页面数据初始化
