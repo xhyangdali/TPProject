@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1510207887;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1512971011;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1512971033;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -38,10 +38,13 @@
 <body>
 <header class="navbar-wrapper">
     <div class="navbar navbar-fixed-top">
-        <div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="<?php echo \think\Url::build('/admin'); ?>"><?php echo \think\Config::get('site.name'); ?></a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="<?php echo \think\Url::build('/admin'); ?>">tp</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs"><?php echo \think\Config::get('site.version'); ?></span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+        <div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="<?php echo \think\Url::build('/admin'); ?>"><?php echo \think\Config::get('site.name'); ?></a>
+            <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="<?php echo \think\Url::build('/admin'); ?>">tp</a>
+            <span class="logo navbar-slogan f-l mr-10 hidden-xs"><?php echo \think\Config::get('site.version'); ?></span>
+            <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
             <nav class="nav navbar-nav">
     <ul class="cl">
-        <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
+        <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 快捷菜单 <i class="Hui-iconfont">&#xe6d5;</i></a>
             <ul class="dropDown-menu menu radius box-shadow">
                 <li><a href="javascript:;" onclick="layer_open('回调测试', '<?php echo \think\Url::build('welcome'); ?>', {fn:function() {layer.msg('我是回调，弹层加载完成后触发')}});"><i class="Hui-iconfont">&#xe616;</i> 自己随意</a></li>
                 <li><a href="javascript:;" onclick="full_page('关窗警告测试', '<?php echo \think\Url::build('welcome'); ?>', {confirm:true});"><i class="Hui-iconfont">&#xe613;</i> 添加菜单</a></li>

@@ -775,12 +775,13 @@
                     bottom: '15%',
                     containLabel: true
                 },
+				calculable : true,
                 xAxis: {
                     type: 'category',
                     boundaryGap: false,
                     data: xfckstation,
 					axisLabel:{
-							interval:0,//横轴信息全部显示
+							interval:0,//横轴信息全部显示  var colors_ = ['#40e0d0','#ff6666','#ff6666'];
 							rotate:60,//-30度角倾斜显示
 						}
                 },
@@ -791,13 +792,29 @@
                     {
                         name:'本时段',
                         type:'line',
-                        stack: '总量',
+                        stack: '总量Now',
+						markLine : {
+							itemStyle:{
+								normal:{lineStyle:{type:'dash',color:'#40e0d0'},label:{show:true,position:'left'}}
+							},
+							data : [
+								{type : 'average', name: '平均值'}
+							]
+						},
                         data:xf_now_ck
                     },
                     {
                         name:'上时段',
                         type:'line',
-                        stack: '总量',
+                        stack: '总量Next',
+						markLine : {
+							itemStyle:{
+								normal:{lineStyle:{type:'dash',color:'#ff6666'},label:{show:true,position:'left'}}
+							},
+							data : [
+								{type : 'average', name: '平均值'}
+							]
+						},
                         data:xf_next_ck
                     }
                 ]
