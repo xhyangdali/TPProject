@@ -172,4 +172,12 @@ class Demo extends Controller
     {
         return $this->view->fetch();
     }
+
+    /**
+     * 百度图表控件使用
+     */
+    public function echarts()
+    {
+        return $this->view->fetch();
+    }
 }

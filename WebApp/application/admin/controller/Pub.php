@@ -95,7 +95,8 @@ class Pub
             Session::clear();
             $this->success('登出成功！', Config::get('rbac.user_auth_gateway'));
         } else {
-            $this->error('已经登出！', Config::get('rbac.user_auth_gateway'));
+            //Session::clear();
+           $this->error('已经登出！', Config::get('rbac.user_auth_gateway'));
         }
     }
 

@@ -22,7 +22,7 @@ class AdminUser extends Controller
     protected function filter(&$map)
     {
         //不查询管理员
-        $map['id'] = ["gt", 1];
+        $map['id'] = ["egt", 1];
 
         if ($this->request->param('realname')) {
             $map['realname'] = ["like", "%" . $this->request->param('realname') . "%"];

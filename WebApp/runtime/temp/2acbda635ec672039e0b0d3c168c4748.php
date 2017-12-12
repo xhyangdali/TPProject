@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1512971011;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1512971033;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1512985307;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1512971033;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -119,9 +119,31 @@
 <script type="text/javascript" src="__STATIC__/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript" src="__STATIC__/js/app.js"></script>
 <script>
+    var url_logout = '<?php echo \think\Url::build("Pub/logout"); ?>';
+    //系统登出
     function logout() {
         layer.confirm('您确定要退出登录？',{title:'登出提醒'},function (index) {
-            location.href = '<?php echo \think\Url::build("Pub/logout"); ?>'
+            location.href = url_logout;
+//            var index = layer.load(1, {
+//                shade: [0.1,'#fff'] //0.1透明度的白色背景
+//            });
+//            $.ajax({
+//                url:url_logout,
+//                type:"POST",
+//                data:{},
+//                dataType:"json",
+//                error:function(data){
+//                    layer.close(index);
+//
+//                },
+//                success:function(data){
+//                    if(data)
+//                    {
+//                        layer.close(index);
+//                        location.href = url_logout;
+//                    }
+//                }
+//            });
         })
     }
 </script>

@@ -92,9 +92,31 @@
 <script type="text/javascript" src="__STATIC__/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript" src="__STATIC__/js/app.js"></script>
 <script>
+    var url_logout = '{:\\think\\Url::build("Pub/logout")}';
+    //系统登出
     function logout() {
         layer.confirm('您确定要退出登录？',{title:'登出提醒'},function (index) {
-            location.href = '{:\\think\\Url::build("Pub/logout")}'
+            location.href = url_logout;
+//            var index = layer.load(1, {
+//                shade: [0.1,'#fff'] //0.1透明度的白色背景
+//            });
+//            $.ajax({
+//                url:url_logout,
+//                type:"POST",
+//                data:{},
+//                dataType:"json",
+//                error:function(data){
+//                    layer.close(index);
+//
+//                },
+//                success:function(data){
+//                    if(data)
+//                    {
+//                        layer.close(index);
+//                        location.href = url_logout;
+//                    }
+//                }
+//            });
         })
     }
 </script>

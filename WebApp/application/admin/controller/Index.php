@@ -40,7 +40,7 @@ class Index extends Controller
         // 获取授权节点分组信息
         $groups_id = array_unique($groups_id);
         if (!$groups_id) {
-            exception("没有权限");
+            //exception("没有权限");
         }
         $groups = Db::name("AdminGroup")->where(['id' => ['in', $groups_id], 'status' => "1"])->order("sort asc,id asc")->field('id,name,icon')->select();
 
@@ -63,11 +63,30 @@ class Index extends Controller
 
             $this->view->assign("last_login_ip", $last_login_ip);
             $this->view->assign("last_login_loc", implode(" ", $last_login_loc));
-
         }
         $current_login_ip = $this->request->ip();
         $current_login_loc = \Ip::find($current_login_ip);
-
+        $diskfree = intval(diskfreespace( "." )/(1024 * 1024 * 1024 ) ).'GB';
+        $server_ip = gethostbyname($_SERVER ["SERVER_NAME"]);
+        $port = $_SERVER["SERVER_PORT"];
+        $PC_Name = $_SERVER['SERVER_NAME'];//服务器用户名
+        $software = $_SERVER["SERVER_SOFTWARE"];
+        $serverinfo =  php_uname();
+        $time_l = get_cfg_var("max_execution_time")."秒 ";
+        $max_mem = get_cfg_var ("memory_limit")?get_cfg_var("memory_limit"):"无";
+        $lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'];//服务器语言
+        $bj_time = gmdate("Y-m-d H:i:s",time() + 8 * 3600);
+        //
+        $this->view->assign("bj_time", $bj_time);
+        $this->view->assign("lang", $lang);
+        $this->view->assign("time_l", $time_l);
+        $this->view->assign("max_mem", $max_mem);
+        $this->view->assign("serverinfo", $serverinfo);
+        $this->view->assign("software", $software);
+        $this->view->assign("PC_Name", $PC_Name);
+        $this->view->assign("port", $port);
+        $this->view->assign("server_ip", $server_ip);
+        $this->view->assign("diskfree", $diskfree);
         $this->view->assign("current_login_ip", $current_login_ip);
         $this->view->assign("current_login_loc", implode(" ", $current_login_loc));
 
