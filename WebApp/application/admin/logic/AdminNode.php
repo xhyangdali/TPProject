@@ -15,7 +15,7 @@ class AdminNode
     public function getMenu()
     {
         if (ADMIN) {
-            $nodes = Db::name("AdminNode")->where("status=1 AND group_id > 0")->field("id,pid,name,group_id,title,type")->select();
+            $nodes = Db::name("AdminNode")->where("status=1 AND group_id > 0")->field("id,pid,name,group_id,title,type")->order("sort ASC")->select();
         } else {
             $prefix = Config::get("database.prefix");
             $sql = "SELECT node.id,node.name,node.pid,node.group_id,node.title,node.type from "

@@ -1,0 +1,6 @@
+<form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+    <input type="text" class="input-text" style="width:250px" placeholder="上级机构" name="pid" value="{$Request.param.pid}" >
+    <input type="text" class="input-text" style="width:250px" placeholder="机构名称" name="name" value="{$Request.param.name}" >
+    <input type="text" class="input-text" style="width:250px" placeholder="组织机构编码" name="orgcode" value="{$Request.param.orgcode}" >
+    <button type="submit" class="btn btn-success"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+</form>

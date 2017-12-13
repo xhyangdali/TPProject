@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\demo\qrcode.html";i:1488899632;s:74:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\base.html";i:1488899632;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\demo\qrcode.html";i:1513149244;s:74:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\base.html";i:1488899632;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -81,7 +81,7 @@
 <script type="text/javascript" src="__LIB__/showdown/1.4.2/showdown.min.js"></script>
 <script>
     $(function () {
-        var url = 'https://github.com/yuan1994/tpadmin';
+        var url = 'https://xhyangdali.github.io/';
         var qrcode = new QRCode(document.getElementById("qrcode"), {
             text: url,
             width: 128,

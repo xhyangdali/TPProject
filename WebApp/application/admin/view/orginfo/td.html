@@ -1,0 +1,8 @@
+<td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+<td>{$vo.pid|high_light=$Request.param.pid}</td>
+<td>{$vo.name|high_light=$Request.param.name}</td>
+<td>{$vo.orgcode|high_light=$Request.param.orgcode}</td>
+<td>{$vo.remark}</td>
+<td>{$vo.address}</td>
+<td>{$vo.mobile}</td>
+<td>{$vo.status|get_status}</td>

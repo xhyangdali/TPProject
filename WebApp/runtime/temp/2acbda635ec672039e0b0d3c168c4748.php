@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1512985307;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1512971033;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1513148848;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1512971033;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -67,7 +67,7 @@
                     <li id="Hui-msg"> <a href="javascript:;" onclick="layer.msg('这个功能自己做')" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
                     <li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" data-val="blue" title="默认（蓝色）">默认（蓝色）</a></li>
+                            <li><a href="javascript:;" id="a_default_skin" data-val="blue" title="默认（蓝色）">默认（蓝色）</a></li>
                             <li><a href="javascript:;" data-val="default" title="黑色">黑色</a></li>
                             <li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
                             <li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
@@ -104,7 +104,10 @@
                 <li class="active"><span title="我的桌面" data-href="welcome.html">我的桌面</span><em></em></li>
             </ul>
         </div>
-        <div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
+        <div class="Hui-tabNav-more btn-group">
+            <a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a>
+            <a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a>
+        </div>
     </div>
     <div id="iframe_box" class="Hui-article">
         <div class="show_iframe">
@@ -121,6 +124,10 @@
 <script>
     var url_logout = '<?php echo \think\Url::build("Pub/logout"); ?>';
     //系统登出
+    $(function(){
+        //选择默认皮肤
+        $("#a_default_skin").trigger("click");
+    });
     function logout() {
         layer.confirm('您确定要退出登录？',{title:'登出提醒'},function (index) {
             location.href = url_logout;

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:76:"D:\xampp\htdocs\WebApp\public/../application/admin\view\admin_node\edit.html";i:1488899632;s:74:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\base.html";i:1488899632;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:76:"D:\xampp\htdocs\WebApp\public/../application/admin\view\admin_node\edit.html";i:1513155131;s:74:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\base.html";i:1488899632;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -45,6 +45,18 @@
         <input type="hidden" name="pid" value="<?php echo isset($vo['pid']) ? $vo['pid'] :  '0'; ?>">
         <input type="hidden" name="level" value="<?php echo isset($vo['level']) ? $vo['level'] :  '1'; ?>">
         <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">父级节点：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="pid" class="select">
+                        <option value="0">顶级结点</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <!-- cl -->
+        <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">分组：</label>
             <div class="formControls col-xs-6 col-sm-6">
                 <div class="select-box">
@@ -58,6 +70,22 @@
             </div>
             <div class="col-xs-3 col-sm-3"></div>
         </div>
+        <!-- cl -->
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">层级：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <div class="select-box">
+                    <select name="level" class="select">
+                        <option value="1">层级 1</option>
+                        <option value="2">层级 2</option>
+                        <option value="3">层级 3</option>
+                        <option value="4">层级 4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+        <!-- cl -->
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>标题：</label>
             <div class="formControls col-xs-6 col-sm-6">
