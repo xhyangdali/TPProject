@@ -278,4 +278,111 @@ class AdminNode extends Controller
             return $this->view->fetch();
         }
     }
+    /*
+     * 依据编码获得父级节点信息及所有节点信息（pid=0）
+     * xhy
+     * */
+    public function GetParentNodeByPid()
+    {
+        $postdata = $this->request->post();
+        $data = array();
+        $msg = "成功！";
+        $code = "0";
+        $select_id = "0";
+        if($postdata['pid'] != "")
+        {
+            $pid = $postdata['pid'];
+            $db_node = Db::name("AdminNode");
+            if($pid == "0") {
+                $select_id = $pid;
+                $map = array(
+                    "isdelete" => 0,
+                    "pid" =>$pid
+                );
+                $node = $db_node->where($map)->field("id,pid,name,title,level")->select();
+                if(!empty($node)){
+                    foreach($node as $item)
+                    {
+                        $select_id = $item['id'];
+                    }
+                }
+                $data = $node;
+            }else{
+                $map = array(
+                    "isdelete" => 0,
+                    "id" =>$pid
+                );
+                $node = $db_node->where($map)->field("id,pid,name,title,level,group_id")->select();
+                if(!empty($node))
+                {
+                    $group_id = 0;
+                    foreach($node as $item)
+                    {
+                        $group_id = $item['group_id'];
+                        $pid = $item['pid'];
+                        $select_id = $item['id'];
+                    }
+                    $data = $node;
+                }
+            }
+
+        }else{
+            $msg = "参数不正确！";
+            $code = "1";
+        }
+        $arr = array(
+            "sid" => $select_id,
+            "list" => $data
+        );
+        return ajax_return($arr,$msg,$code);
+    }
+    /*
+     * 依据编码获得父级节点信息及所有节点信息（id=0）
+     * xhy
+     * */
+    public function GetNodeByid()
+    {
+        $postdata = $this->request->post();
+        $data = array();
+        $msg = "成功！";
+        $code = "0";
+        $select_id = "0";
+        $level = 1;
+        if($postdata['id'] != "")
+        {
+            $id = $postdata['id'];
+            $db_node = Db::name("AdminNode");
+            $map = array(
+                "isdelete" => 0,
+                "id" =>$id
+            );
+            //获得本条记录信息
+            $node = $db_node->where($map)->field("id,pid,name,title,level,group_id")->select();
+            if(!empty($node)){
+                $pid = 0;
+                foreach($node as $item)
+                {
+                    $pid = $item['pid'];
+                    $group_id = $item['group_id'];
+                    $level = $item['level'];
+                }
+                //
+                $map_ = array(
+                    "isdelete" => 0,
+                    "id" =>$pid
+                );
+                $node_ = $db_node->where($map_)->field("id,pid,name,title,level")->select();
+                $data = $node_;
+            }
+        }else{
+            $msg = "参数不正确！";
+            $code = "1";
+        }
+        $arr = array(
+            "list" => $data,
+            "sid" => $pid,
+            "level" => $level
+        );
+        return ajax_return($arr,$msg,$code);
+    }
 }

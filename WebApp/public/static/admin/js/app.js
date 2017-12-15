@@ -1,5 +1,5 @@
 /**
- * Created by yxh <2048846248@gamil.com> on 16-10-2.
+ * Created by yxh <2048846248@qq.com> on 16-10-2.
  */
 
 $(function () {
@@ -34,6 +34,7 @@ $(function () {
         $(".Hui-aside .menu_dropdown [_href]").removeClass('focus');
         $(this).addClass('focus');
         Hui_admin_tab(this);
+        //$("#div_tools").css("display","block");
     });
 
     /* 生成面包屑导航 */

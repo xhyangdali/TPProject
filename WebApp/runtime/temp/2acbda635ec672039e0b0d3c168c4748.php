@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1513148848;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1512971033;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1513329807;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1512971033;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -57,6 +57,12 @@
             <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                 <ul class="cl">
                     <li><?php echo \think\Session::get('realname'); ?></li>
+                    <li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">关闭选项卡<i class="Hui-iconfont">&#xe6d5;</i></a>
+                        <ul class="dropDown-menu menu radius box-shadow">
+                            <li><a id="a_closeall" href="javascript:;" ><i class="Hui-iconfont">&#xe706;</i>关闭所有</a></li>
+                            <li><a id="a_close" href="javascript:;" ><i class="Hui-iconfont">&#xe60b;</i>除此之外关闭所有</a></li>
+                        </ul>
+                    </li>
                     <li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A"><?php echo \think\Session::get('real_name'); ?> <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
                             <li><a href="javascript:;" onclick="layer_open('个人信息', '<?php echo \think\Url::build('Pub/profile'); ?>',{'w':'600px','h':'400px'})">个人信息</a></li>
@@ -104,9 +110,10 @@
                 <li class="active"><span title="我的桌面" data-href="welcome.html">我的桌面</span><em></em></li>
             </ul>
         </div>
-        <div class="Hui-tabNav-more btn-group">
-            <a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a>
-            <a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a>
+
+        <div id="div_tools" class="Hui-tabNav-more btn-group">
+            <a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe67d;</i></a>
+            <a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe63d;</i></a>
         </div>
     </div>
     <div id="iframe_box" class="Hui-article">
@@ -127,6 +134,7 @@
     $(function(){
         //选择默认皮肤
         $("#a_default_skin").trigger("click");
+        //$("#div_tools").css("display","block");
     });
     function logout() {
         layer.confirm('您确定要退出登录？',{title:'登出提醒'},function (index) {

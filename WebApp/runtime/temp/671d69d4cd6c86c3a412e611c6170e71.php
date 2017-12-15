@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:76:"D:\xampp\htdocs\WebApp\public/../application/admin\view\admin_node\edit.html";i:1513155131;s:74:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\base.html";i:1488899632;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:76:"D:\xampp\htdocs\WebApp\public/../application/admin\view\admin_node\edit.html";i:1513324580;s:74:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\base.html";i:1488899632;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -42,13 +42,11 @@
 <div class="page-container">
     <form class="form form-horizontal" id="form" method="post" action="<?php echo \think\Request::instance()->baseUrl(); ?>">
         <input type="hidden" name="id" value="<?php echo isset($vo['id']) ? $vo['id'] :  ''; ?>">
-        <input type="hidden" name="pid" value="<?php echo isset($vo['pid']) ? $vo['pid'] :  '0'; ?>">
-        <input type="hidden" name="level" value="<?php echo isset($vo['level']) ? $vo['level'] :  '1'; ?>">
         <div class="row cl">
             <label class="form-label col-xs-3 col-sm-3">父级节点：</label>
             <div class="formControls col-xs-6 col-sm-6">
                 <div class="select-box">
-                    <select name="pid" class="select">
+                    <select name="pid" id="pid" class="select">
                         <option value="0">顶级结点</option>
                     </select>
                 </div>
@@ -75,7 +73,7 @@
             <label class="form-label col-xs-3 col-sm-3">层级：</label>
             <div class="formControls col-xs-6 col-sm-6">
                 <div class="select-box">
-                    <select name="level" class="select">
+                    <select id="level" name="level" class="select">
                         <option value="1">层级 1</option>
                         <option value="2">层级 2</option>
                         <option value="3">层级 3</option>
@@ -157,11 +155,82 @@
 
 <script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
 <script>
+    var url = '<?php echo \think\Url::build("admin_node/GetParentNodeByPid"); ?>';
+    var url_edit = '<?php echo \think\Url::build("admin_node/GetNodeByid"); ?>';
     $(function () {
+        (function ($) {
+            $.getUrlParam = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            }
+        })(jQuery);
         $("[name='status'][value='<?php echo isset($vo['status']) ? $vo['status'] :  '1'; ?>']").attr("checked", true);
         $("[name='type'][value='<?php echo isset($vo['type']) ? $vo['type'] :  '1'; ?>']").attr("checked", true);
         $("[name='group_id']").find("[value='<?php echo isset($vo['group_id']) ? $vo['group_id'] :  '0'; ?>']").attr("selected", true);
-
+        var pid = $.getUrlParam('pid');
+        var id = $.getUrlParam('id');
+        if(pid)
+        {
+            //添加时候数据加载
+            $.ajax({
+                url:url,
+                type:"POST",
+                data:{ pid : pid },
+                dataType:"json",
+                error:function(data){
+                },
+                success:function(data){
+                    if(data)
+                    {
+                        if(data.code == 0)
+                        {
+                            var sid = data.data.sid;
+                            var list = data.data.list;
+                            if(list){
+                                $("#pid").empty();
+                                var html_ = ' <option value="0">顶级结点</option>';
+                                $.each(list,function(index,item){
+                                    html_ += ' <option value="'+item.id+'">'+item.title+'</option>';
+                                });
+                                $("#pid").html(html_);
+                            }
+                        }
+                    }
+                }
+            });
+        }else{
+            //修改时候数据加载
+            $.ajax({
+                url:url_edit,
+                type:"POST",
+                data:{ id : id },
+                dataType:"json",
+                error:function(data){
+                },
+                success:function(data){
+                    if(data)
+                    {
+                        if(data.code == 0)
+                        {
+                            var list = data.data.list;
+                            var sid = data.data.sid;
+                            var level = data.data.level;
+                            if(list){
+                                $("#pid").empty();
+                                var html_ = ' <option value="0">顶级结点</option>';
+                                $.each(list,function(index,item){
+                                    html_ += ' <option value="'+item.id+'">'+item.title+'</option>';
+                                });
+                                $("#pid").html(html_);
+                                $("#pid").val(sid);
+                                $("#level").val(level);
+                            }
+                        }
+                    }
+                }
+            });
+        }
         $('.skin-minimal input').iCheck({
             checkboxClass: 'icheckbox-blue',
             radioClass: 'iradio-blue',

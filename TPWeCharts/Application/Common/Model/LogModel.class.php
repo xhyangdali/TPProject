@@ -29,7 +29,8 @@ class LogModel extends BaseModel{
 			if( $_SESSION['user']['id'] && empty($_SESSION['user_']['id'])) {
 				$log->class_obj = $_SESSION['user']['id'];
 			}else{
-				$log->class_obj = $_SESSION['user_']['id'];
+				//TODO 微信识别号码长度不足！
+				$log->class_obj = substr($_SESSION['user_']['id'],0,32);
 			}
 			$log->op_time = $now_time;
 			$log->result = $result;
@@ -39,7 +40,28 @@ class LogModel extends BaseModel{
 			return $isok;
 		}else
 		{
-			return 0;
+			$now_time = time();
+			$log = D("Log");
+			if($_SESSION['user']['username'] && empty($_SESSION['user_']['name']) ) {
+				$log->user_name = $_SESSION['user']['username'];
+			}else{
+				$log->user_name = $_SESSION['user_']['name'];
+			}
+			$log->action = $action;
+			$log->class_name = $class_name;
+			//日志记录处理
+			if( $_SESSION['user']['id'] && empty($_SESSION['user_']['id'])) {
+				$log->class_obj = $_SESSION['user']['id'];
+			}else{
+				//TODO 微信识别号码长度不足！
+				$log->class_obj = substr($_SESSION['user_']['id'],0,32);
+			}
+			$log->op_time = $now_time;
+			$log->result = $result;
+			$log->OldData = $OldData;
+			//写入日志
+			$isok = $log->add();
+			return $isok;
 		}
 	}
 

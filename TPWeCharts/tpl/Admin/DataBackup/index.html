@@ -104,8 +104,13 @@
 							$("#showmsg").find("p").html(data.msg + "开始备份，请不要关闭本页面！");
 							backup(data.tab);
 							window.onbeforeunload = function(){ return "正在备份数据库，请不要关闭！" }
-						} else {
-							
+						} else if(data.info){
+							layer.msg(data.info, {
+								icon: -1,
+								time: 3000 //2秒关闭（如果不配置，默认是3秒）
+							}, function(){
+								//do something
+							});
 						}
 					},
 					"json"
