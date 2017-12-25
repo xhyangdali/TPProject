@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1513329807;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1512971033;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"D:\xampp\htdocs\WebApp\public/../application/admin\view\index\index.html";i:1513558330;s:85:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\javascript_vars.html";i:1488899632;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_left.html";i:1513557492;s:78:"D:\xampp\htdocs\WebApp\public/../application/admin\view\template\nav_menu.html";i:1488899632;}*/ ?>
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
@@ -44,7 +44,7 @@
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
             <nav class="nav navbar-nav">
     <ul class="cl">
-        <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 快捷菜单 <i class="Hui-iconfont">&#xe6d5;</i></a>
+        <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"> 快捷菜单 <i class="Hui-iconfont">&#xe603;</i></a>
             <ul class="dropDown-menu menu radius box-shadow">
                 <li><a href="javascript:;" onclick="layer_open('回调测试', '<?php echo \think\Url::build('welcome'); ?>', {fn:function() {layer.msg('我是回调，弹层加载完成后触发')}});"><i class="Hui-iconfont">&#xe616;</i> 自己随意</a></li>
                 <li><a href="javascript:;" onclick="full_page('关窗警告测试', '<?php echo \think\Url::build('welcome'); ?>', {confirm:true});"><i class="Hui-iconfont">&#xe613;</i> 添加菜单</a></li>
@@ -59,26 +59,32 @@
                     <li><?php echo \think\Session::get('realname'); ?></li>
                     <li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">关闭选项卡<i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a id="a_closeall" href="javascript:;" ><i class="Hui-iconfont">&#xe706;</i>关闭所有</a></li>
-                            <li><a id="a_close" href="javascript:;" ><i class="Hui-iconfont">&#xe60b;</i>除此之外关闭所有</a></li>
+                            <li><a id="a_closeall" href="javascript:;" ><i class="Hui-iconfont">&#xe6a8;&nbsp;</i>关闭所有</a></li>
+                            <li><a id="a_close" href="javascript:;" ><i class="Hui-iconfont">&#xe676;&nbsp;</i>除此之外关闭所有</a></li>
                         </ul>
                     </li>
-                    <li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A"><?php echo \think\Session::get('real_name'); ?> <i class="Hui-iconfont">&#xe6d5;</i></a>
+
+                    <li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A"><!-- <?php echo \think\Session::get('real_name'); ?> --><i class="Hui-iconfont" style="font-size:18px">&#xe62d;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" onclick="layer_open('个人信息', '<?php echo \think\Url::build('Pub/profile'); ?>',{'w':'600px','h':'400px'})">个人信息</a></li>
-                            <li><a href="javascript:;" onclick="layer_open('个人信息', '<?php echo \think\Url::build('Pub/password'); ?>',{'w':'400px','h':'300px'})">修改密码</a></li>
-                            <li><a href="javascript:;" onclick="logout()">退出</a></li>
+                            <li><a href="javascript:;" onclick="layer_open('个人信息', '<?php echo \think\Url::build('Pub/profile'); ?>',{'w':'600px','h':'400px'})"><i class="Hui-iconfont">&#xe705;&nbsp;</i>个人信息</a></li>
+                            <li><a href="javascript:;" onclick="layer_open('个人信息', '<?php echo \think\Url::build('Pub/password'); ?>',{'w':'400px','h':'300px'})"><i class="Hui-iconfont">&#xe63f;&nbsp;</i>修改密码</a></li>
+                            <li><a href="javascript:;" onclick="logout()"><i class="Hui-iconfont">&#xe6e4;&nbsp;</i>退出</a></li>
                         </ul>
                     </li>
-                    <li id="Hui-msg"> <a href="javascript:;" onclick="layer.msg('这个功能自己做')" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+                    <li id="Hui-msg">
+                        <a href="javascript:;" onclick="layer.msg('这个功能自己做')" title="消息">
+                            <span class="badge badge-danger">1</span>
+                            <i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i>
+                        </a>
+                    </li>
                     <li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" id="a_default_skin" data-val="blue" title="默认（蓝色）">默认（蓝色）</a></li>
-                            <li><a href="javascript:;" data-val="default" title="黑色">黑色</a></li>
-                            <li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
-                            <li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
-                            <li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
-                            <li><a href="javascript:;" data-val="orange" title="绿色">橙色</a></li>
+                            <li><a href="javascript:;" id="a_default_skin" data-val="blue" title="默认（蓝色）"><i style="color: #2d6dcc;" class="Hui-iconfont">&#xe619;&nbsp;</i>默认（蓝色）</a></li>
+                            <li><a href="javascript:;" data-val="default" title="黑色"><i class="Hui-iconfont">&#xe619;&nbsp;</i>黑色</a></li>
+                            <li><a href="javascript:;" data-val="green" title="绿色"><i style="color: #19a97b;" class="Hui-iconfont">&#xe619;&nbsp;</i>绿色</a></li>
+                            <li><a href="javascript:;" data-val="red" title="红色"><i style="color: #c81623;" class="Hui-iconfont">&#xe619;&nbsp;</i>红色</a></li>
+                            <li><a href="javascript:;" data-val="yellow" title="黄色"><i style="color:#ffd200;" class="Hui-iconfont">&#xe619;&nbsp;</i>黄色</a></li>
+                            <li><a href="javascript:;" data-val="orange" title="绿色"><i style="color:#ff4a00;" class="Hui-iconfont">&#xe619;&nbsp;</i>橙色</a></li>
                         </ul>
                     </li>
                 </ul>

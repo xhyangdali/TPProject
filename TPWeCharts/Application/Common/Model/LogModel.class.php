@@ -19,9 +19,9 @@ class LogModel extends BaseModel{
 			$now_time = time();
 			$log = D("Log");
 			if($_SESSION['user']['username'] && empty($_SESSION['user_']['name']) ) {
-				$log->user_name = $_SESSION['user']['username'];
+				$log->user_name = base64_encode($_SESSION['user']['username']);
 			}else{
-				$log->user_name = $_SESSION['user_']['name'];
+				$log->user_name = base64_encode($_SESSION['user_']['name']);
 			}
 			$log->action = $action;
 			$log->class_name = $class_name;
@@ -29,8 +29,8 @@ class LogModel extends BaseModel{
 			if( $_SESSION['user']['id'] && empty($_SESSION['user_']['id'])) {
 				$log->class_obj = $_SESSION['user']['id'];
 			}else{
-				//TODO 微信识别号码长度不足！
-				$log->class_obj = substr($_SESSION['user_']['id'],0,32);
+				//DONE 微信识别号码长度不足！
+				$log->class_obj = $_SESSION['user_']['id'];
 			}
 			$log->op_time = $now_time;
 			$log->result = $result;
@@ -43,9 +43,9 @@ class LogModel extends BaseModel{
 			$now_time = time();
 			$log = D("Log");
 			if($_SESSION['user']['username'] && empty($_SESSION['user_']['name']) ) {
-				$log->user_name = $_SESSION['user']['username'];
+				$log->user_name = base64_encode($_SESSION['user']['username']);
 			}else{
-				$log->user_name = $_SESSION['user_']['name'];
+				$log->user_name = base64_encode($_SESSION['user_']['name']);
 			}
 			$log->action = $action;
 			$log->class_name = $class_name;
@@ -53,8 +53,8 @@ class LogModel extends BaseModel{
 			if( $_SESSION['user']['id'] && empty($_SESSION['user_']['id'])) {
 				$log->class_obj = $_SESSION['user']['id'];
 			}else{
-				//TODO 微信识别号码长度不足！
-				$log->class_obj = substr($_SESSION['user_']['id'],0,32);
+				//DONE 微信识别号码长度不足！
+				$log->class_obj = $_SESSION['user_']['id'];
 			}
 			$log->op_time = $now_time;
 			$log->result = $result;

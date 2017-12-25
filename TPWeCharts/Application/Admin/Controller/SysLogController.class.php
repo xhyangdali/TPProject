@@ -31,19 +31,17 @@ class SysLogController extends AdminBaseController{
 		{
 			$totalPages = $totalRows/$listRows;
 		}
-		$sys_logs=$log->where($condition)->order('op_time desc')->page($p,$listRows)->select(); 
-		
+		$sys_logs=$log->where($condition)->order('op_time desc')->page($p,$listRows)->select();
+		$COMMAND_FOR_LOG = C('COMMAND_FOR_LOG');
+		$CLASS_FOR_LOG = C('CLASS_FOR_LOG');
 		//字段翻译处理
 		foreach ($sys_logs as &$log){
 			//系统常量获取
-			$COMMAND_FOR_LOG = C('COMMAND_FOR_LOG');
-			$CLASS_FOR_LOG = C('CLASS_FOR_LOG');
-			//
 			$log['op_time'] = gmdate("Y-m-d H:i:s",$log['op_time']);
 			if(array_key_exists($log['action'],$COMMAND_FOR_LOG)){
 				$log['action']=$COMMAND_FOR_LOG[$log['action']];
 			}
-			 
+			$log['user_name'] = base64_decode($log['user_name']);
 			$class_obj = $log['class_obj'];
 			if(array_key_exists($log['class_name'],$CLASS_FOR_LOG)){
 				$log['class_name'] = $CLASS_FOR_LOG[$log['class_name']];

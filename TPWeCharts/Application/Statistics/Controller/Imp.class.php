@@ -120,23 +120,25 @@ class Imp extends StatisticsBaseController{
             {
                 //已经激活，可以访问
                 //访问日志
-
+                $savedb = $list->where('UserUid', $uid)->ieditData($data);
                 $log->addLog('ACSESS','ContrastIndex',json_encode(array('Result::' => true,'Data::'=>$clist,'IP::'=>$ip)),'');
             }else{
                 //未添加
-
                 $condition_ = array(
                     "useruid" => $data['useruid'],
                     "isdel" => 0
                 );
                 $count_ = $list->where($condition_)->select();
-                \think\Log::record('获取用户accesskey时accesskey长度不对',$count_);
+                //\think\Log::record('获取用户accesskey时accesskey长度不对',$count_);
                 if(!$count_)
                 {
                     //新增访问用户到用户列表
                     unset($data['id']);
                     $result = $list->add($data);
                     $log->addLog('ADD','ContrastIndex',json_encode(array('Result::' => $result,'Data::'=>$data,'IP::'=>$ip)),'');
+                }else{
+                    //更新用户信息
+                    $savedb = $list->where('UserUid', $uid)->ieditData($data);
                 }
                 if($access != "0") {
                     $this->error('对不起，您没有访问权限!');
